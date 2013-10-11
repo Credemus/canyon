@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../.." default="dontuse" name="saints-core">
+  <property name="db.package" value="hsqldb.sar"/>
+  <property name="db.base.dir" value="${basedir}/db/hsqldb"/>
+  <property name="db.dist.dir" value="${dist.dir}/db/hsqldb"/>
+  
+  <target name="dontuse">
+    <fail>
+      Don't use this Ant script directly.
+    </fail>
+  </target>
+  
+  <target name="dbpool-package">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/hsqldb-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml">
+      <filterset>
+    	<filter token="host" value="${hsqldb.host}"/>
+    	<filter token="username" value="${hsqldb.username}"/>
+    	<filter token="password" value="${hsqldb.password}"/>      
+      </filterset>
+    </copy>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+<!--      <fileset dir="${db.base.dir}">
+        <include name="hsqldb.jar"/>
+      </fileset>-->
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="update-schema">
+      <echo message="Make hsqldb on //${hsqldb.host} with ${ddl.dist}/schema-hsqldb.ddl"/>
+      <sql driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:hsql://${hsqldb.host}:1476"
+           userid="${hsqldb.username}" password="${hsqldb.password}" autocommit="true"
+           src="${ddl.dist}/schema-hsqldb.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/hsqldb.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+
+  <target name="run_hsql_manager">
+    <java fork="yes" classname="org.hsqldb.util.DatabaseManager" dir="${db.base.dir}">
+      <classpath>
+        <pathelement location="${db.base.dir}/hsqldb.jar"/>
+      </classpath>
+    </java>
+  </target>
+</project>

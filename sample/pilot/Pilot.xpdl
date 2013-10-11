@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Pilot" Name="Pilot" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2002-06-28 15:51:59</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Participants>
+        <Participant Id="Lagerarbeiter" Name="Lagerarbeiter">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="Sachbearbeiter" Name="Sachbearbeiter">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+    </Participants>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Pilot_Wor1" Name="Kommissionierung">
+            <ProcessHeader DurationUnit="D">
+                <Created>2002-06-28 15:51:59</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="vorgangOid" IsArray="FALSE" Name="vorgangOid">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="starterUserID" IsArray="FALSE" Name="starterUserID">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Applications>
+                <Application Id="SaintsLog" Name="SaintsLog">
+                    <FormalParameters>
+                        <FormalParameter Id="category" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="level" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="message" Index="3" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:javaClass" Value="de.objectcode.canyon.spiImpl.tool.LogTool"/>
+                        <ExtendedAttribute Name="canyon:javaMethod" Value="log"/>
+                    </ExtendedAttributes>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Pilot_Wor1_Act1" Name="Kommissionierschein drucken">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>Lagerarbeiter</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Priority>5</Priority>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="Lagerarbeiter"/>
+                        <ExtendedAttribute Name="XOffset" Value="340"/>
+                        <ExtendedAttribute Name="YOffset" Value="88"/>
+                        <ExtendedAttribute Name="SaintsEditor" Value="Vorgang"/>
+                        <ExtendedAttribute Name="SaintsEditorOid" Value="$vorgangOid"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Pilot_Wor1_Act2" Name="Vorgang fertig melden">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>Lagerarbeiter</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Pilot_Wor1_Tra7"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="Lagerarbeiter"/>
+                        <ExtendedAttribute Name="XOffset" Value="522"/>
+                        <ExtendedAttribute Name="YOffset" Value="88"/>
+                        <ExtendedAttribute Name="SaintsEditor" Value="Vorgang"/>
+                        <ExtendedAttribute Name="SaintsEditorOid" Value="$vorgangOid"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Pilot_Wor1_Act3" Name="Fertigmeldung zur Kenntnis nehmen">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>Sachbearbeiter</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="Sachbearbeiter"/>
+                        <ExtendedAttribute Name="XOffset" Value="523"/>
+                        <ExtendedAttribute Name="YOffset" Value="80"/>
+                        <ExtendedAttribute Name="SaintsEditor" Value="Vorgang"/>
+                        <ExtendedAttribute Name="SaintsEditorOid" Value="$vorgangOid"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Log1" Name="Write Log 1">
+                    <Implementation>
+                        <Tool Id="SaintsLog" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>'Workflow Process 1'</ActualParameter>
+                                <ActualParameter>2</ActualParameter>
+                                <ActualParameter>concat('Message 1 ', $vorgangOid, ' ', $starterUserID)</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="FreeTextExpressionParticipant"/>
+                        <ExtendedAttribute Name="XOffset" Value="380"/>
+                        <ExtendedAttribute Name="YOffset" Value="40"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Log2" Name="Write Log 2">
+                    <Implementation>
+                        <Tool Id="SaintsLog" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>'Workflow Process 1'</ActualParameter>
+                                <ActualParameter>2</ActualParameter>
+                                <ActualParameter>concat('Message 2', $vorgangOid, ' ', $starterUserID)</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="FreeTextExpressionParticipant"/>
+                        <ExtendedAttribute Name="XOffset" Value="630"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Pilot_Wor1_Act2" Id="Pilot_Wor1_Tra7" Name="Transition" To="Pilot_Wor1_Act3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Pilot_Wor1_Act1" Id="Pilot_Wor1_Tra12" Name="Transition" To="Log1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Log1" Id="Pilot_Wor1_Tra13" Name="Transition" To="Pilot_Wor1_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Pilot_Wor1_Act3" Id="Pilot_Wor1_Tra14" Name="Transition" To="Log2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="Lagerarbeiter;Pilot_Wor1_Act1;196;88;SIMPLEROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="Sachbearbeiter;Log2;735;80;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="Lagerarbeiter;Sachbearbeiter;FreeTextExpressionParticipant;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Pilot_Wor2" Name="Test Process">
+            <ProcessHeader DurationUnit="D">
+                <Created>2002-06-28 15:51:59</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Activities>
+                <Activity Id="Pilot_Wor2_Act1" Name="Generisch">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>Sachbearbeiter</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                            <Split Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="Sachbearbeiter"/>
+                        <ExtendedAttribute Name="XOffset" Value="296"/>
+                        <ExtendedAttribute Name="YOffset" Value="68"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="Sachbearbeiter;Pilot_Wor2_Act1;149;79;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="Sachbearbeiter;Pilot_Wor2_Act1;485;98;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="Sachbearbeiter;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.2"/>
+    </ExtendedAttributes>
+</Package>

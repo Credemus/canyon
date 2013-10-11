@@ -1,0 +1,119 @@
+<table cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td>
+      <nested:hidden property="currentPageIdx"/>
+      <table cellpadding="0" cellspacing="0" border="0" class="rowtable">
+      <tr>
+        <th class="rowtable-title" nowrap>
+          &nbsp;&nbsp;ID&nbsp;&nbsp;
+        </th>
+        <th class="rowtable-title" nowrap>
+          &nbsp;&nbsp;Name&nbsp;&nbsp;
+        </th>
+        <th class="rowtable-title" nowrap>
+          &nbsp;&nbsp;Priority&nbsp;&nbsp;
+        </th>
+        <th class="rowtable-title" nowrap>
+          &nbsp;&nbsp;Date&nbsp;&nbsp;
+        </th>
+      </tr>
+		<nested:iterate property="currentPage" id="row" indexId="rowIdx">
+		  <tr>
+				<nested:equal property="id" value="<%=theCurrentId.toString()%>">
+					<TD class="row-color-highlighted" align="center">
+				</nested:equal>
+				<nested:notEqual property="id" value="<%=theCurrentId.toString()%>">
+					<%if(((Integer)rowIdx).intValue()%2==0){%>
+						<TD class="row-color-intermediate1" align="center">
+					<%}else{%>
+						<TD class="row-color-intermediate2" align="center">
+					<%}%>
+				</nested:notEqual>
+			  <nested:hidden property="id"/>
+			  <nested:submit property="submit.select" styleClass="submitLink">
+			    <nested:write name="row" property="id"/>
+			  </nested:submit>
+			</td>
+				<nested:equal property="id" value="<%=theCurrentId.toString()%>">
+					<TD class="row-color-highlighted" align="center">
+				</nested:equal>
+				<nested:notEqual property="id" value="<%=theCurrentId.toString()%>">
+					<%if(((Integer)rowIdx).intValue()%2==0){%>
+						<TD class="row-color-intermediate1" align="center">
+					<%}else{%>
+						<TD class="row-color-intermediate2" align="center">
+					<%}%>
+				</nested:notEqual>
+			  <nested:submit property="submit.select" styleClass="submitLink">
+			    <nested:write name="row" property="name"/>
+			  </nested:submit>
+			</td>
+				<nested:equal property="id" value="<%=theCurrentId.toString()%>">
+					<TD class="row-color-highlighted" align="center">
+				</nested:equal>
+				<nested:notEqual property="id" value="<%=theCurrentId.toString()%>">
+					<%if(((Integer)rowIdx).intValue()%2==0){%>
+						<TD class="row-color-intermediate1" align="center">
+					<%}else{%>
+						<TD class="row-color-intermediate2" align="center">
+					<%}%>
+				</nested:notEqual>
+			  <nested:submit property="submit.select" styleClass="submitLink">
+			    <nested:write name="row" property="priority"/>
+			  </nested:submit>
+			</td>
+				<nested:equal property="id" value="<%=theCurrentId.toString()%>">
+					<TD class="row-color-highlighted" align="center">
+				</nested:equal>
+				<nested:notEqual property="id" value="<%=theCurrentId.toString()%>">
+					<%if(((Integer)rowIdx).intValue()%2==0){%>
+						<TD class="row-color-intermediate1" align="center">
+					<%}else{%>
+						<TD class="row-color-intermediate2" align="center">
+					<%}%>
+				</nested:notEqual>
+			  <nested:submit property="submit.select" styleClass="submitLink">
+			    <nested:write name="row" property="startedDate"/>
+			  </nested:submit>
+			</td>
+		  </tr>
+        </nested:iterate>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table>
+        <tr>
+          <nested:define id="currentPageNumber" property="currentPageIdx"/>
+          <nested:hidden property="intervalStart" />
+		  <nested:hidden property="intervalEnd" />
+          <td><nested:submit property="submit.first" styleClass="submitLink" value="First"/></td>
+          <td>
+         	<nested:submit property="submit.prevPageInterval" styleClass="submitLink" value="<<"/>
+          </td>
+		  <td><nested:submit property="submit.prev" styleClass="submitLink" value="<"/></td>
+		  <td>
+			<nested:notEmpty property="currentPageInterval">
+			<nested:iterate id="site" property="currentPageInterval">
+			  <nested:equal property="value"  value="<%=((Integer)currentPageNumber).toString()%>">
+				<nested:submit property="submit.selectPage" styleClass="submitLinkSelected">
+					<nested:write name="site" property="label"/>
+			  	</nested:submit>
+			  </nested:equal>
+			  <nested:notEqual property="value"  value="<%=((Integer)currentPageNumber).toString()%>">
+				<nested:submit property="submit.selectPage" styleClass="submitLink">
+					<nested:write name="site" property="label"/>
+			  	</nested:submit>
+			  </nested:notEqual>
+			</nested:iterate>
+			</nested:notEmpty>
+		  </td>
+		  <td><nested:submit property="submit.next" styleClass="submitLink" value=">"/></td>	
+		  <td><nested:submit property="submit.nextPageInterval" styleClass="submitLink" value=">>"/></td>
+          <td><nested:submit property="submit.last" styleClass="submitLink" value="Last"/></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

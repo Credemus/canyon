@@ -1,0 +1,6 @@
+  <mbean code="de.objectcode.canyon.wetdock.jmx.WetdockRepositories"
+         name="canyon.bpe:service=WetdockRepositories">
+    <depends>jboss.jca:service=Hibernate-Canyon-Wetdock</depends>
+    <depends>canyon:service=ServiceManager</depends>
+    <depends>canyon.bpe:service=BPEEngineService</depends>
+  </mbean>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../.." default="dontuse" name="saints-core">
+  <property name="db.package" value="mysql.sar"/>
+  <property name="db.base.dir" value="${basedir}/db/mysql"/>
+  <property name="db.dist.dir" value="${dist.dir}/db/mysql"/>
+  
+  <target name="dontuse">
+    <fail>
+      Don't use this Ant script directly.
+    </fail>
+  </target>
+  
+  <target name="dbpool-package-3.0">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/mysql-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml">
+      <filterset>
+    	<filter token="host" value="${mysql.host}"/>
+    	<filter token="dbalias" value="${mysql.dbalias}"/>
+    	<filter token="username" value="${mysql.username}"/>
+    	<filter token="password" value="${mysql.password}"/>      
+      </filterset>
+    </copy>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="mysql.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+
+  <target name="dbpool-package-3.2">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/mysql-ds.xml" todir="${db.dist.dir}">
+      <filterset>
+    	<filter token="host" value="${mysql.host}"/>
+    	<filter token="dbalias" value="${mysql.dbalias}"/>
+    	<filter token="username" value="${mysql.username}"/>
+    	<filter token="password" value="${mysql.password}"/>      
+      </filterset>
+    </copy>
+    
+    <copy file="${basedir}/db/empty-jboss-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml"/>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="mysql.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="update-schema">
+      <echo message="Make mysqldb on //${mysql.host}:3306/${mysql.dbalias} with ${ddl.dist}/schema-mysql.ddl"/>
+      <sql driver="com.mysql.jdbc.Driver" url="jdbc:mysql://${mysql.host}:3306/${mysql.dbalias}"
+           userid="${mysql.username}" password="${mysql.password}" autocommit="true"
+           src="${ddl.dist}/schema-mysql.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/mysql.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+</project>

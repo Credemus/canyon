@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Deadline1" Name="Trifork" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-16 10:38:17</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="SubprocessLoop" Name="SubprocessLoop">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="A" IsArray="FALSE" Name="A">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                </DataField>
+                <DataField Id="B" IsArray="FALSE" Name="B">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="event-handler" Name="event-handler">
+                    <ParticipantType Type="SYSTEM"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Trifork_App1" Name="Init">
+                    <FormalParameters>
+                        <FormalParameter Id="A" Index="1" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="B" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="Trifork_App1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>A</ActualParameter>
+                                <ActualParameter>B</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Trifork_Tra17"/>
+                                    <TransitionRef Id="Trifork_Tra16"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="360"/>
+                        <ExtendedAttribute Name="YOffset" Value="120"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline1_Wor1_Act1" Name="Route">
+                    <Route/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="120"/>
+                        <ExtendedAttribute Name="YOffset" Value="120"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Trifork_Act4" Name="Route">
+                    <Route/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="770"/>
+                        <ExtendedAttribute Name="YOffset" Value="120"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Trifork_Act7" Name="Route">
+                    <Route/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="770"/>
+                        <ExtendedAttribute Name="YOffset" Value="40"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="360"/>
+                        <ExtendedAttribute Name="YOffset" Value="40"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="SubprocessLoop_Act8" Name="SubFlow">
+                    <Implementation>
+                        <SubFlow Execution="SYNCHR" Id="Sub1"/>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Trifork_Tra40"/>
+                                    <TransitionRef Id="SubprocessLoop_Tra63"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="670"/>
+                        <ExtendedAttribute Name="YOffset" Value="120"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="520"/>
+                        <ExtendedAttribute Name="YOffset" Value="120"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Trifork_Tra16" To="Activity2">
+                    <Condition Type="CONDITION">!A &amp;&amp; B</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Trifork_Tra17" To="Activity3">
+                    <Condition Type="CONDITION">A</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity3" Id="Trifork_Tra38" To="SubprocessLoop_Act8">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="SubprocessLoop_Act8" Id="Trifork_Tra40" To="Activity3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="620;190;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline1_Wor1_Act1" Id="Trifork_Tra61" To="Activity1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity2" Id="SubprocessLoop_Tra62" To="Trifork_Act7">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="SubprocessLoop_Act8" Id="SubprocessLoop_Tra63" To="Trifork_Act4">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="role1;Deadline1_Wor1_Act1;51;120;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;Trifork_Act4;880;120;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;Trifork_Act7;880;40;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="role1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Sub1" Name="Sub1">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="A" IsArray="FALSE" Name="A">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                </DataField>
+                <DataField Id="B" IsArray="FALSE" Name="B">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="event-handler" Name="event-handler">
+                    <ParticipantType Type="SYSTEM"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Trifork_App1" Name="Init">
+                    <FormalParameters>
+                        <FormalParameter Id="A" Index="1" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="B" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity4" Name="Activity4">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="490"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="role1;Activity4;230;50;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;Activity4;770;50;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="role1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.4.2"/>
+    </ExtendedAttributes>
+</Package>

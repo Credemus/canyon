@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="basic3" Name="Basic 3" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2004-06-14 13:24:00</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="basic3_Wor1" Name="Basic 3">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-06-14 13:24:17</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="param1" IsArray="FALSE" Name="param1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>Initial Param1</InitialValue>
+                </DataField>
+                <DataField Id="param2" IsArray="FALSE" Name="param2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>Initial Param2</InitialValue>
+                </DataField>
+                <DataField Id="param3" IsArray="FALSE" Name="param3">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>Initial Param3</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="testApp1" Name="testApp1">
+                    <FormalParameters>
+                        <FormalParameter Id="testApp1Param1" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="testApp1Param2" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="testApp1Param3" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="testApp1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>param1</ActualParameter>
+                                <ActualParameter>param2</ActualParameter>
+                                <ActualParameter>param3</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="sample4_Tra4"/>
+                                    <TransitionRef Id="sample4_Tra5"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="220"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="400"/>
+                        <ExtendedAttribute Name="YOffset" Value="20"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="activity3" Name="Activity 3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="400"/>
+                        <ExtendedAttribute Name="YOffset" Value="100"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="activity4" Name="Activity 4">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="570"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="sample4_Tra4" Name="Transition" To="Activity2">
+                    <Condition Type="CONDITION">"test".equals(param3)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="sample4_Tra5" Name="Transition" To="activity3">
+                    <Condition Type="CONDITION">!"test".equals(param3)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity2" Id="sample4_Tra6" Name="Transition" To="activity4">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="activity3" Id="sample4_Tra7" Name="Transition" To="activity4">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="role1;Activity1;100;50;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;activity4;710;50;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="role1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.2"/>
+    </ExtendedAttributes>
+</Package>

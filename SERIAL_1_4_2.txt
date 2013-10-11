@@ -1,0 +1,359 @@
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ActivityData
+de.objectcode.canyon.api.worklist.ActivityData:    static final long serialVersionUID = -5478729874603189939L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.event.ActivityStateEvent
+de.objectcode.canyon.bpe.engine.event.ActivityStateEvent:    static final long serialVersionUID = -3054068798261955305L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ApplicationData
+de.objectcode.canyon.api.worklist.ApplicationData:    static final long serialVersionUID = -773664994678301132L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.jmx.async.AsyncCompleteBPEActivity
+de.objectcode.canyon.jmx.async.AsyncCompleteBPEActivity:    static final long serialVersionUID = -3587357681824856243L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.async.AsyncCompleteBPEActivity
+de.objectcode.canyon.persistent.async.AsyncCompleteBPEActivity:    static final long serialVersionUID = -4939495142986421716L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.async.AsyncExecutionBean
+de.objectcode.canyon.ejb.async.AsyncExecutionBean:    static final long serialVersionUID = -7587776666762184618L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ApplicationData
+de.objectcode.canyon.api.worklist.ApplicationData:    static final long serialVersionUID = -773664994678301132L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ProcessInstanceData
+de.objectcode.canyon.api.worklist.ProcessInstanceData:    static final long serialVersionUID = 161879906855118015L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.audit.AttributeChangedActualEvent
+org.wfmc.audit.AttributeChangedActualEvent:    static final long serialVersionUID = -2291747777911835657L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.instance.AttributeReadOnlyException
+de.objectcode.canyon.spi.instance.AttributeReadOnlyException:    static final long serialVersionUID = -8906088128573301950L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.BaseMessageBean
+de.objectcode.canyon.ejb.BaseMessageBean:    static final long serialVersionUID = -1106077740135821470L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.BaseServiceManagerBean
+de.objectcode.canyon.ejb.BaseServiceManagerBean:    static final long serialVersionUID = -137697717800823720L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.BaseSessionBean
+de.objectcode.canyon.ejb.BaseSessionBean:    static final long serialVersionUID = 1113072178513686984L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.BPEEvent
+Class de.objectcode.canyon.api.worklist.BPEEvent not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.CanyonException
+de.objectcode.canyon.CanyonException:    static final long serialVersionUID = -2881262933524551015L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.CanyonRuntimeException
+de.objectcode.canyon.CanyonRuntimeException:    static final long serialVersionUID = -356899096813739242L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.activities.Switch
+de.objectcode.canyon.bpe.engine.activities.Switch:    static final long serialVersionUID = 3977601137806435607L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.api.user.ClientData
+Class de.objectcode.canyon.wetdock.api.user.ClientData not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.activities.Assign
+de.objectcode.canyon.bpe.engine.activities.Assign:    static final long serialVersionUID = 2020836348248036031L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.worklist.spi.worklist.DefaultApplicationData
+de.objectcode.canyon.worklist.spi.worklist.DefaultApplicationData:    static final long serialVersionUID = 3283580590757005501L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.EngineException
+de.objectcode.canyon.bpe.engine.EngineException:    static final long serialVersionUID = -707352155782500550L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.evaluator.EvaluatorException
+de.objectcode.canyon.spi.evaluator.EvaluatorException:    static final long serialVersionUID = 2334535007229090976L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ExtendedAttribute
+de.objectcode.canyon.api.worklist.ExtendedAttribute:    static final long serialVersionUID = -1977945578124307106L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.jmx.bpe.BPEEngineService
+Class de.objectcode.canyon.jmx.bpe.BPEEngineService is not Serializable.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.jmx.WSRepositories
+Class de.objectcode.canyon.persistent.jmx.WSRepositories is not Serializable.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.FormalParameterNotFoundException
+de.objectcode.canyon.FormalParameterNotFoundException:    static final long serialVersionUID = -4892570350848811642L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.parser.InvalidPackageException
+de.objectcode.canyon.spi.parser.InvalidPackageException:    static final long serialVersionUID = -8175274348529057748L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.InvalidProcessException
+de.objectcode.canyon.InvalidProcessException:    static final long serialVersionUID = -6680976799350501500L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.InvalidStateException
+de.objectcode.canyon.bpe.engine.InvalidStateException:    static final long serialVersionUID = 3316390254772037073L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.connector.InvokationException
+de.objectcode.canyon.bpe.connector.InvokationException:    static final long serialVersionUID = -6380113528049426254L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  xdoclet.modules.hibernate.JBossServiceSubTask
+Class xdoclet.modules.hibernate.JBossServiceSubTask not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.correlation.MessageType
+de.objectcode.canyon.bpe.engine.correlation.MessageType:    static final long serialVersionUID = 1645447820122616022L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector
+Class de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector is not Serializable.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector
+Class de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector is not Serializable.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.ObjectAlreadyExistsException
+de.objectcode.canyon.spi.ObjectAlreadyExistsException:    static final long serialVersionUID = 2762075722544395303L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.ObjectNotFoundException
+de.objectcode.canyon.spi.ObjectNotFoundException:    static final long serialVersionUID = 4658900994763765942L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.activities.Pick
+de.objectcode.canyon.bpe.engine.activities.Pick:    static final long serialVersionUID = -5746536574452726475L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ApplicationData
+de.objectcode.canyon.api.worklist.ApplicationData:    static final long serialVersionUID = -773664994678301132L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ProcessData
+de.objectcode.canyon.api.worklist.ProcessData:    static final long serialVersionUID = -4672021667776855268L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.tool.Parameter
+de.objectcode.canyon.spi.tool.Parameter:    static final long serialVersionUID = 2454945467359500162L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.engine.util.ParseException
+de.objectcode.canyon.engine.util.ParseException:    static final long serialVersionUID = 6315862747903265189L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.worklist.ParticipantBean
+de.objectcode.canyon.ejb.worklist.ParticipantBean:    static final long serialVersionUID = -6867406868746595846L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.process.PPackageID
+de.objectcode.canyon.persistent.process.PPackageID:    static final long serialVersionUID = -7581690352855710793L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.process.PProcessDefinitionID
+de.objectcode.canyon.persistent.process.PProcessDefinitionID:    static final long serialVersionUID = 2194990048285637031L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.participant.PProcessInstanceToParticipantId
+de.objectcode.canyon.persistent.participant.PProcessInstanceToParticipantId:    static final long serialVersionUID = -5046660118981972752L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.bpe.ProcessBean
+de.objectcode.canyon.ejb.bpe.ProcessBean:    static final long serialVersionUID = 9067988689544551203L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.ProcessData
+de.objectcode.canyon.api.worklist.ProcessData:    static final long serialVersionUID = -4672021667776855268L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.event.ProcessMessageEvent
+de.objectcode.canyon.bpe.engine.event.ProcessMessageEvent:    static final long serialVersionUID = 8010852450729495813L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.bpe.admin.ProcessRepositoryAdminBean
+de.objectcode.canyon.ejb.bpe.admin.ProcessRepositoryAdminBean:    static final long serialVersionUID = -8345433046933222103L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.variable.ComplexType
+de.objectcode.canyon.bpe.engine.variable.ComplexType:    static final long serialVersionUID = -3967558807653210587L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.RepositoryException
+de.objectcode.canyon.spi.RepositoryException:    static final long serialVersionUID = 1923234912392951122L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.api.user.RoleData
+Class de.objectcode.canyon.wetdock.api.user.RoleData not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.persistent.jmx.SessionFactoryStub
+de.objectcode.canyon.persistent.jmx.SessionFactoryStub:    static final long serialVersionUID = 7781310562718770478L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.ejb.setup.SetupBean
+Class de.objectcode.canyon.wetdock.ejb.setup.SetupBean not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ws.ser.StateDeserializer
+Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/soap/Node
+        at java.lang.ClassLoader.defineClass0(Native Method)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:539)
+        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:123)
+        at java.net.URLClassLoader.defineClass(URLClassLoader.java:251)
+        at java.net.URLClassLoader.access$100(URLClassLoader.java:55)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:194)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:187)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:289)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:235)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:302)
+        at java.lang.ClassLoader.defineClass0(Native Method)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:539)
+        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:123)
+        at java.net.URLClassLoader.defineClass(URLClassLoader.java:251)
+        at java.net.URLClassLoader.access$100(URLClassLoader.java:55)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:194)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:187)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:289)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:235)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:302)
+        at java.lang.ClassLoader.defineClass0(Native Method)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:539)
+        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:123)
+        at java.net.URLClassLoader.defineClass(URLClassLoader.java:251)
+        at java.net.URLClassLoader.access$100(URLClassLoader.java:55)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:194)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:187)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:289)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:235)
+        at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:302)
+        at java.lang.Class.getDeclaredConstructors0(Native Method)
+        at java.lang.Class.privateGetDeclaredConstructors(Class.java:1618)
+        at java.lang.Class.getConstructor0(Class.java:1930)
+        at java.lang.Class.getDeclaredConstructor(Class.java:1301)
+        at java.io.ObjectStreamClass.getSerializableConstructor(ObjectStreamClass.java:1183)
+        at java.io.ObjectStreamClass.access$1300(ObjectStreamClass.java:47)
+        at java.io.ObjectStreamClass$3.run(ObjectStreamClass.java:347)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.io.ObjectStreamClass.<init>(ObjectStreamClass.java:333)
+        at java.io.ObjectStreamClass.lookup(ObjectStreamClass.java:253)
+        at java.io.ObjectStreamClass.<init>(ObjectStreamClass.java:329)
+        at java.io.ObjectStreamClass.lookup(ObjectStreamClass.java:253)
+        at java.io.ObjectStreamClass.<init>(ObjectStreamClass.java:329)
+        at java.io.ObjectStreamClass.lookup(ObjectStreamClass.java:253)
+        at java.io.ObjectStreamClass.lookup(ObjectStreamClass.java:146)
+        at sun.tools.serialver.SerialVer.resolveClass(SerialVer.java:190)
+        at sun.tools.serialver.SerialVer.serialSyntax(SerialVer.java:161)
+        at sun.tools.serialver.SerialVer.main(SerialVer.java:270)
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ws.ser.StateDeserializerFactory
+de.objectcode.canyon.ws.ser.StateDeserializerFactory:    static final long serialVersionUID = 1273917984204280980L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ws.ser.StateSerializer
+de.objectcode.canyon.ws.ser.StateSerializer:    static final long serialVersionUID = 8937822835053149107L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ws.ser.StateSerializerFactory
+de.objectcode.canyon.ws.ser.StateSerializerFactory:    static final long serialVersionUID = -5655834898633702951L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.connector.SubProcessFinishConnector
+de.objectcode.canyon.bpe.connector.SubProcessFinishConnector:    static final long serialVersionUID = -1772170408442938740L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.connector.SubProcessInitConnector
+de.objectcode.canyon.bpe.connector.SubProcessInitConnector:    static final long serialVersionUID = 2368920307354959774L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.ejb.test.TestServiceBean
+Class de.objectcode.canyon.wetdock.ejb.test.TestServiceBean not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.engine.util.TokenMgrError
+de.objectcode.canyon.engine.util.TokenMgrError:    static final long serialVersionUID = -2208611964033453869L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector
+Class de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector is not Serializable.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.api.user.UserData
+Class de.objectcode.canyon.wetdock.api.user.UserData not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.wetdock.ejb.user.UserManagerBean
+Class de.objectcode.canyon.wetdock.ejb.user.UserManagerBean not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMAttributeAssignmentException
+org.wfmc.wapi.WMAttributeAssignmentException:    static final long serialVersionUID = 3908258638565217467L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMConnectException
+org.wfmc.wapi.WMConnectException:    static final long serialVersionUID = 7800700798975973052L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMExecuteException
+org.wfmc.wapi.WMExecuteException:    static final long serialVersionUID = -6582786780183780238L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidActivityInstanceException
+org.wfmc.wapi.WMInvalidActivityInstanceException:    static final long serialVersionUID = 1738151149117001141L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidActivityNameException
+org.wfmc.wapi.WMInvalidActivityNameException:    static final long serialVersionUID = -3050394542272848943L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidAttributeException
+org.wfmc.wapi.WMInvalidAttributeException:    static final long serialVersionUID = -7607744446178994346L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidFilterException
+org.wfmc.wapi.WMInvalidFilterException:    static final long serialVersionUID = -2878545707324033369L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidProcessDefinitionException
+org.wfmc.wapi.WMInvalidProcessDefinitionException:    static final long serialVersionUID = -6619236362370390306L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidProcessInstanceException
+org.wfmc.wapi.WMInvalidProcessInstanceException:    static final long serialVersionUID = -8894973360615671750L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidSessionException
+org.wfmc.wapi.WMInvalidSessionException:    static final long serialVersionUID = -8332610590181426039L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidSourceUserException
+org.wfmc.wapi.WMInvalidSourceUserException:    static final long serialVersionUID = 513114213906971762L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidTargetUserException
+org.wfmc.wapi.WMInvalidTargetUserException:    static final long serialVersionUID = -1531645422643039104L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidToolException
+org.wfmc.wapi.WMInvalidToolException:    static final long serialVersionUID = 5418088184966105826L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMInvalidWorkItemException
+org.wfmc.wapi.WMInvalidWorkItemException:    static final long serialVersionUID = 8073398504788706532L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMIOException
+org.wfmc.wapi.WMIOException:    static final long serialVersionUID = -1019791291722421305L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMLockedException
+org.wfmc.wapi.WMLockedException:    static final long serialVersionUID = -7936326033418137067L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMNoMoreDataException
+org.wfmc.wapi.WMNoMoreDataException:    static final long serialVersionUID = 1829049389934174084L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMNotLockedException
+org.wfmc.wapi.WMNotLockedException:    static final long serialVersionUID = -7321557115925938780L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMTransitionNotAllowedException
+org.wfmc.wapi.WMTransitionNotAllowedException:    static final long serialVersionUID = -9001778228100390200L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMUnsupportedOperationException
+org.wfmc.wapi.WMUnsupportedOperationException:    static final long serialVersionUID = -5759667029599116053L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  org.wfmc.wapi.WMWorkflowException
+org.wfmc.wapi.WMWorkflowException:    static final long serialVersionUID = -3554661197812277075L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.worklist.WorklistBean
+de.objectcode.canyon.ejb.worklist.WorklistBean:    static final long serialVersionUID = 652518410424806449L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.api.worklist.WorklistEvent
+de.objectcode.canyon.api.worklist.WorklistEvent:    static final long serialVersionUID = 2858774714845997272L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.ejb.async.WorklistEventBean
+de.objectcode.canyon.ejb.async.WorklistEventBean:    static final long serialVersionUID = 3573126815689237103L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.bpe.engine.evaluator.XPathCondition
+de.objectcode.canyon.bpe.engine.evaluator.XPathCondition:    static final long serialVersionUID = -6121066809410254843L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar  de.objectcode.canyon.spi.parser.XPDLParserException
+de.objectcode.canyon.spi.parser.XPDLParserException:    static final long serialVersionUID = 1096493217640296064L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.bpe.engine.activities.Switch.Case
+de.objectcode.canyon.bpe.engine.activities.Switch.Case:    static final long serialVersionUID = 1186865794730872178L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.api.worklist.ApplicationData.Attribute
+de.objectcode.canyon.api.worklist.ApplicationData.Attribute:    static final long serialVersionUID = 1068295491556108993L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.api.worklist.ProcessInstanceData.Data
+Class de.objectcode.canyon.api.worklist.ProcessInstanceData.Data not found.
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.api.worklist.ProcessInstanceData.Attribute
+de.objectcode.canyon.api.worklist.ProcessInstanceData.Attribute:    static final long serialVersionUID = -6817874812457251343L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.bpe.engine.activities.Assign.Copy
+de.objectcode.canyon.bpe.engine.activities.Assign.Copy:    static final long serialVersionUID = 7682222909505893152L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.NoMatchingEventHandlerFoundException
+de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.NoMatchingEventHandlerFoundException:    static final long serialVersionUID = -4197161977104401608L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.NoMatchingProcessInstanceFoundException
+de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.NoMatchingProcessInstanceFoundException:    static final long serialVersionUID = 4042991961769711919L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.TooManyMatchingProcessInstancesFoundException
+de.objectcode.canyon.spiImpl.tool.event.BaseEventConnector.TooManyMatchingProcessInstancesFoundException:    static final long serialVersionUID = 647955311844249395L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.bpe.engine.activities.Pick.OnMessage
+de.objectcode.canyon.bpe.engine.activities.Pick.OnMessage:    static final long serialVersionUID = -889092738916115684L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.api.worklist.ApplicationData.Parameter
+de.objectcode.canyon.api.worklist.ApplicationData.Parameter:    static final long serialVersionUID = 4479370332326975917L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.api.worklist.ProcessData.Parameter
+de.objectcode.canyon.api.worklist.ProcessData.Parameter:    static final long serialVersionUID = 2032684319460410147L;
+
+serialver -classpath dist/engine;dist/jmx;dist/wetdock;lib/jbossall-client-3.2.jar;lib/namespace.jar;lib/commons-logging.jar;lib/axis-ws4ee.jar;lib/jboss-jmx.jar;lib/hibernate2.jar;lib/jboss-jaxrpc.jar;lib/commons-beanutils.jar;dist/ejb;dist/wfmc;dist/persistent;lib/j2ee.jar;lib/commons-logging.jar;lib/dom4j.jar de.objectcode.canyon.bpe.engine.variable.ComplexType.PropertyDefinition
+de.objectcode.canyon.bpe.engine.variable.ComplexType.PropertyDefinition:    static final long serialVersionUID = -6027270080903963150L;

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Subprocess" Name="Subprocess" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2004-06-14 13:24:00</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Sub" Name="Sub">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-06-14 13:24:17</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="SubActivity1" Name="SubActivity1">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="426,58"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=SubActivity1,X_OFFSET=688,Y_OFFSET=67,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=SubActivity1,X_OFFSET=256,Y_OFFSET=58,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Sync" Name="Sync">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-06-14 13:24:17</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="SyncActivity1" Name="SyncActivity1">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="446,49"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="basic1_Wor1_act1" Name="Sync">
+                    <Implementation>
+                        <SubFlow Execution="SYNCHR" Id="Sub"/>
+                    </Implementation>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="269,49"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="basic1_Wor1_act1" Id="basic1_Wor1_tra1" To="SyncActivity1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=SyncActivity1,X_OFFSET=688,Y_OFFSET=67,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=basic1_Wor1_act1,X_OFFSET=69,Y_OFFSET=53,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Async" Name="Async">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-06-14 13:24:17</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="AsyncActivity1" Name="AsyncActivity1">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="446,49"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="basic1_Wor1_act1" Name="Async">
+                    <Implementation>
+                        <SubFlow Execution="ASYNCHR" Id="Sub"/>
+                    </Implementation>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="269,49"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="basic1_Wor1_act1" Id="basic1_Wor1_tra1" To="AsyncActivity1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=AsyncActivity1,X_OFFSET=688,Y_OFFSET=67,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=basic1_Wor1_act1,X_OFFSET=69,Y_OFFSET=53,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+        <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+    </ExtendedAttributes>
+</Package>

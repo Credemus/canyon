@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Deadline2" Name="Deadline2" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-16 10:38:17</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Deadline2_Wor1" Name="Deadline 2">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Deadline Execution="ASYNCHR">
+                        <DeadlineCondition>10s</DeadlineCondition>
+                        <ExceptionName>Expire</ExceptionName>
+                    </Deadline>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra2"/>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra4"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,50"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="520,30"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="500,120"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra4" To="Activity3">
+                    <Condition Type="EXCEPTION">Expire</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity3,X_OFFSET=701,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=751,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="DeadlineWithLongLimit" Name="DeadlineWithLongLimit">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Limit>30</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Deadline Execution="ASYNCHR">
+                        <DeadlineCondition>10s</DeadlineCondition>
+                        <ExceptionName>Expire</ExceptionName>
+                    </Deadline>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra2"/>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra4"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,50"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="520,30"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="500,120"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra4" To="Activity3">
+                    <Condition Type="EXCEPTION">Expire</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity3,X_OFFSET=701,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=751,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="DeadlineWithShortLimit" Name="DeadlineWithShortLimit">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Limit>30</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Deadline Execution="ASYNCHR">
+                        <DeadlineCondition>10s</DeadlineCondition>
+                        <ExceptionName>Expire</ExceptionName>
+                    </Deadline>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra2"/>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra4"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,50"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="520,30"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="500,120"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra4" To="Activity3">
+                    <Condition Type="EXCEPTION">Expire</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity3,X_OFFSET=701,Y_OFFSET=131,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=751,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Deadline2_wp1" Name="MultipleDeadline">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="deadline1" IsArray="FALSE" Name="deadline1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>10s</InitialValue>
+                </DataField>
+                <DataField Id="deadline2" IsArray="FALSE" Name="deadline2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>30s</InitialValue>
+                </DataField>
+                <DataField Id="deadline3" IsArray="FALSE" Name="deadline3">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>90s</InitialValue>
+                </DataField>
+                <DataField Id="dummy" IsArray="FALSE" Name="dummy">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>HUHU</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="System" Name="System">
+                    <ParticipantType Type="SYSTEM"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Set_Var" Name="Set_Var">
+                    <FormalParameters>
+                        <FormalParameter Id="InputVar" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="OutputVar" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:toolConnectorClass" Value="de.objectcode.canyon.spiImpl.tool.BeanShellScriptConnector"/>
+                        <ExtendedAttribute Name="script" Value="OutputVar=InputVar;"/>
+                    </ExtendedAttributes>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Deadline Execution="ASYNCHR">
+                        <DeadlineCondition>deadline1</DeadlineCondition>
+                        <ExceptionName>Expire</ExceptionName>
+                    </Deadline>
+                    <Deadline Execution="ASYNCHR">
+                        <DeadlineCondition>deadline2</DeadlineCondition>
+                        <ExceptionName>Expire2</ExceptionName>
+                    </Deadline>
+                    <Deadline Execution="SYNCHR">
+                        <DeadlineCondition>deadline3</DeadlineCondition>
+                        <ExceptionName>deadline3</ExceptionName>
+                    </Deadline>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra2"/>
+                                    <TransitionRef Id="Deadline1_Wor1_Tra4"/>
+                                    <TransitionRef Id="Deadline2_wp1_tra1"/>
+                                    <TransitionRef Id="Deadline2_wp1_tra4"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="250,50"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="520,30"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="500,120"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity4" Name="Activity4">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="506,202"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act1" Name="Route">
+                    <Route/>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="633,149"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity5" Name="Activity5">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="240,291"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act4" Name="SetVar">
+                    <Implementation>
+                        <Tool Id="Set_Var" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"HAHA"</ActualParameter>
+                                <ActualParameter>dummy</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="466,74"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act5" Name="Route">
+                    <Route/>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="AND">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Deadline2_wp1_tra9"/>
+                                    <TransitionRef Id="Deadline2_wp1_tra8"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="245,182"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act21" Name="Route">
+                    <Route/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="466,2"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act41" Name="SetVar">
+                    <Implementation>
+                        <Tool Id="Set_Var" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"HAHA"</ActualParameter>
+                                <ActualParameter>dummy</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="61,82"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act411" Name="GetVar">
+                    <Implementation>
+                        <Tool Id="Set_Var" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"HIHI"</ActualParameter>
+                                <ActualParameter>dummy</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="252,79"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Deadline2_wp1_act2" Name="Route">
+                    <Route/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="251,8"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline1_Wor1_Tra4" To="Activity3">
+                    <Condition Type="EXCEPTION">Expire</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline2_wp1_tra1" To="Activity4">
+                    <Condition Type="EXCEPTION">Expire2</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity3" Id="Deadline2_wp1_tra2" To="Deadline2_wp1_act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity4" Id="Deadline2_wp1_tra3" To="Deadline2_wp1_act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity1" Id="Deadline2_wp1_tra4" To="Deadline2_wp1_act5">
+                    <Condition Type="EXCEPTION">deadline3</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act5" Id="Deadline2_wp1_tra8" To="Activity5">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act5" Id="Deadline2_wp1_tra9" To="Deadline2_wp1_act4">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act4" Id="Deadline2_wp1_tra10" To="Deadline2_wp1_act21">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity5" Id="Deadline2_wp1_tra6" To="Deadline2_wp1_act41">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act41" Id="Deadline2_wp1_tra5" To="Deadline2_wp1_act411">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act411" Id="Deadline2_wp1_tra7" To="Activity1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Deadline2_wp1_act2" Id="Deadline2_wp1_tra11" To="Deadline2_wp1_act411">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="System;role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Deadline2_wp1_act1,X_OFFSET=803,Y_OFFSET=149,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=690,Y_OFFSET=30,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=Deadline2_wp1_act21,X_OFFSET=636,Y_OFFSET=2,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=Deadline2_wp1_act2,X_OFFSET=81,Y_OFFSET=8,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+        <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+    </ExtendedAttributes>
+</Package>

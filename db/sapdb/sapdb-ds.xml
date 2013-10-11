@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>SaintsCoreDS</jndi-name>
+    <connection-url>jdbc:sapdb://@host@/@dbalias@?timeout=0</connection-url>
+    <driver-class>com.sap.dbtech.jdbc.DriverSapDB</driver-class>
+    <user-name>@username@</user-name>
+    <password>@username@</password>
+  </local-tx-datasource>
+
+</datasources>

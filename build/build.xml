@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project basedir=".." default="all" name="canyon">
+    <!-- All environment variables are accessible by "env." prefix -->
+    <property environment="env"/>
+    <!-- Directory containing the build files -->
+    <property name="build.dir" value="${basedir}/build"/>
+    
+
+    <!-- Directocry of the external libraries -->
+    <property name="lib.dir" value="${basedir}/lib"/>
+
+    <!-- Directory to build the distribution to -->
+    <property name="dist.dir" value="${basedir}/dist"/>
+
+    <!-- Load the version.properties file -->
+    <property file="${basedir}/version.properties" prefix="${ant.project.name}"/>
+    
+    <!-- Load the deploy_local.properties file -->
+    <property file="${basedir}/build_local.properties"/>
+
+    <!-- Load the deploy.properties file -->
+    <property file="${basedir}/build.properties"/>
+
+    <!-- Create version Id -->
+    <property name="app.version" value="${canyon.version}"/>
+    
+    <property name="application.package" value="${ant.project.name}-${app.version}.ear"/>
+
+    <property name="wfmc.src" value="${basedir}/src/wfmc"/>
+    <property name="wfmc.dist" value="${dist.dir}/wfmc"/>
+    <property name="wfmc.package" value="${ant.project.name}-wfmc.jar"/>
+
+
+    <path id="wfmc.javac.classpath">
+    </path>
+
+    <property name="engine.src" value="${basedir}/src/engine"/>
+    <property name="engine.dist" value="${dist.dir}/engine"/>
+    <property name="engine.package" value="${ant.project.name}-engine.jar"/>
+    <property name="flow.engine.package" value="flow-${ant.project.name}-engine.jar"/>
+
+	<path id="engine.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+      <pathelement location="${lib.dir}/commons-jxpath.jar"/>
+      <pathelement location="${lib.dir}/commons-digester.jar"/>
+      <pathelement location="${lib.dir}/commons-beanutils.jar"/>
+	  <pathelement location="${lib.dir}/commons-collections.jar"/>
+	  <pathelement location="${lib.dir}/dom4j.jar"/>
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+	      <pathelement location="${lib.dir}/bsf.jar"/>
+	      <pathelement location="${lib.dir}/bsh.jar"/>
+      <pathelement location="${lib.dir}/concurrent.jar"/>
+    </path>
+
+    <property name="jmx.src" value="${basedir}/src/jmx"/>
+    <property name="jmx.dist" value="${dist.dir}/jmx"/>
+    <property name="jmx.package" value="${ant.project.name}-jmx.sar"/>
+    <property name="flow.jmx.package" value="flow-${ant.project.name}-jmx.sar"/>
+
+    <property name="persistent.dist" value="${dist.dir}/persistent"/>
+
+    <path id="jmx.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+        <pathelement location="${dist.dir}/${engine.package}"/>
+        <pathelement location="${persistent.dist}"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+      <pathelement location="${lib.dir}/jboss-jmx.jar"/>
+      <pathelement location="${lib.dir}/dom4j.jar"/>
+      <pathelement location="${lib.dir}/hibernate2.jar"/>
+    </path>
+
+    <property name="persistent.src" value="${basedir}/src/persistent"/>
+    <property name="persistent.package" value="${ant.project.name}-persistent.sar"/>
+    <property name="ddl.dist" value="${dist.dir}/ddl"/>
+
+	<path id="persistent.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${dist.dir}/${engine.package}"/>
+      <pathelement location="${lib.dir}/hibernate2.jar"/>
+      <pathelement location="${lib.dir}/dom4j.jar"/>
+      <pathelement location="${lib.dir}/commons-lang.jar"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+	  <pathelement location="${lib.dir}/commons-collections.jar"/>
+      <pathelement location="${lib.dir}/jboss-jmx.jar"/>
+	      <pathelement location="${lib.dir}/j2ee.jar"/>
+	      <pathelement location="${lib.dir}/odmg.jar"/>
+    </path>
+
+    <property name="ejb.src" value="${basedir}/src/ejb"/>
+    <property name="ejb.dist" value="${dist.dir}/ejb"/>
+    <property name="ejb.package" value="${ant.project.name}-ejb.jar"/>
+    <property name="ejb.api.package" value="${ant.project.name}-api.jar"/>
+
+	<path id="ejb.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${dist.dir}/${engine.package}"/>
+      <pathelement location="${dist.dir}/${jmx.package}"/>
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+		  <pathelement location="${lib.dir}/axis-ws4ee.jar"/>
+		  <pathelement location="${lib.dir}/namespace.jar"/>
+		  <pathelement location="${lib.dir}/jboss-jaxrpc.jar"/>
+	</path>
+
+    <property name="xdoclet.dir" value="${basedir}/build/lib"/>
+    
+
+	<property name="client.src" value="${basedir}/src/client"/>
+    <property name="client.dist" value="${dist.dir}/client"/>
+    <property name="client.package" value="${ant.project.name}-client.jar"/>
+    
+	<path id="client.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${dist.dir}/${engine.package}"/>
+      <pathelement location="${dist.dir}/${ejb.package}"/>
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+	</path>
+
+    <property name="web.src" value="${basedir}/src/web"/>
+    <property name="web.dist" value="${dist.dir}/web"/>
+	<property name="web.package" value="${ant.project.name}-web.war"/>
+
+    <path id="web.javac.classpath">
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+      <pathelement location="${lib.dir}/struts.jar"/>
+      <pathelement location="${dist.dir}/${ejb.api.package}"/>
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+      <pathelement location="${lib.dir}/commons-beanutils.jar"/>
+      <pathelement location="${lib.dir}/commons-lang.jar"/>
+    </path>	
+
+    <property name="jdbcfix.src" value="${basedir}/src/jdbcfix"/>
+    <property name="jdbcfix.dist" value="${dist.dir}/jdbcfix"/>
+	<property name="jdbcfix.package" value="${ant.project.name}-jdbcfix.jar"/>
+
+	<path id="wetdock.javac.classpath">
+      <pathelement location="${dist.dir}/${wfmc.package}"/>
+      <pathelement location="${dist.dir}/${engine.package}"/>
+      <pathelement location="${dist.dir}/${jmx.package}"/>
+      <pathelement location="${lib.dir}/j2ee.jar"/>
+      <pathelement location="${lib.dir}/commons-logging.jar"/>
+  	  <pathelement location="${lib.dir}/hibernate2.jar"/>
+	    <pathelement location="${lib.dir}/jbosssx.jar"/>
+	</path>
+		
+  <property name="wetdock.src" value="${basedir}/src/wetdock"/>
+  <property name="wetdock.dist" value="${dist.dir}/wetdock"/>
+  <property name="wetdock.persistent.package" value="${ant.project.name}-wetdock.sar"/>
+  <property name="wetdock.ejb.package" value="${ant.project.name}-wetdock-ejb.jar"/>
+  <property name="wetdock.app.package" value="${ant.project.name}-wetdock.ear"/>
+  <property name="wetdock.api.package" value="${ant.project.name}-wetdock-api.jar"/>
+
+	<path id="wetdock.junit.classpath">
+		<pathelement location="${lib.dir}/junit.jar"/>
+		<pathelement location="${dist.dir}/${ejb.api.package}"/>
+		<pathelement location="${dist.dir}/${wetdock.api.package}"/>
+    <pathelement location="${dist.dir}/${engine.package}"/>
+    <pathelement location="${dist.dir}/${wfmc.package}"/>
+    <!--pathelement location="${lib.dir}/j2ee.jar"/-->
+    <pathelement location="${lib.dir}/commons-logging.jar"/>
+    <pathelement location="${lib.dir}/commons-digester.jar"/>		
+    <pathelement location="${lib.dir}/commons-collections.jar"/>		
+    <pathelement location="${lib.dir}/commons-beanutils.jar"/>		
+		<pathelement location="${lib.dir}/jbossall-client-${jboss.version}.jar"/>
+	    <pathelement location="${lib.dir}/bsf.jar"/>
+	    <pathelement location="${lib.dir}/bsh.jar"/>
+	    <pathelement location="${lib.dir}/jnp-client.jar"/>
+	</path>
+
+  <property name="wetdock.junit.package" value="${ant.project.name}-wetdock-junit.jar"/>
+	
+	    <property name="xdoclet.package" value="xdoclet-hibernate-module-1.2.2-patched.jar"/>
+	    <property name="xdoclet.orig.package" value="xdoclet-hibernate-module-1.2.2.jar"/>	
+    <path id="xdoclet.class.path">
+        <fileset dir="${build.dir}/lib">
+            <include name="*.jar"/>
+        	<!-- do not use orig xdoclet -->
+            <exclude name="${xdoclet.orig.package}"/>  
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    
+    <taskdef name="xdoclet" classname="xdoclet.DocletTask"
+             classpathref="xdoclet.class.path"/>
+    <taskdef name="webdoclet" classname="xdoclet.modules.web.WebDocletTask"
+             classpathref="xdoclet.class.path"/>
+             
+    <target description="Build application" name="all" depends="application-package,persistent-ddl,client-package,wetdock-package">
+      <echo message="Application ${ant.project.name} version ${app.version} built."/>
+    </target>
+    
+    <target description="Clean project" name="clean">
+      <delete dir="${dist.dir}"/>
+      <delete dir="${ejb.src}/generate"/>
+      <mkdir dir="${ejb.src}/generate"/>
+      <delete dir="${jmx.src}/generate"/>
+      <mkdir dir="${jmx.src}/generate"/>
+    	<delete dir="${wetdock.src}/generate"/>
+    	<mkdir dir="${wetdock.src}/generate"/>
+    </target>
+    
+    <target name="wfmc-compile">
+      <mkdir dir="${wfmc.dist}"/>
+      
+      <javac source="1.6" destdir="${wfmc.dist}" debug="on" classpathref="wfmc.javac.classpath">
+        <src path="${wfmc.src}/java"/>
+      </javac>
+    </target>
+    
+    <target name="wfmc-package" depends="wfmc-compile">
+      <mkdir dir="${dist.dir}"/>
+      <jar jarfile="${dist.dir}/${wfmc.package}">
+        <fileset dir="${wfmc.dist}"/>
+      </jar>
+    </target>
+        
+    <target name="engine-compile" depends="wfmc-package">
+      <mkdir dir="${engine.dist}"/>
+      
+      <javac source="1.6" destdir="${engine.dist}" debug="on" classpathref="engine.javac.classpath">
+        <src path="${engine.src}/java"/>
+        <src path="${ejb.src}/java/de/objectcode/canyon/api/worklist"/> <!-- BPEFacade uses api -->
+      </javac>
+      <copy todir="${engine.dist}">
+      	<fileset dir="${engine.src}/java" includes="**/*.xsd,**/*.properties,**/*.xsl"/>
+      </copy>
+    </target>
+    
+    <target name="engine-package" depends="engine-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${engine.package}">
+        <fileset dir="${engine.dist}"/>
+      </jar>
+    </target>
+    
+    <target name="flow-engine-package" depends="engine-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${flow.engine.package}">
+        <fileset dir="${engine.dist}">
+        	<exclude name="**/api/**/*.class" />
+        	</fileset>
+      </jar>
+    </target>
+
+    	<target name="jmx-generate">
+      <taskdef name="jmxdoclet" classname="xdoclet.modules.jmx.JMXDocletTask"
+               classpathref="xdoclet.class.path"/>             
+
+    	<mkdir dir="${jmx.dist}"/>
+      <mkdir dir="${jmx.dist}/META-INF"/>
+      
+      <jmxdoclet destdir="${jmx.src}/generate" mergeDir="${jmx.src}/config"> 
+        <fileset dir="${jmx.src}/java">
+          <include name="**/*.java"/>
+        </fileset>
+        <mbeaninterface/>
+				<jbossxmldoc/>
+				<jbossxmbean/>
+        <jbossxmlservicetemplate servicefile="jboss" destdir="${jmx.dist}/META-INF" />
+      </jmxdoclet>
+    </target>
+    
+    <target name="jmx-compile" depends="jmx-generate,wfmc-package,engine-package,persistent-compile">
+      <mkdir dir="${jmx.dist}"/>
+      <mkdir dir="${jmx.dist}/META-INF"/>
+      
+      <javac destdir="${jmx.dist}" debug="on" classpathref="jmx.javac.classpath">
+        <src path="${jmx.src}/java"/>
+        <src path="${jmx.src}/generate"/>
+        <src path="${basedir}/src/ejb/generate"/>
+      </javac>
+      
+      <copy todir="${jmx.dist}">
+        <fileset dir="${jmx.src}/java" includes="**/*.xml"/>
+        <fileset dir="${jmx.src}/java" includes="**/*.xsl"/>
+        <fileset dir="${jmx.src}/generate" includes="**/*.xml"/>
+      </copy>
+    </target>
+    
+
+	    <target name="jmx-package" depends="jmx-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${jmx.package}">
+        <fileset dir="${jmx.dist}"/>
+        <fileset dir="${lib.dir}">
+          <include name="commons-lang.jar"/>
+          <include name="commons-logging.jar"/>
+          <include name="commons-jxpath.jar"/>
+          <include name="commons-digester.jar"/>
+          <include name="dom4j.jar"/>
+        </fileset>
+        <fileset dir="${dist.dir}">
+          <include name="${wfmc.package}"/>
+          <include name="${engine.package}"/>
+        </fileset>
+      </jar>
+    </target>
+    
+    <target name="flow-jmx-package" depends="jmx-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${flow.jmx.package}">
+        <fileset dir="${jmx.dist}"/>
+      </jar>
+    </target>
+
+	    <target name="persistent-generate">
+      <taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask"
+               classpathref="xdoclet.class.path"/>
+               
+      <mkdir dir="${persistent.dist}"/>
+      <mkdir dir="${persistent.dist}/META-INF"/>
+
+      <hibernatedoclet destdir="${persistent.dist}" mergeDir="${persistent.src}/config" >
+        <fileset dir="${persistent.src}/java">
+          <include name="**/*.java"/>
+        </fileset>
+        <jbossservice serviceName="Hibernate-Canyon"
+           serviceClassName="de.objectcode.canyon.persistent.jmx.HibernateService"
+           jndiName="java:/canyon/HibernateFactory"
+           dataSource="${db.dataSource}"
+           dialect="${persistent.dialect}"
+           showSql="${persistent.showsql}"
+           transactionManagerStrategy="net.sf.hibernate.transaction.JBossTransactionManagerLookup"
+           destdir="${persistent.dist}/META-INF">
+          <configParam name="depends1" value="jboss.jca:name=SaintsCoreDS,service=LocalTxCM"/>
+        </jbossservice>
+        <hibernate version="2.0"/>
+      </hibernatedoclet>
+    </target>
+
+    <target name="persistent-compile" depends="persistent-generate,wfmc-package,engine-package">
+      <mkdir dir="${persistent.dist}"/>
+      
+      <javac destdir="${persistent.dist}" debug="on" classpathref="persistent.javac.classpath">
+        <src path="${persistent.src}/java"/>
+      </javac>
+    </target>
+
+    <target name="persistent-ddl" depends="persistent-compile">
+      <antcall target="persistent-schema">
+        <param name="db.platform" value="sapdb"/>
+        <param name="persistent.dialect" value="de.objectcode.canyon.persistent.util.SAPDBDialect"/>
+      </antcall>
+      <antcall target="persistent-schema">
+        <param name="db.platform" value="oracle"/>
+        <param name="persistent.dialect" value="de.objectcode.canyon.persistent.util.OracleDialect"/>
+      </antcall>
+      <antcall target="persistent-schema">
+        <param name="db.platform" value="mssql"/>
+        <param name="persistent.dialect" value="net.sf.hibernate.dialect.SybaseDialect"/>
+      </antcall>
+      <antcall target="persistent-schema">
+        <param name="db.platform" value="mysql"/>
+        <param name="persistent.dialect" value="net.sf.hibernate.dialect.MySQLDialect"/>
+      </antcall>
+    </target>
+
+    <target name="persistent-schema">
+      <taskdef name="schemaexport" classname="net.sf.hibernate.tool.hbm2ddl.SchemaExportTask">
+        <classpath>
+          <path refid="xdoclet.class.path"/>
+          <pathelement location="${wfmc.dist}"/>
+          <pathelement location="${engine.dist}"/>
+          <pathelement location="${persistent.dist}"/>
+        </classpath>
+      </taskdef>
+
+      <mkdir dir="${dist.dir}/ddl"/>
+	  
+	  <propertyfile file="${ddl.dist}/hibernate.properties">
+	    <entry key="hibernate.dialect" value="${persistent.dialect}"/>
+      </propertyfile>
+
+      <schemaexport properties="${ddl.dist}/hibernate.properties"
+        quiet="yes" text="yes" drop="yes" delimiter=";"
+        output="${ddl.dist}/${db.platform}-drop.ddl">
+        <fileset dir="${persistent.dist}">
+          <include name="**/*.hbm.xml"/>
+        </fileset>
+      </schemaexport>
+
+      <schemaexport properties="${ddl.dist}/hibernate.properties"
+        quiet="yes" text="yes" drop="no" delimiter=";"
+        output="${ddl.dist}/schema-${db.platform}.ddl">
+        <fileset dir="${persistent.dist}">
+          <include name="**/*.hbm.xml"/>
+        </fileset>
+      </schemaexport>      
+    </target>
+
+    <target name="persistent-package" depends="persistent-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${persistent.package}">
+        <fileset dir="${persistent.dist}"/>
+        <fileset dir="${lib.dir}">
+          <include name="commons-lang.jar"/>
+          <include name="commons-beanutils.jar"/>
+          <include name="commons-pool.jar"/>
+          <include name="commons-collections.jar"/>
+          <include name="commons-logging.jar"/>
+          <include name="hibernate2.jar"/>
+          <include name="dom4j.jar"/>
+          <include name="cglib2.jar"/>
+          <include name="ehcache.jar"/>
+          <include name="jcs.jar"/>
+          <include name="odmg.jar"/>
+          <include name="commons-discovery.jar"/>
+          <include name="bsf.jar"/>
+          <include name="js.jar"/>
+          <include name="jython.jar"/>
+          <include name="concurrent.jar"/>
+          <include name="${sar.includes}"/>
+        </fileset>
+      </jar>
+    </target>
+
+    <target name="flow-persistent-package" depends="persistent-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${persistent.package}">
+        <fileset dir="${persistent.dist}"/>
+      </jar>
+    </target>
+
+		<target name="canyon-wsr-package">
+		<mkdir dir="${dist.dir}/canyon-wsr"/>
+		<mkdir dir="${dist.dir}/canyon-wsr/META-INF"/>
+		
+		<copy todir="${dist.dir}/canyon-wsr/META-INF">
+			<fileset dir="${ejb.src}/webservice">
+				<include name="web-service.xml"/>
+			</fileset>
+		</copy>
+					
+		<jar jarfile="${dist.dir}/canyon.wsr">
+			<fileset dir="${dist.dir}/canyon-wsr"/>
+		</jar>
+	</target>
+		
+
+		<target name="ejb-generate"
+            description="Generates the necessary EJB classes and deployment descriptors">
+    	<taskdef name="ejbdoclet" classname="xdoclet.modules.ejb.EjbDocletTask"
+             classpathref="xdoclet.class.path"/>                 
+
+			<mkdir dir="${ejb.src}/generate"/>
+      <mkdir dir="${ejb.dist}/META-INF"/>
+      
+      <ejbdoclet destdir="${ejb.src}/generate" ejbspec="2.0">
+        <fileset dir="${ejb.src}/java">
+          <include name="**/*Bean.java"/>
+        </fileset>
+        <packageSubstitution packages="ejb.worklist"
+                             substituteWith="api.worklist"/>
+        <packageSubstitution packages="ejb.admin"
+                             substituteWith="api.admin"/>
+      	<packageSubstitution packages="ejb.bpe"
+      		                 substituteWith="api.bpe"/>
+      	<packageSubstitution packages="ejb.bpe.admin"
+      	                     substituteWith="api.bpe.admin"/>
+        <packageSubstitution packages="ejb"
+                             substituteWith="api"/>
+        <remoteinterface/>
+        <homeinterface/>
+        <localinterface/>
+        <localhomeinterface/>
+        <deploymentdescriptor destdir="${ejb.dist}/META-INF" xmlencoding="ISO-8859-1"/>
+        <jboss version="3.0" xmlencoding="ISO-8859-1" destdir="${ejb.dist}/META-INF" validateXml="true">
+          <configParam name="SecurityDomain" value="${ejb.securitydomain}"/>
+        </jboss>
+      </ejbdoclet>
+    </target>
+
+    <target name="ejb-compile" depends="ejb-generate,wfmc-package,engine-package,jmx-package">
+	  <mkdir dir="${ejb.dist}"/>
+	  
+	  <javac destdir="${ejb.dist}" debug="on" classpathref="ejb.javac.classpath">
+	    <src path="${ejb.src}/java"/>
+	    <src path="${ejb.src}/generate"/>
+	  </javac>
+    </target>
+
+	 <target name="ejb-package" depends="ejb-compile">
+      <mkdir dir="${dist.dir}"/>
+      
+      <jar jarfile="${dist.dir}/${ejb.package}">
+        <fileset dir="${ejb.dist}"/>
+      </jar>
+      <jar jarfile="${dist.dir}/${ejb.api.package}">
+        <fileset dir="${ejb.dist}" includes="**/api/**/*.class"/>
+        <fileset dir="${ejb.dist}" includes="**/spi/filter/**/*.class"/>
+        <fileset dir="${ejb.dist}" includes="**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class"/>
+      </jar>
+    </target>
+    
+	 <target name="flow-ejb-package" depends="ejb-compile">
+      <mkdir dir="${dist.dir}"/>
+      
+      <jar jarfile="${dist.dir}/${ejb.package}">
+        <fileset dir="${ejb.dist}"/>
+      </jar>
+      <jar jarfile="${dist.dir}/${ejb.api.package}">
+        <fileset dir="${ejb.dist}" includes="**/api/**/*.class"/>
+        <fileset dir="${ejb.dist}" includes="**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class"/>
+        <fileset dir="${engine.dist}" includes="**/de/objectcode/canyon/model/**/*.class"/> 
+      </jar>
+    </target>
+
+	    <target name="client-compile">
+      <mkdir dir="${client.dist}"/>
+      
+      <javac destdir="${client.dist}" debug="on" classpathref="client.javac.classpath">
+        <src path="${client.src}/java"/>
+      </javac>
+    </target>
+
+	<target name="xdoclet-patch">
+		<ant antfile="build/build-xdoclet.xml"  target="xdoclet-patch"/>
+	</target>
+    
+	<target name="client-package" depends="client-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${client.package}">
+        <fileset dir="${client.dist}"/>
+      </jar>
+    </target>
+
+    <target name="web-generate">
+      <taskdef name="webdoclet" classname="xdoclet.modules.web.WebDocletTask">
+        <classpath>
+          <path refid="xdoclet.class.path"/>
+          <path refid="web.javac.classpath"/>
+        </classpath>
+      </taskdef> 
+      
+      <mkdir dir="${web.dist}"/>
+      <mkdir dir="${web.dist}/base"/>
+      <mkdir dir="${web.dist}/web-inf"/>
+      
+	  <webdoclet destDir="${web.dist}/web-inf" mergedir="${basedir}/src/web/config">
+        <fileset dir="${web.src}/java">
+          <include name="**/*Servlet.java"/>
+          <include name="**/*Form.java"/>
+          <include name="**/*Action.java"/>
+        </fileset>
+        <deploymentdescriptor servletspec="2.3" displayname="${ant.project.name} webapp" distributable="false"/>
+        <jbosswebxml securitydomain="java:/jaas/saints"/>
+        <strutsconfigxml version="1.1"/>
+   	  </webdoclet>
+    </target>
+
+    <target name="web-compile" depends="ejb-package,web-generate">
+      <mkdir dir="${web.dist}/base"/>
+      <mkdir dir="${web.dist}/classes"/>
+
+      <javac destdir="${web.dist}/classes" debug="on" classpathref="web.javac.classpath">
+        <src path="${web.src}/java"/>
+      </javac>      
+
+      <copy todir="${web.dist}/base">
+        <fileset dir="${web.src}/jsp" includes="**/*.jsp,**/*.xml"/>
+        <filterset>
+          <filter token="version" value="${app.version}"/>
+          <filter token="project" value="${ant.project.name}"/>
+        </filterset>
+      </copy>
+      <copy todir="${web.dist}/base">
+        <fileset dir="${web.src}/jsp" excludes="**/*.jsp,**/*.xml"/>
+      </copy>     
+    </target>
+
+    <target name="web-package" depends="web-compile">
+      <!-- web.xml fehlt! ; Nicht unbedingt benötigt für flow-Projekt, daher auskommentiert!
+      <mkdir dir="${dist.dir}"/>
+      
+      <war warfile="${dist.dir}/${web.package}" webxml="${web.dist}/web-inf/web.xml">
+        <fileset dir="${web.dist}/base"/>
+        <webinf dir="${web.dist}/web-inf" excludes="web.xml"/>
+        <webinf dir="${web.src}/tlds" includes="*.tld"/>
+        <classes dir="${web.dist}/classes"/>
+      	<fileset dir="${lib.dir}">
+      	  <include name="auth.conf"/>
+      	</fileset>
+      	<lib dir="${lib.dir}">
+      	  <include name="jnlp-servlet.jar"/>
+      	  <include name="struts.jar"/>
+      	  <include name="commons-validator.jar"/>
+      	</lib>
+      	<lib dir="${dist.dir}">
+      	  <include name="${ejb.api.package}"/>
+      	</lib>
+      </war>
+      -->
+    </target>
+    
+
+	    <target name="update-schema" depends="persistent-ddl" description="Update the schema on the database. This will delete all tables!">
+      <ant antfile="${basedir}/db/${db.platform}/build.xml" target="update-schema">
+      </ant>
+    </target>
+
+    <target name="drop-schema" depends="persistent-ddl" description="Drop the schema from the database.This will delete all tables!">
+      <ant antfile="${basedir}/db/${db.platform}/build.xml" target="drop-schema">
+      </ant>    
+    </target>
+
+    <target name="dbpool">
+      <ant antfile="${basedir}/db/${db.platform}/build.xml" target="dbpool-package-${jboss.version}">
+      </ant>
+    </target>
+
+    <target name="application-package" depends="ejb-package,jmx-package,persistent-package,canyon-wsr-package">
+      <ear destfile="${dist.dir}/${application.package}" appxml="${build.dir}/application.xml">
+        <fileset dir="${dist.dir}" includes="canyon-ejb.jar,canyon-web.war,canyon-persistent.sar,canyon-jmx.sar,canyon.wsr"/>
+      </ear>
+    </target>
+    
+    <target name="flow-application-package" depends="flow-ejb-package,flow-jmx-package,flow-persistent-package,web-package,canyon-wsr-package">
+  	  <delete file="${dist.dir}/canyon-jmx.sar" failonerror="false"/>
+  	  <copy  file="${dist.dir}/flow-canyon-jmx.sar" tofile="${dist.dir}/canyon-jmx.sar"/>
+      <ear destfile="${dist.dir}/${application.package}" appxml="${build.dir}/application-flow.xml">
+        <fileset dir="${dist.dir}" includes="canyon-ejb.jar,canyon-persistent.sar,canyon-jmx.sar"/>
+      </ear>
+    </target>
+
+	    <target name="copy-to-saints" depends="application-package,client-package,wfmc-package,engine-package,ejb-package,persistent-ddl">
+      <copy file="${dist.dir}/${application.package}" tofile="../saints-core/lib/canyon/canyon.ear"/>
+      <copy file="${dist.dir}/${client.package}" todir="../saints-core/lib/canyon"/>
+      <copy file="${dist.dir}/${wfmc.package}" todir="../saints-core/lib/canyon"/>
+      <copy file="${dist.dir}/${engine.package}" todir="../saints-core/lib/canyon"/>
+        <copy file="${dist.dir}/${ejb.api.package}" todir="../saints-core/lib/canyon"/>
+    	<copy file="${dist.dir}/ddl/schema-mssql.ddl" tofile="../saints-core/db/mssql/canyon-schema-mssql.ddl"/>
+      <copy file="${dist.dir}/${persistent.package}" tofile="../saints-core/lib/canyon/canyon-persistent.jar"/>
+    </target>
+    
+    <target name="copy-to-flow" depends="clean,flow-application-package,flow-engine-package,client-package,wfmc-package,engine-package,ejb-package,persistent-schema">
+        <copy todir="${flow.dir}/bep/build/db/oracle/ddl">
+          <fileset dir="${dist.dir}/ddl" includes="**/*"/>
+        </copy>
+      <copy file="${dist.dir}/${application.package}" tofile="${flow.dir}/commons/lib/canyon.ear"/>
+      <copy file="${dist.dir}/${client.package}" todir="${flow.dir}/commons/lib"/>
+        <copy file="${dist.dir}/${wfmc.package}" todir="${flow.dir}/commons/lib"/>
+        <copy file="${dist.dir}/${ejb.api.package}" todir="${flow.dir}/commons/lib"/>
+      <copy file="${dist.dir}/${flow.engine.package}" tofile="${flow.dir}/commons/lib/canyon-engine.jar"/>
+    </target>
+   
+  <target name="deploy-local" depends="application-package" description="Deploy the application to a locally installed JBoss">
+      <mkdir dir="${jboss.home}/server/default/deploy/saints"/>
+      <delete file="${jboss.home}/server/default/deploy/saints/${application.package}"/>
+      <copy file="${dist.dir}/${application.package}" todir="${jboss.home}/server/default/deploy/saints"/>
+    </target>
+
+	<target name="purge-wetdock">
+	  <delete dir="${jboss.home}/server/default/deploy/saints" />
+	</target>
+  	
+	<target name="deploy-wetdock-local" depends="purge-wetdock,deploy-dbpool-local,deploy-local,wetdock-package" description="Deploy the wetdock application to a locally installed JBoss">
+	  <mkdir dir="${jboss.home}/server/default/deploy/saints"/>
+  	<delete file="${jboss.home}/server/default/deploy/saints/${wetdock.app.package}"/>
+	  <copy file="${dist.dir}/${wetdock.app.package}" todir="${jboss.home}/server/default/deploy/saints"/>
+	</target>
+
+	<target name="deploy-dbpool-local" depends="dbpool" description="Deploy the database driver to a locally installed JBoss">
+      <mkdir dir="${jboss.home}/server/default/deploy/saints"/>
+      <delete file="${jboss.home}/server/default/deploy/saints/${db.platform}.sar"/>
+      <copy file="${dist.dir}/${db.platform}.sar" todir="${jboss.home}/server/default/deploy/saints"/>
+    </target>
+
+    <target name="upload-package" depends="client-package">
+      <java classname="de.objectcode.canyon.client.console.UploadBPE" fork="true" dir="${basedir}">
+      <arg value="${xpdl.file}"/>
+        <classpath>
+          <path refid="client.javac.classpath"/>
+          <pathelement location="${dist.dir}/${client.package}"/>
+          <pathelement location="${jboss.home}/client/jbossall-client.jar"/>
+          <pathelement location="${basedir}"/>
+        </classpath>
+      </java>
+    </target>
+    
+    <target name="jdbcfix-compile">
+      <mkdir dir="${jdbcfix.dist}"/>
+      
+      <javac destdir="${jdbcfix.dist}" debug="on">
+        <src path="${jdbcfix.src}/java"/>
+      </javac>
+    </target>
+    
+    <target name="jdbcfix-package" depends="jdbcfix-compile">
+      <mkdir dir="${dist.dir}"/>
+	  
+      <jar jarfile="${dist.dir}/${jdbcfix.package}">
+        <fileset dir="${jdbcfix.dist}"/>
+      </jar>
+    </target>
+	
+	  <target name="wetdock-generate">
+	    	<taskdef name="ejbdoclet" classname="xdoclet.modules.ejb.EjbDocletTask"
+             classpathref="xdoclet.class.path"/>                 
+	      <taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask"
+	               classpathref="xdoclet.class.path"/>
+	               
+	      <mkdir dir="${wetdock.dist}/persistent"/>
+	      <mkdir dir="${wetdock.dist}/persistent/META-INF"/>
+
+	      <hibernatedoclet destdir="${wetdock.dist}/persistent" mergeDir="${wetdock.src}/config" >
+	        <fileset dir="${wetdock.src}/java">
+	          <include name="**/*.java"/>
+	        </fileset>
+	        <jbossservice serviceName="Hibernate-Canyon-Wetdock"
+	           serviceClassName="de.objectcode.canyon.persistent.jmx.HibernateService"
+	           jndiName="java:/canyon/wetdock/HibernateFactory"
+	           dataSource="${db.dataSource}"
+	           dialect="${wetdock.dialect}"
+	           showSql="${wetdock.showsql}"
+	           transactionManagerStrategy="net.sf.hibernate.transaction.JBossTransactionManagerLookup"
+	           destdir="${wetdock.dist}/persistent/META-INF">
+	          <configParam name="depends1" value="jboss.jca:name=SaintsCoreDS,service=LocalTxCM"/>
+	        </jbossservice>
+	        <hibernate version="2.0"/>
+	      </hibernatedoclet>
+
+
+			<mkdir dir="${wetdock.src}/generate"/>
+      <mkdir dir="${wetdock.dist}/ejb"/>
+      <mkdir dir="${wetdock.dist}/ejb/META-INF"/>
+      
+      <ejbdoclet destdir="${wetdock.src}/generate" ejbspec="2.0">
+        <fileset dir="${wetdock.src}/java">
+          <include name="**/*Bean.java"/>
+        </fileset>
+        <packageSubstitution packages="ejb.setup"
+                             substituteWith="api.setup"/>
+        <packageSubstitution packages="ejb.user"
+                             substituteWith="api.user"/>
+        <packageSubstitution packages="ejb.test"
+                             substituteWith="api.test"/>
+        <packageSubstitution packages="ejb"
+                             substituteWith="api"/>
+        <remoteinterface/>
+        <homeinterface/>
+        <localinterface/>
+        <localhomeinterface/>
+        <deploymentdescriptor destdir="${wetdock.dist}/ejb/META-INF" xmlencoding="ISO-8859-1"/>
+        <jboss version="3.0" xmlencoding="ISO-8859-1" destdir="${wetdock.dist}/ejb/META-INF" validateXml="true">
+          <configParam name="SecurityDomain" value="${ejb.securitydomain}"/>
+        </jboss>
+      </ejbdoclet>
+	  </target>
+	  	
+	  <target name="wetdock-compile" depends="wetdock-generate">
+		  <mkdir dir="${wetdock.dist}/persistent"/>
+		  
+		  <javac destdir="${wetdock.dist}/persistent" debug="on" classpathref="wetdock.javac.classpath">
+		    <src path="${wetdock.src}/java"/>
+		  	<exclude name="de/objectcode/canyon/wetdock/ejb/**"/>
+		  </javac>
+
+	  	<mkdir dir="${wetdock.dist}/ejb"/>
+		  
+		  <javac destdir="${wetdock.dist}/ejb" debug="on" classpathref="wetdock.javac.classpath">
+		    <src path="${wetdock.src}/java"/>
+		    <src path="${wetdock.src}/generate"/>
+		  	<include name="de/objectcode/canyon/wetdock/ejb/**"/>
+		  	<include name="de/objectcode/canyon/wetdock/api/**"/>
+		  </javac>
+	  </target>
+	  	
+	  <target name="wetdock-package" depends="wetdock-compile">
+      <jar jarfile="${dist.dir}/${wetdock.persistent.package}">
+        <fileset dir="${wetdock.dist}/persistent"/>
+      </jar>
+      <jar jarfile="${dist.dir}/${wetdock.ejb.package}">
+        <fileset dir="${wetdock.dist}/ejb"/>
+      </jar>
+      <ear destfile="${dist.dir}/${wetdock.app.package}" appxml="${build.dir}/application-wetdock.xml">
+        <fileset dir="${dist.dir}" includes="${wetdock.ejb.package},${wetdock.persistent.package}"/>
+      </ear>
+      <jar jarfile="${dist.dir}/${wetdock.api.package}">
+        <fileset dir="${wetdock.dist}/ejb" includes="**/api/**/*.class"/>
+      </jar>
+	  </target>
+	
+	  <target name="wetdock-junit" depends="wetdock-package">
+		  <mkdir dir="${wetdock.dist}/junit"/>
+	  	
+		  <javac destdir="${wetdock.dist}/junit" debug="on" classpathref="wetdock.junit.classpath">
+		    <src path="${wetdock.src}/junit"/>
+		  </javac>
+	  	<copy todir="${wetdock.dist}/junit">
+	  		<fileset dir="${wetdock.src}/junit" includes="**/*.xpdl"/>
+	  	</copy>
+      <jar jarfile="${dist.dir}/${wetdock.junit.package}">
+        <fileset dir="${wetdock.dist}/junit"/>
+      </jar>	  	
+	  </target>
+	
+  <target name="run-all-tests" depends="wetdock-junit" description="Runs all tests">
+  	    <mkdir dir="${dist.dir}/test"/>
+        <junit fork="true" dir="${basedir}" printsummary="true" showoutput="true" haltonerror="true" filtertrace="false">
+        	<!--jvmarg value="-Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl" /-->
+        	<classpath>
+        		<path refid="wetdock.junit.classpath"/>
+        		<pathelement location="${dist.dir}/${wetdock.junit.package}"/>
+        	</classpath>
+          <formatter type="plain"/>
+  		
+        	
+  		<batchtest todir="${dist.dir}/test">
+           <fileset dir="${wetdock.src}/junit" >
+              <include name = "de/objectcode/canyon/wetdock/**/*Test.java" />
+            </fileset>
+  		</batchtest>
+  		
+        </junit>
+    <junitreport todir="${dist.dir}/test">
+      <fileset dir="${dist.dir}/test">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${dist.dir}/test/report"/>
+    </junitreport>      
+  	
+  </target>
+
+	  <target name="run-single-test" depends="wetdock-junit" description="Run the test suite">
+	    <java classname="junit.textui.TestRunner"  fork="true" dir="${basedir}" classpathref="wetdock.junit.classpath" >
+	    	<classpath>
+	    		<path refid="wetdock.junit.classpath"/>
+	    		<pathelement location="${dist.dir}/${wetdock.junit.package}"/>
+	    	</classpath>
+				<arg value="${testName}"/>
+	    </java>
+  </target>
+	
+</project>

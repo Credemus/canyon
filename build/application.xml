@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN'
+                             'http://java.sun.com/dtd/application_1_3.dtd'>
+
+<!-- Bitte hier die Namen anpassen ... -->
+
+<application>
+    <display-name>Canyon</display-name>
+	
+	<module>
+	    <java>canyon-jmx.sar</java>
+	</module>
+
+	<module>
+	    <java>canyon-persistent.sar</java>
+	</module>
+    
+    <module>
+        <ejb>canyon-ejb.jar</ejb>
+    </module>
+
+	
+</application>

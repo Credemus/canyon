@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Exception" Name="Exception" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-17 11:01:22</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Exception_Wor1" Name="Exception">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 11:02:08</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="var1" IsArray="FALSE" Name="Var1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="var2" IsArray="FALSE" Name="Var2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="TestAppMethod1" Name="TestAppMethod1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="out" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:ejbJndi" Value="de/objectcode/canyon/wetdock/ejb/test/WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbHome" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestServiceHome"/>
+                        <ExtendedAttribute Name="canyon:ejbClass" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbLocal" Value="false"/>
+                        <ExtendedAttribute Name="canyon:ejbMethod" Value="testMethod1"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="WorkItem1" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var1</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var2</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="584,63"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Tool1_Wor1_Tra2" To="Activity2">
+                    <Condition Type="CONDITION">if ("NOK".equals(var1)) throw new java.lang.RuntimeException("BUMM"); else return true;</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=731,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="canyon:OnException" Value="FaultProcess"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="FaultProcess" Name="FaultProcess">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 15:55:46</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="faultName" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="faultMessage" Index="2" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="faultStacktrace" Index="3" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="admins" Name="Admins">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="workItem4" Name="workItem4">
+                    <FormalParameters>
+                        <FormalParameter Id="message" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity4" Name="Activity4">
+                    <Implementation>
+                        <Tool Id="workItem4" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>faultMessage</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>admins</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="421,51"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="admins"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=Activity4,X_OFFSET=581,Y_OFFSET=101,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="admins"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=Activity4,X_OFFSET=251,Y_OFFSET=51,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Exception_Wor2" Name="InfiniteException">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 11:02:08</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="var1" IsArray="FALSE" Name="Var1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="var2" IsArray="FALSE" Name="Var2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="TestAppMethod1" Name="TestAppMethod1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="out" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:ejbJndi" Value="de/objectcode/canyon/wetdock/ejb/test/WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbHome" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestServiceHome"/>
+                        <ExtendedAttribute Name="canyon:ejbClass" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbLocal" Value="false"/>
+                        <ExtendedAttribute Name="canyon:ejbMethod" Value="testMethod1"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="WorkItem1" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var1</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var2</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="584,63"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Tool1_Wor1_Tra2" To="Activity2">
+                    <Condition Type="CONDITION">if ("NOK".equals(var1)) throw new java.lang.RuntimeException("BUMM"); else return true;</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=731,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="canyon:OnException" Value="InfiniteFaultProcess"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="InfiniteFaultProcess" Name="InfiniteFaultProcess">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 15:55:46</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="faultName" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="faultMessage" Index="2" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="faultStacktrace" Index="3" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="admins" Name="Admins">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="workItem4" Name="workItem4">
+                    <FormalParameters>
+                        <FormalParameter Id="message" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity4" Name="Activity4">
+                    <Implementation>
+                        <Tool Id="workItem4" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>faultMessage</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>admins</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="421,51"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="admins"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="FaultProcess_act1">
+                    <Route/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="admins"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="252,53"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="FaultProcess_act1" Id="FaultProcess_tra1" To="Activity4">
+                    <Condition>throw new RuntimeException("PANIC");</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=Activity4,X_OFFSET=581,Y_OFFSET=101,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="admins"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=FaultProcess_act1,X_OFFSET=112,Y_OFFSET=58,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="canyon:OnException" Value="InfiniteFaultProcess"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Exception_wp1" Name="NoExceptionHandler">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 11:02:08</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="var1" IsArray="FALSE" Name="Var1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="var2" IsArray="FALSE" Name="Var2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="TestAppMethod1" Name="TestAppMethod1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="out" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:ejbJndi" Value="de/objectcode/canyon/wetdock/ejb/test/WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbHome" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestServiceHome"/>
+                        <ExtendedAttribute Name="canyon:ejbClass" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbLocal" Value="false"/>
+                        <ExtendedAttribute Name="canyon:ejbMethod" Value="testMethod1"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="WorkItem1" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var1</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="200,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var2</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="584,63"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Tool1_Wor1_Tra2" To="Activity2">
+                    <Condition Type="CONDITION">if ("NOK".equals(var1)) throw new java.lang.RuntimeException("BUMM"); else return true;</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity2,X_OFFSET=731,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=91,Y_OFFSET=61,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+        <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+    </ExtendedAttributes>
+</Package>

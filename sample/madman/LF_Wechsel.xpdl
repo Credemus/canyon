@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="LF_Wechsel" Name="LF_Wechsel" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2004-01-28 17:04:46</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="LF_Wechsel" Name="LF_Wechsel">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-01-28 17:05:13</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST">
+                <Author>fg</Author>
+            </RedefinableHeader>
+            <DataFields>
+                <DataField Id="startKuendigung" IsArray="FALSE" Name="startKuendigung">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>true</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="MDMUserVNB" Name="MDMUserVNB">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="checkKuendigung" Name="checkKuendigung">
+                    <FormalParameters>
+                        <FormalParameter Id="slvID" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Nr. des gekündigten Stromliefervertrages.</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kuendigungsDatum" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="kuendigungValid" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+                <Application Id="checkWechselmeldung" Name="checkWechselmeldung">
+                    <FormalParameters>
+                        <FormalParameter Id="slvID" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Nr. des Stromliefervertrages auf den sich die Wechselmeldung bezieht.</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="wechselDatum" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="wechselMeldungValid" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="LF_Wechsel_Wor1_Act1" Name="Kündigung erfassen">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>MDMUserVNB</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="MDMUserVNB"/>
+                        <ExtendedAttribute Name="XOffset" Value="280"/>
+                        <ExtendedAttribute Name="YOffset" Value="10"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LF_Wechsel_Act1" Name="Generisch">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>MDMUserVNB</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="MDMUserVNB"/>
+                        <ExtendedAttribute Name="XOffset" Value="400"/>
+                        <ExtendedAttribute Name="YOffset" Value="80"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LF_Wechsel_Act2" Name="Route">
+                    <Route/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="LF_Wechsel_Tra9"/>
+                                    <TransitionRef Id="LF_Wechsel_Tra8"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="MDMUserVNB"/>
+                        <ExtendedAttribute Name="XOffset" Value="160"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LF_Wechsel_Act3" Name="Wechselmeldung erfassen">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>MDMUserVNB</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="MDMUserVNB"/>
+                        <ExtendedAttribute Name="XOffset" Value="280"/>
+                        <ExtendedAttribute Name="YOffset" Value="150"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="LF_Wechsel_Wor1_Act1" Id="LF_Wechsel_Tra3" Name="Transition" To="LF_Wechsel_Act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LF_Wechsel_Act2" Id="LF_Wechsel_Tra8" Name="Transition" To="LF_Wechsel_Wor1_Act1">
+                    <Condition Type="CONDITION">$startKuendigung</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LF_Wechsel_Act2" Id="LF_Wechsel_Tra9" Name="Transition" To="LF_Wechsel_Act3">
+                    <Condition Type="OTHERWISE"/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LF_Wechsel_Act3" Id="LF_Wechsel_Tra10" Name="Transition" To="LF_Wechsel_Act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="MDMUserVNB;LF_Wechsel_Act2;70;70;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="MDMUserVNB;LF_Wechsel_Act1;540;80;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="MDMUserVNB;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.0"/>
+    </ExtendedAttributes>
+</Package>

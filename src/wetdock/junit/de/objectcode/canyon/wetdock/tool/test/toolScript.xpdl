@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Tool1" Name="Tool 1" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-17 11:01:22</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="ToolScript" Name="ToolScript">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 11:02:08</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="varString" IsArray="FALSE" Name="varString">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="varInt" IsArray="FALSE" Name="varInt">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="varDate" IsArray="FALSE" Name="varDate">
+                    <DataType>
+                        <BasicType Type="DATETIME"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Script" Name="Script">
+                    <FormalParameters>
+                        <FormalParameter Id="paramString" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramInt" Index="2" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramDate" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:toolConnectorClass" Value="de.objectcode.canyon.spiImpl.tool.BeanShellScriptConnector"/>
+                        <ExtendedAttribute Name="script" Value="paramDate = new java.util.Date();&#10;paramInt = java.lang.Integer.parseInt(paramString);"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="WorkItem1" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="paramString" Index="1" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramInteger" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramDate" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+                <Application Id="WorkItem2" Name="WorkItem2">
+                    <FormalParameters>
+                        <FormalParameter Id="paramString" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramInt" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="paramDate" Index="3" Mode="IN">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>varString</ActualParameter>
+                                <ActualParameter>varInt</ActualParameter>
+                                <ActualParameter>varDate</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="200"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <Tool Id="Script" Type="PROCEDURE">
+                            <ActualParameters>
+                                <ActualParameter>varString</ActualParameter>
+                                <ActualParameter>varInt</ActualParameter>
+                                <ActualParameter>varDate</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="FreeTextExpressionParticipant"/>
+                        <ExtendedAttribute Name="XOffset" Value="390"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <Tool Id="WorkItem2" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>varString</ActualParameter>
+                                <ActualParameter>varInt</ActualParameter>
+                                <ActualParameter>varDate</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="590"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Tool1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity2" Id="Tool1_Wor1_Tra3" To="Activity3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="role1;Activity1;80;50;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;Activity3;720;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="role1;FreeTextExpressionParticipant;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.4.2"/>
+    </ExtendedAttributes>
+</Package>

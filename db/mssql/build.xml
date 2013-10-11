@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../.." default="dontuse" name="saints-core">
+  <property name="db.package" value="mssql.sar"/>
+  <property name="db.base.dir" value="${basedir}/db/mssql"/>
+  <property name="db.dist.dir" value="${dist.dir}/db/mssql"/>
+  
+  <target name="dontuse">
+    <fail>
+      Don't use this Ant script directly.
+    </fail>
+  </target>
+  
+  <target name="dbpool-package-3.0">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/mssql-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml">
+      <filterset>
+    	<filter token="host" value="${mssql.host}"/>
+    	<filter token="dbalias" value="${mssql.dbalias}"/>
+    	<filter token="username" value="${mssql.username}"/>
+    	<filter token="password" value="${mssql.password}"/>      
+      </filterset>
+    </copy>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="msbase.jar"/>
+        <include name="msutil.jar"/>
+        <include name="mssqlserver.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+
+  <target name="dbpool-package-3.2">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/mssql-ds.xml" todir="${db.dist.dir}">
+      <filterset>
+    	<filter token="host" value="${mssql.host}"/>
+    	<filter token="dbalias" value="${mssql.dbalias}"/>
+    	<filter token="username" value="${mssql.username}"/>
+    	<filter token="password" value="${mssql.password}"/>      
+      </filterset>
+    </copy>
+    
+    <copy file="${basedir}/db/empty-jboss-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml"/>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="msbase.jar"/>
+        <include name="msutil.jar"/>
+        <include name="mssqlserver.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="update-schema">
+      <echo message="Make mssql on //${mssql.host}/${mssql.dbalias} with ${ddl.dist}/schema-sapdb.ddl"/>
+      <sql driver="com.microsoft.jdbc.sqlserver.SQLServerDriver" url="jdbc:microsoft:sqlserver://${mssql.host}:1433;DatabaseName=${mssql.dbalias};sendStringParametersAsUnicode=false;selectMethod=cursor"
+           userid="${mssql.username}" password="${mssql.password}" autocommit="true"
+           src="${ddl.dist}/schema-mssql.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/msbase.jar"/>
+          <pathelement location="${db.base.dir}/msutil.jar"/>
+          <pathelement location="${db.base.dir}/mssqlserver.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+
+  <target name="drop-schema">
+      <echo message="Drop schema mssql on //${mssql.host}/${mssql.dbalias} with ${ddl.dist}/schema-sapdb.ddl"/>
+      <sql driver="com.microsoft.jdbc.sqlserver.SQLServerDriver" url="jdbc:microsoft:sqlserver://${mssql.host}:1433;DatabaseName=${mssql.dbalias};sendStringParametersAsUnicode=false;selectMethod=cursor"
+           userid="${mssql.username}" password="${mssql.password}" autocommit="true"
+           src="${ddl.dist}/mssql-drop.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/msbase.jar"/>
+          <pathelement location="${db.base.dir}/msutil.jar"/>
+          <pathelement location="${db.base.dir}/mssqlserver.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+</project>

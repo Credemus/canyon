@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Tool2" Name="Tool 2" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-17 11:01:22</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Tool2_Wor1" Name="Tool 2">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 11:02:08</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="var1" IsArray="FALSE" Name="Var1">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="var2" IsArray="FALSE" Name="Var2">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="admins" Name="Admins">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="TestAppMethod1" Name="TestAppMethod1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="out" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:ejbJndi" Value="de/objectcode/canyon/wetdock/ejb/test/WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbHome" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestServiceHome"/>
+                        <ExtendedAttribute Name="canyon:ejbClass" Value="de.objectcode.canyon.wetdock.api.test.WetdockTestService"/>
+                        <ExtendedAttribute Name="canyon:ejbLocal" Value="false"/>
+                        <ExtendedAttribute Name="canyon:ejbMethod" Value="testMethod1"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="WorkItem1" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="param" Index="1" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+                <Application Id="WorkItem4" Name="WorkItem1">
+                    <FormalParameters>
+                        <FormalParameter Id="errorMessage" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var1</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="200"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity2" Name="Activity2">
+                    <Implementation>
+                        <Tool Id="TestAppMethod1" Type="PROCEDURE">
+                            <ActualParameters>
+                                <ActualParameter>var1</ActualParameter>
+                                <ActualParameter>var2</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Tool2_Wor1_Tra5"/>
+                                    <TransitionRef Id="Tool1_Wor1_Tra3"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="FreeTextExpressionParticipant"/>
+                        <ExtendedAttribute Name="XOffset" Value="390"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity3" Name="Activity3">
+                    <Implementation>
+                        <Tool Id="WorkItem1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>var2</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="role1"/>
+                        <ExtendedAttribute Name="XOffset" Value="590"/>
+                        <ExtendedAttribute Name="YOffset" Value="80"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity4" Name="Activity4">
+                    <Implementation>
+                        <Tool Id="WorkItem4" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>Tool2_Wor1_Tra5_message</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>admins</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="admins"/>
+                        <ExtendedAttribute Name="XOffset" Value="580"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Activity1" Id="Tool1_Wor1_Tra2" To="Activity2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity2" Id="Tool1_Wor1_Tra3" To="Activity3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Activity2" Id="Tool2_Wor1_Tra5" To="Activity4">
+                    <Condition Type="DEFAULTEXCEPTION"/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="role1;Activity1;80;50;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="admins;Activity4;750;70;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="role1;Activity3;720;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="role1;FreeTextExpressionParticipant;admins;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.4.2"/>
+    </ExtendedAttributes>
+</Package>

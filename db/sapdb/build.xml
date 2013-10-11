@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../.." default="dontuse" name="saints-core">
+  <property name="db.package" value="sapdb.sar"/>
+  <property name="db.base.dir" value="${basedir}/db/sapdb"/>
+  <property name="db.dist.dir" value="${dist.dir}/db/sapdb"/>
+  
+  <target name="dontuse">
+    <fail>
+      Don't use this Ant script directly.
+    </fail>
+  </target>
+  
+  <target name="dbpool-package-3.0">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/sapdb-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml">
+      <filterset>
+    	<filter token="host" value="${sapdb.host}"/>
+    	<filter token="dbalias" value="${sapdb.dbalias}"/>
+    	<filter token="username" value="${sapdb.username}"/>
+    	<filter token="password" value="${sapdb.password}"/>      
+      </filterset>
+    </copy>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="sapdbc.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+
+  <target name="dbpool-package-3.2">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/sapdb-ds.xml" todir="${db.dist.dir}">
+      <filterset>
+    	<filter token="host" value="${sapdb.host}"/>
+    	<filter token="dbalias" value="${sapdb.dbalias}"/>
+    	<filter token="username" value="${sapdb.username}"/>
+    	<filter token="password" value="${sapdb.password}"/>      
+      </filterset>
+    </copy>
+    
+    <copy file="${basedir}/db/empty-jboss-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml"/>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="sapdbc.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="update-schema">
+      <echo message="Make sapdb on //${sapdb.host}/${sapdb.dbalias} with ${ddl.dist}/schema-sapdb.ddl"/>
+      <sql driver="com.sap.dbtech.jdbc.DriverSapDB" url="jdbc:sapdb://${sapdb.host}/${sapdb.dbalias}"
+           userid="${sapdb.username}" password="${sapdb.password}" autocommit="true"
+           src="${ddl.dist}/schema-sapdb.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/sapdbc.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+
+  <target name="drop-schema">
+      <echo message="Drop schema sapdb on //${sapdb.host}/${sapdb.dbalias} with ${ddl.dist}/schema-sapdb.ddl"/>
+      <sql driver="com.sap.dbtech.jdbc.DriverSapDB" url="jdbc:sapdb://${sapdb.host}/${sapdb.dbalias}"
+           userid="${sapdb.username}" password="${sapdb.password}" autocommit="true"
+           src="${ddl.dist}/sapdb-drop.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/sapdbc.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+</project>

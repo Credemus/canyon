@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../.." default="dontuse" name="saints-core">
+  <property name="db.package" value="oracle.sar"/>
+  <property name="db.base.dir" value="${basedir}/db/oracle"/>
+  <property name="db.dist.dir" value="${dist.dir}/db/oracle"/>
+  
+  <target name="dontuse">
+    <fail>
+      Don't use this Ant script directly.
+    </fail>
+  </target>
+  
+  <target name="dbpool-package-3.0">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/oracle-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml">
+      <filterset>
+    	<filter token="host" value="${oracle.host}"/>
+    	<filter token="dbalias" value="${oracle.dbalias}"/>
+    	<filter token="username" value="${oracle.username}"/>
+    	<filter token="password" value="${oracle.password}"/>      
+      </filterset>
+    </copy>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="oracle9i.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+
+  <target name="dbpool-package-3.2">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/oracle-ds.xml" todir="${db.dist.dir}">
+      <filterset>
+    	<filter token="host" value="${oracle.host}"/>
+    	<filter token="dbalias" value="${oracle.dbalias}"/>
+    	<filter token="username" value="${oracle.username}"/>
+    	<filter token="password" value="${oracle.password}"/>      
+      </filterset>
+    </copy>
+    
+    <copy file="${basedir}/db/empty-jboss-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml"/>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="oracle9i.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="dbpool-package-4.2">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${db.dist.dir}"/>
+    <mkdir dir="${db.dist.dir}/META-INF"/>
+    
+    <copy file="${db.base.dir}/oracle-ds.xml" todir="${db.dist.dir}">
+      <filterset>
+    	<filter token="host" value="${oracle.host}"/>
+    	<filter token="dbalias" value="${oracle.dbalias}"/>
+    	<filter token="username" value="${oracle.username}"/>
+    	<filter token="password" value="${oracle.password}"/>      
+      </filterset>
+    </copy>
+    
+    <copy file="${basedir}/db/empty-jboss-service.xml" tofile="${db.dist.dir}/META-INF/jboss-service.xml"/>
+    
+    <jar destfile="${dist.dir}/${db.package}">
+      <fileset dir="${db.base.dir}">
+        <include name="oracle9i.jar"/>
+      </fileset>
+      <fileset dir="${db.dist.dir}" includes="**/*"/>
+    </jar>
+  </target>
+  
+  <target name="update-schema">
+      <echo message="Make oracle on ${oracle.host} ${oracle.dbalias} with ${ddl.dist}/schema-oracle.ddl"/>
+      <sql driver="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@${oracle.host}:1521:${oracle.dbalias}"
+           userid="${oracle.username}" password="${oracle.password}" autocommit="true"
+           src="${ddl.dist}/schema-oracle.ddl" onerror="continue">
+        <classpath>
+          <pathelement location="${db.base.dir}/oracle9i.jar"/>
+        </classpath>
+      </sql>    
+  </target>
+</project>

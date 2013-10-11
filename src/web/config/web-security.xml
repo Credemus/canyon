@@ -1,0 +1,38 @@
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Restricted</web-resource-name>
+      <description>Declarative security tests</description>
+      <url-pattern>/worklist/*</url-pattern>
+      <http-method>HEAD</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+      <http-method>DELETE</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Administrators</role-name>
+      <role-name>Lagerarbeiter</role-name>
+      <role-name>Sachbearbeiter</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <description>no description</description>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Saints</realm-name>
+  </login-config>
+
+  <security-role>
+  	<role-name>Administrators</role-name>
+  </security-role>
+
+  <security-role>
+  	<role-name>Lagerarbeiter</role-name>
+  </security-role>
+
+  <security-role>
+  	<role-name>Sachbearbeiter</role-name>
+  </security-role>

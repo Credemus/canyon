@@ -1,0 +1,19 @@
+  <mbean code="javax.management.timer.Timer"
+         name="canyon:service=Timer">
+  </mbean>
+  
+  <mbean code="de.objectcode.canyon.persistent.jmx.WSRepositories"
+         name="canyon:service=Repositories">
+    <depends>jboss.jca:service=Hibernate-Canyon</depends>
+    <depends>canyon:service=ServiceManager</depends>
+    <depends optional-attribute-name="TimerService">canyon:service=Timer</depends>
+  </mbean>
+
+  <mbean code="de.objectcode.canyon.persistent.jmx.BPERepositories"
+         name="canyon.bpe:service=Repositories">
+    <depends>jboss.jca:service=Hibernate-Canyon</depends>
+    <depends>canyon:service=ServiceManager</depends>
+    <depends>canyon.bpe:service=BPEEngineService</depends>
+    <depends optional-attribute-name="TimerService">canyon:service=Timer</depends>
+  </mbean>
+  

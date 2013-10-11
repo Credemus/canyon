@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Limit1" Name="EscalationHandlerTest" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-17 08:21:44</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="EscalationHanderTest_Wor1" Name="EscalationHanderTest">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:24:10</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="limitExpr" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Limit>limitExpr</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="300,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=701,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=81,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="canyon:escalationHandler" Value="LimitExceeded"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="EscalationHanderTest_Wor2" Name="EscalationHanderTest2">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:24:10</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="limitExpr" Index="limitExpr" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Limit>limitExpr</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="300,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="canyon:escalationHandler" Value="LimitExceeded2"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=701,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=81,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=SIMPLE_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="EscalationHanderTest_Wor4" Name="EscalationHanderTest4">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:24:10</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="limitExpr" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="angebotAngenommen" Index="2" Mode="OUT">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="System" Name="System">
+                    <ParticipantType Type="SYSTEM"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Set_Var" Name="Set_Var">
+                    <FormalParameters>
+                        <FormalParameter Id="InputVar" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="OutputVar" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:toolConnectorClass" Value="de.objectcode.canyon.spiImpl.tool.BeanShellScriptConnector"/>
+                        <ExtendedAttribute Name="script" Value="OutputVar=InputVar;"/>
+                    </ExtendedAttributes>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="SetVar" Name="SetVar">
+                    <Implementation>
+                        <Tool Id="Set_Var" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>true</ActualParameter>
+                                <ActualParameter>angebotAngenommen</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="181,46"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Activity1" Name="Activity1">
+                    <Limit>limitExpr</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="300,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="SetVar" Id="EscalationHanderTest_Wor4_tra1" To="Activity1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1;System"/>
+                <ExtendedAttribute Name="canyon:escalationHandler" Value="LimitExceeded"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=SetVar,X_OFFSET=11,Y_OFFSET=46,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Activity1,X_OFFSET=470,Y_OFFSET=60,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="EscalationHanderTest_Wor3" Name="WrapperProcess">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:24:10</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="limitExpr" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <DataFields>
+                <DataField Id="angebotAngenommen" IsArray="FALSE" Name="angebotAngenommen">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="Show" Name="Show">
+                    <FormalParameters>
+                        <FormalParameter Id="angebotAngenommen" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="Show" Name="Show">
+                    <Implementation>
+                        <Tool Id="Show" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>angebotAngenommen</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="595,54"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="EscalationHanderTest_Wor3_act1">
+                    <Implementation>
+                        <SubFlow Execution="SYNCHR" Id="EscalationHanderTest_Wor4">
+                            <ActualParameters>
+                                <ActualParameter>limitExpr</ActualParameter>
+                                <ActualParameter>angebotAngenommen</ActualParameter>
+                            </ActualParameters>
+                        </SubFlow>
+                    </Implementation>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="439,54"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="EscalationHanderTest_Wor3_act2">
+                    <Route/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="275,60"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="EscalationHanderTest_Wor3_act2" Id="EscalationHanderTest_Wor3_tra1" To="EscalationHanderTest_Wor3_act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="EscalationHanderTest_Wor3_act1" Id="EscalationHanderTest_Wor3_tra2" To="Show">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=EscalationHanderTest_Wor3_act2,X_OFFSET=106,Y_OFFSET=67,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="LimitExceeded" Name="LimitExceeded">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:25:54</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="escalationActivityId" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationProcessDefinitionId" Index="2" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationState" Index="3" Mode="OUT">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="admins" Name="Admins">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="EscalationDialog" Name="EscalationDialog">
+                    <FormalParameters>
+                        <FormalParameter Id="message" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="state" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="LimitActivity" Name="LimitActivity">
+                    <Implementation>
+                        <Tool Id="EscalationDialog" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"ESCALATION"</ActualParameter>
+                                <ActualParameter>escalationState</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>admins</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,70"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="admins"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=LimitActivity,X_OFFSET=701,Y_OFFSET=91,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=LimitActivity,X_OFFSET=111,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="admins"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="LimitExceeded2" Name="LimitExceeded">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-17 08:25:54</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="escalationActivityId" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationProcessDefinitionId" Index="2" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationState" Index="3" Mode="OUT">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationRetryDueDate" Index="3" Mode="OUT">
+                    <DataType>
+                        <BasicType Type="DATETIME"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="escalationRetryPerformer" Index="4" Mode="OUT">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="admins" Name="Admins">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="EscalationDialog" Name="EscalationDialog">
+                    <FormalParameters>
+                        <FormalParameter Id="message" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="state" Index="2" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="retryDueDate" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="retryPerformer" Index="4" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="LimitActivity" Name="LimitActivity">
+                    <Implementation>
+                        <Tool Id="EscalationDialog" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"ESCALATION"</ActualParameter>
+                                <ActualParameter>escalationState</ActualParameter>
+                                <ActualParameter>escalationRetryDueDate</ActualParameter>
+                                <ActualParameter>escalationRetryPerformer</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>admins</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="310,70"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="admins"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=LimitActivity,X_OFFSET=701,Y_OFFSET=91,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=admins,CONNECTING_ACTIVITY_ID=LimitActivity,X_OFFSET=111,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="admins"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+        <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+    </ExtendedAttributes>
+</Package>

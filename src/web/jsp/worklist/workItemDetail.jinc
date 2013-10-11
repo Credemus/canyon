@@ -1,0 +1,46 @@
+<nested:notEmpty property="currentWorkItem">
+	<nested:nest property="currentWorkItem">
+		<table class="detailtable">
+			<tr>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+   				    ID
+				</td>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+					<nested:text property="id" readonly="true"/>
+				</td>
+			 </tr>
+			<tr>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+   				    Name
+				</td>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+					<nested:text property="name" readonly="true"/>
+				</td>
+			 </tr>
+			 <tr>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+   				    Started date
+				</td>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+					<nested:text property="startedDate"/>
+				</td>
+			 </tr>
+			 <tr>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+   				    Due date
+				</td>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+					<nested:text property="dueDate"/>
+				</td>
+			 </tr>
+			 <tr>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+   				    Priority
+				</td>
+   				<td class="detailrow" colspan="1" rowspan="1" valign="top" nowrap>
+					<nested:text property="priority"/>
+				</td>
+			 </tr>
+		</table>
+	</nested:nest>
+</nested:notEmpty>

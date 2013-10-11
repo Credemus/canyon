@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="Event1" Name="Event1" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2005-03-16 10:38:17</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <Participants>
+        <Participant Id="System" Name="System">
+            <ParticipantType Type="SYSTEM"/>
+        </Participant>
+        <Participant Id="event-handler" Name="event-handler">
+            <ParticipantType Type="SYSTEM"/>
+        </Participant>
+    </Participants>
+    <Applications>
+        <Application Id="Sender_NOTIFICATION" Name="Sender_NOTIFICATION">
+            <FormalParameters>
+                <FormalParameter Id="param1" Index="0" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="canyon:eventType" Value="NOTIFICATION"/>
+            </ExtendedAttributes>
+        </Application>
+        <Application Id="Listener_NOTIFICATION" Name="Listener_NOTIFICATION">
+            <FormalParameters>
+                <FormalParameter Id="param1" Index="0" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="canyon:eventType" Value="NOTIFICATION"/>
+            </ExtendedAttributes>
+        </Application>
+    </Applications>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Event1_Wor1" Name="Event 1">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-03-16 10:38:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="Role 1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Event1_Wor1_Act1" Name="Start Event2">
+                    <Implementation>
+                        <Tool Id="Sender_NOTIFICATION" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"0815"</ActualParameter>
+                            </ActualParameters>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="canyon:startProcessId" Value="Event1_Wor2"/>
+                            </ExtendedAttributes>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="190,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Event1_Wor1_Act2" Name="Wait">
+                    <Implementation>
+                        <Tool Id="Listener_NOTIFICATION" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"0815"</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>event-handler</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="190,70"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="event-handler"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Event1_Wor1_Act3" Name="Terminate Event2">
+                    <Implementation>
+                        <Tool Id="Sender_NOTIFICATION" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>"0815"</ActualParameter>
+                            </ActualParameters>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="canyon:terminateProcessId" Value="Event1_Wor2"/>
+                            </ExtendedAttributes>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="500,60"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="BeforeStop" Name="BeforeStop">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="470,70"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Event1_Wor1_Act1" Id="Event1_Wor1_Tra11" To="Event1_Wor1_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Event1_Wor1_Act2" Id="Event1_Wor1_Tra12" To="BeforeStop">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="BeforeStop" Id="Event1_Wor1_Tra17" To="Event1_Wor1_Act3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=Event1_Wor1_Act3,X_OFFSET=661,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=Event1_Wor1_Act1,X_OFFSET=91,Y_OFFSET=71,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="System;event-handler;role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Event1_Wor2" Name="Event2">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-04-19 11:13:38</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="param1" Index="0" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+            </FormalParameters>
+            <Participants>
+                <Participant Id="role1" Name="role1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="Event1_Wor2_Act1" Name="Send Notification">
+                    <Implementation>
+                        <Tool Id="Sender_NOTIFICATION" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>param1</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>System</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="AND">
+                                <TransitionRefs>
+                                    <TransitionRef Id="Event1_Wor2_Tra3"/>
+                                    <TransitionRef Id="Event1_Wor2_tra2"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="350,70"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Dummy" Name="Dummy">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="496,66"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Start" Name="Start">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="230,50"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Event1_Wor2_act1" Name="Start SubProcess">
+                    <Implementation>
+                        <SubFlow Execution="SYNCHR" Id="Event1_wp1"/>
+                    </Implementation>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="System"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="611,65"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="Event1_Wor2_act2">
+                    <Route/>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="AND"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="640,63"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="Event1_Wor2_Act1" Id="Event1_Wor2_Tra3" To="Event1_Wor2_act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Start" Id="Event1_Wor2_Tra6" To="Event1_Wor2_Act1">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_ORTHOGONAL"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Event1_Wor2_Act1" Id="Event1_Wor2_tra2" To="Dummy">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Dummy" Id="Event1_Wor2_tra1" To="Event1_Wor2_act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="Event1_Wor2_act1" Id="Event1_Wor2_tra3" To="Event1_Wor2_act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_TRANSITION_STYLE" Value="NO_ROUTING_SPLINE"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=System,CONNECTING_ACTIVITY_ID=Start,X_OFFSET=101,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="System;role1"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=Event1_Wor2_act2,X_OFFSET=810,Y_OFFSET=63,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="Event1_wp1" Name="Event3">
+            <ProcessHeader DurationUnit="D">
+                <Created>2005-04-19 11:13:38</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="role1" Name="role1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="DummyDummy" Name="DummyDummy">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>role1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="JaWE_GRAPH_OFFSET" Value="404,54"/>
+                        <ExtendedAttribute Name="JaWE_GRAPH_PARTICIPANT_ID" Value="role1"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="JaWE_GRAPH_END_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=DummyDummy,X_OFFSET=711,Y_OFFSET=81,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=END_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_START_OF_WORKFLOW" Value="JaWE_GRAPH_PARTICIPANT_ID=role1,CONNECTING_ACTIVITY_ID=DummyDummy,X_OFFSET=97,Y_OFFSET=78,JaWE_GRAPH_TRANSITION_STYLE=NO_ROUTING_ORTHOGONAL,TYPE=START_DEFAULT"/>
+                <ExtendedAttribute Name="JaWE_GRAPH_WORKFLOW_PARTICIPANT_ORDER" Value="role1"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="EDITING_TOOL" Value="Together Workflow Editor Community Edition"/>
+        <ExtendedAttribute Name="EDITING_TOOL_VERSION" Value="2.0-2-C-20060228-0858"/>
+    </ExtendedAttributes>
+</Package>

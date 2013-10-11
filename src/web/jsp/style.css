@@ -1,0 +1,70 @@
+.bodystyle{
+ background-color:#D4D0C8;
+}
+.submitLink
+{
+   text-align:left;
+   color: black;
+   background-color: transparent;
+   font-family:Ariel;
+   font-size:11pt;
+   text-decoration: underline;
+   border: none;
+   cursor: pointer;
+   cursor: hand;
+}
+.submitLinkSelected
+{
+   text-align:left;
+   color: #00f;
+   background-color: transparent;
+   font-family:Ariel;
+   font-size:11pt;
+   font-style:bold;
+   text-decoration:none;
+   border: none;
+   cursor: pointer;
+   cursor: hand;
+}
+
+.submitButton
+{
+   font-family:Ariel;
+   font-size:11pt;
+   background-color:#DCD6D6 
+   
+}
+ 
+.row-color-intermediate1{
+   background-color:#DCD6D6 ;
+   
+}
+.row-color-intermediate2{
+   background-color:#C8BEBE;
+}
+.row-color-highlighted{
+	background-color:#FDEECD;
+}
+.rowtable{
+	width:"100%";
+	background-color:#D4d0C8;
+}
+.rowtable-title{
+	font-family:Ariel;
+	font-size:11pt;
+	font-style:bold;
+	background-color:#F7F5C3;
+}
+.issuetable{
+	background-color:#D4D0C8;
+}
+.detailrow{
+   font-family:Ariel;
+   font-size:11pt;
+   font-style:normal;
+   text-decoration:none;
+}
+
+.detailtable{
+	background-color:#D4d0C8;
+}

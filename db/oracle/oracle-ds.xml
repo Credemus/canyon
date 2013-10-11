@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>SaintsCoreDS</jndi-name>
+    <connection-url>jdbc:oracle:thin:@@host@:1521:@dbalias@</connection-url>
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+    <user-name>@username@</user-name>
+    <password>@password@</password>
+    <check-valid-connection-sql>select * from dual</check-valid-connection-sql>
+    <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+  </local-tx-datasource>
+
+</datasources>

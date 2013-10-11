@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="WFMTest" Name="WFMTest" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2004-01-26 09:27:30</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="1" Name="WFMTest">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-01-26 09:28:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="StringParam" Index="StringParam" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <Description>Zeichenkette</Description>
+                </FormalParameter>
+                <FormalParameter Id="BooleanParam" Index="BooleanParam" Mode="IN">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <Description>Logisch</Description>
+                </FormalParameter>
+                <FormalParameter Id="IntegerParam" Index="IntegerParam" Mode="IN">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                    <Description>Ganzzahl</Description>
+                </FormalParameter>
+                <FormalParameter Id="ExternalUri" Index="StringParam" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </FormalParameter>
+                <FormalParameter Id="DateTimeParam" Index="DateTimeParam" Mode="IN">
+                    <DataType>
+                        <BasicType Type="DATETIME"/>
+                    </DataType>
+                    <Description>Datum</Description>
+                </FormalParameter>
+            </FormalParameters>
+            <DataFields>
+                <DataField Id="BooleanParam" IsArray="FALSE" Name="BooleanParam">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>True</InitialValue>
+                </DataField>
+                <DataField Id="StringParam" IsArray="FALSE" Name="StringParam">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>DefaultWert</InitialValue>
+                </DataField>
+                <DataField Id="ExternalUri" IsArray="FALSE" Name="StringParam">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="StringEnumParam" IsArray="FALSE" Name="StringEnumParam">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>A</InitialValue>
+                </DataField>
+                <DataField Id="DateTimeParam" IsArray="FALSE" Name="DateTimeParam">
+                    <DataType>
+                        <BasicType Type="DATETIME"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="IntegerParam" IsArray="FALSE" Name="IntegerParam">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                    <InitialValue>815</InitialValue>
+                </DataField>
+                <DataField Id="PerformerParam" IsArray="FALSE" Name="PerformerParam">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>TestUser1</InitialValue>
+                </DataField>
+                <DataField Id="INPARAM" IsArray="FALSE" Name="INPARAM">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>IN</InitialValue>
+                </DataField>
+                <DataField Id="INOUTPARAM" IsArray="FALSE" Name="INOUTPARAM">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>INOUT</InitialValue>
+                </DataField>
+                <DataField Id="OUTPARAM" IsArray="FALSE" Name="OUTPARAM">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>OUT</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="TestRole1" Name="TestRole1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="TestUser1" Name="TestUser1">
+                    <ParticipantType Type="HUMAN"/>
+                </Participant>
+                <Participant Id="TestRole2" Name="TestRole2">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+                <Participant Id="TestUser2" Name="TestUser2">
+                    <ParticipantType Type="HUMAN"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="callEJB" Name="callEJB">
+                    <FormalParameters>
+                        <FormalParameter Id="INARG" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="INOUTARG" Index="2" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="OUTARG" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="canyon:ejbJndi" Value="de/neutrasoft/saints/core/wfm/ejb/Process"/>
+                        <ExtendedAttribute Name="canyon:ejbHome" Value="de.neutrasoft.saints.core.wfm.interfaces.ProcessHome"/>
+                        <ExtendedAttribute Name="canyon:ejbClass" Value="de.neutrasoft.saints.core.wfm.interfaces.Process"/>
+                        <ExtendedAttribute Name="canyon:ejbLocal" Value="false"/>
+                        <ExtendedAttribute Name="canyon:ejbMethod" Value="testMethod"/>
+                        <ExtendedAttribute Name="canyon:userName" Value="admin"/>
+                        <ExtendedAttribute Name="canyon:password" Value="admin"/>
+                        <ExtendedAttribute Name="canyon:policyName" Value="client-login"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="checkEJB" Name="checkEJB">
+                    <FormalParameters>
+                        <FormalParameter Id="INARG" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="INOUTARG" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="OUTARG" Index="3" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+                <Application Id="EditData" Name="EditData">
+                    <FormalParameters>
+                        <FormalParameter Id="param1" Index="param1" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Parameter (Eins)</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="param2" Index="param2" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="param3" Index="param3" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="param4" Index="param4" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="param5" Index="param5" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="externalUri" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                        <ExtendedAttribute Name="saints:formalParameter:param5:fieldType" Value="ComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:param5:enumValues" Value="A;B;C"/>
+                    </ExtendedAttributes>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="1_Act6" Name="Aktivitaet1">
+                    <Implementation>
+                        <Tool Id="EditData" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>StringParam</ActualParameter>
+                                <ActualParameter>DateTimeParam</ActualParameter>
+                                <ActualParameter>IntegerParam</ActualParameter>
+                                <ActualParameter>BooleanParam</ActualParameter>
+                                <ActualParameter>StringEnumParam</ActualParameter>
+                                <ActualParameter>ExternalUri</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="230"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                        <ExtendedAttribute Name="canyon:performerExpr" Value="$PerformerParam"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="1_Act7" Name="Aktivitaet2">
+                    <Implementation>
+                        <Tool Id="EditData" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>StringParam</ActualParameter>
+                                <ActualParameter>DateTimeParam</ActualParameter>
+                                <ActualParameter>IntegerParam</ActualParameter>
+                                <ActualParameter>BooleanParam</ActualParameter>
+                                <ActualParameter>StringEnumParam</ActualParameter>
+                                <ActualParameter>ExternalUri</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="380"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="1_Act8" Name="callEJB">
+                    <Implementation>
+                        <Tool Id="callEJB" Type="PROCEDURE">
+                            <ActualParameters>
+                                <ActualParameter>INPARAM</ActualParameter>
+                                <ActualParameter>INOUTPARAM</ActualParameter>
+                                <ActualParameter>OUTPARAM</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="FreeTextExpressionParticipant"/>
+                        <ExtendedAttribute Name="XOffset" Value="500"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="1_Act9" Name="checkEJB">
+                    <Implementation>
+                        <Tool Id="checkEJB" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>INPARAM</ActualParameter>
+                                <ActualParameter>INOUTPARAM</ActualParameter>
+                                <ActualParameter>OUTPARAM</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="650"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="1_Act6" Id="1_Tra13" Name="Transition" To="1_Act7">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="1_Act7" Id="1_Tra14" Name="Transition" To="1_Act8">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="1_Act8" Id="1_Tra15" Name="Transition" To="1_Act9">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="TestRole1;1_Act6;70;70;SIMPLEROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="FreeTextExpressionParticipant;1_Act9;830;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="TestRole1;FreeTextExpressionParticipant;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="2" Name="ResolverTest">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-08-13 16:32:54</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="dynaPerformer" IsArray="FALSE" Name="dynaPerformer">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>POOLROLE</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="EXPRPARTICIPANT" Name="EXPRPARTICIPANT">
+                    <ParticipantType Type="ROLE"/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="obe:Expression" Value="dynaPerformer"/>
+                    </ExtendedAttributes>
+                </Participant>
+                <Participant Id="POOLROLE" Name="POOLROLE">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="WFMTest_Wor1_Act1" Name="PoolActivity">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>POOLROLE</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="POOLROLE"/>
+                        <ExtendedAttribute Name="XOffset" Value="210"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                        <ExtendedAttribute Name="obe:AssignStrategy" Value="ALL"/>
+                        <ExtendedAttribute Name="obe:CompletionStrategy" Value="ANY"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="WFMTest_Wor1_Act2" Name="ExpressionActivity">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>EXPRPARTICIPANT</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="EXPRPARTICIPANT"/>
+                        <ExtendedAttribute Name="XOffset" Value="510"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="WFMTest_Wor1_Act3" Name="SingleUserActivity">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>POOLROLE</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="POOLROLE"/>
+                        <ExtendedAttribute Name="XOffset" Value="350"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="WFMTest_Wor1_Act1" Id="WFMTest_Wor1_Tra3" Name="Transition" To="WFMTest_Wor1_Act3">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="WFMTest_Wor1_Act3" Id="WFMTest_Wor1_Tra4" Name="Transition" To="WFMTest_Wor1_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="POOLROLE;WFMTest_Wor1_Act1;80;60;SIMPLEROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="EXPRPARTICIPANT;WFMTest_Wor1_Act2;700;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="POOLROLE;EXPRPARTICIPANT;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="3" Name="LoopTest">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-11-02 07:03:01</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="data" IsArray="FALSE" Name="data">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="TestRole1" Name="TestRole1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="LoopTest_App1" Name="EnterData">
+                    <FormalParameters>
+                        <FormalParameter Id="data" Index="1" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="WFMTest_Wor1_Act1" Name="Enter">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="200"/>
+                        <ExtendedAttribute Name="YOffset" Value="90"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act2" Name="Head">
+                    <Implementation>
+                        <Tool Id="LoopTest_App1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>data</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="LoopTest_Tra3"/>
+                                    <TransitionRef Id="LoopTest_Tra4"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="330"/>
+                        <ExtendedAttribute Name="YOffset" Value="100"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act3" Name="Body">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="560"/>
+                        <ExtendedAttribute Name="YOffset" Value="10"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act4" Name="Exit">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="570"/>
+                        <ExtendedAttribute Name="YOffset" Value="100"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="WFMTest_Wor1_Act1" Id="LoopTest_Tra2" Name="Transition" To="LoopTest_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act2" Id="LoopTest_Tra3" Name="Transition" To="LoopTest_Act3">
+                    <Condition Type="CONDITION">"body".equals(data)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="490;100;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act2" Id="LoopTest_Tra4" Name="Transition" To="LoopTest_Act4">
+                    <Condition Type="CONDITION">"exit".equals(data)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act3" Id="LoopTest_Tra6" Name="Transition" To="LoopTest_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="470;60;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="TestRole1;WFMTest_Wor1_Act1;100;70;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="TestRole1;LoopTest_Act4;710;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="TestRole1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="4" Name="LoopTestDuration">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-11-02 07:03:01</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="data" IsArray="FALSE" Name="data">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="TestRole1" Name="TestRole1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Applications>
+                <Application Id="LoopTest_App1" Name="EnterData">
+                    <FormalParameters>
+                        <FormalParameter Id="data" Index="1" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="WFMTest_Wor1_Act1" Name="Enter">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="200"/>
+                        <ExtendedAttribute Name="YOffset" Value="90"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act2" Name="Head">
+                    <Implementation>
+                        <Tool Id="LoopTest_App1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>data</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <Deadline Execution="SYNCHR">
+                        <DeadlineCondition>60 s</DeadlineCondition>
+                        <ExceptionName>DeadException</ExceptionName>
+                    </Deadline>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="LoopTest_Tra3"/>
+                                    <TransitionRef Id="LoopTest_Tra4"/>
+                                    <TransitionRef Id="3_Tra7"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="330"/>
+                        <ExtendedAttribute Name="YOffset" Value="100"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act3" Name="Body">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="560"/>
+                        <ExtendedAttribute Name="YOffset" Value="10"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="LoopTest_Act4" Name="Exit">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="570"/>
+                        <ExtendedAttribute Name="YOffset" Value="100"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="3_Act1" Name="Dead">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="330"/>
+                        <ExtendedAttribute Name="YOffset" Value="10"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="WFMTest_Wor1_Act1" Id="LoopTest_Tra2" Name="Transition" To="LoopTest_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act2" Id="LoopTest_Tra3" Name="Transition" To="LoopTest_Act3">
+                    <Condition Type="CONDITION">"body".equals(data)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="490;100;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act2" Id="LoopTest_Tra4" Name="Transition" To="LoopTest_Act4">
+                    <Condition Type="CONDITION">"exit".equals(data)</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act3" Id="LoopTest_Tra6" Name="Transition" To="LoopTest_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="470;60;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="LoopTest_Act2" Id="3_Tra7" Name="DeadException" To="3_Act1">
+                    <Condition Type="EXCEPTION">DeadException</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="3_Act1" Id="4_Tra9" Name="Transition" To="LoopTest_Act4">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="TestRole1;WFMTest_Wor1_Act1;100;70;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="TestRole1;LoopTest_Act4;710;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="TestRole1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="5" Name="Escalation">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-11-02 12:32:48</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="TestRole1" Name="TestRole1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="5_Act1" Name="Akt1">
+                    <Limit>10 s</Limit>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="270"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                        <ExtendedAttribute Name="canyon:LimitExceeded" Value="6"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="5_Act2" Name="Akt2">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="410"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="5_Act1" Id="5_Tra1" Name="Transition" To="5_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="TestRole1;5_Act1;140;60;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="TestRole1;5_Act2;610;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="TestRole1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="6" Name="EscalationHandler">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-11-02 12:33:41</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <Participants>
+                <Participant Id="TestRole1" Name="TestRole1">
+                    <ParticipantType Type="ROLE"/>
+                </Participant>
+            </Participants>
+            <Activities>
+                <Activity Id="6_Act1" Name="HauDenLukas">
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>TestRole1</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="TestRole1"/>
+                        <ExtendedAttribute Name="XOffset" Value="320"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="TestRole1;6_Act1;110;50;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="TestRole1;6_Act1;570;50;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="TestRole1;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.2"/>
+    </ExtendedAttributes>
+</Package>

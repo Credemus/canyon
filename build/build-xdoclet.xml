@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project basedir=".." default="all" name="canyon">
+    <!-- All environment variables are accessible by "env." prefix -->
+    <property environment="env"/>
+    <!-- Directory containing the build files -->
+    <property name="build.dir" value="${basedir}/build"/>
+    
+
+    <!-- Directocry of the external libraries -->
+    <property name="lib.dir" value="${basedir}/lib"/>
+
+    <!-- Directory to build the distribution to -->
+    <property name="dist.dir" value="${basedir}/dist"/>
+
+   <property name="xdoclet.src" value="${basedir}/src/xdoclet"/>
+    <property name="xdoclet.dist" value="${dist.dir}/xdoclet"/>
+    <property name="xdoclet.package" value="xdoclet-hibernate-module-1.2.2-patched.jar"/>
+    <property name="xdoclet.orig.package" value="xdoclet-hibernate-module-1.2.2.jar"/>
+    <property name="xdoclet.dir" value="${build.dir}/lib"/>
+	
+
+    <path id="xdoclet.class.path">
+        <fileset dir="${build.dir}/lib">
+            <include name="*.jar"/>
+            <exclude name="${xdoclet.package}"/> 
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    
+    <path id="xdoclet.javac.classpath">
+        <fileset dir="${build.dir}/lib">
+            <include name="*.jar"/>
+            <exclude name="${xdoclet.package}"/> 
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+
+	<target name="xdoclet-patch">
+		<unjar src="${xdoclet.dir}/${xdoclet.orig.package}" dest="${xdoclet.dist}"/>
+	      <copy todir="${xdoclet.dist}">
+	      	<fileset dir="${xdoclet.src}/java" includes="**/*.xdt"/>
+	      </copy>		
+      <javac source="1.4" destdir="${xdoclet.dist}" debug="on" classpathref="xdoclet.javac.classpath">
+        <src path="${xdoclet.src}/java"/>
+      </javac>
+	  <jar jarfile="${xdoclet.dir}/${xdoclet.package}">
+    	<fileset dir="${xdoclet.dist}"/>
+	  </jar>
+	</target> 
+</project>

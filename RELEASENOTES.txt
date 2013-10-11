@@ -1,0 +1,178 @@
+Release 0.19.14 
+- Datum: 02/2010
+- [MHE] Es werden nur noch Prozesse mit state <= 3 eingeladen (vorher keine Einschränkung ; tatsächlich haben 
+        aber alle Prozesse immer den state 0 ; mit dieser Massnahme kann man nun aber manuell explizit einige Prozesse 
+        als veraltet/terminiert markieren, indem man deren state per DB_Update-Statement auf 4 setzt ; diese Prozesse werden
+        fortan beim AppServer-Start und der canyon-Initialisierung ignoriert und nicht aus der DB geladen)
+        siehe: de.objectcode.canyon.persistent.bpe.repository.ProcessRepository, iterateProcesses(IProcessVisitor, boolean)
+
+Release 0.19.13
+- [YXY] PROCESS_START_EVENT wurde auch bei finish gefeuert.
+
+Release 0.19.11
+- [YXY] EJBConnector.getSemaphore bekommt jetzt den Context reingereicht.
+
+Release 0.19.11
+- [YXY] EJBConnector.getSemaphore bekommt jetzt den Context reingereicht.
+
+Release 0.19.9
+- [YXY] Der StickyResolver überprüft den StickyUser auf Rollenzugehörigkeit
+
+Release 0.19.8
+- [YXY] Die von Dynamischen Rollen referenzierten Rollen müssen nicht mehr im Prozess definiert sein.
+
+Release 0.19.2
+- [KBE] Umstellung auf JDK 1.6
+- [YXY] BPEEvents eingebaut
+
+Release 0.16
+
+New Features
+- Dynamic Limit
+- Dynamic absolute Deadliness
+- DefaultBusinessCalendar
+
+Changes since canyon-0.15
+- [YX] Neue ProcessBean-Method: listActiveProcess
+- [YX] Process hat jetzt einen State (für WNProcessDefinitionState)
+- [YX] Neue Targets für flow
+- [YX, BF] Redefinable Header wurde nicht gesetzt
+- [YX] Es werden nur noch LimitEscalation-Prozesse gestartet, wenn deren ProcessId gesetzt ist.
+- [YX] Terminate ist jetzt hierarcisch. Activity hat jetzt ein terminate
+- [YX] Auch beim Start von Prozessen über den SQLProcess-Starter wird jetzt der ppiid-Path gesetzt.
+- [YX] WorkItemData kennt jetzt die PPIIP.
+- [YX] ProcessName Mechanismus eingebaut
+- [YX BF] Dynamic Async Deadlines. Wait umgeschrieben.
+- [YX,6.9.05, BF] terminateProcess by Event geht jetzt
+- Dynamic Limit
+- Dynamic absolute Deadliness
+- DefaultBusinessCalendar used for deadlines
+- [YX, 08.08.05,MF] ApplicationInfo kennt nun die EAs der Activity
+- Package-Events werden jetzt gefeuert
+- [YX, 17.08.05,BF] Wenn bei Limits keine Unit und beim Package keine Unit angegeben ist gabs eine Exception. Jetzt 
+ wird DAY verwendet.
+- [YX, 17.08.05,BF] TerminateProcess überprüft auf ActivityState
+- [YX, 18.08.05,BF] SQLConnector um update erweitert.
+
+#######################################################
+
+Release 0.15
+
+New Features
+- BeanShellScriptConnector
+
+
+Changes since canyon-0.14
+- [YX, 01.06.06,NF]: BeanShellScriptConnector
+- [YX, 31.05.05,BF]: Fehler bei Loops mit Deadlines 
+- [YX, 30.05.05,BF]: Fehler in ExtendeAttributeHandler
+- [YX]: CompositeActivity.skip macht kein complete mehr
+
+###########################################################################################################
+
+Release 0.14
+
+Changes since canyon-0.13
+- [YX, 23.05.05]: Umstellung auf Hiberante 2.1.8
+- [YX, 23.05.05,BF ]: Handling von Durations auf RegExp umgestellt.
+- [BJ, 17.03.05 ] Die ToolConnectoren haben jetzt Zugriff auf die ExtendedAttributes des Tool-Elements
+- [BJ, 17.03.05 ] Async Escalation, Async Deadlime, Exception-Process eingebaut
+- [YX, 5.3.05]: terminateProcess-Handling: Man kann jetzt ein event versenden, der alle Prozessinstanzen zu einer gegebenen ProcessId tötet, deren Workflow-relevant Data mit der Signatur des Events kompatibel ist.
+Einschränkung: Es wird noch nicht kaskadierend terminiert. NOT TESTED YET
+- [YX, 3.3.05]: BPETool ist jetzt eine Basis-Klasse für alle Tools die per JavaClassConnector auf die BPEFacade zugreifen wollen
+- [YX, 3.3.05]: SQLProcessStarterConnector
+- [YX, 3.3.05]: Workaround für Bug in XDoclet eingebaut.
+- [YX, 21.02.05]: Umgestellt auf Hibernate 2.1.7. Dazu musste XDoclet aktualisiert werden. 
+Bisher wurde eine von BJ gepatchtes XDoclet verwendet. Jetzt wird der XDoclet-Standard eingesetzt.
+Dafür musste bei allen @hibernate.set ein @hibernate.collection-key vor die von BJ bereits eingeführten
+@hibernate.collection-key-column eingeführt werden.
+- [YX, 15.02.05]: SingleBooleanOutParameter-Feature bei SQL-COnnector, NullResult-Handling in SQL-Connector
+- [YX, 14.02.05,BF]: Problem bei Toolset mit mehr als einer Procedure (Namenskollision)
+- [YX, 13.02.05]: SQLConnector eingeführt
+- [YX, 13.02.05]: IToolConnector um init-Methode erweitert. DefaultToolRepository hat jetzt generischen Code. Alte Connectoren müssen noch angepasst werden.
+- [YX, 01.02.05]: Bei der Loop-Detection werden nicht nur die IncomingLinks der Aktivität, sondern auch die des parents verwendet. (IncomingLinksCasacde)
+- [YX, 01.02.05]: Activity: Alle state-Methoden rufen im Fehler-Fall handleException auf, welche den Zustand ausgibt.
+- [YX, 31.01.05]: IParticipantResolver,WorklistEngine,WorklistManager aufgeräumt.
+--Delegate Kram entfernt
+--Neue Methoden IParticipantResolver.markRejected, markDelegated
+--WorklistEngine.startNewWorkitems gefixed
+--WorklistEngine.startWorkitems ruft jetzt markAccepted auf.
+--WorkItemManager.reassign ruft jetzt WorklistEnginge.checkReassign auf, welches IParticipantResolver.markDelegated aufruft.
+- [YX, 28.01.05,BF]: Loops mit Deadline-Transitionen wurden nicht richtig getraced: Activity.checkLoop ruft jetzt rekursiv hasLooped auf. IActivityContainer hat jetzt eine getParentActivity
+- [YX, 24.01.05,BF]: WorklistEngine.startNewWorkItem: Es wird jetzt dafür gesorgt, dass ein User pro Aktivität nur eine Aufgabe erhält, auch wenn er mehrere Rollen inne hat.
+- [YX, 21.01.05,BF]: AllAssign.markAccepted und obe:Expression-Perfomer Bug fixed
+- [YX, 15.01.05,BF]: AllAssign.markAccepted: Sticky nur wenn noch kein Sticky existiert
+
+KNOWN Bugs/Restrictions
+- Änderungen an Prozess bei gleicher Version (!) führen zu Problemen beim hydrieren (Naja, irgendwie klar)
+- Der Activity-Builder erzeugt BPEL-Strukturen, bei denen die Loop-Detection nicht funktioniert
+- BSF kann nicht mit null values umgehen. Daher sollten Variablen auf conditions default-Werte haben 
+- Reopen Handling
+de.objectcode.canyon.bpe.engine.InvalidStateException: Trying to activate activi
+ty 20 ('MONITOR 'ProBatComp, ProAlarm'') of process '93' that is not open
+        at de.objectcode.canyon.bpe.engine.activities.Activity.activate(Activity
+.java:296)
+        at de.objectcode.canyon.bpe.engine.handler.OnAlarmHandler.onAlarm(OnAlar
+- Problem mit String-Vergleich auf null
+
+Missing Features
+- TerminateProcess müßte eigentlich auch alle Kind-Prozesse, die durch startProcess-Events gestartet wurden, terminieren.
+- XOR nicht mehr blocked
+- terminateOnEvent 
+- Mehr checks beim Upload
+-- Wenn es nur eine outgoing-transition gibt, so darf diese keine condition haben (Otherwise missing)
+-- event-handler mit tools, die nicht canyon:event sind 
+-- Keine Startaktivität (Loopback auf erste Aktivität ist nicht erlaubt. Route notwendig)
+- Mehr Checks beim Exec
+-- Out Parameter null
+
+
+Refactor
+- Schnittstelle Resolver: Delegable ist überflüssig
+- Handling von Process-Versionen in BPE: Es wird nicht immer die Version mit gespeichert (PWorkitem)
+- ActivityInstance muss raus!
+- ToolConnectoren auf neue init-Methode umstellen.
+
+
+
+###########################################################################################################
+
+
+
+Release 0.13
+
+
+KNOWN Bugs
+- ???
+
+Refactor
+- Schnittstelle Resolver: Delegable ist überflüssig
+- Handling von Process-Versionen in BPE: Es wird nicht immer die Version mit gespeichert (PWorkitem)
+- ActivityInstance muss raus!
+
+Missing Features
+- Async Escalation
+- Async Deadlime
+- Exception-Process
+
+
+Changes since canyon-0.12
+- [YX,15.01.05]: (P)BPEProcess hat jetzt auch eine Version. 
+- [YX,15.01.05]: (P)WorkItem hat jetzt auch eine ParentProcessInstanceIdPath
+- [YX,15.01.05]: Resolver hat eine neue Methode markAccecpted. AllAssignResolver verwendet diese, um Stickyness zu setzen. Wird aus WorklistEngine.checkStart aufgerufen. 
+- [YX,14.01.05]: Zusätzliche Log-Info eingebaut (spez: WorklistEngine.getEventDescriptor())
+- [YX,12.01.05]: MessageHandler wird jetzt auch bei startProcessId-Messages aufgerufen. MessageEvent in  WorklistEngine und WorklistEventBean eingebaut.
+- [YX,10.01.05]: MessageBuilder in BaseEventConnector.buildMessage und MessageHandler in WorklistEngine.handleMessage eingebaut
+- [YX,06.01.05]: EventConnector -> InternalEventConnector, ExternalEventConnector
+- [YX,30.12.04]:Defaultwert für DueDate ist jetzt NULL:
+- [YX,30.12.04],BUGFIX: Started Date wird jetzt beim Akzeptieren gestezt.
+- [YX],"canyon:ActivityName":  Features zur dynamischen Bestimmung des Aktivitätsnamens
+- [YX],BPEFacade: Pojo-Implementation der ProcessBean. ProcessBean delegiert an BPEFacade
+- [YX],"_canyon_clientId"
+- [YX],Eine Aktivität ist eine System-Aktivität, wenn entweder der Performer leer ist oder aber der Performer vom Typ "System" ist und NICHT "event-handler" heisst
+- [YX],Eine event-handler-Aktivität kann jetzt auf mehr als einen EventType lauschen. 
+- [YX],"_canyon_eventType" bei EventListener mit mehr als einem EventType
+- [YX],BUGFIX: Dynamisch Deadlines waren relativ zu 1970 nicht zum Start der Aktivität
+- [YX],Logging umgestellt von DEBUG auf INFO für wesentliche Events
+- [YX],BPEProcess und ApplicationInfo hat jetzt einen parentProcessInstanceIdPath. Damit kann man im Resolver auch die Stickyness der Vater-Prozesse überprüfen.
+- [YX],SerailVersionUIDs verteilt für alle Klassen erreichbar von BPEProcess

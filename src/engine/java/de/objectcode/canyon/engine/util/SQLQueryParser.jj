@@ -1,0 +1,391 @@
+
+options {
+	STATIC = false;
+    LOOKAHEAD=1;
+}
+
+PARSER_BEGIN(SQLQueryParser)
+
+package de.objectcode.canyon.engine.util;
+
+import de.objectcode.canyon.spi.filter.*;
+import java.util.ArrayList;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class SQLQueryParser
+{
+  private final static  Log             log               = LogFactory.getLog( SQLQueryParser.class );
+}
+
+PARSER_END(SQLQueryParser)
+
+/***********************************************************************
+ * Token definitions
+ ***********************************************************************/
+
+/* There may be tokens here which don't relate to SQL, but we needed for
+   the rest of our project [Kevin] */ 
+
+SKIP:
+{
+    " "
+  | "\n"
+  | "\r"
+  | "\t"
+}
+
+
+SKIP:
+{
+  <COMMENT_LINE: "--" (~["\n","\r"])* ("\n"|"\r"|"\r\n") >
+}
+
+
+SKIP:
+{
+  <COMMENT_BLOCK: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+}
+
+
+TOKEN:  /* Keywords */
+{
+    < ALL: "all" >
+  | < AND: "and" >
+  | < ASC: "asc" >
+  | < BEGIN: "begin" >
+  | < BETWEEN: "between" >
+  | < BOOLEAN: "boolean" >
+  | < BY: "by" >
+  | < CHAR: "char" >
+  | < CHARACTER: "character" >
+  | < CONSTANT: "constant" >
+  | < CURSOR: "cursor" >
+  | < DESC: "desc" >
+  | < DISTINCT: "distinct" >
+  | < ELSE: "else" >
+  | < ELSIF : "elsif" >
+  | < END: "end" >
+  | < FROM: "from" >
+  | < GROUP: "group" >
+  | < HAVING: "having" >
+  | < IF: "if" >
+  | < INTEGER: "integer" >
+  | < IN: "in" >
+  | < IS: "is" >
+  | < LIKE: "like" >
+  | < MAX: "max" >
+  | < MIN: "min" >
+  | < NOT: "not" >
+  | < NULL: "null" >
+  | < NUMBER: "number" >
+  | < OR: "or" >
+  | < ORDER: "order" >
+  | < PROCEDURE: "procedure" >
+  | < RECORD: "record" >
+  | < SELECT: "select" >
+  | < SMALLINT: "smallint" >
+  | < SPACES: "spaces" >
+  | < SUBSTR: "substr" >
+  | < SUM: "sum" >
+  | < THEN: "then" >
+  | < TYPE: "type" >
+  | < USER: "user" >
+  | < UPPER: "upper" >
+  | < VARCHAR2: "varchar2" >
+  | < WHERE: "where" >
+  | < ZERO: "zero" >
+  | < ZEROS: "zeros" >
+
+//***************************************************************************************
+  | < COUNT: "count" >
+  | < CLOSE: "close" >
+  | < CONVERT_TIMESTAMP_TO_DATE: "ConvertTimeStampToDate" >
+  | < DELETE: "delete" >
+  | < EXISTS: "exists" >
+  | < EXIT: "exit" >
+  | < EXCEPTION: "exception" >
+  | < FETCH: "fetch" >
+  | < FOR: "for" >
+  | < FORMAT_AUDIT_HEADER: "FormatAuditHeader" >
+  | < FORMAT_ATTRIBUTE_SUBSTRING: "FormatAttributeSubString" >
+  | < GET_CURRENT_TIMESTAMP: "GetCurrentTimeStamp" >
+  | < INSERT: "insert" >
+  | < INTO: "into" >
+  | < INDEX_BY: "index by binary_integer" >
+  | < IS_TABLE_OF: "is table of" >
+  | < LENGTH: "length" >
+  | < LOOP: "loop" >
+  | < LPAD: "lpad" >
+  | < LTRIM: "ltrim" >
+  | < REPLACE: "replace" >
+  | < RTRIM: "rtrim" >
+  | < NODULE: "nodule" >
+  | < NOTFOUND: "%notFound" >
+  | < OPEN: "open" >
+  | < OTHERS: "others" >
+  | < ORIGINPLUS: "originplus" >
+  | < REPLY: "reply" >
+  | < REPLY_REPEATING_GROUP: "replyRepeatingGroup" >
+  | < REQUEST: "request" >
+  | < ROW_NOT_FOUND: "row_not_found" >
+  | < SET: "set" >
+  | < SQL_I_O_CORRECT: "sql_I_O_Correct" >
+  | < TO_CHAR: "to_char" >
+  | < TO_NUMBER: "to_number" >
+  | < UPDATE: "update" >
+  | < VALUES: "values" >
+  | < WHEN: "when" >
+  | < WHILE: "while" >
+}     
+
+
+TOKEN:
+{
+    < NO_DATA_FOUND: "NO_DATA_FOUND" >
+  | < TABLE_STATUS: "TABLE_STATUS" >
+  | < SQLCODE: "SQLCode" >
+  | < SET_ROW_NOT_FOUND: "Set_Row_Not_Found" >
+  | < FILE_NAME_OF_ERROR_AREA: "FILE_NAME_OF_ERROR_AREA" >
+  | < KEY_IN_ERROR: "KEY_IN_ERROR" >
+  | < ERROR_DETAIL_DESCRIPTION: "ERROR_DETAIL_DESCRIPTION" >
+  | < SETUPFATALERROR: "SetupFatalError" >
+}
+
+<DESCRIPTION_START_STATE> TOKEN:
+{
+    < OPENDESCRIPTION: "\r\n" > : DESCRIPTION_STATE
+}
+
+
+<DESCRIPTION_STATE> TOKEN:  /* Line */
+{
+    < CLOSEDESCRIPTION: "~" > : DEFAULT
+  | < DESCRIPTION: (~["~"])* "~" > : DEFAULT
+}
+
+ 
+TOKEN:  /* Literals */
+{
+    < INTEGER_LITERAL: (["+","-"])? (["0"-"9"])+ >
+  | < FLOATING_POINT_LITERAL:
+          (["+","-"])? (["0"-"9"])+ "." (["0"-"9"])+ (<EXPONENT>)?
+        | (["+","-"])? "." (["0"-"9"])+ (<EXPONENT>)?
+        | (["+","-"])? (["0"-"9"])+ <EXPONENT>
+        | (["+","-"])? (["0"-"9"])+ (<EXPONENT>)?
+    >
+  | < #EXPONENT: ["e","E"] (["+","-"])? (["0"-"9"])+ >
+  | < STRING_LITERAL: "'" (~["'"])* ( "''" (~["'"])* )* "'" >
+}
+
+
+TOKEN:  /* Identifiers */
+{
+    < ID: ( <LETTER> )+ ( "_" | "$" | "#" | <DIGIT> | <LETTER> )* >
+  | < #LETTER: ["A"-"Z", "a"-"z"] >
+  | < #DIGIT: ["0"-"9"] >
+}
+
+
+TOKEN:  /* Separators and operators */
+{
+    < ASSIGN: ":=" >
+  | < CONCAT: "||" >
+  | < SEMICOLON: ";" >
+  | < DOT: "." >
+  | < ROWTYPE: "%ROWTYPE" >
+  | < TILDE: "~" >
+  | < LESS: "<" >
+  | < LESSEQUAL: "<=" >
+  | < GREATER: ">" >
+  | < GREATEREQUAL: ">=" >
+  | < EQUAL: "=" >
+  | < NOTEQUAL: "!=" >
+  | < NOTEQUAL2: "<>" >
+  | < JOINPLUS: "(+)" >
+  | < OPENPAREN: "(" >
+  | < CLOSEPAREN: ")" >
+  | < ASTERISK: "*" >
+  | < SLASH: "/" >
+  | < PLUS: "+" >
+  | < MINUS: "-" >
+  | < QUESTIONMARK: "?" >
+}
+
+
+IFilter SQLOrExpr() :
+{ 
+  OrFilter orFilter = new OrFilter();
+  IFilter filter;
+}
+{
+  filter = SQLAndExpr() { orFilter.addFilter(filter); }
+  ( <OR> 
+    filter = SQLAndExpr() { orFilter.addFilter(filter); })* 
+  { return orFilter; }
+}
+
+IFilter SQLAndExpr() :
+{ 
+  AndFilter andFilter = new AndFilter();
+  IFilter filter;
+}
+{
+  filter = SQLNotExpr() { andFilter.addFilter(filter); }
+  ( <AND> 
+    filter = SQLNotExpr() {  andFilter.addFilter(filter); })*
+	{ return andFilter; }
+}
+
+
+IFilter SQLNotExpr() :
+{
+  IFilter filter;
+  boolean notFlag = false;
+}
+{
+  [ <NOT> 
+	{ 
+	  notFlag = true;
+	}
+  ] 
+  filter = SQLCompareExpr() 
+	{
+	  if ( notFlag )
+	    return new NotFilter ( filter );
+	  return filter;
+	}
+}
+
+IFilter SQLCompareExpr() :
+{ 
+  IFilter filter = null;
+  String colName;
+}
+{
+  colName = SQLColRef() 
+    ( 
+      filter = SQLIsClause(colName)
+    | LOOKAHEAD(2) filter = SQLInClause(colName)
+    | LOOKAHEAD(2) filter = SQLBetweenClause(colName)
+    | filter = SQLLikeClause(colName)
+    | filter = SQLCompareClause(colName)
+    )
+  | "(" filter = SQLOrExpr() ")"
+  { return filter; }
+}
+
+String SQLColRef() :
+{
+ Token x;
+}
+{
+  x = <ID>
+	{ return x.image; }
+}
+
+IFilter SQLIsClause(String colName) :
+{ 
+  boolean notFlag = false;
+}
+{
+  <IS>
+  [ <NOT> { notFlag = true; } ]
+  <NULL> 
+  { 
+    if ( notFlag )
+      return new NotFilter ( new IsNullFilter(colName) );
+    return new IsNullFilter(colName);
+  }
+}
+
+IFilter SQLInClause(String colName) :
+{ 
+  boolean notFlag = false;
+  Object[] values;
+}
+{
+  [ <NOT> { notFlag = true; } ]
+  <IN> 
+  "(" 
+    values = SQLLValueList()
+  ")" 
+  {
+    if ( notFlag )
+      return new NotFilter ( new InFilter(colName, values) );
+    return new InFilter(colName, values);
+  }
+}
+
+Object[] SQLLValueList() :
+{
+  ArrayList values = new ArrayList();
+  Object value;
+}
+{
+  value = SQLValue() { values.add(value); } 
+  ( "," 
+    value = SQLValue() { values.add(value); } 
+  )*
+  { return values.toArray(); }
+}
+
+Object SQLValue() :
+{ 
+  Token x;
+}
+{
+  ( x = <STRING_LITERAL> { return x.image; }
+  | x = <INTEGER_LITERAL> { return new Integer(x.image); }
+  | x = <FLOATING_POINT_LITERAL> { return new Double(x.image); }
+  )
+}
+
+IFilter SQLBetweenClause(String colName) :
+{ 
+  boolean notFlag = false;
+  Object value1, value2;
+}
+{
+  [ <NOT> { notFlag = true; } ]
+  <BETWEEN>
+   value1 = SQLValue()
+  <AND>
+   value2 = SQLValue()
+  {
+    if ( notFlag )
+      return new NotFilter ( new BetweenFilter (colName, value1, value2) );
+    return new BetweenFilter (colName, value1, value2);
+  }
+}
+
+IFilter SQLLikeClause(String colName) :
+{ 
+  boolean notFlag = false;
+  Token x;
+}
+{
+  [ <NOT> { notFlag = true; } ]
+  <LIKE> x = <STRING_LITERAL>
+  {
+    if ( notFlag )
+      return new NotFilter ( new LikeFilter(colName, x.image) ); 
+    return new LikeFilter(colName, x.image);
+  }
+}
+
+IFilter SQLCompareClause(String colName) :
+{ 
+  Object value;
+}
+{
+  (
+    <EQUAL>	value = SQLValue()        { return new CompareFilter(colName, CompareFilter.EQ, value); }
+  | <NOTEQUAL> value = SQLValue()     { return new CompareFilter(colName, CompareFilter.NE, value); }
+  | <NOTEQUAL2> value = SQLValue()    { return new CompareFilter(colName, CompareFilter.NE, value); }
+  | <GREATER> value = SQLValue()      { return new CompareFilter(colName, CompareFilter.GT, value); }
+  | <GREATEREQUAL> value = SQLValue() { return new CompareFilter(colName, CompareFilter.GE, value); }
+  | <LESS> value = SQLValue()         { return new CompareFilter(colName, CompareFilter.LT, value); }
+  | <LESSEQUAL> value = SQLValue()    { return new CompareFilter(colName, CompareFilter.LE, value); }
+  )
+}

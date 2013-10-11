@@ -1,0 +1,1413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="RoadRunner" Name="RoadRunner" xmlns="http://www.wfmc.org/2002/XPDL1.0" xmlns:xpdl="http://www.wfmc.org/2002/XPDL1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wfmc.org/2002/XPDL1.0 http://wfmc.org/standards/docs/TC-1025_schema_10_xpdl.xsd">
+    <PackageHeader>
+        <XPDLVersion>1.0</XPDLVersion>
+        <Vendor>Together</Vendor>
+        <Created>2004-05-10 10:58:53</Created>
+    </PackageHeader>
+    <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+    <ConformanceClass GraphConformance="NON_BLOCKED"/>
+    <Script Type="text/beanshell"/>
+    <Participants>
+        <Participant Id="PM-MA" Name="PM-MA">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="PM-MA1" Name="PM-MA1">
+            <ParticipantType Type="HUMAN"/>
+        </Participant>
+        <Participant Id="PM-MA2" Name="PM-MA2">
+            <ParticipantType Type="HUMAN"/>
+        </Participant>
+        <Participant Id="PM-BL" Name="PM-BL">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="ENTW-TL" Name="ENTW-TL">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="ENTW-BL" Name="ENTW-BL">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="ENTW-TL1" Name="ENTW-TL1">
+            <ParticipantType Type="HUMAN"/>
+        </Participant>
+        <Participant Id="ENTW-TL2" Name="ENTW-TL2">
+            <ParticipantType Type="HUMAN"/>
+        </Participant>
+        <Participant Id="QS-MA" Name="QS-MA">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="CONS-MA" Name="CONS-MA">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="CONS-BL" Name="CONS-BL">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="VERTRIEB-MA" Name="VERTRIEB-MA">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+        <Participant Id="VERTRIEB-BL" Name="VERTRIEB-BL">
+            <ParticipantType Type="ROLE"/>
+        </Participant>
+    </Participants>
+    <WorkflowProcesses>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="RR4" Name="RR4">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-05-10 11:00:02</Created>
+                <Description>&lt;html&gt;
+&lt;h1&gt;RR1&lt;/h1&gt;
+Herzlichen Dank! &lt;br&gt;
+Sie haben eine Produktidee und möchten den Prozess "Von der Produktidee bis zum Projekt" starten.
+&lt;/html&gt;</Description>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <DataFields>
+                <DataField Id="QSID" IsArray="FALSE" Name="QSID">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                    <Description>QS-Id</Description>
+                </DataField>
+                <DataField Id="Problembeschreibung" IsArray="FALSE" Name="Problembeschreibung">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                </DataField>
+                <DataField Id="Verantwortlicher" IsArray="FALSE" Name="Verantwortlicher">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>PM-MA2</InitialValue>
+                </DataField>
+                <DataField Id="EntwVerantwortlicher" IsArray="FALSE" Name="EntwVerantwortlicher">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>ENTW-TL1</InitialValue>
+                </DataField>
+                <DataField Id="Klassifikation" IsArray="FALSE" Name="Klassifikation">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                </DataField>
+                <DataField Id="Grobaufwand" IsArray="FALSE" Name="Grobaufwand">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                    <InitialValue>0</InitialValue>
+                </DataField>
+                <DataField Id="Aufwand" IsArray="FALSE" Name="Aufwand">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                    <Description>Aufwand in PT</Description>
+                </DataField>
+                <DataField Id="AnalyseDokument" IsArray="FALSE" Name="AnalyseDokument">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <Description>Pfad zum Analyse-Dokument</Description>
+                </DataField>
+                <DataField Id="ChangeRequestAkzeptiert" IsArray="FALSE" Name="ChangeRequestAkzeptiert">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                    <InitialValue>false</InitialValue>
+                    <Description>Gibt an ob, ein CR akzeptiert ist oder nicht</Description>
+                </DataField>
+                <DataField Id="StartDatum" IsArray="FALSE" Name="StartDatum">
+                    <DataType>
+                        <BasicType Type="DATETIME"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="Prio" IsArray="FALSE" Name="Prio">
+                    <DataType>
+                        <BasicType Type="INTEGER"/>
+                    </DataType>
+                    <InitialValue>1</InitialValue>
+                    <Description>Priorität der AendAnf</Description>
+                </DataField>
+            </DataFields>
+            <Applications>
+                <Application Id="EditAendAnf" Name="EditAendAnf">
+                    <FormalParameters>
+                        <FormalParameter Id="QSID" Index="QSID" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Problembeschreibung" Index="Problembeschreibung" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Verantwortlicher" Index="Verantwortlicher" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:formalParameter:Verantwortlicher:fieldType" Value="ParticipantComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:Verantwortlicher:participantId" Value="PM-MA"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="EditKlassifikation" Name="EditKlassifikation">
+                    <FormalParameters>
+                        <FormalParameter Id="QSID" Index="QSID" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Problembeschreibung" Index="Problembeschreibung" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Grobaufwand" Index="Grobaufwand" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Klassifikation" Index="Klassifikation" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:application:referenceAttribute" Value="QSID"/>
+                        <ExtendedAttribute Name="saints:formalParameter:Klassifikation:fieldType" Value="ComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:Klassifikation:enumValues" Value="Fehlbedienung;Change Request;Fehler"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="EditAnalyse" Name="EditAnalyse">
+                    <Description>Eingabe von Analyse-Informationen</Description>
+                    <FormalParameters>
+                        <FormalParameter Id="QSID" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Problembeschreibung" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Aufwand" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="AnalyseDokument" Index="4" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Analyse-Dokument</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="EntwVerantwortlicher" Index="5" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Verantwortlicher (Entw)</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:formalParameter:EntwVerantwortlicher:fieldType" Value="ParticipantComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:EntwVerantwortlicher:participantId" Value="ENTW-TL"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="EditAendAnfEntscheid" Name="EditAendAnfEntscheid">
+                    <FormalParameters>
+                        <FormalParameter Id="QSID" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Problembeschreibung" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="ChangeRequestAkzeptiert" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                            <Description>Change Request akzeptieren?</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="StartDatum" Index="4" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="DATETIME"/>
+                            </DataType>
+                        </FormalParameter>
+                        <FormalParameter Id="Prio" Index="5" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="INTEGER"/>
+                            </DataType>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+            </Applications>
+            <Activities>
+                <Activity Id="2_Wor1_Act1" Name="AendAnf">
+                    <Description>Aenderungsanforderung komm vom Consulting. Diese wird registriert (Ticket) und formal geprüft.</Description>
+                    <Implementation>
+                        <Tool Id="EditAendAnf" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>QSID</ActualParameter>
+                                <ActualParameter>Problembeschreibung</ActualParameter>
+                                <ActualParameter>Verantwortlicher</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>QS-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="QS-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="190"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act2" Name="Klassifikation">
+                    <Description>Die Aenderungsanforderung wir klassiziert: Fehlbedienung (Info-Mangel) Change Request Fehler</Description>
+                    <Implementation>
+                        <Tool Id="EditKlassifikation" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>QSID</ActualParameter>
+                                <ActualParameter>Problembeschreibung</ActualParameter>
+                                <ActualParameter>Grobaufwand</ActualParameter>
+                                <ActualParameter>Klassifikation</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="2_Wor1_Tra5"/>
+                                    <TransitionRef Id="2_Wor1_Tra3"/>
+                                    <TransitionRef Id="2_Wor1_Tra15"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="190"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                        <ExtendedAttribute Name="canyon:performerExpr" Value="Verantwortlicher"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act3" Name="AendAnfEntscheid">
+                    <Description>Es handelt sich um eine Aenderungsanforderung. Soll diese Umgesetzt werden? Entscheidung vom BL Produktmanagement</Description>
+                    <Implementation>
+                        <Tool Id="EditAendAnfEntscheid" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>QSID</ActualParameter>
+                                <ActualParameter>Problembeschreibung</ActualParameter>
+                                <ActualParameter>ChangeRequestAkzeptiert</ActualParameter>
+                                <ActualParameter>StartDatum</ActualParameter>
+                                <ActualParameter>Prio</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="2_Wor1_Tra7"/>
+                                    <TransitionRef Id="2_Wor1_Tra9"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="420"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act5" Name="Analyse">
+                    <Description>Fachliche Analyse zur Fehlerbehebung bzw. zur Aenderungsanforderung</Description>
+                    <Implementation>
+                        <Tool Id="EditAnalyse" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>QSID</ActualParameter>
+                                <ActualParameter>Problembeschreibung</ActualParameter>
+                                <ActualParameter>Aufwand</ActualParameter>
+                                <ActualParameter>AnalyseDokument</ActualParameter>
+                                <ActualParameter>EntwVerantwortlicher</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="550"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                        <ExtendedAttribute Name="canyon:performerExpr" Value="Verantwortlicher"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act6" Name="Ablehnung">
+                    <Description>Change-request ist abgelehnt worden. Consulting wird informiert</Description>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>QS-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="QS-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="560"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act7" Name="Entwicklung">
+                    <Description>Der Patch oder die Aenderungsanforderung werden entwickelt. Als Ergebniss entsteht das neue Produkt</Description>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>ENTW-TL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="AND">
+                                <TransitionRefs>
+                                    <TransitionRef Id="2_Wor1_Tra11"/>
+                                    <TransitionRef Id="2_Wor1_Tra13"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="ENTW-TL"/>
+                        <ExtendedAttribute Name="XOffset" Value="720"/>
+                        <ExtendedAttribute Name="YOffset" Value="40"/>
+                        <ExtendedAttribute Name="canyon:performerExpr" Value="EntwVerantwortlicher"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act8" Name="Produktverwaltung">
+                    <Description>Konfiguration MAnagement in der QS. Den Consulting wird das geänderte Produkt zu verfügung gestellt. Ausserdem wird die Statistik geupdated</Description>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>QS-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="QS-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="780"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act9" Name="InfoEntwEnde">
+                    <Description>Info das die Aenderung fertig oder der Fehler behoben ist</Description>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>PM-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="720"/>
+                        <ExtendedAttribute Name="YOffset" Value="70"/>
+                        <ExtendedAttribute Name="canyon:performerExpr" Value="Verantwortlicher"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="2_Wor1_Act10" Name="InfoMangel">
+                    <Description>Fehlerhafte Bedienung etc., es folgt eine verbesserte Doku und Schulung / Information des Kunden</Description>
+                    <Implementation>
+                        <No/>
+                    </Implementation>
+                    <Performer>QS-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="QS-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="330"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="2_Wor1_Act1" Id="2_Wor1_Tra1" Name="Transition" To="2_Wor1_Act2">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act2" Id="2_Wor1_Tra3" Name="Transition" To="2_Wor1_Act5">
+                    <Condition Type="CONDITION">Klassifikation.equals("Fehler")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act2" Id="2_Wor1_Tra5" Name="Transition" To="2_Wor1_Act3">
+                    <Condition Type="CONDITION">Klassifikation.equals("Change Request")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act3" Id="2_Wor1_Tra7" Name="Transition" To="2_Wor1_Act6">
+                    <Condition Type="CONDITION">!ChangeRequestAkzeptiert</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act3" Id="2_Wor1_Tra9" Name="Transition" To="2_Wor1_Act5">
+                    <Condition Type="CONDITION">ChangeRequestAkzeptiert</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act5" Id="2_Wor1_Tra10" Name="Transition" To="2_Wor1_Act7">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act7" Id="2_Wor1_Tra11" Name="Transition" To="2_Wor1_Act8">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act7" Id="2_Wor1_Tra13" Name="Transition" To="2_Wor1_Act9">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="2_Wor1_Act2" Id="2_Wor1_Tra15" Name="Transition" To="2_Wor1_Act10">
+                    <Condition Type="CONDITION">Klassifikation.equals("Fehlbedienung")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="QS-MA;2_Wor1_Act1;90;60;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="PM-MA;2_Wor1_Act9;830;70;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="QS-MA;2_Wor1_Act6;680;60;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="QS-MA;2_Wor1_Act10;450;60;NOROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="QS-MA;2_Wor1_Act8;900;60;NOROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="PM-MA;PM-BL;ENTW-TL;QS-MA;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+        <WorkflowProcess AccessLevel="PUBLIC" Id="RR1" Name="RR1">
+            <ProcessHeader DurationUnit="D">
+                <Created>2004-07-05 10:35:57</Created>
+            </ProcessHeader>
+            <RedefinableHeader PublicationStatus="UNDER_TEST"/>
+            <FormalParameters>
+                <FormalParameter Id="produktName" Index="1" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <Description>Name des Produkts</Description>
+                </FormalParameter>
+                <FormalParameter Id="kurzbeschreibung" Index="2" Mode="IN">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <Description>Kurze Beschreibung des Produkts</Description>
+                </FormalParameter>
+            </FormalParameters>
+            <DataFields>
+                <DataField Id="produktName" IsArray="FALSE" Name="produktName">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                    <Length>100</Length>
+                    <Description>Name des Produkts</Description>
+                </DataField>
+                <DataField Id="createUrl" IsArray="FALSE" Name="createUrl">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>http://projectserver.neutrasoft.de/roadrunner/_layouts/1031/new.aspx?ListTemplate=101&amp;ListBaseType=1</InitialValue>
+                    <Length>100</Length>
+                </DataField>
+                <DataField Id="kurzbeschreibung" IsArray="FALSE" Name="kurzbeschreibung">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                    <Length>100</Length>
+                    <Description>Kurze Beschreibung des Produkts</Description>
+                </DataField>
+                <DataField Id="pfad" IsArray="FALSE" Name="pfad">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>???</InitialValue>
+                    <Length>100</Length>
+                    <Description>Pfad zum Produktverzeichnis</Description>
+                </DataField>
+                <DataField Id="vorbewertung" IsArray="FALSE" Name="vorbewertung">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>Angenommen</InitialValue>
+                </DataField>
+                <DataField Id="entscheidungsVorlageErstellen" IsArray="FALSE" Name="entscheidungsVorlageErstellen">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="entscheidung" IsArray="FALSE" Name="entscheidung">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="istStandardArchitektur" IsArray="FALSE" Name="istStandardArchitektur">
+                    <DataType>
+                        <BasicType Type="BOOLEAN"/>
+                    </DataType>
+                </DataField>
+                <DataField Id="kommentar" IsArray="FALSE" Name="kommentar">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <Length>100</Length>
+                    <Description>Kommentar</Description>
+                </DataField>
+				<DataField Id="pmverantwortlicher" IsArray="FALSE" Name="pmverantwortlicher">
+                    <DataType>
+                        <BasicType Type="STRING"/>
+                    </DataType>
+                    <InitialValue>PM-BL</InitialValue>
+                </DataField>
+            </DataFields>
+            <Participants>
+                <Participant Id="PM-VERANTW" Name="PM-VERANTW">
+                    <ParticipantType Type="ROLE"/>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="obe:Expression" Value="pmverantwortlicher"/>
+                    </ExtendedAttributes>
+                </Participant>
+			</Participants>			
+            <Applications>
+                <Application Id="RR1_App1" Name="ProduktIdeeBewertenEdit">
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Produktverzeichnis</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="vorbewertung" Index="3" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Einstufung</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kommentar" Index="4" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kommentar</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="pmverantwortlicher" Index="5" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Verantwortlicher</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                        <ExtendedAttribute Name="saints:formalParameter:vorbewertung:fieldType" Value="ComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:vorbewertung:enumValues" Value="Angenommen;Abgelehnt"/>
+                        <ExtendedAttribute Name="saints:formalParameter:pmverantwortlicher:fieldType" Value="ParticipantComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:pmverantwortlicher:participantId" Value="PM-MA"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="RR1_App2" Name="ProduktIdeeVorentscheidungEdit">
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Produktverzeichnis</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="entscheidungsVorlageErstellen" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Soll eine Entscheidungsvorlage erstellt werden?</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kommentar" Index="4" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kommentar</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                        <ExtendedAttribute Name="saints:formalParameter:entscheidungsVorlageErstellen:fieldType" Value="ComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:entscheidungsVorlageErstellen:enumValues" Value="JA;NEIN"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="GFPruefungEdit" Name="GFPruefungEdit">
+                    <Description>Erfassung, ob projekt starten kann.</Description>
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Produktverzeichnis</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="entscheidung" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Entscheidung</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                        <ExtendedAttribute Name="saints:formalParameter:entscheidung:fieldType" Value="ComboBox"/>
+                        <ExtendedAttribute Name="saints:formalParameter:entscheidung:enumValues" Value="Angenommen;Abgelehnt"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="ParameterView" Name="ParameterView">
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Produktverzeichnis</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kommentar" Index="3" Mode="INOUT">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kommentar</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                    </ExtendedAttributes>
+                </Application>
+                <Application Id="RR1_App5" Name="ArchitekturBestimmenEdit">
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="pfad" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Pfad zum Produktverzeichnis</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="istStandardArchitektur" Index="3" Mode="OUT">
+                            <DataType>
+                                <BasicType Type="BOOLEAN"/>
+                            </DataType>
+                            <Description>Standardarchitektur</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                </Application>
+                <Application Id="ProjektOrdnerAnlegen" Name="ProjektOrdnerAnlegen">
+                    <Description>Diese Anwendung startet den Explorer</Description>
+                    <FormalParameters>
+                        <FormalParameter Id="produktName" Index="0" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Name des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="kurzbeschreibung" Index="1" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>Kurze Beschreibung des Produktes</Description>
+                        </FormalParameter>
+                        <FormalParameter Id="externalUri" Index="2" Mode="IN">
+                            <DataType>
+                                <BasicType Type="STRING"/>
+                            </DataType>
+                            <Description>URL</Description>
+                        </FormalParameter>
+                    </FormalParameters>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="saints:launcher:class" Value="de.neutrasoft.saints.core.wfm.client.swing.workitem.ExternalUriLauncher"/>
+                    </ExtendedAttributes>
+                </Application>
+            </Applications>
+            <ActivitySets>
+                <ActivitySet Id="RR1_Ase1">
+                    <Activities>
+                        <Activity Id="ArchitekturBestimmen" Name="ArchitekturBestimmen">
+                            <Implementation>
+                                <Tool Id="RR1_App5" Type="APPLICATION">
+                                    <ActualParameters>
+                                        <ActualParameter>produktName</ActualParameter>
+                                        <ActualParameter>kurzbeschreibung</ActualParameter>
+                                        <ActualParameter>pfad</ActualParameter>
+                                        <ActualParameter>istStandardArchitektur</ActualParameter>
+                                    </ActualParameters>
+                                </Tool>
+                            </Implementation>
+                            <Performer>PM-MA</Performer>
+                            <StartMode>
+                                <Automatic/>
+                            </StartMode>
+                            <FinishMode>
+                                <Automatic/>
+                            </FinishMode>
+                            <TransitionRestrictions>
+                                <TransitionRestriction>
+                                    <Split Type="XOR">
+                                        <TransitionRefs>
+                                            <TransitionRef Id="RR1_Ase1_Tra3"/>
+                                            <TransitionRef Id="RR1_Ase1_Tra2"/>
+                                        </TransitionRefs>
+                                    </Split>
+                                </TransitionRestriction>
+                            </TransitionRestrictions>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                                <ExtendedAttribute Name="XOffset" Value="210"/>
+                                <ExtendedAttribute Name="YOffset" Value="60"/>
+                            </ExtendedAttributes>
+                        </Activity>
+                        <Activity Id="ArchitekturFestlegen" Name="ArchitekturFestlegen">
+                            <Implementation>
+                                <Tool Id="ParameterView" Type="APPLICATION">
+                                    <ActualParameters>
+                                        <ActualParameter>produktName</ActualParameter>
+                                        <ActualParameter>kurzbeschreibung</ActualParameter>
+                                        <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                        <ActualParameter>kommentar</ActualParameter>
+                                    </ActualParameters>
+                                </Tool>
+                            </Implementation>
+                            <Performer>PM-MA</Performer>
+                            <StartMode>
+                                <Automatic/>
+                            </StartMode>
+                            <FinishMode>
+                                <Automatic/>
+                            </FinishMode>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                                <ExtendedAttribute Name="XOffset" Value="410"/>
+                                <ExtendedAttribute Name="YOffset" Value="30"/>
+                            </ExtendedAttributes>
+                        </Activity>
+                        <Activity Id="GrobspezifikationErstellen" Name="GrobspezifikationErstellen">
+                            <Implementation>
+                                <Tool Id="ParameterView" Type="APPLICATION">
+                                    <ActualParameters>
+                                        <ActualParameter>produktName</ActualParameter>
+                                        <ActualParameter>kurzbeschreibung</ActualParameter>
+                                        <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                        <ActualParameter>kommentar</ActualParameter>
+                                    </ActualParameters>
+                                </Tool>
+                            </Implementation>
+                            <Performer>PM-MA</Performer>
+                            <StartMode>
+                                <Automatic/>
+                            </StartMode>
+                            <FinishMode>
+                                <Automatic/>
+                            </FinishMode>
+                            <TransitionRestrictions>
+                                <TransitionRestriction>
+                                    <Join Type="XOR"/>
+                                </TransitionRestriction>
+                            </TransitionRestrictions>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                                <ExtendedAttribute Name="XOffset" Value="410"/>
+                                <ExtendedAttribute Name="YOffset" Value="110"/>
+                            </ExtendedAttributes>
+                        </Activity>
+                        <Activity Id="ReviewDurchfuehren" Name="ReviewDurchfuehren">
+                            <Implementation>
+                                <Tool Id="ParameterView" Type="APPLICATION">
+                                    <ActualParameters>
+                                        <ActualParameter>produktName</ActualParameter>
+                                        <ActualParameter>kurzbeschreibung</ActualParameter>
+                                        <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                        <ActualParameter>kommentar</ActualParameter>
+                                    </ActualParameters>
+                                </Tool>
+                            </Implementation>
+                            <Performer>PM-MA</Performer>
+                            <StartMode>
+                                <Automatic/>
+                            </StartMode>
+                            <FinishMode>
+                                <Automatic/>
+                            </FinishMode>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                                <ExtendedAttribute Name="XOffset" Value="540"/>
+                                <ExtendedAttribute Name="YOffset" Value="110"/>
+                            </ExtendedAttributes>
+                        </Activity>
+                        <Activity Id="GrobplanungErstellen" Name="GrobplanungErstellen">
+                            <Implementation>
+                                <Tool Id="ParameterView" Type="APPLICATION">
+                                    <ActualParameters>
+                                        <ActualParameter>produktName</ActualParameter>
+                                        <ActualParameter>kurzbeschreibung</ActualParameter>
+                                        <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                        <ActualParameter>kommentar</ActualParameter>
+                                    </ActualParameters>
+                                </Tool>
+                            </Implementation>
+                            <Performer>PM-MA</Performer>
+                            <StartMode>
+                                <Automatic/>
+                            </StartMode>
+                            <FinishMode>
+                                <Automatic/>
+                            </FinishMode>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                                <ExtendedAttribute Name="XOffset" Value="670"/>
+                                <ExtendedAttribute Name="YOffset" Value="110"/>
+                            </ExtendedAttributes>
+                        </Activity>
+                    </Activities>
+                    <Transitions>
+                        <Transition From="ArchitekturBestimmen" Id="RR1_Ase1_Tra2" Name="Transition" To="ArchitekturFestlegen">
+                            <Condition Type="CONDITION">istStandardArchitektur==false</Condition>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                            </ExtendedAttributes>
+                        </Transition>
+                        <Transition From="ArchitekturBestimmen" Id="RR1_Ase1_Tra3" Name="Transition" To="GrobspezifikationErstellen">
+                            <Condition Type="CONDITION">istStandardArchitektur==true</Condition>
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                            </ExtendedAttributes>
+                        </Transition>
+                        <Transition From="ArchitekturFestlegen" Id="RR1_Ase1_Tra4" Name="Transition" To="GrobspezifikationErstellen">
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                            </ExtendedAttributes>
+                        </Transition>
+                        <Transition From="GrobspezifikationErstellen" Id="RR1_Ase1_Tra5" Name="Transition" To="ReviewDurchfuehren">
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                            </ExtendedAttributes>
+                        </Transition>
+                        <Transition From="ReviewDurchfuehren" Id="RR1_Ase1_Tra6" Name="Transition" To="GrobplanungErstellen">
+                            <ExtendedAttributes>
+                                <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                            </ExtendedAttributes>
+                        </Transition>
+                    </Transitions>
+                </ActivitySet>
+            </ActivitySets>
+            <Activities>
+                <Activity Id="ProduktIdeeBewerten" Name="ProduktIdeeBewerten">
+                    <Implementation>
+                        <Tool Id="RR1_App1" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>vorbewertung</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                                <ActualParameter>pmverantwortlicher</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="RR1_Tra3"/>
+                                    <TransitionRef Id="RR1_Tra85"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="220"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeVorentscheidung" Name="ProduktIdeeVorentscheidung">
+                    <Implementation>
+                        <Tool Id="RR1_App2" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>entscheidungsVorlageErstellen</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="RR1_Tra5"/>
+                                    <TransitionRef Id="RR1_Tra45"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="320"/>
+                        <ExtendedAttribute Name="YOffset" Value="90"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="EntscheidungsVorlageErstellen" Name="EntscheidungsVorlageErstellen">
+                    <Implementation>
+                        <Tool Id="ParameterView" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="860"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeEinstellung" Name="ProduktIdeeEinstellung">
+                    <Implementation>
+                        <Tool Id="ParameterView" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="860"/>
+                        <ExtendedAttribute Name="YOffset" Value="30"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeEvalCONS" Name="ProduktIdeeEvalCONS">
+                    <Implementation>
+                        <Tool Id="ParameterView" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>CONS-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="CONS-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="460"/>
+                        <ExtendedAttribute Name="YOffset" Value="20"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeEvalVERTRIEB" Name="ProduktIdeeEvalVERTRIEB">
+                    <Implementation>
+                        <Tool Id="ParameterView" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>VERTRIEB-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="VERTRIEB-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="550"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeEvalENTW" Name="ProduktIdeeEvalENTW">
+                    <Implementation>
+                        <Tool Id="ParameterView" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>kommentar</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>ENTW-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="ENTW-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="650"/>
+                        <ExtendedAttribute Name="YOffset" Value="50"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="RR1_Act12" Name="Route">
+                    <Route/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Join Type="XOR"/>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="1240"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="RR1_Act13" Name="GFPruefung">
+                    <Implementation>
+                        <Tool Id="GFPruefungEdit" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>"http://projectserver/roadrunner/"+produktName+"/Entscheidungsvorlage.doc"</ActualParameter>
+                                <ActualParameter>entscheidung</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-BL</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <TransitionRestrictions>
+                        <TransitionRestriction>
+                            <Split Type="XOR">
+                                <TransitionRefs>
+                                    <TransitionRef Id="RR1_Tra50"/>
+                                    <TransitionRef Id="RR1_Tra52"/>
+                                </TransitionRefs>
+                            </Split>
+                        </TransitionRestriction>
+                    </TransitionRestrictions>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-BL"/>
+                        <ExtendedAttribute Name="XOffset" Value="1100"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="RR1_Act15" Name="M20">
+                    <BlockActivity BlockId="RR1_Ase1"/>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="StartOfBlock" Value="PM-MA;ArchitekturBestimmen;90;60;SIMPLEROUTING"/>
+                        <ExtendedAttribute Name="EndOfBlock" Value="PM-MA;GrobplanungErstellen;690;20;NOROUTING"/>
+                        <ExtendedAttribute Name="ParticipantVisualOrder" Value="PM-MA;"/>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="1400"/>
+                        <ExtendedAttribute Name="YOffset" Value="80"/>
+                    </ExtendedAttributes>
+                </Activity>
+                <Activity Id="ProduktIdeeBeschreiben" Name="ProduktIdeeBeschreiben">
+                    <Description>&lt;html&gt;
+&lt;h1&gt;Produkt Idee beschreiben&lt;/h1&gt;
+Arbeitsschritte:
+&lt;ol&gt;
+&lt;li&gt;Drücken Sie auf "Starten" und legen Sie auf dem Project-Server einen Produkt-Ordner an. 
+&lt;BR&gt; ACHTUNG: Der Name des Ordners muss mit dem Produktnamen, der auf dem Reiter "Daten" steht, übereinstimmen und darf keine Sonder- oder Leerzeichen enthalten!
+&lt;/li&gt;
+&lt;li&gt;
+Anschliessend erstellen Sie auf Grundlage der Vorlage "Entscheidungsvorlage" eine Entscheidungsvorlage 
+&lt;ol&gt;
+&lt;li&gt;
+Beschreiben Sie in Abschnitt "Beschreibung" die Idee.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/html&gt;</Description>
+                    <Implementation>
+                        <Tool Id="ProjektOrdnerAnlegen" Type="APPLICATION">
+                            <ActualParameters>
+                                <ActualParameter>produktName</ActualParameter>
+                                <ActualParameter>kurzbeschreibung</ActualParameter>
+                                <ActualParameter>createUrl</ActualParameter>
+                            </ActualParameters>
+                        </Tool>
+                    </Implementation>
+                    <Performer>PM-MA</Performer>
+                    <StartMode>
+                        <Automatic/>
+                    </StartMode>
+                    <FinishMode>
+                        <Automatic/>
+                    </FinishMode>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="ParticipantID" Value="PM-MA"/>
+                        <ExtendedAttribute Name="XOffset" Value="220"/>
+                        <ExtendedAttribute Name="YOffset" Value="60"/>
+                    </ExtendedAttributes>
+                </Activity>
+            </Activities>
+            <Transitions>
+                <Transition From="ProduktIdeeBewerten" Id="RR1_Tra3" Name="Transition" To="ProduktIdeeVorentscheidung">
+                    <Condition Type="CONDITION">vorbewertung.equalsIgnoreCase("Angenommen")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeVorentscheidung" Id="RR1_Tra5" Name="Transition" To="ProduktIdeeEinstellung">
+                    <Condition Type="CONDITION">entscheidungsVorlageErstellen.equalsIgnoreCase("NEIN")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeEinstellung" Id="RR1_Tra16" Name="Transition" To="RR1_Act12">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeVorentscheidung" Id="RR1_Tra45" Name="Transition" To="ProduktIdeeEvalCONS">
+                    <Condition Type="CONDITION">entscheidungsVorlageErstellen.equalsIgnoreCase("JA")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeEvalCONS" Id="RR1_Tra46" Name="Transition" To="ProduktIdeeEvalVERTRIEB">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeEvalVERTRIEB" Id="RR1_Tra47" Name="Transition" To="ProduktIdeeEvalENTW">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeEvalENTW" Id="RR1_Tra48" Name="Transition" To="EntscheidungsVorlageErstellen">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="897;450;2"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="900;670;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="EntscheidungsVorlageErstellen" Id="RR1_Tra49" Name="Transition" To="RR1_Act13">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="RR1_Act13" Id="RR1_Tra50" Name="Transition" To="RR1_Act12">
+                    <Condition Type="CONDITION">entscheidung.equalsIgnoreCase("Abgelehnt")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="RR1_Act13" Id="RR1_Tra52" Name="Transition" To="RR1_Act15">
+                    <Condition Type="CONDITION">entscheidung.equalsIgnoreCase("Angenommen")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="NOROUTING"/>
+                        <ExtendedAttribute Name="BreakPoint" Value="1440;230;1"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="RR1_Act15" Id="RR1_Tra53" Name="Transition" To="RR1_Act12">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeBeschreiben" Id="RR1_Tra69" Name="Transition" To="ProduktIdeeBewerten">
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+                <Transition From="ProduktIdeeBewerten" Id="RR1_Tra85" Name="Transition" To="ProduktIdeeEinstellung">
+                    <Condition Type="CONDITION">vorbewertung.equalsIgnoreCase("Abgelehnt")</Condition>
+                    <ExtendedAttributes>
+                        <ExtendedAttribute Name="RoutingType" Value="SIMPLEROUTING"/>
+                    </ExtendedAttributes>
+                </Transition>
+            </Transitions>
+            <ExtendedAttributes>
+                <ExtendedAttribute Name="StartOfWorkflow" Value="PM-MA;ProduktIdeeBeschreiben;90;60;SIMPLEROUTING"/>
+                <ExtendedAttribute Name="EndOfWorkflow" Value="PM-MA;RR1_Act12;1260;1;SIMPLEROUTING"/>
+                <ExtendedAttribute Name="ParticipantVisualOrder" Value="PM-MA;PM-BL;CONS-BL;VERTRIEB-BL;ENTW-BL;"/>
+            </ExtendedAttributes>
+        </WorkflowProcess>
+    </WorkflowProcesses>
+    <ExtendedAttributes>
+        <ExtendedAttribute Name="MadeBy" Value="JaWE"/>
+        <ExtendedAttribute Name="Version" Value="1.2"/>
+    </ExtendedAttributes>
+</Package>

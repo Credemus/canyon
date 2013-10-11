@@ -1,0 +1,27 @@
+#Tue May 09 15:22:19 CEST 2006
+eclipse.preferences.version=1
+encoding//sample/drydock/RR.xpdl=UTF-8
+encoding//sample/drydock/WFMTest.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/Scripting.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/basic1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/loop.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/subprocessLoop.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/trifork.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/version_1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/basic/test/version_2.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/deadline/test/deadline1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/deadline/test/deadline2.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/deadline/test/dynamic_deadline.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/deadline/test/loop.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/event/test/deadline1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/event/test/event1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/event/test/multiplicity.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/limit/test/dynamic_limit.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/limit/test/escalationHandler.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/limit/test/limit1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/limit/test/limit2.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/tool/test/tool1.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/tool/test/tool2.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/tool/test/tool3.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/tool/test/toolRetry.xpdl=UTF-8
+encoding//src/wetdock/junit/de/objectcode/canyon/wetdock/tool/test/toolScript.xpdl=UTF-8

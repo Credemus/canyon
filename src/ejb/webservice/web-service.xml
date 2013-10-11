@@ -1,0 +1,49 @@
+<deployment name="CanyonService" targetNamespace="http://www.objectcode.de/canyon"
+	xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:core="http://www.objectcode.de/canyon"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	
+	<service name="WorklistService" provider="Handler">
+		<parameter name="handlerClass" value="org.jboss.net.axis.server.EJBProvider"/>
+		<parameter name="beanJndiName" value="de/objectcode/canyon/ejb/worklist/Worklist"/>
+		<parameter name="allowedMethods" value="getWorkItem countWorkItems listWorkItems reassignWorkItem updateWorkItem"/>
+		<requestFlow name="WorklistRequest">
+	    </requestFlow>
+		<responseFlow name="WorklistResponse">
+		</responseFlow>
+	</service>
+
+	<service name="ProcessService" provider="Handler">
+		<parameter name="handlerClass" value="org.jboss.net.axis.server.EJBProvider"/>
+		<parameter name="beanJndiName" value="de/objectcode/canyon/ejb/bpe/Process"/>
+		<parameter name="allowedMethods" value="countProcesses listProcessData listProcessInstances terminateProcessInstance updateProcessInstance getProcessDefinition getProcessInstance createAndStartProcessInstance"/>
+		<requestFlow name="ProcessRequest">
+	    </requestFlow>
+		<responseFlow name="ProcessResponse">
+		</responseFlow>
+	</service>
+
+	<typeMapping xmlns:ns="http://canyon.objectcode.de" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+		qname="ns:Process"
+		type="java:de.objectcode.canyon.api.worklist.ProcessData"
+		serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+		deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"/>
+
+	<typeMapping xmlns:ns="http://canyon.objectcode.de" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+		qname="ns:ProcessParam"
+		type="java:de.objectcode.canyon.api.worklist.ProcessData$Parameter"
+		serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+		deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"/>
+
+	<typeMapping xmlns:ns="http://canyon.objectcode.de" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+		qname="ns:ProcessInstance"
+		type="java:de.objectcode.canyon.api.worklist.ProcessInstanceData"
+		serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+		deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"/>
+
+	<typeMapping xmlns:ns="http://canyon.objectcode.de" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+		qname="ns:ProcessInstanceAttr"
+		type="java:de.objectcode.canyon.api.worklist.ProcessInstanceData$Attribute"
+		serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+		deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"/>
+</deployment>

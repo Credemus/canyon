@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+  <mbean code="org.jboss.mq.server.jmx.Queue"
+         name="jboss.mq.destination:service=Queue,name=WSAsyncRequest">
+    <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+  </mbean>
+  <mbean code="org.jboss.mq.server.jmx.Queue"
+         name="jboss.mq.destination:service=Queue,name=WSApplicationEvent">
+    <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+  </mbean>
+  <mbean code="de.objectcode.canyon.jmx.WSServiceManager"
+         name="canyon:service=ServiceManager">
+    <depends>jboss.mq.destination:service=Queue,name=WSApplicationEvent</depends>
+    <depends>jboss.mq.destination:service=Queue,name=WSAsyncRequest</depends>
+  </mbean>
+  <mbean code="de.objectcode.canyon.jmx.admin.ProcessAdmin"
+         name="canyon:service=ProcessAdmin">
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+  <mbean code="de.objectcode.canyon.jmx.admin.ActivityAdmin"
+         name="canyon:service=ActivityAdmin">
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+  <mbean code="de.objectcode.canyon.jmx.admin.ParticipantAdmin"
+         name="canyon:service=ParticipantAdmin">
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+
+</server>

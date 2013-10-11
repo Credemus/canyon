@@ -1,0 +1,206 @@
+serialver -classpath dist/engine de.objectcode.canyon.model
+Class de.objectcode.canyon.model not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.AbstractEnum
+de.objectcode.canyon.model.AbstractEnum:    static final long serialVersionUID = -7647847800430896535L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity
+Class de.objectcode.canyon.model.activity not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.Activity
+de.objectcode.canyon.model.activity.Activity:    static final long serialVersionUID = -4414266827057740202L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.application
+Class de.objectcode.canyon.model.application not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.application.Application
+de.objectcode.canyon.model.application.Application:    static final long serialVersionUID = 6864493848930499853L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data
+Class de.objectcode.canyon.model.data not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.ActualParameter
+de.objectcode.canyon.model.data.ActualParameter:    static final long serialVersionUID = 2339247273382414528L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.participant
+Class de.objectcode.canyon.model.participant not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.participant.Participant
+de.objectcode.canyon.model.participant.Participant:    static final long serialVersionUID = 3992624517974299517L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process
+Class de.objectcode.canyon.model.process not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.AccessLevel
+de.objectcode.canyon.model.process.AccessLevel:    static final long serialVersionUID = 2559316134045356598L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition
+Class de.objectcode.canyon.model.transition not found.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.Condition
+de.objectcode.canyon.model.transition.Condition:    static final long serialVersionUID = 8669423982500467378L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.BasicType
+de.objectcode.canyon.model.data.BasicType:    static final long serialVersionUID = 1028290966697412929L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.DataType
+de.objectcode.canyon.model.data.DataType:    static final long serialVersionUID = -3752828595517145329L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.DeclaredType
+de.objectcode.canyon.model.data.DeclaredType:    static final long serialVersionUID = -6579528438735580273L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.EnumerationType
+de.objectcode.canyon.model.data.EnumerationType:    static final long serialVersionUID = -1250576126404212170L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.EnumerationValue
+de.objectcode.canyon.model.data.EnumerationValue:    static final long serialVersionUID = 346407607895733127L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.ExternalReference
+de.objectcode.canyon.model.data.ExternalReference:    static final long serialVersionUID = 2677143216685205534L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.FormalParameter
+de.objectcode.canyon.model.data.FormalParameter:    static final long serialVersionUID = -3924971944917431078L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.FormalParameterIndexComparator
+de.objectcode.canyon.model.data.FormalParameterIndexComparator:    static final long serialVersionUID = 120236613714344637L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.ParameterMode
+de.objectcode.canyon.model.data.ParameterMode:    static final long serialVersionUID = -1796086376283762930L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.SchemaType
+de.objectcode.canyon.model.data.SchemaType:    static final long serialVersionUID = 7305820362725774301L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.data.TypeDeclaration
+de.objectcode.canyon.model.data.TypeDeclaration:    static final long serialVersionUID = 9202709499379161064L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.BaseElement
+de.objectcode.canyon.model.BaseElement:    static final long serialVersionUID = -3201931691642223185L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.ExtendedAttribute
+de.objectcode.canyon.model.ExtendedAttribute:    static final long serialVersionUID = 1106193965055233272L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.ExternalPackage
+de.objectcode.canyon.model.ExternalPackage:    static final long serialVersionUID = 7285061640948024410L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.GraphConformance
+de.objectcode.canyon.model.GraphConformance:    static final long serialVersionUID = -2833878097679346013L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.IValidatable
+Class de.objectcode.canyon.model.IValidatable is not Serializable.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.PackageHeader
+de.objectcode.canyon.model.PackageHeader:    static final long serialVersionUID = -5716317102619577026L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.PublicationStatus
+de.objectcode.canyon.model.PublicationStatus:    static final long serialVersionUID = -8469285359164995525L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.RedefinableHeader
+de.objectcode.canyon.model.RedefinableHeader:    static final long serialVersionUID = -1430378860275749074L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.Script
+de.objectcode.canyon.model.Script:    static final long serialVersionUID = -1138328760123320159L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.ValidationErrors
+Class de.objectcode.canyon.model.ValidationErrors is not Serializable.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.WorkflowPackage
+de.objectcode.canyon.model.WorkflowPackage:    static final long serialVersionUID = -3402381146408849123L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.ActivitySet
+de.objectcode.canyon.model.activity.ActivitySet:    static final long serialVersionUID = 3237743369261409644L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.AssignStrategy
+de.objectcode.canyon.model.activity.AssignStrategy:    static final long serialVersionUID = 8723589812418543662L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.AutomationMode
+de.objectcode.canyon.model.activity.AutomationMode:    static final long serialVersionUID = 8571817515461414235L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.BlockActivity
+de.objectcode.canyon.model.activity.BlockActivity:    static final long serialVersionUID = 8495754456177856402L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.CompletionStrategy
+de.objectcode.canyon.model.activity.CompletionStrategy:    static final long serialVersionUID = -5853944401786978599L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.Deadline
+de.objectcode.canyon.model.activity.Deadline:    static final long serialVersionUID = 2220258712427817964L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.ExecutionType
+de.objectcode.canyon.model.activity.ExecutionType:    static final long serialVersionUID = -2222842382758118758L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.IActivityContainer
+Class de.objectcode.canyon.model.activity.IActivityContainer is not Serializable.
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.Implementation
+de.objectcode.canyon.model.activity.Implementation:    static final long serialVersionUID = 5030103501423852554L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.InstantiationType
+de.objectcode.canyon.model.activity.InstantiationType:    static final long serialVersionUID = 8230709409860159142L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.NoImplementation
+de.objectcode.canyon.model.activity.NoImplementation:    static final long serialVersionUID = -5078995327164185996L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.Route
+de.objectcode.canyon.model.activity.Route:    static final long serialVersionUID = 5592285683190886093L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.SimulationInformation
+de.objectcode.canyon.model.activity.SimulationInformation:    static final long serialVersionUID = 6780825091911249735L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.SubFlow
+de.objectcode.canyon.model.activity.SubFlow:    static final long serialVersionUID = 7662719333112398877L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.Tool
+de.objectcode.canyon.model.activity.Tool:    static final long serialVersionUID = -644895738457555289L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.ToolSet
+de.objectcode.canyon.model.activity.ToolSet:    static final long serialVersionUID = 7207765721775382154L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.activity.ToolType
+de.objectcode.canyon.model.activity.ToolType:    static final long serialVersionUID = -8535376639245691773L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.participant.ParticipantType
+de.objectcode.canyon.model.participant.ParticipantType:    static final long serialVersionUID = -149633585525352951L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.DataField
+de.objectcode.canyon.model.process.DataField:    static final long serialVersionUID = -8422793160748726155L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.Duration
+de.objectcode.canyon.model.process.Duration:    static final long serialVersionUID = -2206022371578069490L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.DurationUnit
+de.objectcode.canyon.model.process.DurationUnit:    static final long serialVersionUID = -2980931234330300327L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.ProcessHeader
+de.objectcode.canyon.model.process.ProcessHeader:    static final long serialVersionUID = -4419942573705794116L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.TimeEstimation
+de.objectcode.canyon.model.process.TimeEstimation:    static final long serialVersionUID = -5233828596087725680L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.process.WorkflowProcess
+de.objectcode.canyon.model.process.WorkflowProcess:    static final long serialVersionUID = 1417777586879962644L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.ConditionType
+de.objectcode.canyon.model.transition.ConditionType:    static final long serialVersionUID = -7112481063049446815L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.Join
+de.objectcode.canyon.model.transition.Join:    static final long serialVersionUID = 4658495867824282938L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.JoinType
+de.objectcode.canyon.model.transition.JoinType:    static final long serialVersionUID = -7457730481011332701L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.Split
+de.objectcode.canyon.model.transition.Split:    static final long serialVersionUID = -7022985662692441919L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.SplitType
+de.objectcode.canyon.model.transition.SplitType:    static final long serialVersionUID = -5247916240355451220L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.Transition
+de.objectcode.canyon.model.transition.Transition:    static final long serialVersionUID = -5486222071173616923L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.TransitionRef
+de.objectcode.canyon.model.transition.TransitionRef:    static final long serialVersionUID = 6190385463670307454L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.TransitionRestriction
+de.objectcode.canyon.model.transition.TransitionRestriction:    static final long serialVersionUID = -6364133698803710388L;
+
+serialver -classpath dist/engine de.objectcode.canyon.model.transition.Xpression
+de.objectcode.canyon.model.transition.Xpression:    static final long serialVersionUID = -3333163408682916075L;
