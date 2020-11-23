@@ -7,3 +7,4 @@ src/jmx/generate/
 src/wetdock/generate/
 *.iml
 .idea/
+target/
