@@ -26,7 +26,7 @@
     
     <property name="application.package" value="${ant.project.name}-${app.version}.ear"/>
 
-    <property name="wfmc.src" value="${basedir}/src/wfmc"/>
+    <property name="wfmc.src" value="${basedir}/wfmc/src/main"/>
     <property name="wfmc.dist" value="${dist.dir}/wfmc"/>
     <property name="wfmc.package" value="${ant.project.name}-wfmc.jar"/>
 
@@ -34,7 +34,7 @@
     <path id="wfmc.javac.classpath">
     </path>
 
-    <property name="engine.src" value="${basedir}/src/engine"/>
+    <property name="engine.src" value="${basedir}/engine/src/main"/>
     <property name="engine.dist" value="${dist.dir}/engine"/>
     <property name="engine.package" value="${ant.project.name}-engine.jar"/>
     <property name="flow.engine.package" value="flow-${ant.project.name}-engine.jar"/>
