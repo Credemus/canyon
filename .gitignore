@@ -1,0 +1,7 @@
+build_local.properties
+dist
+classes
+build_local
+src/ejb/generate/
+src/jmx/generate/
+src/wetdock/generate/
