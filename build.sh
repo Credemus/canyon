@@ -36,5 +36,5 @@ fi
 
 BUILDFILE=build/build.xml
 
-${JAVA_HOME}/bin/java -classpath ${CLASSPATH} -Dfile.encoding=ISO-8859-1 org.apache.tools.ant.Main \
+${JAVA_HOME}/bin/java -classpath ${CLASSPATH} -Dfile.encoding=UTF-8 org.apache.tools.ant.Main \
                       -buildfile ${BUILDFILE} "$@"

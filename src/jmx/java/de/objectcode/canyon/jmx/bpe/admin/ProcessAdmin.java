@@ -664,7 +664,7 @@ public class ProcessAdmin extends BaseAdmin implements ProcessAdminMBean {
             }
 
             /*
-             * Übernommen aus 
+             * Ãœbernommen aus 
              * com.objectcode.bep.businessEngine.client.ProcessClient.updateProcessInstance(ProcessInstanceData processInstanceData, Map workflowRelevantData)
              * 
              * processInstanceData  = processInstanceData

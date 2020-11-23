@@ -2,7 +2,7 @@ package de.objectcode.canyon.web;
 
 /**
  * @author    Bodo Junglas
- * @created   7. März 2002
+ * @created   7. MÃ¤rz 2002
  * @version   $Id: Base64.java,v 1.1 2003/12/09 12:28:16 junglas Exp $
  */
 public class Base64

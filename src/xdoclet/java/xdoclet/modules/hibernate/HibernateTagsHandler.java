@@ -26,7 +26,7 @@ import xdoclet.util.Translator;
 /**
  * Specific tags handler to make the template easy.
  *
- * @author               Sébastien Guimont (sebastieng@sympatico.ca)
+ * @author               SÃ©bastien Guimont (sebastieng@sympatico.ca)
  * @created              August 9th, 2002
  * @version              $Revision: 1.37 $
  * @xdoclet.taghandler   namespace="Hibernate"

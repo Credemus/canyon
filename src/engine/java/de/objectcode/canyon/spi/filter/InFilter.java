@@ -200,7 +200,7 @@ public class InFilter implements IFilter
       buffer.append( "', " );
     }
 
-    // letztes ", " löschen
+    // letztes ", " lÃ¶schen
     int           bufSize  = buffer.length();
     buffer.delete( bufSize - 2, bufSize );
 
