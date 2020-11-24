@@ -225,7 +225,7 @@
       
       <javac source="1.6" destdir="${engine.dist}" debug="on" classpathref="engine.javac.classpath">
         <src path="${engine.src}/java"/>
-        <src path="${ejb.src}/java/de/objectcode/canyon/api/worklist"/> <!-- BPEFacade uses api -->
+        <src path="${engine.src}/java/de/objectcode/canyon/api/worklist"/> <!-- BPEFacade uses api -->
       </javac>
       <copy todir="${engine.dist}">
       	<fileset dir="${engine.src}/java" includes="**/*.xsd,**/*.properties,**/*.xsl"/>
@@ -496,9 +496,11 @@
       
       <jar jarfile="${dist.dir}/${ejb.package}">
         <fileset dir="${ejb.dist}"/>
+        <fileset dir="${engine.dist}" includes="**/api/**/*.class"/>
       </jar>
       <jar jarfile="${dist.dir}/${ejb.api.package}">
         <fileset dir="${ejb.dist}" includes="**/api/**/*.class"/>
+        <fileset dir="${engine.dist}" includes="**/api/**/*.class"/>
         <fileset dir="${ejb.dist}" includes="**/spi/filter/**/*.class"/>
         <fileset dir="${ejb.dist}" includes="**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class"/>
       </jar>
@@ -509,9 +511,11 @@
       
       <jar jarfile="${dist.dir}/${ejb.package}">
         <fileset dir="${ejb.dist}"/>
+        <fileset dir="${engine.dist}" includes="**/api/**/*.class"/>
       </jar>
       <jar jarfile="${dist.dir}/${ejb.api.package}">
         <fileset dir="${ejb.dist}" includes="**/api/**/*.class"/>
+        <fileset dir="${engine.dist}" includes="**/api/**/*.class"/>
         <fileset dir="${ejb.dist}" includes="**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class"/>
         <fileset dir="${engine.dist}" includes="**/de/objectcode/canyon/model/**/*.class"/> 
       </jar>
@@ -582,7 +586,7 @@
     </target>
 
     <target name="web-package" depends="web-compile">
-      <!-- web.xml fehlt! ; Nicht unbedingt benötigt für flow-Projekt, daher auskommentiert!
+      <!-- web.xml fehlt! ; Nicht unbedingt benï¿½tigt fï¿½r flow-Projekt, daher auskommentiert!
       <mkdir dir="${dist.dir}"/>
       
       <war warfile="${dist.dir}/${web.package}" webxml="${web.dist}/web-inf/web.xml">

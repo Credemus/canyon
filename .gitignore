@@ -8,3 +8,6 @@ src/wetdock/generate/
 *.iml
 .idea/
 target/
+.classpath
+.project
+.settings/
