@@ -94,6 +94,7 @@
         <module>wfmc</module>
         <module>core</module>
         <module>engine</module>
+        <module>ejb</module>
     </modules>
 
     <build>

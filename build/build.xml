@@ -88,7 +88,7 @@
 	      <pathelement location="${lib.dir}/odmg.jar"/>
     </path>
 
-    <property name="ejb.src" value="${basedir}/src/ejb"/>
+    <property name="ejb.src" value="${basedir}/ejb/src/main"/>
     <property name="ejb.dist" value="${dist.dir}/ejb"/>
     <property name="ejb.package" value="${ant.project.name}-ejb.jar"/>
     <property name="ejb.api.package" value="${ant.project.name}-api.jar"/>
@@ -275,7 +275,7 @@
       <javac destdir="${jmx.dist}" debug="on" classpathref="jmx.javac.classpath">
         <src path="${jmx.src}/java"/>
         <src path="${jmx.src}/generate"/>
-        <src path="${basedir}/src/ejb/generate"/>
+        <src path="${basedir}/ejb/src/main/generate"/>
       </javac>
       
       <copy todir="${jmx.dist}">
