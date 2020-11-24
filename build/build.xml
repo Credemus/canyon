@@ -197,8 +197,6 @@
     
     <target description="Clean project" name="clean">
       <delete dir="${dist.dir}"/>
-      <delete dir="${ejb.src}/generate"/>
-      <mkdir dir="${ejb.src}/generate"/>
       <delete dir="${jmx.src}/generate"/>
       <mkdir dir="${jmx.src}/generate"/>
     	<delete dir="${wetdock.src}/generate"/>
