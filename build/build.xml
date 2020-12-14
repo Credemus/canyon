@@ -53,7 +53,7 @@
       <pathelement location="${lib.dir}/concurrent.jar"/>
     </path>
 
-    <property name="jmx.src" value="${basedir}/src/jmx"/>
+    <property name="jmx.src" value="${basedir}/jmx/src/main"/>
     <property name="jmx.dist" value="${dist.dir}/jmx"/>
     <property name="jmx.package" value="${ant.project.name}-jmx.sar"/>
     <property name="flow.jmx.package" value="flow-${ant.project.name}-jmx.sar"/>

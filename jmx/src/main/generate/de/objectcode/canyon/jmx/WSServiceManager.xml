@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mbean PUBLIC "-//JBoss//DTD JBOSS XMBEAN 1.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_xmbean_1_0.dtd">
+
+<mbean>
+  <description>Service Manager</description>
+  <descriptors>
+    <persistence/>
+  </descriptors>
+  <class>de.objectcode.canyon.jmx.WSServiceManager</class>
+
+  <!--attributes-->
+  <attribute access="read-write" getMethod="getJndiName" setMethod="setJndiName">
+
+    <description>JNDI name of the async request queue</description>
+    <name>JndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-write" getMethod="getAsyncJndiName" setMethod="setAsyncJndiName">
+
+    <description>JNDI name of the async request queue</description>
+    <name>AsyncJndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-write" getMethod="isJmsBasedAsyncManager" setMethod="setJmsBasedAsyncManager">
+
+    <description>true if a JMSAsyncManager should be used</description>
+    <name>JmsBasedAsyncManager</name>
+    <type>boolean</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+
+<!--artificial attributes-->
+
+<!--operations -->
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>start</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>stop</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+
+<!--artificial operations-->
+
+<!--notifications -->
+
+</mbean>

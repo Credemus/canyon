@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mbean PUBLIC "-//JBoss//DTD JBOSS XMBEAN 1.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_xmbean_1_0.dtd">
+
+<mbean>
+  <description>BPE engine service</description>
+  <descriptors>
+    <persistence/>
+  </descriptors>
+  <class>de.objectcode.canyon.jmx.bpe.BPEEngineService</class>
+
+  <!--attributes-->
+  <attribute access="read-write" getMethod="getTimerService" setMethod="setTimerService">
+
+    <description>Name of the JMX timer service</description>
+    <name>TimerService</name>
+    <type>javax.management.ObjectName</type>
+    <descriptors>
+      <persistence/>
+      <value value="canyon:service=Timer"/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-write" getMethod="getNotificationInterval" setMethod="setNotificationInterval">
+
+    <description>Interval to check for alarms</description>
+    <name>NotificationInterval</name>
+    <type>int</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-write" getMethod="getServiceManagerJndiName" setMethod="setServiceManagerJndiName">
+
+    <description>JNDI name of the async request queue</description>
+    <name>ServiceManagerJndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-write" getMethod="getJndiName" setMethod="setJndiName">
+
+    <description>JNDI name of the async request queue</description>
+    <name>JndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+  <attribute access="read-only" getMethod="getVersion">
+
+    <description>CANYON Version</description>
+    <name>Version</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+
+<!--artificial attributes-->
+
+<!--operations -->
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>start</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>stop</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>dumpAllLocks</name>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+
+<!--artificial operations-->
+
+<!--notifications -->
+
+</mbean>

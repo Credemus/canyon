@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mbean PUBLIC "-//JBoss//DTD JBOSS XMBEAN 1.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_xmbean_1_0.dtd">
+
+<mbean>
+  <description>WorkItem administration bean</description>
+  <descriptors>
+    <persistence/>
+  </descriptors>
+  <class>de.objectcode.canyon.jmx.admin.WorkItemAdmin</class>
+
+  <!--attributes-->
+  <attribute access="read-write" getMethod="getJndiName" setMethod="setJndiName">
+
+    <description>JNDI name of the ServiceManager</description>
+    <name>JndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+
+<!--artificial attributes-->
+
+<!--operations -->
+  <operation impact="ACTION_INFO">
+    <description>List the work items of an activity instance</description>
+    <name>listWorkItems</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Activity instance id</description>
+      <name>activityInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show details of a workitem</description>
+    <name>showWorkItem</name>
+    <parameter>
+      <description>Workitem instance id</description>
+      <name>workItemId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Update a process instance</description>
+    <name>updateWorkItem</name>
+    <parameter>
+      <description>WorkItem id</description>
+      <name>workItemId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>WorkItem parameter name</description>
+      <name>parameterName</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>WorkItem variable value</description>
+      <name>value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Manually completes a workitem</description>
+    <name>completeWorkItem</name>
+    <parameter>
+      <description>Work item instance id</description>
+      <name>workItemId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Handle a worklist event</description>
+    <name>handleEvent</name>
+    <parameter>
+      <description>Client Id</description>
+      <name>clientId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Event type</description>
+      <name>eventType</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Event parameters</description>
+      <name>eventParameters</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>boolean</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>start</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>stop</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+
+<!--artificial operations-->
+
+<!--notifications -->
+
+</mbean>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mbean PUBLIC "-//JBoss//DTD JBOSS XMBEAN 1.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_xmbean_1_0.dtd">
+
+<mbean>
+  <description>Process administration bean</description>
+  <descriptors>
+    <persistence/>
+  </descriptors>
+  <class>de.objectcode.canyon.jmx.bpe.admin.ProcessAdmin</class>
+
+  <!--attributes-->
+  <attribute access="read-write" getMethod="getBPEJndiName" setMethod="setBPEJndiName">
+
+    <description>JNDI name of the async request queue</description>
+    <name>BPEJndiName</name>
+    <type>java.lang.String</type>
+    <descriptors>
+      <persistence/>
+
+    </descriptors>
+  </attribute>
+
+<!--artificial attributes-->
+
+<!--operations -->
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>start</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>(no description)</description>
+    <name>stop</name>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show the status of the bpe engine</description>
+    <name>engineStatus</name>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>List the process definitions</description>
+    <name>listProcesses</name>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show details of a process</description>
+    <name>showProcessXML</name>
+    <parameter>
+      <description>Process id</description>
+      <name>processId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>List the process instances</description>
+    <name>listProcessInstances</name>
+    <parameter>
+      <description>Only open running instances</description>
+      <name>onlyOpen</name>
+      <type>boolean</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Migrate the hydration schema of process instances</description>
+    <name>migrateProcessInstances</name>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show details of a process instance</description>
+    <name>showProcessInstance</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show details of a process instance</description>
+    <name>showProcessInstanceXML</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Send Message</description>
+    <name>sendMessage</name>
+    <parameter>
+      <description>User id</description>
+      <name>userId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Client id</description>
+      <name>clientId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Message Operation</description>
+      <name>messageOperation</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>void</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Send Message</description>
+    <name>sendMessageXML</name>
+    <parameter>
+      <description>XML data of the message</description>
+      <name>messageXML</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Restart Activity</description>
+    <name>restartActivity</name>
+    <parameter>
+      <description>Process Instance Id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Activity Id</description>
+      <name>activityId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Terminate a process instance</description>
+    <name>terminateProcessInstance</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Update a process instance</description>
+    <name>updateProcessInstance</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Process variable name</description>
+      <name>variableName</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Process variable value</description>
+      <name>value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>sent a event</description>
+    <name>sendEvent</name>
+    <parameter>
+      <description>Client id</description>
+      <name>clientId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Engine name</description>
+      <name>engineId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>User id</description>
+      <name>userId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>event type</description>
+      <name>eventType</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>action</description>
+      <name>action</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Process id</description>
+      <name>processId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter name 1</description>
+      <name>param1Name</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter value 1</description>
+      <name>param1Value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter name 2</description>
+      <name>param2Name</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter value 2</description>
+      <name>param2Value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter name 3</description>
+      <name>param3Name</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter value 3</description>
+      <name>param3Value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter name 4</description>
+      <name>param4Name</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Parameter value 4</description>
+      <name>param4Value</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Show details of a process instance</description>
+    <name>showProcessInstance</name>
+    <parameter>
+      <description>Process instance id</description>
+      <name>processInstanceId</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <parameter>
+      <description>Url of XSLT</description>
+      <name>url</name>
+      <type>java.lang.String</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Turn Event Logging on</description>
+    <name>turnEventLoggingOn</name>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+  <operation impact="ACTION_INFO">
+    <description>Reanimate all fishy process instances</description>
+    <name>reanimateProcessInstances</name>
+    <parameter>
+      <description>ReadOnly</description>
+      <name>readOnly</name>
+      <type>boolean</type>
+    </parameter>
+    <return-type>java.lang.String</return-type>
+    <descriptors>
+    </descriptors>
+  </operation>
+
+<!--artificial operations-->
+
+<!--notifications -->
+
+</mbean>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<section>
+  <title>de.objectcode.canyon.jmx.bpe.admin.ProcessAdmin</title>
+  <subtitle>Default ObjectName: canyon.bpe:service=ProcessAdmin</subtitle>
+    <para>Process administration bean</para>
+    <table>
+      <title>Descriptors</title>
+      <tgroup cols="3">
+        <colspec colname="descriptor"/>
+        <colspec colname="value"/>
+        <thead>
+          <row>
+            <entry>Descriptor</entry>
+            <entry>Value</entry>
+          </row>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </tgroup>
+    </table>
+
+  <section>
+    <title>Managed Constructors</title>
+
+  </section>
+
+  <!--attributes-->
+    <section>
+      <title>Managed Attributes</title>
+    <table>
+      <!--title></title-->
+      <tgroup cols="3">
+        <colspec colname="attribute"/>
+        <colspec colname="type"/>
+        <colspec colname="access"/>
+        <colspec colname="description" align="center"/>
+        <thead>
+          <row>
+            <entry>Attribute</entry>
+            <entry>Type</entry>
+            <entry>Access</entry>
+            <entry align="center">Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>BPEJndiName</entry>
+            <entry>java.lang.String</entry>
+            <entry>read-write</entry>
+            <entry>JNDI name of the async request queue</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+  </section>
+
+<!--operations -->
+    <section>
+      <title>Managed Operations</title>
+      <formalpara>
+        <title>start</title>
+        <para>(no description)
+          <orderedlist>
+            <listitem>
+              <para>return type: void</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>stop</title>
+        <para>(no description)
+          <orderedlist>
+            <listitem>
+              <para>return type: void</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>engineStatus</title>
+        <para>Show the status of the bpe engine
+          <orderedlist>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>listProcesses</title>
+        <para>List the process definitions
+          <orderedlist>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>showProcessXML</title>
+        <para>Show details of a process
+          <orderedlist>
+            <listitem>
+              <para>Process id</para>
+              <para>processId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>listProcessInstances</title>
+        <para>List the process instances
+          <orderedlist>
+            <listitem>
+              <para>Only open running instances</para>
+              <para>onlyOpen</para>
+              <para>boolean</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>migrateProcessInstances</title>
+        <para>Migrate the hydration schema of process instances
+          <orderedlist>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>showProcessInstance</title>
+        <para>Show details of a process instance
+          <orderedlist>
+            <listitem>
+              <para>Process instance id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>showProcessInstanceXML</title>
+        <para>Show details of a process instance
+          <orderedlist>
+            <listitem>
+              <para>Process instance id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>sendMessage</title>
+        <para>Send Message
+          <orderedlist>
+            <listitem>
+              <para>User id</para>
+              <para>userId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Client id</para>
+              <para>clientId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Message Operation</para>
+              <para>messageOperation</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: void</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>sendMessageXML</title>
+        <para>Send Message
+          <orderedlist>
+            <listitem>
+              <para>XML data of the message</para>
+              <para>messageXML</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>restartActivity</title>
+        <para>Restart Activity
+          <orderedlist>
+            <listitem>
+              <para>Process Instance Id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Activity Id</para>
+              <para>activityId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>terminateProcessInstance</title>
+        <para>Terminate a process instance
+          <orderedlist>
+            <listitem>
+              <para>Process instance id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>updateProcessInstance</title>
+        <para>Update a process instance
+          <orderedlist>
+            <listitem>
+              <para>Process instance id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Process variable name</para>
+              <para>variableName</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Process variable value</para>
+              <para>value</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>sendEvent</title>
+        <para>sent a event
+          <orderedlist>
+            <listitem>
+              <para>Client id</para>
+              <para>clientId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Engine name</para>
+              <para>engineId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>User id</para>
+              <para>userId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>event type</para>
+              <para>eventType</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>action</para>
+              <para>action</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Process id</para>
+              <para>processId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter name 1</para>
+              <para>param1Name</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter value 1</para>
+              <para>param1Value</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter name 2</para>
+              <para>param2Name</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter value 2</para>
+              <para>param2Value</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter name 3</para>
+              <para>param3Name</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter value 3</para>
+              <para>param3Value</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter name 4</para>
+              <para>param4Name</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Parameter value 4</para>
+              <para>param4Value</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>showProcessInstance</title>
+        <para>Show details of a process instance
+          <orderedlist>
+            <listitem>
+              <para>Process instance id</para>
+              <para>processInstanceId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>Url of XSLT</para>
+              <para>url</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>turnEventLoggingOn</title>
+        <para>Turn Event Logging on
+          <orderedlist>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>reanimateProcessInstances</title>
+        <para>Reanimate all fishy process instances
+          <orderedlist>
+            <listitem>
+              <para>ReadOnly</para>
+              <para>readOnly</para>
+              <para>boolean</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+  </section>
+
+<!--notifications -->
+    <section>
+      <title>Notifications</title>
+    <table>
+      <!--title></title-->
+      <tgroup cols="3">
+        <colspec colname="name"/>
+        <colspec colname="type"/>
+        <colspec colname="description" align="center"/>
+        <thead>
+          <row>
+            <entry>Name</entry>
+            <entry>Type</entry>
+            <entry align="center">Description</entry>
+          </row>
+        </thead>
+        <tbody>
+        </tbody>
+      </tgroup>
+    </table>
+
+    </section>
+
+</section>
+

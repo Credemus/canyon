@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<section>
+  <title>de.objectcode.canyon.jmx.admin.ParticipantAdmin</title>
+  <subtitle>Default ObjectName: canyon:service=ParticipantAdmin</subtitle>
+    <para>Participant administration bean</para>
+    <table>
+      <title>Descriptors</title>
+      <tgroup cols="3">
+        <colspec colname="descriptor"/>
+        <colspec colname="value"/>
+        <thead>
+          <row>
+            <entry>Descriptor</entry>
+            <entry>Value</entry>
+          </row>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </tgroup>
+    </table>
+
+  <section>
+    <title>Managed Constructors</title>
+
+  </section>
+
+  <!--attributes-->
+    <section>
+      <title>Managed Attributes</title>
+    <table>
+      <!--title></title-->
+      <tgroup cols="3">
+        <colspec colname="attribute"/>
+        <colspec colname="type"/>
+        <colspec colname="access"/>
+        <colspec colname="description" align="center"/>
+        <thead>
+          <row>
+            <entry>Attribute</entry>
+            <entry>Type</entry>
+            <entry>Access</entry>
+            <entry align="center">Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>JndiName</entry>
+            <entry>java.lang.String</entry>
+            <entry>read-write</entry>
+            <entry>JNDI name of the ServiceManager</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+  </section>
+
+<!--operations -->
+    <section>
+      <title>Managed Operations</title>
+      <formalpara>
+        <title>start</title>
+        <para>(no description)
+          <orderedlist>
+            <listitem>
+              <para>return type: void</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>stop</title>
+        <para>(no description)
+          <orderedlist>
+            <listitem>
+              <para>return type: void</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+      <formalpara>
+        <title>getUser</title>
+        <para>List all users for workitem and processinstance for reassign
+          <orderedlist>
+            <listitem>
+              <para>Workitem Id</para>
+              <para>workItemId</para>
+              <para>java.lang.String</para>
+            </listitem>
+            <listitem>
+              <para>return type: java.lang.String</para>
+            </listitem>
+          </orderedlist>
+        </para>
+
+    </formalpara>
+  </section>
+
+<!--notifications -->
+    <section>
+      <title>Notifications</title>
+    <table>
+      <!--title></title-->
+      <tgroup cols="3">
+        <colspec colname="name"/>
+        <colspec colname="type"/>
+        <colspec colname="description" align="center"/>
+        <thead>
+          <row>
+            <entry>Name</entry>
+            <entry>Type</entry>
+            <entry align="center">Description</entry>
+          </row>
+        </thead>
+        <tbody>
+        </tbody>
+      </tgroup>
+    </table>
+
+    </section>
+
+</section>
+
