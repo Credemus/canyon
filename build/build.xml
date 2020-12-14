@@ -71,7 +71,7 @@
       <pathelement location="${lib.dir}/hibernate2.jar"/>
     </path>
 
-    <property name="persistent.src" value="${basedir}/src/persistent"/>
+    <property name="persistent.src" value="${basedir}/persistent/src/main"/>
     <property name="persistent.package" value="${ant.project.name}-persistent.sar"/>
     <property name="ddl.dist" value="${dist.dir}/ddl"/>
 
