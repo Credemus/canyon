@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+
+  <mbean code="de.objectcode.canyon.jmx.admin.ParticipantAdmin"
+         name="canyon:service=ParticipantAdmin"
+         xmbean-dd="de/objectcode/canyon/jmx/admin/ParticipantAdmin.xml">
+    <!--Participant administration bean-->
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+
+  <mbean code="de.objectcode.canyon.jmx.bpe.BPEEngineService"
+         name="canyon.bpe:service=BPEEngineService"
+         xmbean-dd="de/objectcode/canyon/jmx/bpe/BPEEngineService.xml">
+    <!--BPE engine service-->
+    <!--Attribute TimerService, type javax.management.ObjectName, Name of the JMX timer service-->
+    <attribute name="TimerService">canyon:service=Timer</attribute>
+    <depends>jboss.mq.destination:service=Queue,name=WSAsyncRequest</depends>
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+
+  <mbean code="de.objectcode.canyon.jmx.bpe.admin.ProcessAdmin"
+         name="canyon.bpe:service=ProcessAdmin"
+         xmbean-dd="de/objectcode/canyon/jmx/bpe/admin/ProcessAdmin.xml">
+    <!--Process administration bean-->
+    <depends>canyon:service=ServiceManager</depends>
+    <depends>canyon.bpe:service=BPEEngineService</depends>
+  </mbean>
+
+  <mbean code="de.objectcode.canyon.jmx.admin.WorkItemAdmin"
+         name="canyon:service=WorkItemAdmin"
+         xmbean-dd="de/objectcode/canyon/jmx/admin/WorkItemAdmin.xml">
+    <!--WorkItem administration bean-->
+    <depends>canyon:service=ServiceManager</depends>
+  </mbean>
+
+  <mbean code="de.objectcode.canyon.jmx.WSServiceManager"
+         name="canyon:service=ServiceManager"
+         xmbean-dd="de/objectcode/canyon/jmx/WSServiceManager.xml">
+    <!--Service Manager-->
+    <depends>jboss.mq.destination:service=Queue,name=WSAsyncRequest</depends>
+  </mbean>
+
+  <!--
+  To use non XDoclet mbeans, create a jboss-service.ent file that
+  contains the additional mbeans and place it in your
+  project's merge dir.
+  -->
+
+</service>

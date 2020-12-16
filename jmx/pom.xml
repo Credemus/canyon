@@ -9,7 +9,7 @@
         <relativePath>..</relativePath>
     </parent>
     <artifactId>canyon-jmx</artifactId>
-    <packaging>jar</packaging>
+    <packaging>jboss-sar</packaging>
 
     <dependencies>
         <dependency>
@@ -43,6 +43,20 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/generate</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.xsl</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -61,6 +75,42 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>de.objectcode</groupId>
+                                    <artifactId>canyon-ejb</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <includes>**/api/bpe/**/*.class,**/api/worklist/Part*.class,**/api/worklist/Worklist*.class,**/jmx/**/*.class,</includes>
+                                    <outputDirectory>${project.basedir}/target/classes</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jboss-packaging-maven-plugin</artifactId>
+                <version>2.2</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <libDirectory>nothing</libDirectory>
+                    <deploymentDescriptorFile>${project.basedir}/src/main/config/jboss-service.xml</deploymentDescriptorFile>
+                </configuration>
             </plugin>
         </plugins>
     </build>
