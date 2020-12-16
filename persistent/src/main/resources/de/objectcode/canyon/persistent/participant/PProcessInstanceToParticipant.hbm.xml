@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.participant.PProcessInstanceToParticipant"
+        table="PPROCINSTTOPART"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <composite-id
+            name="id"
+            class="de.objectcode.canyon.persistent.participant.PProcessInstanceToParticipantId"
+        >
+                     <key-property
+                        name="processInstanceId"
+                        type="string"
+                        column="PROCESSINSTANCEID"
+                        length="256"
+                />
+
+                     <key-property
+                        name="participantId"
+                        type="string"
+                        column="PARTICIPANTID"
+                        length="64"
+                />
+
+        </composite-id>
+
+        <property
+            name="resolvedParticipantId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="RESOLVEDID"
+            length="30"
+	        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PProcessInstanceToParticipant.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

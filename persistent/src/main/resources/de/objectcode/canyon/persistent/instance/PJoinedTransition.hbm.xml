@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.instance.PJoinedTransition"
+        table="PJOINEDTRANSITIONS"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <id
+            name="entityOid"
+            column="ENTITYID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PJoinedTransition.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="transitionId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="TRANSITIONID"
+            length="64"
+            not-null="true"
+	        />
+
+        <property
+            name="fired"
+            type="boolean"
+            update="true"
+            insert="true"
+            access="property"
+            column="FIRED"
+	        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PJoinedTransition.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

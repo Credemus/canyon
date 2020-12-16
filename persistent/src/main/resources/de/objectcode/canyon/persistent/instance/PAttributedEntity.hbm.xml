@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.instance.PAttributedEntity"
+        table="PATTRIBUTEDENTITIES"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <id
+            name="entityOid"
+            column="ENTITYID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PAttributedEntity.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <component
+            name="processDefinitionId"
+            class="de.objectcode.canyon.persistent.process.PProcessDefinitionID"
+        >
+
+        <property
+            name="id"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSDEFINITIONID"
+            length="64"
+	        />
+
+        <property
+            name="version"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSDEFINITIONVERSION"
+            length="64"
+	        />
+
+        </component>
+
+        <set
+            name="attributesSet"
+            lazy="true"
+            inverse="false"
+            cascade="all"
+            sort="unsorted"
+        >
+
+              <key
+                  column="OWNERID"
+              >
+              </key>
+
+              <one-to-many
+                  class="de.objectcode.canyon.persistent.instance.PAttributeInstance"
+              />
+
+        </set>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PAttributedEntity.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+        <joined-subclass
+            name="de.objectcode.canyon.persistent.instance.PWorkItem"
+            table="PWORKITEMS"
+            dynamic-update="false"
+            dynamic-insert="false"
+        >
+        <key
+            column="WORKITEMID"
+        />
+
+        <property
+            name="engineId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="ENGINEID"
+            length="64"
+	        />
+
+        <property
+            name="clientId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="CLIENTID" 
+                length="64"
+                index="PWORKITEM_IDX2"
+            />
+        </property>
+
+        <property
+            name="activityDefinitionId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="ACTIVITYDEFINITIONID"
+            length="64"
+	        />
+
+        <property
+            name="processInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="PROCESSINSTANCEID" 
+                length="64"
+                index="PWORKITEM_IDX1"
+            />
+        </property>
+
+        <property
+            name="parentProcessInstanceIdPath"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSINSTANCEIDPATH"
+            length="128"
+	        />
+
+        <property
+            name="completedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPLETEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="dueDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="DUEDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="512"
+            not-null="true"
+	        />
+
+        <property
+            name="startedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="STARTEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="STATE" 
+                length="2"
+                index="PWORKITEM_IDX2"
+                not-null="true"
+            />
+        </property>
+
+        <property
+            name="participant"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="PARTICIPANT" 
+                length="64"
+                index="PWORKITEM_IDX2"
+                not-null="false"
+            />
+        </property>
+
+        <property
+            name="performer"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PERFORMER"
+            length="64"
+            not-null="false"
+	        />
+
+        <property
+            name="priority"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRIORITY"
+            length="2"
+            not-null="true"
+	        />
+
+        <property
+            name="createdDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATEDDATE"
+            not-null="false"
+	        />
+
+        <many-to-one
+            name="applicationDataBlob"
+            class="de.objectcode.canyon.persistent.instance.PObjectValue"
+            cascade="all"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="BLOBID"
+            not-null="false"
+	        />
+
+        <property
+            name="completionStrategy"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPLETION"
+            length="2"
+            not-null="true"
+	        />
+
+        <property
+            name="activityInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="ACTIVITYINSTANCEID" 
+                length="64"
+                index="PWORKITEM_IDX1"
+                not-null="true"
+            />
+        </property>
+
+        <property
+            name="processName"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSNAME"
+            length="512"
+	        />
+
+        </joined-subclass>
+        <joined-subclass
+            name="de.objectcode.canyon.persistent.instance.PProcessInstance"
+            table="PPROCESSINSTANCES"
+            dynamic-update="false"
+            dynamic-insert="false"
+        >
+        <key
+            column="PROCESSINSTANCEID"
+        />
+
+        <property
+            name="completedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPLETEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="dueDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="DUEDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="64"
+            not-null="false"
+	        />
+
+        <property
+            name="startedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="STARTEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="createdDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATEDDATE"
+            not-null="true"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            length="2"
+            not-null="true"
+	        />
+
+        <set
+            name="activitySet"
+            lazy="true"
+            inverse="true"
+            cascade="all"
+            sort="unsorted"
+        >
+
+              <key
+                  column="PROCESSINSTANCEID"
+              >
+              </key>
+
+              <one-to-many
+                  class="de.objectcode.canyon.persistent.instance.PActivityInstance"
+              />
+
+        </set>
+
+        <property
+            name="priority"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRIORITY"
+            length="2"
+            not-null="true"
+	        />
+
+        <many-to-one
+            name="parentActivityInstance"
+            class="de.objectcode.canyon.persistent.instance.PActivityInstance"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="PARENTACTIVITYINSTANCEID"
+	        />
+
+        <array
+            name="participants"
+            table="PPROCESSINSTANCE_PARTS"
+            inverse="false"
+            cascade="all"
+        >
+
+              <key
+                  column="PROCESSINSTANCEID"
+              >
+              </key>
+
+              <index
+                  column="IDX"
+              />
+
+              <element
+                  column="PARTICIPANT"
+                  type="string"
+                  length="64"
+                  not-null="false"
+                  unique="false"
+              />
+
+        </array>
+
+        </joined-subclass>
+        <joined-subclass
+            name="de.objectcode.canyon.persistent.instance.PActivityInstance"
+            table="PACTIVITYINSTANCES"
+            dynamic-update="false"
+            dynamic-insert="false"
+        >
+        <key
+            column="ACTIVITYINSTANCEID"
+        />
+
+        <property
+            name="activityDefinitionId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="ACTIVTYDEFINITIONID"
+            length="64"
+            not-null="true"
+	        />
+
+        <set
+            name="childProcessInstanceSet"
+            lazy="true"
+            inverse="false"
+            cascade="none"
+            sort="unsorted"
+        >
+
+              <key
+                  column="PARENTACTIVITYINSTANCEID"
+              >
+              </key>
+
+              <one-to-many
+                  class="de.objectcode.canyon.persistent.instance.PProcessInstance"
+              />
+
+        </set>
+
+        <property
+            name="blockActivityInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="BLOCKACTIVITYINSTANCEID"
+            length="64"
+            not-null="false"
+	        />
+
+        <array
+            name="participantsDB"
+            table="PACTIVITYINSTANCE_PARTS"
+            inverse="false"
+            cascade="all"
+        >
+
+              <key
+                  column="ACTIVITYINSTANCEID"
+              >
+              </key>
+
+              <index
+                  column="IDX"
+              />
+
+              <element
+                  column="PARTICIPANT"
+                  type="string"
+                  length="64"
+                  not-null="false"
+                  unique="false"
+              />
+
+        </array>
+
+        <property
+            name="priority"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRIORITY"
+            length="2"
+            not-null="true"
+	        />
+
+        <many-to-one
+            name="processInstance"
+            class="de.objectcode.canyon.persistent.instance.PProcessInstance"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSINSTANCEID"
+            not-null="true"
+	        />
+
+        <property
+            name="completedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPLETEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="dueDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="DUEDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="64"
+            not-null="false"
+	        />
+
+        <property
+            name="startedDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="STARTEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            length="2"
+            not-null="true"
+	        />
+
+        <array
+            name="joinedTransitions"
+            inverse="false"
+            cascade="all"
+        >
+
+              <key
+                  column="ACTIVITYINSTANCEID"
+              >
+              </key>
+
+              <index
+                  column="IDX"
+              />
+
+              <one-to-many
+                  class="de.objectcode.canyon.persistent.instance.PJoinedTransition"
+              />
+
+        </array>
+
+        <component
+            name="blockActivityIterator"
+            class="de.objectcode.canyon.persistent.instance.PPersistentIterator"
+        >
+
+        <property
+            name="current"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="ITER_CURRENT"
+            not-null="true"
+	        />
+
+        <property
+            name="length"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="ITER_LENGTH"
+            not-null="true"
+	        />
+
+        </component>
+
+        <property
+            name="joinType"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="JOINTYPE"
+            length="2"
+            not-null="true"
+	        />
+
+        <property
+            name="completionStrategy"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMPLETION"
+            length="2"
+            not-null="true"
+	        />
+
+        </joined-subclass>
+
+    </class>
+
+</hibernate-mapping>

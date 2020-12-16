@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.audit.PAuditObject"
+        table="PAUDITOBJECT"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <id
+            name="entityOid"
+            column="ENTITYID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PAuditObject.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <discriminator
+            column="AUDITTYPE"
+        />
+
+        <component
+            name="prefix"
+            class="de.objectcode.canyon.persistent.audit.PPrefix"
+        >
+
+        <property
+            name="activityInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="ACTIVITYINSTANCEID"
+            length="64"
+	        />
+
+        <property
+            name="currentProcessInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="CURRENTPROCESSID"
+            length="64"
+	        />
+
+        <property
+            name="domainId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="DOMAINID"
+            length="64"
+	        />
+
+        <property
+            name="eventCode"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="EVENTCODE"
+            not-null="true"
+	        />
+
+        <property
+            name="informationId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="INFORMATIONID"
+            length="64"
+	        />
+
+        <property
+            name="initialProcessInstanceId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="INITIALPROCESSID"
+            length="64"
+	        />
+
+        <property
+            name="nodeId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NODEID"
+            length="64"
+	        />
+
+        <property
+            name="processState"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSSTATE"
+            length="64"
+	        />
+
+        <property
+            name="timestamp"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="TSTAMP"
+            not-null="true"
+	        />
+
+        <property
+            name="userId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="USERID"
+            length="64"
+	        />
+
+        <property
+            name="roleId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="ROLEID"
+            length="64"
+	        />
+
+        </component>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PAuditObject.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+        <subclass
+            name="de.objectcode.canyon.persistent.audit.PCreateProcessInstanceData"
+            dynamic-update="false"
+            dynamic-insert="false"
+        >
+
+        <property
+            name="processDefinitionBusinessName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSDEFINITIONNAME"
+            length="64"
+	        />
+
+        <property
+            name="processDefinitionId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSDEFINITIONID"
+            length="64"
+	        />
+
+	    <!--
+            	To add non XDoclet property mappings, create a file named
+                hibernate-properties-PCreateProcessInstanceData.xml
+		containing the additional properties and place it in your merge dir.
+	    -->
+
+        </subclass>
+
+    </class>
+
+</hibernate-mapping>

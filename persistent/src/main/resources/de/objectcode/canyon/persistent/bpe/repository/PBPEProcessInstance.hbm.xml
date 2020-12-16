@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.bpe.repository.PBPEProcessInstance"
+        table="PBPEPROCESSINSTS"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <id
+            name="entityOid"
+            column="ENTITYID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PBPEProcessInstance.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="parentEntityOid"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="PARENTENTITYID"
+	        />
+
+        <many-to-one
+            name="processInstanceData"
+            class="de.objectcode.canyon.persistent.instance.PObjectValue"
+            cascade="all"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="BLOBID"
+            not-null="false"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="true"
+	        />
+
+        <property
+            name="processId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSID"
+            length="64"
+            not-null="true"
+	        />
+
+        <property
+            name="processEntityOid"
+            type="long"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESS_OID"
+            not-null="true"
+	        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PBPEProcessInstance.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

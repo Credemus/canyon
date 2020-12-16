@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.process.PProcessDefinition"
+        table="PPROCESSDEFINITIONS"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <composite-id
+            name="id"
+            class="de.objectcode.canyon.persistent.process.PProcessDefinitionID"
+            unsaved-value="any"
+        >
+
+                     <key-property
+                        name="id"
+                        type="string"
+                        column="PROCESSDEFINITIONID"
+                        length="64"
+                />
+
+                     <key-property
+                        name="version"
+                        type="string"
+                        column="PROCESSDEFINITIONVERSION"
+                        length="64"
+                />
+
+        </composite-id>
+
+        <property
+            name="author"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="AUTHOR"
+            length="32"
+            not-null="false"
+	        />
+
+        <property
+            name="createdDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATEDDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="description"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESCRIPTION"
+            length="254"
+            not-null="false"
+	        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="64"
+            not-null="false"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            length="2"
+            not-null="true"
+	        />
+
+        <property
+            name="publicationStatus"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATUS"
+	        />
+
+        <property
+            name="validFromDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="VALIDFROMDATE"
+            not-null="false"
+	        />
+
+        <property
+            name="validToDate"
+            type="timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="VALIDTODATE"
+            not-null="false"
+	        />
+
+        <many-to-one
+            name="package"
+            class="de.objectcode.canyon.persistent.process.PPackage"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+        >
+            <column
+                name="PACKAGEID" 
+            />
+            <column
+                name="PACKAGEVERSION" 
+            />
+        </many-to-one>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PProcessDefinition.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

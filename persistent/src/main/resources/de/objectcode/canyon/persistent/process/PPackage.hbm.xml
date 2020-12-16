@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.process.PPackage"
+        table="PPACKAGES"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <composite-id
+            name="id"
+            class="de.objectcode.canyon.persistent.process.PPackageID"
+            unsaved-value="any"
+        >
+
+                     <key-property
+                        name="id"
+                        type="string"
+                        column="PACKAGEID"
+                        length="64"
+                />
+
+                     <key-property
+                        name="version"
+                        type="string"
+                        column="PACKAGEVERSION"
+                        length="64"
+                />
+
+        </composite-id>
+
+        <property
+            name="author"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="AUTHOR"
+            length="32"
+            not-null="false"
+	        />
+
+        <property
+            name="description"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESCRIPTION"
+            length="254"
+            not-null="false"
+	        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="64"
+            not-null="true"
+	        />
+
+        <property
+            name="vendor"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="VENDOR"
+            length="32"
+            not-null="false"
+	        />
+
+        <set
+            name="processDefinitionsSet"
+            lazy="true"
+            inverse="false"
+            cascade="all"
+            sort="unsorted"
+        >
+
+              <key
+              >
+                <column
+                    name="PACKAGEID" 
+                />
+                <column
+                    name="PACKAGEVERSION" 
+                />
+              </key>
+
+              <one-to-many
+                  class="de.objectcode.canyon.persistent.process.PProcessDefinition"
+              />
+
+        </set>
+
+        <property
+            name="packageData"
+            type="de.objectcode.canyon.persistent.util.BlobType"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERPACKAGE"
+            not-null="true"
+	        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PPackage.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

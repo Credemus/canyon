@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="de.objectcode.canyon.persistent.bpe.repository.PBPEProcess"
+        table="PBPEPROCESSES"
+        dynamic-update="false"
+        dynamic-insert="false"
+        select-before-update="false"
+        optimistic-lock="version"
+    >
+
+        <id
+            name="entityOid"
+            column="ENTITYID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PBPEProcess.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="packageRevisionOid"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="PACKAGE_REV_OID"
+	        />
+
+        <many-to-one
+            name="processSourceBlob"
+            class="de.objectcode.canyon.persistent.instance.PImmutableObjectValue"
+            cascade="all"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="SOURCEBLOBID"
+            not-null="false"
+	        />
+
+        <property
+            name="processId"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSID"
+            length="64"
+            not-null="true"
+	        />
+
+        <property
+            name="processVersion"
+            type="string"
+            update="true"
+            insert="true"
+            access="property"
+            column="PROCESSVERSION"
+            length="64"
+            not-null="true"
+	        />
+
+        <many-to-one
+            name="processBlob"
+            class="de.objectcode.canyon.persistent.instance.PImmutableObjectValue"
+            cascade="all"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            access="property"
+            column="BLOBID"
+            not-null="false"
+	        />
+
+        <property
+            name="state"
+            type="integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATE"
+            not-null="true"
+	        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PBPEProcess.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

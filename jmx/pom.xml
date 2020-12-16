@@ -38,6 +38,7 @@
             <groupId>de.objectcode</groupId>
             <artifactId>canyon-persistent</artifactId>
             <version>${project.version}</version>
+            <type>jboss-sar</type>
         </dependency>
     </dependencies>
 
