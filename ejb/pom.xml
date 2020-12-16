@@ -49,6 +49,83 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>de.objectcode</groupId>
+                                    <artifactId>canyon-engine</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <includes>**/api/**/*.class,**/de/objectcode/canyon/model/**/*.class</includes>
+                                    <outputDirectory>${project.basedir}/target/api-classes</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-api</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/api-classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/target/classes</directory>
+                                    <includes>
+                                        <include>**/api/**/*.class</include>
+                                        <include>**/spi/filter/**/*.class</include>
+                                        <include>**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>api</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>api</classifier>
+                            <classesDirectory>${project.basedir}/target/api-classes</classesDirectory>
+                            <includes>**/*</includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ejb</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**/*</includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
