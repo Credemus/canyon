@@ -103,6 +103,7 @@
         <module>ejb</module>
         <module>persistent</module>
         <module>jmx</module>
+        <module>ear</module>
     </modules>
 
     <build>
