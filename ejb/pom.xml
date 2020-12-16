@@ -79,7 +79,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-api</id>
+                        <id>copy-to-api</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -93,6 +93,24 @@
                                         <include>**/api/**/*.class</include>
                                         <include>**/spi/filter/**/*.class</include>
                                         <include>**/de/objectcode/canyon/spiImpl/tool/bpe/**/*.class</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-to-ejb</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/target/classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/target/api-classes</directory>
+                                    <includes>
+                                        <include>**/api/**/*.class</include>
                                     </includes>
                                 </resource>
                             </resources>

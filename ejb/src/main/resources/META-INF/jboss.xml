@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 3.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_3_0.dtd">
+
+<jboss>
+
+   <security-domain>java:/jaas/saints</security-domain>
+
+   <enterprise-beans>
+
+     <!--
+       To add beans that you have deployment descriptor info for, add
+       a file to your XDoclet merge directory called jboss-beans.xml that contains
+       the <session></session>, <entity></entity> and <message-driven></message-driven>
+       markup for those beans.
+     -->
+
+      <session>
+         <ejb-name>BPEProcess</ejb-name>
+         <jndi-name>de/objectcode/canyon/ejb/bpe/Process</jndi-name>
+         <local-jndi-name>de/objectcode/canyon/ejb/bpe/ProcessLocal</local-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+
+      </session>
+      <session>
+         <ejb-name>BPEProcessRepositoryAdmin</ejb-name>
+         <jndi-name>de/objectcode/canyon/ejb/bpe/admin/ProcessRepositoryAdmin</jndi-name>
+         <local-jndi-name>de/objectcode/canyon/ejb/bpe/admin/ProcessRepositoryAdminLocal</local-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+         <resource-ref>
+            <res-ref-name>BPEEngine</res-ref-name>
+            <jndi-name>java:/canyon/BPEEngine</jndi-name>
+         </resource-ref>
+
+      </session>
+      <session>
+         <ejb-name>Worklist</ejb-name>
+         <jndi-name>de/objectcode/canyon/ejb/worklist/Worklist</jndi-name>
+         <local-jndi-name>de/objectcode/canyon/ejb/worklist/WorklistLocal</local-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+
+      </session>
+      <session>
+         <ejb-name>Participant</ejb-name>
+         <jndi-name>de/objectcode/canyon/ejb/worklist/Participant</jndi-name>
+         <local-jndi-name>de/objectcode/canyon/ejb/worklist/ParticipantLocal</local-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+
+      </session>
+
+      <message-driven>
+         <ejb-name>WorklistEventBean</ejb-name>
+         <destination-jndi-name>queue/WSApplicationEvent</destination-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+         <resource-ref>
+            <res-ref-name>jms/QCF</res-ref-name>
+            <jndi-name>ConnectionFactory</jndi-name>
+         </resource-ref>
+      </message-driven>
+      <message-driven>
+         <ejb-name>AsyncExecution</ejb-name>
+         <destination-jndi-name>queue/WSAsyncRequest</destination-jndi-name>
+         <resource-ref>
+            <res-ref-name>ServiceManager</res-ref-name>
+            <jndi-name>java:/canyon/ServiceManager</jndi-name>
+         </resource-ref>
+         <resource-ref>
+            <res-ref-name>jms/QCF</res-ref-name>
+            <jndi-name>ConnectionFactory</jndi-name>
+         </resource-ref>
+      </message-driven>
+
+   </enterprise-beans>
+
+   <resource-managers>
+   </resource-managers>
+
+  <!--
+    | for container settings, you can merge in jboss-container.xml
+    | this can contain <invoker-proxy-bindings/> and <container-configurations/>
+  -->
+
+</jboss>
