@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.objectcode</groupId>
         <artifactId>canyon-base</artifactId>
-        <version>0.1.0</version>
+        <version>${revision}</version>
         <relativePath>..</relativePath>
     </parent>
     <artifactId>canyon-core</artifactId>

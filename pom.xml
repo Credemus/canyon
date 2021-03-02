@@ -4,10 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.objectcode</groupId>
     <artifactId>canyon-base</artifactId>
-    <version>0.1.0</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <properties>
+        <revision>0.1.0-SNAPSHOT</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>6</java.version>
     </properties>
