@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>de.objectcode</groupId>
+        <groupId>de.fraba.legacy</groupId>
         <artifactId>canyon-base</artifactId>
         <version>${revision}</version>
         <relativePath>..</relativePath>
@@ -68,7 +68,7 @@
         </dependency>
 
         <dependency>
-            <groupId>de.objectcode</groupId>
+            <groupId>de.fraba.legacy</groupId>
             <artifactId>canyon-wfmc</artifactId>
             <version>${project.version}</version>
         </dependency>

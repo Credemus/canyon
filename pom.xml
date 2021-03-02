@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.objectcode</groupId>
+    <groupId>de.fraba.legacy</groupId>
     <artifactId>canyon-base</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
@@ -107,6 +107,19 @@
         <module>ear</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>credemus-nexus-releases</id>
+            <url>https://repository.ingress2.405883.de-4.mk.psmanaged.com/repository/maven-releases/</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <id>credemus-nexus-snapshots</id>
+            <url>https://repository.ingress2.405883.de-4.mk.psmanaged.com/repository/maven-snapshots/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -120,5 +133,47 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <configuration>
+                  <updatePomFile>true</updatePomFile>
+                  <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>flatten</id>
+                    <phase>process-resources</phase>
+                    <goals>
+                      <goal>flatten</goal>
+                    </goals>
+                  </execution>
+                  <execution>
+                    <id>flatten.clean</id>
+                    <phase>clean</phase>
+                    <goals>
+                      <goal>clean</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>            
+        </plugins>
     </build>
 </project>

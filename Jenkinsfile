@@ -19,6 +19,14 @@ pipeline {
                 }
             }
         }
+
+        stage("Publish") {
+            steps {
+                configFileProvider([configFile(fileId: 'maven-settings', variable: 'SETTINGS_XML')]) {
+                    sh "mvn -s ${SETTINGS_XML} -B -P prod -Drevision=${REVISION} -DbuildNumber=${BUILD_NUMBER} deploy"
+                }
+            }
+        }
     }
 }
 
