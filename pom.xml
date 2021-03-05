@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.fraba.legacy</groupId>
     <artifactId>canyon-base</artifactId>
@@ -24,42 +22,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging-api</artifactId>
-                <version>1.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>3.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
-                <version>1.6</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-digester</groupId>
-                <artifactId>commons-digester</artifactId>
-                <version>1.6</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>1.0.1</version>
-            </dependency>
-        
-            <dependency>
-                <artifactId>commons-jxpath</artifactId>
-                <groupId>commons-jxpath</groupId>
-                <version>1.1</version>
-            </dependency>
-
-            <dependency>
                 <groupId>bsf</groupId>
                 <artifactId>bsf</artifactId>
                 <version>2.4.0</version>
@@ -72,15 +34,50 @@
             </dependency>
 
             <dependency>
-                <groupId>jboss</groupId>
-                <artifactId>jboss-j2ee</artifactId>
-                <version>4.0.2</version>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.6</version>
             </dependency>
 
             <dependency>
-                <groupId>oswego-concurrent</groupId>
-                <artifactId>concurrent</artifactId>
-                <version>1.3.4</version>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-digester</groupId>
+                <artifactId>commons-digester</artifactId>
+                <version>1.6</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>commons-jxpath</artifactId>
+                <groupId>commons-jxpath</groupId>
+                <version>1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging-api</artifactId>
+                <version>1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jboss-j2ee</artifactId>
+                <version>4.0.2</version>
             </dependency>
 
             <dependency>
@@ -90,9 +87,9 @@
             </dependency>
 
             <dependency>
-                <groupId>dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>1.6.1</version>
+                <groupId>oswego-concurrent</groupId>
+                <artifactId>concurrent</artifactId>
+                <version>1.3.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -154,26 +151,35 @@
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.1.0</version>
                 <configuration>
-                  <updatePomFile>true</updatePomFile>
-                  <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
                 </configuration>
                 <executions>
-                  <execution>
-                    <id>flatten</id>
-                    <phase>process-resources</phase>
-                    <goals>
-                      <goal>flatten</goal>
-                    </goals>
-                  </execution>
-                  <execution>
-                    <id>flatten.clean</id>
-                    <phase>clean</phase>
-                    <goals>
-                      <goal>clean</goal>
-                    </goals>
-                  </execution>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
                 </executions>
-              </plugin>            
+            </plugin>
+
+            <plugin>
+                <groupId>com.commsen.maven</groupId>
+                <artifactId>bom-helper-maven-plugin</artifactId>
+                <version>0.2.0</version>
+                <configuration>
+                    <inplace>true</inplace>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
