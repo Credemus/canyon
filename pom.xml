@@ -102,6 +102,7 @@
         <module>persistent</module>
         <module>jmx</module>
         <module>ear</module>
+        <module>client</module>
     </modules>
 
     <distributionManagement>
