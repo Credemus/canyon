@@ -41,10 +41,13 @@
     <depends>jboss.mq.destination:service=Queue,name=WSAsyncRequest</depends>
   </mbean>
 
-  <!--
-  To use non XDoclet mbeans, create a jboss-service.ent file that
-  contains the additional mbeans and place it in your
-  project's merge dir.
-  -->
+  <mbean code="org.jboss.mq.server.jmx.Queue"
+         name="jboss.mq.destination:service=Queue,name=WSAsyncRequest">
+    <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+  </mbean>
+  <mbean code="org.jboss.mq.server.jmx.Queue"
+         name="jboss.mq.destination:service=Queue,name=WSApplicationEvent">
+    <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+  </mbean>
 
 </service>
