@@ -4,15 +4,33 @@
 <!-- Generated file - Do not edit! -->
 
 <server>
-   <mbean code="de.objectcode.canyon.persistent.jmx.HibernateService" name="jboss.jca:service=Hibernate-Canyon">
-       <depends>jboss.jca:service=RARDeployer</depends>
-       <attribute name="MapResources">de/objectcode/canyon/persistent/bpe/repository/PBPEPackage.hbm.xml,de/objectcode/canyon/persistent/process/PProcessDefinition.hbm.xml,de/objectcode/canyon/persistent/instance/PAttributeInstance.hbm.xml,de/objectcode/canyon/persistent/async/PTimedNotification.hbm.xml,de/objectcode/canyon/persistent/audit/PAuditObject.hbm.xml,de/objectcode/canyon/persistent/bpe/repository/PBPEProcess.hbm.xml,de/objectcode/canyon/persistent/instance/PAttributedEntity.hbm.xml,de/objectcode/canyon/persistent/instance/PObjectValue.hbm.xml,de/objectcode/canyon/persistent/process/PPackage.hbm.xml,de/objectcode/canyon/persistent/instance/PImmutableObjectValue.hbm.xml,de/objectcode/canyon/persistent/participant/PProcessInstanceToParticipant.hbm.xml,de/objectcode/canyon/persistent/bpe/repository/PBPEProcessInstance.hbm.xml,de/objectcode/canyon/persistent/async/PAsyncRequest.hbm.xml,de/objectcode/canyon/persistent/instance/PJoinedTransition.hbm.xml</attribute>
-       <attribute name="JndiName">java:/canyon/HibernateFactory</attribute>
-       <attribute name="Datasource">java:/SaintsCoreDS</attribute>
-       <attribute name="Dialect">de.objectcode.canyon.persistent.util.OracleDialect</attribute>
-       <attribute name="UseOuterJoin">false</attribute>
-       <attribute name="ShowSql">false</attribute>
-       <attribute name="TransactionManagerLookupStrategy">net.sf.hibernate.transaction.JBossTransactionManagerLookup</attribute>
-   </mbean>
+    <mbean code="de.objectcode.canyon.persistent.jmx.HibernateService" name="jboss.jca:service=Hibernate-Canyon">
+        <depends>jboss.jca:service=RARDeployer</depends>
+        <attribute name="MapResources">de/objectcode/canyon/persistent/bpe/repository/PBPEPackage.hbm.xml,de/objectcode/canyon/persistent/process/PProcessDefinition.hbm.xml,de/objectcode/canyon/persistent/instance/PAttributeInstance.hbm.xml,de/objectcode/canyon/persistent/async/PTimedNotification.hbm.xml,de/objectcode/canyon/persistent/audit/PAuditObject.hbm.xml,de/objectcode/canyon/persistent/bpe/repository/PBPEProcess.hbm.xml,de/objectcode/canyon/persistent/instance/PAttributedEntity.hbm.xml,de/objectcode/canyon/persistent/instance/PObjectValue.hbm.xml,de/objectcode/canyon/persistent/process/PPackage.hbm.xml,de/objectcode/canyon/persistent/instance/PImmutableObjectValue.hbm.xml,de/objectcode/canyon/persistent/participant/PProcessInstanceToParticipant.hbm.xml,de/objectcode/canyon/persistent/bpe/repository/PBPEProcessInstance.hbm.xml,de/objectcode/canyon/persistent/async/PAsyncRequest.hbm.xml,de/objectcode/canyon/persistent/instance/PJoinedTransition.hbm.xml</attribute>
+        <attribute name="JndiName">java:/canyon/HibernateFactory</attribute>
+        <attribute name="Datasource">java:/SaintsCoreDS</attribute>
+        <attribute name="Dialect">de.objectcode.canyon.persistent.util.OracleDialect</attribute>
+        <attribute name="UseOuterJoin">false</attribute>
+        <attribute name="ShowSql">false</attribute>
+        <attribute name="TransactionManagerLookupStrategy">net.sf.hibernate.transaction.JBossTransactionManagerLookup</attribute>
+    </mbean>
 
+    <mbean code="javax.management.timer.Timer"
+           name="canyon:service=Timer">
+    </mbean>
+    
+    <mbean code="de.objectcode.canyon.persistent.jmx.WSRepositories"
+           name="canyon:service=Repositories">
+        <depends>jboss.jca:service=Hibernate-Canyon</depends>
+        <depends>canyon:service=ServiceManager</depends>
+        <depends optional-attribute-name="TimerService">canyon:service=Timer</depends>
+    </mbean>
+
+    <mbean code="de.objectcode.canyon.persistent.jmx.BPERepositories"
+           name="canyon.bpe:service=Repositories">
+        <depends>jboss.jca:service=Hibernate-Canyon</depends>
+        <depends>canyon:service=ServiceManager</depends>
+        <depends>canyon.bpe:service=BPEEngineService</depends>
+        <depends optional-attribute-name="TimerService">canyon:service=Timer</depends>
+    </mbean>
 </server>
