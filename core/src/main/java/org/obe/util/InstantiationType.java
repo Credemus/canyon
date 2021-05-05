@@ -71,7 +71,7 @@ public final class InstantiationType implements Serializable {
         ONCE,
         MULTIPLE
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, InstantiationType> tagMap = new HashMap<String, InstantiationType>();
 
     private final int _value;
 
@@ -82,7 +82,7 @@ public final class InstantiationType implements Serializable {
     }
 
     public static InstantiationType fromString(String tag) {
-        InstantiationType instantiationType = (InstantiationType)tagMap.get(tag);
+        InstantiationType instantiationType = tagMap.get(tag);
         if (instantiationType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return instantiationType;

@@ -78,12 +78,8 @@ public class Sequence extends CompositeActivity
   public void toDom ( Element element )
   {
     super.toDom(element);
-    
-    Iterator it = m_childActivities.iterator();
-    
-    while ( it.hasNext() ) {
-      Activity activity = (Activity)it.next();
-      
+
+    for (Activity activity : m_childActivities) {
       activity.toDom(element.addElement(activity.getElementName()));
     }
   }

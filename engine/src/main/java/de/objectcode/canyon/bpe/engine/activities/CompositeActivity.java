@@ -13,87 +13,76 @@ import de.objectcode.canyon.bpe.util.HydrationContext;
 /**
  * Abstract base class of all activities that contain other activities.
  *
- * @author    junglas
- * @created   7. Juni 2004
+ * @author junglas
+ * @created 7. Juni 2004
  */
-public abstract class CompositeActivity extends Activity implements IActivityContainer
-{
+public abstract class CompositeActivity extends Activity implements IActivityContainer {
   static final long serialVersionUID = -3911303387877356979L;
-  
-  protected  List  m_childActivities;
+
+  protected List<Activity> m_childActivities;
 
 
   /**
-   *Constructor for the CompositeActivity object
+   * Constructor for the CompositeActivity object
    *
-   * @param name   Description of the Parameter
-   * @param scope  Description of the Parameter
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
    */
-  protected CompositeActivity( String name, Scope scope )
-  {
-    super( name, scope );
+  protected CompositeActivity(String name, Scope scope) {
+    super(name, scope);
 
-    m_childActivities = new ArrayList();
+    m_childActivities = new ArrayList<Activity>();
   }
 
 
   /**
-   *Constructor for the CompositeActivity object
+   * Constructor for the CompositeActivity object
    *
-   * @param id     Description of the Parameter
-   * @param name   Description of the Parameter
-   * @param scope  Description of the Parameter
+   * @param id    Description of the Parameter
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
    */
-  protected CompositeActivity( String id, String name, Scope scope )
-  {
-    super( id, name, scope );
+  protected CompositeActivity(String id, String name, Scope scope) {
+    super(id, name, scope);
 
-    m_childActivities = new ArrayList();
+    m_childActivities = new ArrayList<Activity>();
   }
 
 
   /**
    * Adds a feature to the Activity attribute of the CompositeActivity object
    *
-   * @param activity  The feature to be added to the Activity attribute
+   * @param activity The feature to be added to the Activity attribute
    */
-  public void addActivity( Activity activity )
-  {
-    activity.setParentActivity( this );
-    m_childActivities.add( activity );
+  public void addActivity(Activity activity) {
+    activity.setParentActivity(this);
+    m_childActivities.add(activity);
   }
 
   public void setScope(Scope scope) {
-  	super.setScope(scope);
-    Iterator  it  = m_childActivities.iterator();
+    super.setScope(scope);
 
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
+    for (Activity activity : m_childActivities) {
       activity.setScope(scope);
     }
   }
-  
+
 
   /**
    * Called by a child activity once completed.
    *
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
    */
-  public void childCompleted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childCompleted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
-    
-    Iterator  it  = m_childActivities.iterator();
 
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
-
-      if ( activity.getState() != ActivityState.COMPLETED &&
-          activity.getState() != ActivityState.ABORT &&
-          activity.getState() != ActivityState.SKIPED ) {
+    for (Activity activity : m_childActivities) {
+      if (activity.getState() != ActivityState.COMPLETED &&
+              activity.getState() != ActivityState.ABORT &&
+              activity.getState() != ActivityState.SKIPED) {
         return;
       }
     }
@@ -105,23 +94,18 @@ public abstract class CompositeActivity extends Activity implements IActivityCon
   /**
    * Called by a child activity once aborted.
    *
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
    */
-  public void childAborted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childAborted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
-    
-    Iterator  it  = m_childActivities.iterator();
 
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
-
-      if ( activity.getState() != ActivityState.COMPLETED &&
-          activity.getState() != ActivityState.ABORT &&
-          activity.getState() != ActivityState.SKIPED ) {
+    for (Activity activity : m_childActivities) {
+      if (activity.getState() != ActivityState.COMPLETED &&
+              activity.getState() != ActivityState.ABORT &&
+              activity.getState() != ActivityState.SKIPED) {
         return;
       }
     }
@@ -133,157 +117,122 @@ public abstract class CompositeActivity extends Activity implements IActivityCon
   /**
    * Called by a child activity once aborted.
    *
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
    */
-  public void childSkiped( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING && m_state != ActivityState.OPEN )
+  public void childSkiped(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING && m_state != ActivityState.OPEN)
       return;
-    
-    Iterator  it  = m_childActivities.iterator();
+
+    Iterator<Activity> it = m_childActivities.iterator();
 
     boolean allSkipped = true;
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
+    while (it.hasNext()) {
+      Activity activity = it.next();
 
-      if ( activity.getState() != ActivityState.COMPLETED &&
-          activity.getState() != ActivityState.ABORT &&
-          activity.getState() != ActivityState.SKIPED ) {
+      if (activity.getState() != ActivityState.COMPLETED &&
+              activity.getState() != ActivityState.ABORT &&
+              activity.getState() != ActivityState.SKIPED) {
         return;
       }
-      
+
       if (activity.getState() == ActivityState.COMPLETED || activity.getState() == ActivityState.ABORT)
         allSkipped = false;
     }
-    
+
     if (allSkipped) {
       // TODO yx REFACTOR This is a dirty hack to cope with SubprocessLoopTest
       if (m_state == ActivityState.OPEN)
         super.deactivate();
       skip();
-    }
-    else
+    } else
       complete();
 
   }
 
-  public void complete ( ) throws EngineException
-  {
-  	// TODO yx REFACTOR
+  public void complete() throws EngineException {
+    // TODO yx REFACTOR
     // Composite activities might be completed if still open
     // This should be refactored
-    if ( m_state == ActivityState.OPEN )
+    if (m_state == ActivityState.OPEN)
       m_state = ActivityState.RUNNING;
-    
+
     super.complete();
   }
-  
+
 
   /**
    * @see de.objectcode.canyon.bpe.engine.activities.Activity#deactivate()
    */
-  public void skip ( ) throws EngineException
-  {
+  public void skip() throws EngineException {
     super.skip();
-    
-    Iterator it = m_childActivities.iterator();
-    
-    while ( it.hasNext()  ) {
-      Activity activity = (Activity)it.next();
-      
-      if ( activity.getState() == ActivityState.OPEN )
-        activity.deactivate();
-    }
-  }
-  
-  public void abort ( ) throws EngineException
-  {
-    super.abort();
-    
-    Iterator it = m_childActivities.iterator();
-    
-    while ( it.hasNext()  ) {
-      Activity activity = (Activity)it.next();
-      
-      // TODO yx REFACTOR
-      if ( activity.getState() == ActivityState.RUNNING )
-        activity.abort();
-      else if ( activity.getState() == ActivityState.OPEN )
+
+    for (Activity activity : m_childActivities) {
+      if (activity.getState() == ActivityState.OPEN)
         activity.deactivate();
     }
   }
 
-  public void reopen ( ) throws EngineException
-  {
+  public void abort() throws EngineException {
+    super.abort();
+
+    for (Activity activity : m_childActivities) {
+      // TODO yx REFACTOR
+      if (activity.getState() == ActivityState.RUNNING)
+        activity.abort();
+      else if (activity.getState() == ActivityState.OPEN)
+        activity.deactivate();
+    }
+  }
+
+  public void reopen() throws EngineException {
     super.reopen();
 
-    Iterator it = m_childActivities.iterator();
-    
-    while ( it.hasNext()  ) {
-      Activity activity = (Activity)it.next();
-      
-      if ( activity.getState() == ActivityState.COMPLETED || 
-          activity.getState() == ActivityState.ABORT || 
-          activity.getState() == ActivityState.SKIPED )
+    for (Activity activity : m_childActivities) {
+      if (activity.getState() == ActivityState.COMPLETED ||
+              activity.getState() == ActivityState.ABORT ||
+              activity.getState() == ActivityState.SKIPED)
         activity.reopen();
     }
   }
-  
-  public void deactivate ( ) throws EngineException
-  {
-  	// TODO yx CHECK
-  	// super.deactivate();
-  	
-    Iterator it = m_childActivities.iterator();
-    
-    while ( it.hasNext()  ) {
-      Activity activity = (Activity)it.next();
-      
-      if ( activity.getState() == ActivityState.OPEN )
+
+  public void deactivate() throws EngineException {
+    // TODO yx CHECK
+    // super.deactivate();
+
+    for (Activity activity : m_childActivities) {
+      if (activity.getState() == ActivityState.OPEN)
         activity.deactivate();
-      else if ( activity.getState() == ActivityState.RUNNING )
+      else if (activity.getState() == ActivityState.RUNNING)
         activity.abort();
     }
   }
-  
+
   /**
-   * @param in               Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#hydrate(java.io.ObjectInput)
+   * @param in Description of the Parameter
+   * @throws IOException Description of the Exception
    */
-  public void hydrate( HydrationContext context, ObjectInput in )
-    throws IOException
-  {
-    super.hydrate( context, in );
+  public void hydrate(HydrationContext context, ObjectInput in)
+          throws IOException {
+    super.hydrate(context, in);
 
-    Iterator  it  = m_childActivities.iterator();
-
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
-
-      activity.hydrate( context, in );
+    for (Activity activity : m_childActivities) {
+      activity.hydrate(context, in);
     }
   }
 
 
   /**
-   * @param out              Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#dehydrate(java.io.ObjectOutput)
+   * @param out Description of the Parameter
+   * @throws IOException Description of the Exception
    */
-  public void dehydrate( HydrationContext context, ObjectOutput out )
-    throws IOException
-  {
-    super.dehydrate( context, out );
+  public void dehydrate(HydrationContext context, ObjectOutput out)
+          throws IOException {
+    super.dehydrate(context, out);
 
-    Iterator  it  = m_childActivities.iterator();
-
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
-
-      activity.dehydrate( context, out );
+    for (Activity activity : m_childActivities) {
+      activity.dehydrate(context, out);
     }
   }
 }

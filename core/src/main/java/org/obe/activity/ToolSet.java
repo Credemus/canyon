@@ -56,12 +56,12 @@ import java.util.List;
 public class ToolSet implements Implementation, Serializable {
     static final long serialVersionUID = -3120702180107909751L;
 
-    private ArrayList tools;
+    private ArrayList<Tool> tools;
 
     /** Construct a new ToolSet. */
 
     public ToolSet(){
-        tools = new ArrayList();
+        tools = new ArrayList<Tool>();
     }
 
     /** Get a List of all tools in the set.
@@ -69,7 +69,7 @@ public class ToolSet implements Implementation, Serializable {
         @return a List of tools
     */
 
-    public List getTools(){
+    public List<Tool> getTools(){
         return tools;
     }
 

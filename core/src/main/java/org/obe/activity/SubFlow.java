@@ -44,6 +44,8 @@
 
 package org.obe.activity;
 
+import org.obe.data.ActualParameter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +66,7 @@ public class SubFlow implements Implementation, Serializable {
 
     private String id;
     private ExecutionType execution = DEFAULT_EXECUTION;
-    private List actualParameters;
+    private List<ActualParameter> actualParameters;
 
     /** Construct a new SubFlow which represents the specified workflow
      process ID.
@@ -127,7 +129,7 @@ public class SubFlow implements Implementation, Serializable {
      @return A List of actual parameters
      */
 
-    public List getActualParameters() {
+    public List<ActualParameter> getActualParameters() {
         return actualParameters;
     }
 

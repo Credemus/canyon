@@ -58,7 +58,7 @@ public class ExternalPackage implements Serializable {
     static final long serialVersionUID = -9203167030242295684L;
 
     private String href;
-    private Map extendedAttributes;
+    private Map<String, Object> extendedAttributes;
     private Package pkg;
 
     /** Construct a new ExternalPackage.
@@ -99,7 +99,7 @@ public class ExternalPackage implements Serializable {
         @return The extended attributes
     */
 
-    public Map getExtendedAttributes(){
+    public Map<String, Object> getExtendedAttributes(){
         return extendedAttributes;
     }
 

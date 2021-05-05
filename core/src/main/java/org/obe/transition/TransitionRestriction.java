@@ -47,24 +47,24 @@ package org.obe.transition;
 import java.io.Serializable;
 
 public class TransitionRestriction implements Serializable {
-    static final long serialVersionUID = -3557032357249855798L;
+  static final long serialVersionUID = -3557032357249855798L;
 
-    private Join join;
-    private Split split;
+  private Join join;
+  private Split split;
 
-    public Join getJoin(){
-        return join;
-    }
+  public Join getJoin() {
+    return join;
+  }
 
-    public void setJoin(Join join){
-        this.join = join;
-    }
+  public void setJoin(Join join) {
+    this.join = join;
+  }
 
-    public Split getSplit(){
-        return split;
-    }
+  public Split getSplit() {
+    return split;
+  }
 
-    public void setSplit(Split split){
-        this.split = split;
-    }
+  public void setSplit(Split split) {
+    this.split = split;
+  }
 }

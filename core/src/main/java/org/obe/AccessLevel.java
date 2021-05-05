@@ -71,7 +71,7 @@ public final class AccessLevel implements Serializable {
         PUBLIC,
         PRIVATE
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, AccessLevel> tagMap = new HashMap<String, AccessLevel>();
 
     private final int _value;
 
@@ -90,7 +90,7 @@ public final class AccessLevel implements Serializable {
      * @return The AccessLevel object or null
      */
     public static AccessLevel fromString(String tag) {
-        AccessLevel accessLevel = (AccessLevel)tagMap.get(tag);
+        AccessLevel accessLevel = tagMap.get(tag);
         if (accessLevel == null && tag != null)
             throw new IllegalArgumentException(tag);
         return accessLevel;

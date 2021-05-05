@@ -84,7 +84,7 @@ public final class ImplementationType implements Serializable {
         TOOL,
         SUBFLOW
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, ImplementationType> tagMap = new HashMap<String, ImplementationType>();
 
     static {
         for (int i = 0; i < TAGS.length; i++) {
@@ -103,7 +103,7 @@ public final class ImplementationType implements Serializable {
      * @return The ImplementationType object
      */
     public static ImplementationType fromString(String tag) {
-        ImplementationType implementationType = (ImplementationType)tagMap.get(tag);
+        ImplementationType implementationType = tagMap.get(tag);
         if (implementationType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return implementationType;

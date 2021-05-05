@@ -95,8 +95,8 @@ public final class DurationUnit implements Serializable {
         MINUTE,
         SECOND
     };
-    private static final HashMap tagMap = new HashMap();
-    private static final HashMap unitToMillisecondsMap = new HashMap();
+    private static final HashMap<String, DurationUnit> tagMap = new HashMap<String, DurationUnit>();
+    private static final HashMap<DurationUnit, Long> unitToMillisecondsMap = new HashMap<DurationUnit, Long>();
 
     private final int _value;
 
@@ -105,14 +105,14 @@ public final class DurationUnit implements Serializable {
             tagMap.put(TAGS[i], VALUES[i]);
         }
 
-        unitToMillisecondsMap.put(SECOND, new Long(1000));
-        unitToMillisecondsMap.put(MINUTE, new Long(1000 * 60));
-        unitToMillisecondsMap.put(HOUR, new Long(1000 * 60 * 60));
-        unitToMillisecondsMap.put(DAY, new Long(1000 * 60 * 60 * 24));
+        unitToMillisecondsMap.put(SECOND, 1000L);
+        unitToMillisecondsMap.put(MINUTE, (long) (1000 * 60));
+        unitToMillisecondsMap.put(HOUR, (long) (1000 * 60 * 60));
+        unitToMillisecondsMap.put(DAY, (long) (1000 * 60 * 60 * 24));
         unitToMillisecondsMap.put(MONTH,
-            new Long((long)(1000 * 60 * 60 * 24) * (long)30));
+                (long) (1000 * 60 * 60 * 24) * (long) 30);
         unitToMillisecondsMap.put(YEAR,
-            new Long((long)(1000 * 60 * 60 * 24) * (long)365));
+                (long) (1000 * 60 * 60 * 24) * (long) 365);
     }
 
     /**
@@ -124,7 +124,7 @@ public final class DurationUnit implements Serializable {
      * @return A DurationUnit or null
      */
     public static DurationUnit fromString(String tag) {
-        DurationUnit durationUnit = (DurationUnit)tagMap.get(tag);
+        DurationUnit durationUnit = tagMap.get(tag);
         if (durationUnit == null && tag != null)
             throw new IllegalArgumentException(tag);
         return durationUnit;
@@ -137,12 +137,12 @@ public final class DurationUnit implements Serializable {
      * @return The number of milliseconds
      */
     public static long unitToMilliseconds(DurationUnit unit) {
-        Long value = (Long)unitToMillisecondsMap.get(unit);
+        Long value = unitToMillisecondsMap.get(unit);
         if (value == null) {
             throw new IllegalArgumentException("Unknown duration unit: " +
                 unit);
         } else {
-            return value.longValue();
+            return value;
         }
     }
 

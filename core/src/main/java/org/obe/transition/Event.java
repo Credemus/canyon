@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.obe.AbstractWFElement;
+import org.obe.data.ActualParameter;
 
 /**
  * Describes an event-triggered transition.  This is an OBE XPDL-1.0 extension.
@@ -57,7 +58,7 @@ import org.obe.AbstractWFElement;
  */
 public final class Event extends AbstractWFElement {
     static final long serialVersionUID = -8245483497940244460L;
-    private List _actualParameters = new ArrayList();
+    private final List<ActualParameter> _actualParameters = new ArrayList<ActualParameter>();
     private String _dataField;
 
     public Event(String id, String dataField) {
@@ -65,7 +66,7 @@ public final class Event extends AbstractWFElement {
         _dataField = dataField;
     }
 
-    public List getActualParameters() {
+    public List<ActualParameter> getActualParameters() {
         return _actualParameters;
     }
 
@@ -94,7 +95,7 @@ public final class Event extends AbstractWFElement {
     /**
      * <em>Unsupported operation.  Do not call.</em>
      */
-    public Map getExtendedAttributes() {
+    public Map<String, Object> getExtendedAttributes() {
         throw new UnsupportedOperationException("getExtendedAttributes");
     }
 }

@@ -85,7 +85,7 @@ public final class ParticipantType implements Serializable {
         HUMAN,
         SYSTEM
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, ParticipantType> tagMap = new HashMap<String, ParticipantType>();
 
     private final int _value;
 
@@ -96,7 +96,7 @@ public final class ParticipantType implements Serializable {
     }
 
     public static ParticipantType fromString(String tag) {
-        ParticipantType participantType = (ParticipantType)tagMap.get(tag);
+        ParticipantType participantType = tagMap.get(tag);
         if (participantType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return participantType;

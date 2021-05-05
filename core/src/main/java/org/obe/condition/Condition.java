@@ -57,15 +57,15 @@ public interface Condition{
     
         @return The condition type
     */
-    
-    public ConditionType getType();
+
+    ConditionType getType();
     
     /** Set the condition type.
     
         @param type The new condition type
     */
-    
-    public void setType(ConditionType type);
+
+    void setType(ConditionType type);
     
     /** Return the value of the condition.  The value is the actual 
         condition logic.  The language for the condition logic is 
@@ -73,21 +73,21 @@ public interface Condition{
         
         @return The value
     */
-    
-    public String getValue();
+
+    String getValue();
     
     /** Set the condition logic.
     
         @param value The condition logic
     */
-    
-    public void setValue(String value);
+
+    void setValue(String value);
     
     /** Get a list of all expressions.
         
         @return The expressions
     */
-    
-    public List getXpressions();
+
+    List<Xpression> getXpressions();
     
 }

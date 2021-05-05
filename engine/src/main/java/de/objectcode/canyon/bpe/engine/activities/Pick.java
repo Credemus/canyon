@@ -23,39 +23,36 @@ import de.objectcode.canyon.bpe.util.HydrationContext;
 import de.objectcode.canyon.bpe.util.IDomSerializable;
 
 /**
- * @author    junglas
- * @created   16. Juni 2004
+ * @author junglas
+ * @created 16. Juni 2004
  */
-public class Pick extends Activity implements IActivityContainer
-{
-	static final long serialVersionUID = -5746536574452726475L;
-	
-	private final static  Log                 log               = LogFactory.getLog( Pick.class );
-  
-  private       List  m_onMessages;
+public class Pick extends Activity implements IActivityContainer {
+  static final long serialVersionUID = -5746536574452726475L;
+
+  private final static Log log = LogFactory.getLog(Pick.class);
+
+  private List<OnMessage> m_onMessages;
 
 
   /**
-   *Constructor for the Pick object
+   * Constructor for the Pick object
    *
-   * @param name   Description of the Parameter
-   * @param scope  Description of the Parameter
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
    */
-  public Pick( String name, Scope scope )
-  {
-    super( name, scope );
+  public Pick(String name, Scope scope) {
+    super(name, scope);
 
-    m_onMessages = new ArrayList();
+    m_onMessages = new ArrayList<OnMessage>();
   }
 
 
   /**
    * Gets the elementName attribute of the Pick object
    *
-   * @return   The elementName value
+   * @return The elementName value
    */
-  public String getElementName()
-  {
+  public String getElementName() {
     return "pick";
   }
 
@@ -63,17 +60,16 @@ public class Pick extends Activity implements IActivityContainer
   /**
    * Adds a feature to the OnMessage attribute of the Pick object
    *
-   * @param activity            The feature to be added to the OnMessage attribute
-   * @param messageOperation    The feature to be added to the OnMessage attribute
-   * @param messageContentType  The feature to be added to the OnMessage attribute
-   * @return                    Description of the Return Value
+   * @param activity           The feature to be added to the OnMessage attribute
+   * @param messageOperation   The feature to be added to the OnMessage attribute
+   * @param messageContentType The feature to be added to the OnMessage attribute
+   * @return Description of the Return Value
    */
-  public OnMessage addOnMessage( String messageOperation, ComplexType messageContentType, Activity activity )
-  {
-    activity.setParentActivity( this );
+  public OnMessage addOnMessage(String messageOperation, ComplexType messageContentType, Activity activity) {
+    activity.setParentActivity(this);
 
-    OnMessage  onMessage  = new OnMessage( messageOperation, messageContentType, activity );
-    m_onMessages.add( onMessage );
+    OnMessage onMessage = new OnMessage(messageOperation, messageContentType, activity);
+    m_onMessages.add(onMessage);
 
     return onMessage;
   }
@@ -82,20 +78,19 @@ public class Pick extends Activity implements IActivityContainer
   /**
    * Adds a feature to the OnMessage attribute of the Pick object
    *
-   * @param messageOperation    The feature to be added to the OnMessage attribute
-   * @param correlationSet      The feature to be added to the OnMessage attribute
-   * @param activity            The feature to be added to the OnMessage attribute
-   * @param messageContentType  The feature to be added to the OnMessage attribute
-   * @return                    Description of the Return Value
+   * @param messageOperation   The feature to be added to the OnMessage attribute
+   * @param correlationSet     The feature to be added to the OnMessage attribute
+   * @param activity           The feature to be added to the OnMessage attribute
+   * @param messageContentType The feature to be added to the OnMessage attribute
+   * @return Description of the Return Value
    */
-  public OnMessage addOnMessage( String messageOperation, ComplexType messageContentType, CorrelationSet correlationSet, Activity activity )
-  {
-    activity.setParentActivity( this );
+  public OnMessage addOnMessage(String messageOperation, ComplexType messageContentType, CorrelationSet correlationSet, Activity activity) {
+    activity.setParentActivity(this);
 
-    OnMessage  onMessage  = new OnMessage( messageOperation, messageContentType, activity );
-    m_onMessages.add( onMessage );
+    OnMessage onMessage = new OnMessage(messageOperation, messageContentType, activity);
+    m_onMessages.add(onMessage);
 
-    onMessage.addCorrelation( correlationSet, false );
+    onMessage.addCorrelation(correlationSet, false);
 
     return onMessage;
   }
@@ -104,34 +99,31 @@ public class Pick extends Activity implements IActivityContainer
   /**
    * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#isNonBlocked()
    */
-  public boolean isNonBlocked ( )
-  {
+  public boolean isNonBlocked() {
     return false;
   }
-  
+
   /**
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.activities.IActivityContainer#childAborted(de.objectcode.canyon.bpe.engine.activities.Activity)
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#childAborted(de.objectcode.canyon.bpe.engine.activities.Activity)
    */
-  public void childAborted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childAborted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
     complete();
   }
 
 
   /**
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.activities.IActivityContainer#childCompleted(de.objectcode.canyon.bpe.engine.activities.Activity)
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#childCompleted(de.objectcode.canyon.bpe.engine.activities.Activity)
    */
-  public void childCompleted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childCompleted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
     complete();
   }
@@ -140,68 +132,51 @@ public class Pick extends Activity implements IActivityContainer
   /**
    * Description of the Method
    *
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
    */
-  public void childSkiped( Activity childActivity )
-    throws EngineException { }
-
-
-  /**
-   * @param element  Description of the Parameter
-   * @see            de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
-   */
-  public void toDom( Element element )
-  {
-    super.toDom( element );
-
-    Iterator  it  = m_onMessages.iterator();
-
-    while ( it.hasNext() ) {
-      OnMessage  onMessage  = ( OnMessage ) it.next();
-
-      onMessage.toDom( element.addElement( onMessage.getElementName() ) );
-    }
+  public void childSkiped(Activity childActivity)
+          throws EngineException {
   }
 
 
-
   /**
-   * @param in               Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#hydrate(java.io.ObjectInput)
+   * @param element Description of the Parameter
+   * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
    */
-  public void hydrate( HydrationContext context, ObjectInput in )
-    throws IOException
-  {
-    super.hydrate( context, in );
+  public void toDom(Element element) {
+    super.toDom(element);
 
-    Iterator  it  = m_onMessages.iterator();
-
-    while ( it.hasNext() ) {
-      OnMessage  onMessage  = ( OnMessage ) it.next();
-
-      onMessage.getActivity().hydrate( context, in );
+    for (OnMessage onMessage : m_onMessages) {
+      onMessage.toDom(element.addElement(onMessage.getElementName()));
     }
   }
 
 
   /**
-   * @param out              Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#dehydrate(java.io.ObjectOutput)
+   * @param in Description of the Parameter
+   * @throws IOException Description of the Exception
    */
-  public void dehydrate( HydrationContext context, ObjectOutput out )
-    throws IOException
-  {
-    super.dehydrate( context, out );
+  public void hydrate(HydrationContext context, ObjectInput in)
+          throws IOException {
+    super.hydrate(context, in);
 
-    Iterator  it  = m_onMessages.iterator();
+    for (OnMessage onMessage : m_onMessages) {
+      onMessage.getActivity().hydrate(context, in);
+    }
+  }
 
-    while ( it.hasNext() ) {
-      OnMessage  onMessage  = ( OnMessage ) it.next();
 
-      onMessage.getActivity().dehydrate( context, out );
+  /**
+   * @param out Description of the Parameter
+   * @throws IOException Description of the Exception
+   */
+  public void dehydrate(HydrationContext context, ObjectOutput out)
+          throws IOException {
+    super.dehydrate(context, out);
+
+    for (OnMessage onMessage : m_onMessages) {
+      onMessage.getActivity().dehydrate(context, out);
     }
   }
 
@@ -209,87 +184,75 @@ public class Pick extends Activity implements IActivityContainer
   /**
    * Description of the Class
    *
-   * @author    junglas
-   * @created   16. Juni 2004
+   * @author junglas
+   * @created 16. Juni 2004
    */
-  public class OnMessage implements IMessageReceiver, IDomSerializable, Serializable
-  {
-  	static final long serialVersionUID = -889092738916115684L;
-  	
-  	private    String                 m_messageOperation;
-    private    ComplexType            m_messageContentType;
-    private    Activity               m_activity;
-    protected  List                   m_correlations;
-    private    IAssignableExpression  m_inputExpression;
+  public class OnMessage implements IMessageReceiver, IDomSerializable, Serializable {
+    static final long serialVersionUID = -889092738916115684L;
+
+    private String m_messageOperation;
+    private ComplexType m_messageContentType;
+    private Activity m_activity;
+    protected List<CorrelationDefinition> m_correlations;
+    private IAssignableExpression m_inputExpression;
 
 
     /**
-     *Constructor for the OnMessage object
+     * Constructor for the OnMessage object
      *
-     * @param messageOperation    Description of the Parameter
-     * @param activity            Description of the Parameter
-     * @param messageContentType  Description of the Parameter
+     * @param messageOperation   Description of the Parameter
+     * @param activity           Description of the Parameter
+     * @param messageContentType Description of the Parameter
      */
-    private OnMessage( String messageOperation, ComplexType messageContentType, Activity activity )
-    {
+    private OnMessage(String messageOperation, ComplexType messageContentType, Activity activity) {
       m_messageOperation = messageOperation;
       m_messageContentType = messageContentType;
       m_activity = activity;
-      m_correlations = new ArrayList();
-      m_scope.getProcess().addMessageReceiver( this );
+      m_correlations = new ArrayList<CorrelationDefinition>();
+      m_scope.getProcess().addMessageReceiver(this);
     }
 
 
     /**
-     * @param inputExpression  The inputExpression to set.
+     * @param inputExpression The inputExpression to set.
      */
-    public void setInputExpression( IAssignableExpression inputExpression )
-    {
+    public void setInputExpression(IAssignableExpression inputExpression) {
       m_inputExpression = inputExpression;
     }
 
 
     /**
-     * @return   The correlations value
-     * @see      de.objectcode.canyon.bpe.engine.correlation.IMessageReceiver#getCorrelations()
+     * @return The correlations value
      */
-    public CorrelationSet[] getCorrelationSets()
-    {
-      List              correlationSets  = new ArrayList();
-      Iterator          it               = m_correlations.iterator();
-      int               i;
+    public CorrelationSet[] getCorrelationSets() {
+      List<CorrelationSet> correlationSets = new ArrayList<CorrelationSet>();
 
-      for ( i = 0; it.hasNext(); i++ ) {
-        CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-        if ( !correlationDef.isInitiate() ) {
-          correlationSets.add( correlationDef.getCorrelationSet() );
+      for(CorrelationDefinition correlationDef : m_correlations) {
+        if (!correlationDef.isInitiate()) {
+          correlationSets.add(correlationDef.getCorrelationSet());
         }
       }
 
-      CorrelationSet[]  ret              = new CorrelationSet[correlationSets.size()];
+      CorrelationSet[] ret = new CorrelationSet[correlationSets.size()];
 
-      correlationSets.toArray( ret );
+      correlationSets.toArray(ret);
 
       return ret;
     }
 
 
     /**
-     * @return   The messageType value
-     * @see      de.objectcode.canyon.bpe.engine.correlation.IMessageReceiver#getMessageType()
+     * @return The messageType value
      */
-    public String getMessageOperation()
-    {
+    public String getMessageOperation() {
       return m_messageOperation;
     }
 
 
     /**
-     * @return   Returns the messageContentType.
+     * @return Returns the messageContentType.
      */
-    public ComplexType getMessageContentType()
-    {
+    public ComplexType getMessageContentType() {
       return m_messageContentType;
     }
 
@@ -297,10 +260,9 @@ public class Pick extends Activity implements IActivityContainer
     /**
      * Gets the active attribute of the OnMessage object
      *
-     * @return   The active value
+     * @return The active value
      */
-    public boolean isActive()
-    {
+    public boolean isActive() {
       return m_state == ActivityState.RUNNING;
     }
 
@@ -308,29 +270,26 @@ public class Pick extends Activity implements IActivityContainer
     /**
      * Gets the createInstance attribute of the OnMessage object
      *
-     * @return   The createInstance value
+     * @return The createInstance value
      */
-    public boolean isCreateInstance()
-    {
+    public boolean isCreateInstance() {
       return false;
     }
 
 
     /**
-     * @return   Returns the activity.
+     * @return Returns the activity.
      */
-    public Activity getActivity()
-    {
+    public Activity getActivity() {
       return m_activity;
     }
 
 
     /**
-     * @return   The elementName value
-     * @see      de.objectcode.canyon.bpe.util.IDomSerializable#getElementName()
+     * @return The elementName value
+     * @see de.objectcode.canyon.bpe.util.IDomSerializable#getElementName()
      */
-    public String getElementName()
-    {
+    public String getElementName() {
       return "onMessage";
     }
 
@@ -338,51 +297,40 @@ public class Pick extends Activity implements IActivityContainer
     /**
      * Adds a feature to the Correlation attribute of the OnMessage object
      *
-     * @param correlationSet  The feature to be added to the Correlation attribute
-     * @param initiate        The feature to be added to the Correlation attribute
+     * @param correlationSet The feature to be added to the Correlation attribute
+     * @param initiate       The feature to be added to the Correlation attribute
      */
-    public void addCorrelation( CorrelationSet correlationSet, boolean initiate )
-    {
-      m_correlations.add( new CorrelationDefinition( correlationSet, initiate ) );
-      m_scope.addCorrelationSet( correlationSet );
+    public void addCorrelation(CorrelationSet correlationSet, boolean initiate) {
+      m_correlations.add(new CorrelationDefinition(correlationSet, initiate));
+      m_scope.addCorrelationSet(correlationSet);
     }
 
 
     /**
-     * @param message              Description of the Parameter
-     * @return                     Description of the Return Value
-     * @exception EngineException  Description of the Exception
-     * @see                        de.objectcode.canyon.bpe.engine.correlation.IMessageReceiver#onMessage(de.objectcode.canyon.bpe.engine.correlation.IMessage)
+     * @param message Description of the Parameter
+     * @return Description of the Return Value
+     * @throws EngineException Description of the Exception
      */
-    public boolean onMessage( Message message )
-      throws EngineException
-    {
-      if ( log.isDebugEnabled() ) {
+    public boolean onMessage(Message message)
+            throws EngineException {
+      if (log.isDebugEnabled()) {
         log.debug("onMessage: " + message);
       }
-      
-      Iterator  it  = m_onMessages.iterator();
 
-      while ( it.hasNext() ) {
-        OnMessage  onMessage  = ( OnMessage ) it.next();
-
-        if ( onMessage != this ) {
+      for (OnMessage onMessage : m_onMessages) {
+        if (onMessage != this) {
           onMessage.getActivity().deactivate();
         }
       }
 
-      if ( m_inputExpression != null ) {
-        m_inputExpression.assign( Pick.this, message.getContent() );
+      if (m_inputExpression != null) {
+        m_inputExpression.assign(Pick.this, message.getContent());
       }
 
-      if ( !m_correlations.isEmpty() ) {
-        it = m_correlations.iterator();
-
-        while ( it.hasNext() ) {
-          CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-          if ( correlationDef.isInitiate() ) {
-            m_scope.addCorrelation( correlationDef.getCorrelationSet().initiateCorrelation( message ) );
+      if (!m_correlations.isEmpty()) {
+        for (CorrelationDefinition correlationDef : m_correlations) {
+          if (correlationDef.isInitiate()) {
+            m_scope.addCorrelation(correlationDef.getCorrelationSet().initiateCorrelation(message));
           }
         }
       }
@@ -394,32 +342,28 @@ public class Pick extends Activity implements IActivityContainer
 
 
     /**
-     * @param element  Description of the Parameter
-     * @see            de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
+     * @param element Description of the Parameter
+     * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
      */
-    public void toDom( Element element )
-    {
-      element.addAttribute( "messageType", m_messageOperation );
+    public void toDom(Element element) {
+      element.addAttribute("messageType", m_messageOperation);
 
-      if ( m_inputExpression != null ) {
-        Element  inputElement  = element.addElement( "input" );
+      if (m_inputExpression != null) {
+        Element inputElement = element.addElement("input");
 
-        m_inputExpression.toDom( inputElement.addElement( m_inputExpression.getElementName() ) );
+        m_inputExpression.toDom(inputElement.addElement(m_inputExpression.getElementName()));
       }
 
-      if ( !m_correlations.isEmpty() ) {
-        int       i;
-        Element   correlationsElement  = element.addElement( "correlations" );
-        Iterator  it                   = m_correlations.iterator();
+      if (!m_correlations.isEmpty()) {
+        int i;
+        Element correlationsElement = element.addElement("correlations");
 
-        while ( it.hasNext() ) {
-          CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-          correlationDef.toDom( correlationsElement.addElement( correlationDef.getElementName() ) );
+        for (CorrelationDefinition correlationDef : m_correlations) {
+          correlationDef.toDom(correlationsElement.addElement(correlationDef.getElementName()));
         }
       }
 
-      m_activity.toDom( element.addElement( m_activity.getElementName() ) );
+      m_activity.toDom(element.addElement(m_activity.getElementName()));
     }
   }
 }

@@ -116,12 +116,12 @@ public final class DataTypes implements Serializable {
         DataTypes.EXTERNAL_REFERENCE,
         DataTypes.SCHEMA
     };
-    public static final Map tagMap;
+    public static final Map<String, DataTypes> tagMap;
 
     private final int _value;
 
     static {
-        HashMap map = new HashMap();
+        HashMap<String, DataTypes> map = new HashMap<String, DataTypes>();
         for (int i = 0; i < TAGS.length; i++) {
             map.put(TAGS[i], VALUES[i]);
         }
@@ -129,7 +129,7 @@ public final class DataTypes implements Serializable {
     }
 
     public static DataTypes fromString(String tag) {
-        DataTypes dataTypes = (DataTypes)tagMap.get(tag);
+        DataTypes dataTypes = tagMap.get(tag);
         if (dataTypes == null && tag != null)
             throw new IllegalArgumentException(tag);
         return dataTypes;

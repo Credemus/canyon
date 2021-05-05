@@ -61,13 +61,13 @@ public class RedefinableHeader implements Serializable {
     private String version;
     private String codepage;
     private String countrykey;
-    private List responsibles;
+    private List<String> responsibles;
     private PublicationStatus publicationStatus;
 
     /** Construct a new RedefinableHeader. */
 
     public RedefinableHeader(){
-        responsibles = new ArrayList();
+        responsibles = new ArrayList<String>();
     }
 
     /** Get the entity's author.
@@ -127,7 +127,7 @@ public class RedefinableHeader implements Serializable {
         @return A List of participant ids
     */
 
-    public List getResponsibles(){
+    public List<String> getResponsibles(){
         return responsibles;
     }
 

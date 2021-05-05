@@ -51,34 +51,37 @@ import java.io.Writer;
 import org.obe.Package;
 import org.obe.parser.XPDLNames;
 
-/** Standard interface for classes which can serialize a Package to an XPDL
-    document.
-    
-    @author Anthony Eden
-*/
+/**
+ * Standard interface for classes which can serialize a Package to an XPDL
+ * document.
+ *
+ * @author Anthony Eden
+ */
 
-public interface XPDLSerializer extends XPDLNames{
-    
-    /** Serialize the package to the given output stream.
-    
-        @param pkg The Package
-        @param out The OutputStream
-        @throws IOException Any I/O exception
-        @throws XPDLSerializerException Any serializer Exception
-    */
-    
-    public void serialize(Package pkg, OutputStream out) throws 
-    IOException, XPDLSerializerException;
-    
-    /** Serialize the package to the given writer.
-    
-        @param pkg The Package
-        @param out The Writer
-        @throws IOException Any I/O exception
-        @throws XPDLSerializerException Any serializer Exception
-    */
-    
-    public void serialize(Package pkg, Writer out) throws 
-    IOException, XPDLSerializerException;
+public interface XPDLSerializer extends XPDLNames {
+
+  /**
+   * Serialize the package to the given output stream.
+   *
+   * @param pkg The Package
+   * @param out The OutputStream
+   * @throws IOException             Any I/O exception
+   * @throws XPDLSerializerException Any serializer Exception
+   */
+
+  void serialize(Package pkg, OutputStream out) throws
+          IOException, XPDLSerializerException;
+
+  /**
+   * Serialize the package to the given writer.
+   *
+   * @param pkg The Package
+   * @param out The Writer
+   * @throws IOException             Any I/O exception
+   * @throws XPDLSerializerException Any serializer Exception
+   */
+
+  void serialize(Package pkg, Writer out) throws
+          IOException, XPDLSerializerException;
 
 }

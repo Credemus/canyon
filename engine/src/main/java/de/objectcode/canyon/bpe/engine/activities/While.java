@@ -12,98 +12,83 @@ import org.dom4j.Element;
  * @created 17. Juni 2004
  */
 public class While extends CompositeActivity {
-	final static long serialVersionUID = 5124517202719720842L;
+  final static long serialVersionUID = 5124517202719720842L;
 
-	protected ICondition m_condition;
+  protected ICondition m_condition;
 
-	/**
-	 * Constructor for the While object
-	 * 
-	 * @param name
-	 *          Description of the Parameter
-	 * @param scope
-	 *          Description of the Parameter
-	 */
-	public While(String name, Scope scope) {
-		super(name, scope);
-	}
+  /**
+   * Constructor for the While object
+   *
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
+   */
+  public While(String name, Scope scope) {
+    super(name, scope);
+  }
 
-	/**
-	 * Gets the elementName attribute of the While object
-	 * 
-	 * @return The elementName value
-	 */
-	public String getElementName() {
-		return "while";
-	}
+  /**
+   * Gets the elementName attribute of the While object
+   *
+   * @return The elementName value
+   */
+  public String getElementName() {
+    return "while";
+  }
 
-	/**
-	 * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#isNonBlocked()
-	 */
-	public boolean isNonBlocked() {
-		return false;
-	}
+  /**
+   * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#isNonBlocked()
+   */
+  public boolean isNonBlocked() {
+    return false;
+  }
 
-	/**
-	 * @exception EngineException
-	 *              Description of the Exception
-	 * @see de.objectcode.canyon.bpe.engine.activities.Activity#complete()
-	 */
-	public void complete() throws EngineException {
-		if (m_condition.eval(this)) {
-			Iterator it = m_childActivities.iterator();
+  /**
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.Activity#complete()
+   */
+  public void complete() throws EngineException {
+    if (m_condition.eval(this)) {
 
-			while (it.hasNext()) {
-				Activity activity = (Activity) it.next();
+      for (Activity activity : m_childActivities) {
+        activity.reopen();
+        activity.activate();
+      }
+    } else
+      super.complete();
+  }
 
-				activity.reopen();
-				activity.activate();
-			}
-		} else
-			super.complete();
-	}
+  /**
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.Activity#start()
+   */
+  public void start() throws EngineException {
+    super.start();
 
-	/**
-	 * @exception EngineException
-	 *              Description of the Exception
-	 * @see de.objectcode.canyon.bpe.engine.activities.Activity#start()
-	 */
-	public void start() throws EngineException {
-		super.start();
+    if (m_condition.eval(this)) {
 
-		if (m_condition.eval(this)) {
-			Iterator it = m_childActivities.iterator();
+      for (Activity activity : m_childActivities) {
+        activity.activate();
+      }
+    }
+  }
 
-			while (it.hasNext()) {
-				Activity activity = (Activity) it.next();
+  /**
+   * @param element Description of the Parameter
+   * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
+   */
+  public void toDom(Element element) {
+    super.toDom(element);
 
-				activity.activate();
-			}
-		}
-	}
-
-	/**
-	 * @param element
-	 *          Description of the Parameter
-	 * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
-	 */
-	public void toDom(Element element) {
-		super.toDom(element);
-		
-    if ( m_condition != null ) {
-      m_condition.toDom( element.addElement( m_condition.getElementName() ) );
+    if (m_condition != null) {
+      m_condition.toDom(element.addElement(m_condition.getElementName()));
     }
 
-		Iterator it = m_childActivities.iterator();
+    for (Activity activity : m_childActivities) {
+      activity.toDom(element.addElement(activity.getElementName()));
+    }
+  }
 
-		while (it.hasNext()) {
-			Activity activity = (Activity) it.next();
-
-			activity.toDom(element.addElement(activity.getElementName()));
-		}
-	}
-
-	public void setCondition(ICondition condition) {
-		m_condition = condition;
-	}
+  public void setCondition(ICondition condition) {
+    m_condition = condition;
+  }
 }

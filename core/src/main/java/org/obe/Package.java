@@ -44,6 +44,13 @@
 
 package org.obe;
 
+import org.obe.application.Application;
+import org.obe.data.DataField;
+import org.obe.data.TypeDeclaration;
+import org.obe.participant.Participant;
+import org.obe.transition.EventType;
+import org.obe.workflow.WorkflowProcess;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,14 +67,14 @@ public class Package extends AbstractWFElement {
     private RedefinableHeader redefinableHeader;
     private ConformanceClass conformanceClass;
     private Script script;
-    private List externalPackages = new ArrayList();
-    private List typeDeclarations = new ArrayList();
-    private List participants = new ArrayList();
-    private List applications = new ArrayList();
+    private List<ExternalPackage> externalPackages = new ArrayList<ExternalPackage>();
+    private List<TypeDeclaration> typeDeclarations = new ArrayList<TypeDeclaration>();
+    private List<Participant> participants = new ArrayList<Participant>();
+    private List<Application> applications = new ArrayList<Application>();
     private List procedures = new ArrayList();
-    private List dataFields = new ArrayList();
-    private List eventTypes = new ArrayList();
-    private List workflowProcesses = new ArrayList();
+    private List<DataField> dataFields = new ArrayList<DataField>();
+    private List<EventType> eventTypes = new ArrayList<EventType>();
+    private List<WorkflowProcess> workflowProcesses = new ArrayList<WorkflowProcess>();
 
     /** Construct a new Package.
 
@@ -177,23 +184,23 @@ public class Package extends AbstractWFElement {
         this.script = script;
     }
 
-    public List getExternalPackages() {
+    public List<ExternalPackage> getExternalPackages() {
         return externalPackages;
     }
 
-    public List getTypeDeclarations() {
+    public List<TypeDeclaration> getTypeDeclarations() {
         return typeDeclarations;
     }
 
-    public List getParticipants() {
+    public List<Participant> getParticipants() {
         return participants;
     }
 
-    public List getApplications() {
+    public List<Application> getApplications() {
         return applications;
     }
 
-    public List getEventTypes() {
+    public List<EventType> getEventTypes() {
         return eventTypes;
     }
 
@@ -201,11 +208,11 @@ public class Package extends AbstractWFElement {
         return procedures;
     }
 
-    public List getDataFields() {
+    public List<DataField> getDataFields() {
         return dataFields;
     }
 
-    public List getWorkflowProcesses() {
+    public List<WorkflowProcess> getWorkflowProcesses() {
         return workflowProcesses;
     }
 

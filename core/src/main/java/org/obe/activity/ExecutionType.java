@@ -78,7 +78,7 @@ public final class ExecutionType implements Serializable {
         SYNCHRONOUS,
         ASYNCHRONOUS
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, ExecutionType> tagMap = new HashMap<String, ExecutionType>();
 
     private final int _value;
 
@@ -96,7 +96,7 @@ public final class ExecutionType implements Serializable {
      * @return The ExecutionType object
      */
     public static ExecutionType fromString(String tag) {
-        ExecutionType executionType = (ExecutionType)tagMap.get(tag);
+        ExecutionType executionType = tagMap.get(tag);
         if (executionType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return executionType;

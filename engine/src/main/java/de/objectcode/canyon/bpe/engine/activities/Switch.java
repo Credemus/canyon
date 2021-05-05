@@ -15,46 +15,42 @@ import de.objectcode.canyon.bpe.engine.evaluator.ICondition;
 import de.objectcode.canyon.bpe.util.HydrationContext;
 
 /**
- * @author    junglas
- * @created   9. Juni 2004
+ * @author junglas
+ * @created 9. Juni 2004
  */
-public class Switch extends Activity implements IActivityContainer
-{
+public class Switch extends Activity implements IActivityContainer {
   static final long serialVersionUID = 3977601137806435607L;
-  
-  private  List      m_cases;
-  private  Activity  m_otherwise;
+
+  private List<Case> m_cases;
+  private Activity m_otherwise;
 
 
   /**
-   *Constructor for the Switch object
+   * Constructor for the Switch object
    *
-   * @param name   Description of the Parameter
-   * @param scope  Description of the Parameter
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
    */
-  public Switch( String name, Scope scope )
-  {
-    super( name, scope );
+  public Switch(String name, Scope scope) {
+    super(name, scope);
 
-    m_cases = new ArrayList();
+    m_cases = new ArrayList<Case>();
   }
 
 
   /**
-   * @param otherwise  The otherwise to set.
+   * @param otherwise The otherwise to set.
    */
-  public void setOtherwise( Activity otherwise )
-  {
+  public void setOtherwise(Activity otherwise) {
     otherwise.setParentActivity(this);
     m_otherwise = otherwise;
   }
 
 
   /**
-   * @return   Returns the otherwise.
+   * @return Returns the otherwise.
    */
-  public Activity getOtherwise()
-  {
+  public Activity getOtherwise() {
     return m_otherwise;
   }
 
@@ -62,115 +58,108 @@ public class Switch extends Activity implements IActivityContainer
   /**
    * Gets the elementName attribute of the Switch object
    *
-   * @return   The elementName value
+   * @return The elementName value
    */
-  public String getElementName()
-  {
+  public String getElementName() {
     return "switch";
   }
 
   /**
    * @see de.objectcode.canyon.bpe.engine.activities.IActivityContainer#isNonBlocked()
    */
-  public boolean isNonBlocked ( )
-  {
+  public boolean isNonBlocked() {
     return false;
   }
 
   /**
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.activities.CompositeActivity#childAborted(de.objectcode.canyon.bpe.engine.activities.Activity)
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.CompositeActivity#childAborted(de.objectcode.canyon.bpe.engine.activities.Activity)
    */
-  public void childAborted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childAborted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
-    
+
     complete();
   }
 
 
   /**
-   * @param childActivity        Description of the Parameter
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.activities.CompositeActivity#childCompleted(de.objectcode.canyon.bpe.engine.activities.Activity)
+   * @param childActivity Description of the Parameter
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.CompositeActivity#childCompleted(de.objectcode.canyon.bpe.engine.activities.Activity)
    */
-  public void childCompleted( Activity childActivity )
-    throws EngineException
-  {
-    if ( m_state != ActivityState.RUNNING )
+  public void childCompleted(Activity childActivity)
+          throws EngineException {
+    if (m_state != ActivityState.RUNNING)
       return;
-    
+
     complete();
   }
 
-  public void childSkiped( Activity childActivity )
-  throws EngineException
-  {
+  public void childSkiped(Activity childActivity)
+          throws EngineException {
   }
 
 
   /**
    * Adds a feature to the Case attribute of the Switch object
    *
-   * @param condition  The feature to be added to the Case attribute
-   * @param activity   The feature to be added to the Case attribute
+   * @param condition The feature to be added to the Case attribute
+   * @param activity  The feature to be added to the Case attribute
    */
-  public void addCase( ICondition condition, Activity activity )
-  {
+  public void addCase(ICondition condition, Activity activity) {
     activity.setParentActivity(this);
-    m_cases.add( new Case( condition, activity ) );
+    m_cases.add(new Case(condition, activity));
   }
 
 
   /**
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.activities.Activity#start()
+   * @throws EngineException Description of the Exception
+   * @see de.objectcode.canyon.bpe.engine.activities.Activity#start()
    */
   public void start()
-    throws EngineException
-  {
+          throws EngineException {
     super.start();
 
-    Iterator  it  = m_cases.iterator();
+    Iterator<Case> it = m_cases.iterator();
 
-    while ( it.hasNext() ) {
-      Case  c  = ( Case ) it.next();
+    while (it.hasNext()) {
+      Case c = it.next();
 
-      if ( c.getCondition().eval( this ) ) {
+      if (c.getCondition().eval(this)) {
         c.getActivity().activate();
-        
+
         it = m_cases.iterator();
-        
-        while ( it.hasNext() ) {
-          Case c1 = (Case)it.next();
-          
-          if ( c1 != c ) {
+
+        while (it.hasNext()) {
+          Case c1 = it.next();
+
+          if (c1 != c) {
             c1.getActivity().deactivate();
           }
         }
         m_otherwise.deactivate();
-        
+
         return;
       }
     }
 
-    if ( m_otherwise != null ) {
+    if (m_otherwise != null) {
       m_otherwise.activate();
 
       it = m_cases.iterator();
-      
-      while ( it.hasNext() ) {
-        Case c1 = (Case)it.next();
-        
+
+      while (it.hasNext()) {
+        Case c1 = it.next();
+
         c1.getActivity().deactivate();
       }
-      
+
       return;
     }
-    
+
     complete();
   }
 
@@ -178,107 +167,83 @@ public class Switch extends Activity implements IActivityContainer
   /**
    * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
    */
-  public void toDom (Element element)
-  {
+  public void toDom(Element element) {
     super.toDom(element);
-    
-    Iterator it = m_cases.iterator();
-    
-    while ( it.hasNext() ) {
-      Case c = (Case)it.next();
+
+    for (Case c : m_cases) {
       Element caseElement = element.addElement("case");
-      
+
       c.toDom(caseElement);
     }
-    
-    if ( m_otherwise != null ) {
+
+    if (m_otherwise != null) {
       Element otherwiseElement = element.addElement("otherwise");
-      
+
       m_otherwise.toDom(otherwiseElement.addElement(m_otherwise.getElementName()));
     }
   }
-  
-  /**
-   * @see de.objectcode.canyon.bpe.util.IStateHolder#hydrate(java.io.ObjectInput)
-   */
-  public void hydrate ( HydrationContext context, ObjectInput in) throws IOException
-  {
-    super.hydrate(context,in);
 
-    Iterator it = m_cases.iterator();
-    
-    while ( it.hasNext() ) {
-      Case c = (Case)it.next();
-      
+  public void hydrate(HydrationContext context, ObjectInput in) throws IOException {
+    super.hydrate(context, in);
+
+    for (Case c : m_cases) {
       c.getActivity().hydrate(context, in);
     }
-    if (m_otherwise != null )
+    if (m_otherwise != null)
       m_otherwise.hydrate(context, in);
   }
-  
-  /**
-   * @see de.objectcode.canyon.bpe.util.IStateHolder#dehydrate(java.io.ObjectOutput)
-   */
-  public void dehydrate (HydrationContext context, ObjectOutput out) throws IOException
-  {
+
+  public void dehydrate(HydrationContext context, ObjectOutput out) throws IOException {
     super.dehydrate(context, out);
-    
-    Iterator it = m_cases.iterator();
-    
-    while ( it.hasNext() ) {
-      Case c = (Case)it.next();
-      
+
+    for (Case c : m_cases) {
       c.getActivity().dehydrate(context, out);
     }
-    if (m_otherwise != null )
+    if (m_otherwise != null)
       m_otherwise.dehydrate(context, out);
   }
+
   /**
    * Description of the Class
    *
-   * @author    junglas
-   * @created   9. Juni 2004
+   * @author junglas
+   * @created 9. Juni 2004
    */
-  private static class Case implements Serializable
-  {
-  	static final long serialVersionUID = 1186865794730872178L;
-  	
-  	private  ICondition  m_condition;
-    private  Activity    m_activity;
+  private static class Case implements Serializable {
+    static final long serialVersionUID = 1186865794730872178L;
+
+    private ICondition m_condition;
+    private Activity m_activity;
 
 
     /**
-     *Constructor for the Case object
+     * Constructor for the Case object
      *
-     * @param condition  Description of the Parameter
-     * @param activity   Description of the Parameter
+     * @param condition Description of the Parameter
+     * @param activity  Description of the Parameter
      */
-    private Case( ICondition condition, Activity activity )
-    {
+    private Case(ICondition condition, Activity activity) {
       m_condition = condition;
       m_activity = activity;
     }
 
 
     /**
-     * @return   Returns the activity.
+     * @return Returns the activity.
      */
-    public Activity getActivity()
-    {
+    public Activity getActivity() {
       return m_activity;
     }
 
 
     /**
-     * @return   Returns the condition.
+     * @return Returns the condition.
      */
-    public ICondition getCondition()
-    {
+    public ICondition getCondition() {
       return m_condition;
     }
-    
-    public void toDom ( Element element ) 
-    {
+
+    public void toDom(Element element) {
       m_condition.toDom(element.addElement(m_condition.getElementName()));
       m_activity.toDom(element.addElement(m_activity.getElementName()));
     }

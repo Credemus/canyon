@@ -61,14 +61,14 @@ public interface Participant extends WFElement{
     
         @return The participant type
     */
-    
-    public ParticipantType getParticipantType();
+
+    ParticipantType getParticipantType();
     
     /** Set the participant type.
     
         @param participantType The new participant type
     */
-    
-    public void setParticipantType(ParticipantType participantType);
+
+    void setParticipantType(ParticipantType participantType);
     
 }

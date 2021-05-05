@@ -50,21 +50,24 @@ import java.io.Reader;
 
 import org.obe.Package;
 
-/** Standard interface for an XPDL parser.
+/**
+ * Standard interface for an XPDL parser.
+ *
+ * @author Anthony Eden
+ */
 
-    @author Anthony Eden
-*/
+public interface XPDLParser extends XPDLNames {
 
-public interface XPDLParser extends XPDLNames{
+  /**
+   * Parse the given InputStream into a Package object.
+   *
+   * @param in The InputStream
+   * @throws IOException         Any I/O Exception
+   * @throws XPDLParserException Any parser exception
+   */
 
-    /** Parse the given InputStream into a Package object.
+  Package parse(InputStream in) throws IOException, XPDLParserException;
 
-        @param in The InputStream
-        @throws IOException Any I/O Exception
-        @throws XPDLParserException Any parser exception
-    */
-
-    public Package parse(InputStream in) throws IOException, XPDLParserException;
-    public Package parse(Reader in) throws IOException, XPDLParserException;
+  Package parse(Reader in) throws IOException, XPDLParserException;
 
 }

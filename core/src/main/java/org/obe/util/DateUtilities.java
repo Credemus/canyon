@@ -44,7 +44,6 @@
 
 package org.obe.util;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ import java.util.List;
 public class DateUtilities{
     
     private static final DateUtilities dateUtilities = new DateUtilities();
-    private List formats;
+    private List<SimpleDateFormat> formats;
     
     /** Construct a new DateUtilities class. */
     
@@ -71,7 +70,7 @@ public class DateUtilities{
     /** Reset the supported formats to the default set. */
     
     public void resetFormats(){
-        formats = new ArrayList();
+        formats = new ArrayList<SimpleDateFormat>();
         
         // ISO formats
         formats.add(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"));
@@ -102,10 +101,10 @@ public class DateUtilities{
     */
     
     public Date parse(String dateString) throws ParseException{
-        Iterator iter = formats.iterator();
+        Iterator<SimpleDateFormat> iter = formats.iterator();
         while(iter.hasNext()){
             try{
-                return ((DateFormat)iter.next()).parse(dateString);
+                return iter.next().parse(dateString);
             } catch(ParseException e){
                 // do nothing
             }
@@ -118,7 +117,7 @@ public class DateUtilities{
         @return A List of DateFormat objects
     */
     
-    public List getFormats(){
+    public List<SimpleDateFormat> getFormats(){
         return formats;
     }
     

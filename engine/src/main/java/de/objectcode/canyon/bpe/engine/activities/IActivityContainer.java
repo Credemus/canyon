@@ -13,14 +13,14 @@ public interface IActivityContainer
    * If the container is non-blocked links may contain loops.
    * 
    */
-  public boolean isNonBlocked();
+  boolean isNonBlocked();
   
   /**
    * Called by a child activity once completed.
    *
    * @param childActivity  Description of the Parameter
    */
-  public void childCompleted( Activity childActivity ) throws EngineException;
+  void childCompleted(Activity childActivity) throws EngineException;
 
 
   /**
@@ -28,20 +28,20 @@ public interface IActivityContainer
    *
    * @param childActivity  Description of the Parameter
    */
-  public void childAborted ( Activity childActivity ) throws EngineException;
+  void childAborted(Activity childActivity) throws EngineException;
 
   /**
    * Called by a child activity once skiped.
    *
    * @param childActivity  Description of the Parameter
    */
-  public void childSkiped ( Activity childActivity ) throws EngineException;
+  void childSkiped(Activity childActivity) throws EngineException;
   
-  public IVariable[] getVariables();
+  IVariable[] getVariables();
   
-  public IVariable getVariable( String name );  
+  IVariable getVariable(String name);
   
-  public IActivityContainer getParentActivity();
+  IActivityContainer getParentActivity();
   
-  public Scope getScope();
+  Scope getScope();
 }

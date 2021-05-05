@@ -5,11 +5,10 @@ import de.objectcode.canyon.bpe.engine.EngineException;
 /**
  * @author junglas
  */
-public interface IAlarmReceiver
-{
-  public boolean isActive ();
-  
-  public long getAlarmTime ( );
-  
-  public void onAlarm ( ) throws EngineException;
+public interface IAlarmReceiver {
+  boolean isActive();
+
+  long getAlarmTime();
+
+  void onAlarm() throws EngineException;
 }

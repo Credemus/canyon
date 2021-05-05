@@ -44,9 +44,10 @@
 
 package org.obe.condition;
 
-public interface Xpression{
-    
-    public String getValue();
-    public void setValue(String value);
-    
+public interface Xpression {
+
+  String getValue();
+
+  void setValue(String value);
+
 }

@@ -75,7 +75,7 @@ public final class GraphConformance implements Serializable {
         LOOP_BLOCKED,
         FULL_BLOCKED
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, GraphConformance> tagMap = new HashMap<String, GraphConformance>();
 
     private final int _value;
 
@@ -92,7 +92,7 @@ public final class GraphConformance implements Serializable {
     */
 
     public static GraphConformance fromString(String tag) {
-        GraphConformance graphConformance = (GraphConformance)tagMap.get(tag);
+        GraphConformance graphConformance = tagMap.get(tag);
         if (graphConformance == null && tag != null)
             throw new IllegalArgumentException(tag);
         return graphConformance;

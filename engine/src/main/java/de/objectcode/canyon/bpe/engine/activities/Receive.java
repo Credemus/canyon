@@ -1,13 +1,5 @@
 package de.objectcode.canyon.bpe.engine.activities;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.dom4j.Element;
-
 import de.objectcode.canyon.bpe.engine.EngineException;
 import de.objectcode.canyon.bpe.engine.correlation.CorrelationDefinition;
 import de.objectcode.canyon.bpe.engine.correlation.CorrelationSet;
@@ -15,61 +7,62 @@ import de.objectcode.canyon.bpe.engine.correlation.IMessageReceiver;
 import de.objectcode.canyon.bpe.engine.correlation.Message;
 import de.objectcode.canyon.bpe.engine.evaluator.IAssignableExpression;
 import de.objectcode.canyon.bpe.engine.variable.ComplexType;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @author    junglas
- * @created   8. Juni 2004
+ * @author junglas
+ * @created 8. Juni 2004
  */
-public class Receive extends Activity implements IMessageReceiver
-{
-  private final static  Log                 log               = LogFactory.getLog( Receive.class );
-  
-  final static  long                   serialVersionUID    = 2746530880832717997L;
+public class Receive extends Activity implements IMessageReceiver {
+  private final static Log log = LogFactory.getLog(Receive.class);
 
-  protected     List                   m_correlations;
-  protected     String                 m_messageOperation;
-  protected     ComplexType            m_messageContentType;
-  protected     IAssignableExpression  m_inputExpression;
-  protected     boolean                m_createInstance;
+  final static long serialVersionUID = 2746530880832717997L;
+
+  protected List<CorrelationDefinition> m_correlations;
+  protected String m_messageOperation;
+  protected ComplexType m_messageContentType;
+  protected IAssignableExpression m_inputExpression;
+  protected boolean m_createInstance;
 
 
-  public Receive ( String name, Scope scope, String messageOperation, ComplexType messageContentType )
-  {
-    this ( name, scope, messageOperation, messageContentType, false);
+  public Receive(String name, Scope scope, String messageOperation, ComplexType messageContentType) {
+    this(name, scope, messageOperation, messageContentType, false);
   }
-  
-  /**
-   *Constructor for the Receive object
-   *
-   * @param name   Description of the Parameter
-   * @param scope  Description of the Parameter
-   */
-  public Receive( String name, Scope scope, String messageOperation, ComplexType messageContentType, boolean createInstance )
-  {
-    super( name, scope );
 
-    m_correlations = new ArrayList();
+  /**
+   * Constructor for the Receive object
+   *
+   * @param name  Description of the Parameter
+   * @param scope Description of the Parameter
+   */
+  public Receive(String name, Scope scope, String messageOperation, ComplexType messageContentType, boolean createInstance) {
+    super(name, scope);
+
+    m_correlations = new ArrayList<CorrelationDefinition>();
     m_createInstance = createInstance;
     m_messageOperation = messageOperation;
     m_messageContentType = messageContentType;
-    
-    m_scope.getProcess().addMessageReceiver( this );
+
+    m_scope.getProcess().addMessageReceiver(this);
   }
 
 
   /**
-   * @param inputExpression  The inputExpression to set.
+   * @param inputExpression The inputExpression to set.
    */
-  public void setInputExpression( IAssignableExpression inputExpression )
-  {
+  public void setInputExpression(IAssignableExpression inputExpression) {
     m_inputExpression = inputExpression;
   }
 
   /**
-   * @return   Returns the messageType.
+   * @return Returns the messageType.
    */
-  public String getMessageOperation()
-  {
+  public String getMessageOperation() {
     return m_messageOperation;
   }
 
@@ -77,27 +70,24 @@ public class Receive extends Activity implements IMessageReceiver
   /**
    * @return Returns the messageContentType.
    */
-  public ComplexType getMessageContentType ( )
-  {
+  public ComplexType getMessageContentType() {
     return m_messageContentType;
   }
-  
+
   /**
    * Gets the active attribute of the Receive object
    *
-   * @return   The active value
+   * @return The active value
    */
-  public boolean isActive()
-  {
+  public boolean isActive() {
     return m_state == ActivityState.RUNNING;
   }
 
 
   /**
-   * @return   Returns the createInstance.
+   * @return Returns the createInstance.
    */
-  public boolean isCreateInstance()
-  {
+  public boolean isCreateInstance() {
     return m_createInstance;
   }
 
@@ -105,10 +95,9 @@ public class Receive extends Activity implements IMessageReceiver
   /**
    * Gets the elementName attribute of the Receive object
    *
-   * @return   The elementName value
+   * @return The elementName value
    */
-  public String getElementName()
-  {
+  public String getElementName() {
     return "receive";
   }
 
@@ -116,25 +105,20 @@ public class Receive extends Activity implements IMessageReceiver
   /**
    * Gets the correlations attribute of the Receive object
    *
-   * @return   The correlations value
+   * @return The correlations value
    */
-  public CorrelationSet[] getCorrelationSets()
-  {
-    List correlationSets = new ArrayList();
-    Iterator          it   = m_correlations.iterator();
-    int               i;
+  public CorrelationSet[] getCorrelationSets() {
+    List<CorrelationSet> correlationSets = new ArrayList<CorrelationSet>();
 
-    for ( i = 0; it.hasNext(); i++ ) {
-      CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-      if ( !correlationDef.isInitiate() )
+    for(CorrelationDefinition correlationDef : m_correlations) {
+      if (!correlationDef.isInitiate())
         correlationSets.add(correlationDef.getCorrelationSet());
     }
 
-    CorrelationSet[]  ret  = new CorrelationSet[correlationSets.size()];
+    CorrelationSet[] ret = new CorrelationSet[correlationSets.size()];
 
     correlationSets.toArray(ret);
-    
+
     return ret;
   }
 
@@ -142,41 +126,35 @@ public class Receive extends Activity implements IMessageReceiver
   /**
    * Adds a feature to the Correlation attribute of the Receive object
    *
-   * @param correlationSet  The feature to be added to the Correlation attribute
-   * @param initiate        The feature to be added to the Correlation attribute
+   * @param correlationSet The feature to be added to the Correlation attribute
+   * @param initiate       The feature to be added to the Correlation attribute
    */
-  public void addCorrelation( CorrelationSet correlationSet, boolean initiate )
-  {
-    m_correlations.add( new CorrelationDefinition( correlationSet, initiate ) );
-    m_scope.addCorrelationSet( correlationSet );
+  public void addCorrelation(CorrelationSet correlationSet, boolean initiate) {
+    m_correlations.add(new CorrelationDefinition(correlationSet, initiate));
+    m_scope.addCorrelationSet(correlationSet);
   }
 
 
   /**
-   * @param message              Description of the Parameter
-   * @return                     Description of the Return Value
-   * @exception EngineException  Description of the Exception
-   * @see                        de.objectcode.canyon.bpe.engine.correlation.IMessageReceiver#onMessage(de.objectcode.canyon.bpe.engine.correlation.IMessage)
+   * @param message Description of the Parameter
+   * @return Description of the Return Value
+   * @throws EngineException Description of the Exception
    */
-  public boolean onMessage( Message message )
-    throws EngineException
-  {
-    if ( log.isDebugEnabled() ) {
+  public boolean onMessage(Message message)
+          throws EngineException {
+    if (log.isDebugEnabled()) {
       log.debug("onMessage: " + message);
     }
-    
-    if ( m_inputExpression != null ) {
-      m_inputExpression.assign( this, message.getContent() );
+
+    if (m_inputExpression != null) {
+      m_inputExpression.assign(this, message.getContent());
     }
 
-    if ( !m_correlations.isEmpty() ) {
-      Iterator  it  = m_correlations.iterator();
+    if (!m_correlations.isEmpty()) {
 
-      while ( it.hasNext() ) {
-        CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-        if ( correlationDef.isInitiate() ) {
-          m_scope.addCorrelation( correlationDef.getCorrelationSet().initiateCorrelation( message ) );
+      for (CorrelationDefinition correlationDef : m_correlations) {
+        if (correlationDef.isInitiate()) {
+          m_scope.addCorrelation(correlationDef.getCorrelationSet().initiateCorrelation(message));
         }
       }
     }
@@ -188,30 +166,26 @@ public class Receive extends Activity implements IMessageReceiver
 
 
   /**
-   * @param element  Description of the Parameter
-   * @see            de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
+   * @param element Description of the Parameter
+   * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
    */
-  public void toDom( Element element )
-  {
-    super.toDom( element );
+  public void toDom(Element element) {
+    super.toDom(element);
 
-    element.addAttribute( "messageOperation", m_messageOperation );
-    element.addAttribute( "createInstance", Boolean.toString( m_createInstance ) );
+    element.addAttribute("messageOperation", m_messageOperation);
+    element.addAttribute("createInstance", Boolean.toString(m_createInstance));
 
-    if ( m_inputExpression != null ) {
-      Element  inputElement  = element.addElement( "input" );
+    if (m_inputExpression != null) {
+      Element inputElement = element.addElement("input");
 
-      m_inputExpression.toDom( inputElement.addElement( m_inputExpression.getElementName() ) );
+      m_inputExpression.toDom(inputElement.addElement(m_inputExpression.getElementName()));
     }
 
-    if ( !m_correlations.isEmpty() ) {
-      Element   correlationsElement  = element.addElement( "correlations" );
-      Iterator  it                   = m_correlations.iterator();
+    if (!m_correlations.isEmpty()) {
+      Element correlationsElement = element.addElement("correlations");
 
-      while ( it.hasNext() ) {
-        CorrelationDefinition  correlationDef  = ( CorrelationDefinition ) it.next();
-
-        correlationDef.toDom( correlationsElement.addElement( correlationDef.getElementName() ) );
+      for (CorrelationDefinition correlationDef : m_correlations) {
+        correlationDef.toDom(correlationsElement.addElement(correlationDef.getElementName()));
       }
     }
   }

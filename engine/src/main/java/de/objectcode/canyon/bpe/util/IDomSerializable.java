@@ -5,9 +5,8 @@ import org.dom4j.Element;
 /**
  * @author junglas
  */
-public interface IDomSerializable
-{
-  public String getElementName();
-  
-  public void toDom(Element element);
+public interface IDomSerializable {
+  String getElementName();
+
+  void toDom(Element element);
 }

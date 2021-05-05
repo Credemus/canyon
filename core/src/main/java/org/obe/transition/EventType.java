@@ -50,6 +50,7 @@ import java.util.Map;
 
 import org.obe.AbstractWFElement;
 import org.obe.data.ExternalReference;
+import org.obe.data.FormalParameter;
 
 /**
  * Describes an application event type, referenced by an event-type transition.
@@ -59,14 +60,14 @@ import org.obe.data.ExternalReference;
  */
 public final class EventType extends AbstractWFElement {
     static final long serialVersionUID = -6721041421989416656L;
-    private List _formalParameters = new ArrayList();
+    private List<FormalParameter> _formalParameters = new ArrayList<FormalParameter>();
     private ExternalReference _externalReference;
 
     public EventType(String id, String name) {
         super(id, name);
     }
 
-    public List getFormalParameters() {
+    public List<FormalParameter> getFormalParameters() {
         return _formalParameters;
     }
 
@@ -77,7 +78,7 @@ public final class EventType extends AbstractWFElement {
     /**
      * <em>Unsupported operation.  Do not call.</em>
      */
-    public Map getExtendedAttributes() {
+    public Map<String, Object> getExtendedAttributes() {
         throw new UnsupportedOperationException("getExtendedAttributes");
     }
 

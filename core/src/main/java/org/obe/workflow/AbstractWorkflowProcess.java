@@ -56,220 +56,229 @@ import org.obe.RedefinableHeader;
 import org.obe.activity.Activity;
 import org.obe.activity.ActivitySet;
 import org.obe.activity.BlockActivity;
+import org.obe.application.Application;
+import org.obe.data.DataField;
+import org.obe.data.FormalParameter;
+import org.obe.participant.Participant;
+import org.obe.transition.EventType;
 import org.obe.transition.Transition;
 
 public abstract class AbstractWorkflowProcess extends AbstractWFElement
-    implements WorkflowProcess {
+        implements WorkflowProcess {
 
-    static final long serialVersionUID = -2304468508983567539L;
+  static final long serialVersionUID = -2304468508983567539L;
 
-    private Package pkg;
-    private ProcessHeader processHeader;
-    private RedefinableHeader redefinableHeader;
-    private List formalParameters = new ArrayList();
-    private List dataFields = new ArrayList();
-    private List eventTypes = new ArrayList();
-    private List participants = new ArrayList();
-    private List applications = new ArrayList();
-    private List activities = new ArrayList();
-    private List activitySets = new ArrayList();
-    private List transitions = new ArrayList();
-    private AccessLevel accessLevel = AccessLevel.PUBLIC;
-    private int state = 1; // (WMProcessDefinitionState.ENABLED_INT)
+  private Package pkg;
+  private ProcessHeader processHeader;
+  private RedefinableHeader redefinableHeader;
+  private List<FormalParameter> formalParameters = new ArrayList<FormalParameter>();
+  private List<DataField> dataFields = new ArrayList<DataField>();
+  private List<EventType> eventTypes = new ArrayList<EventType>();
+  private List<Participant> participants = new ArrayList<Participant>();
+  private List<Application> applications = new ArrayList<Application>();
+  private List<Activity> activities = new ArrayList<Activity>();
+  private List<ActivitySet> activitySets = new ArrayList<ActivitySet>();
+  private List<Transition> transitions = new ArrayList<Transition>();
+  private AccessLevel accessLevel = AccessLevel.PUBLIC;
+  private int state = 1; // (WMProcessDefinitionState.ENABLED_INT)
 
-    /** Construct a new AbstractWorkflowProcess.
+  /**
+   * Construct a new AbstractWorkflowProcess.
+   *
+   * @param id            The id
+   * @param name          The name
+   * @param processHeader The Workflow process header
+   */
 
-     @param id The id
-     @param name The name
-     @param processHeader The Workflow process header
-     */
+  public AbstractWorkflowProcess(String id, String name, Package pkg,
+                                 ProcessHeader processHeader) {
 
-    public AbstractWorkflowProcess(String id, String name, Package pkg,
-        ProcessHeader processHeader) {
+    super(id, name);
+    setProcessHeader(processHeader);
+    this.pkg = pkg;
+  }
 
-        super(id, name);
-        setProcessHeader(processHeader);
-        this.pkg = pkg;
+  public String getPackageId() {
+    return pkg == null ? null : pkg.getId();
+  }
+
+  public String getProcessDefinitionId() {
+    return getId();
+  }
+
+  public Package getPackage() {
+    return pkg;
+  }
+
+  public void setPackage(Package pkg) {
+    this.pkg = pkg;
+  }
+
+  /**
+   * Get the workflow process access level.
+   *
+   * @return The access level
+   */
+
+  public AccessLevel getAccessLevel() {
+    return accessLevel;
+  }
+
+  /**
+   * Set the workflow process access level.
+   *
+   * @param accessLevel The access level
+   */
+
+  public void setAccessLevel(AccessLevel accessLevel) {
+    if (accessLevel != null) {
+      this.accessLevel = accessLevel;
+    }
+  }
+
+  /**
+   * Return the description specified in the process header.
+   *
+   * @return The process header description
+   */
+
+  public String getDescription() {
+    return processHeader.getDescription();
+  }
+
+  public void setDescription(String description) {
+    processHeader.setDescription(description);
+  }
+
+  public ProcessHeader getProcessHeader() {
+    return processHeader;
+  }
+
+  public void setProcessHeader(ProcessHeader processHeader) {
+    if (processHeader == null) {
+      throw new IllegalArgumentException("ProcessHeader must not be null");
     }
 
-    public String getPackageId() {
-        return pkg == null ? null : pkg.getId();
-    }
+    this.processHeader = processHeader;
+  }
 
-    public String getProcessDefinitionId() {
-        return getId();
-    }
+  public RedefinableHeader getRedefinableHeader() {
+    return redefinableHeader;
+  }
 
-    public Package getPackage() {
-        return pkg;
-    }
+  public void setRedefinableHeader(RedefinableHeader redefinableHeader) {
+    this.redefinableHeader = redefinableHeader;
+  }
 
-    public void setPackage(Package pkg) {
-        this.pkg = pkg;
-    }
+  public List<FormalParameter> getFormalParameters() {
+    return formalParameters;
+  }
 
-    /** Get the workflow process access level.
+  public List<DataField> getDataFields() {
+    return dataFields;
+  }
 
-     @return The access level
-     */
+  public List<Participant> getParticipants() {
+    return participants;
+  }
 
-    public AccessLevel getAccessLevel() {
-        return accessLevel;
-    }
+  public List<Application> getApplications() {
+    return applications;
+  }
 
-    /** Set the workflow process access level.
+  public List<EventType> getEventTypes() {
+    return eventTypes;
+  }
 
-     @param accessLevel The access level
-     */
+  public List<Activity> getActivities() {
+    return activities;
+  }
 
-    public void setAccessLevel(AccessLevel accessLevel) {
-        if (accessLevel != null) {
-            this.accessLevel = accessLevel;
-        }
-    }
+  public List<ActivitySet> getActivitySets() {
+    return activitySets;
+  }
 
-    /** Return the description specified in the process header.
+  public List<Transition> getTransitions() {
+    return transitions;
+  }
 
-     @return The process header description
-     */
+  public int getState() {
+    return state;
+  }
 
-    public String getDescription() {
-        return processHeader.getDescription();
-    }
+  public void setState(int state) {
+    this.state = state;
+  }
 
-    public void setDescription(String description) {
-        processHeader.setDescription(description);
-    }
-
-    public ProcessHeader getProcessHeader() {
-        return processHeader;
-    }
-
-    public void setProcessHeader(ProcessHeader processHeader) {
-        if (processHeader == null) {
-            throw new IllegalArgumentException("ProcessHeader must not be null");
-        }
-
-        this.processHeader = processHeader;
-    }
-
-    public RedefinableHeader getRedefinableHeader() {
-        return redefinableHeader;
-    }
-
-    public void setRedefinableHeader(RedefinableHeader redefinableHeader) {
-        this.redefinableHeader = redefinableHeader;
-    }
-
-    public List getFormalParameters() {
-        return formalParameters;
-    }
-
-    public List getDataFields() {
-        return dataFields;
-    }
-
-    public List getParticipants() {
-        return participants;
-    }
-
-    public List getApplications() {
-        return applications;
-    }
-
-    public List getEventTypes() {
-        return eventTypes;
-    }
-
-    public List getActivities() {
-        return activities;
-    }
-
-    public List getActivitySets() {
-        return activitySets;
-    }
-
-    public List getTransitions() {
-        return transitions;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public void resolveReferences() {
-        resolveActivitySets(getActivitySets(), getActivities(), true);
-        resolveTransitions(getActivitySets(), getActivities(),
+  public void resolveReferences() {
+    resolveActivitySets(getActivitySets(), getActivities(), true);
+    resolveTransitions(getActivitySets(), getActivities(),
             getTransitions());
+  }
+
+  // 'Connects up' each BlockActivity to its ActivitySet.
+  private void resolveActivitySets(List activitySets, List activities,
+                                   boolean recursive) {
+
+    // Resolve ActivitySet references from the activities collection.
+    for (Iterator i = activities.iterator(); i.hasNext(); ) {
+      Activity activity = (Activity) i.next();
+      BlockActivity ba = activity.getBlockActivity();
+      if (ba != null) {
+        for (Iterator j = activitySets.iterator(); j.hasNext(); ) {
+          ActivitySet activitySet = (ActivitySet) j.next();
+          if (activitySet.getId().equals(ba.getBlockId())) {
+            ba.setActivitySet(activitySet);
+            break;
+          }
+        }
+        if (ba.getActivitySet() == null) {
+          throw new IllegalStateException("ActivitySet not found: " +
+                  ba.getBlockId());
+        }
+      }
     }
 
-    // 'Connects up' each BlockActivity to its ActivitySet.
-    private void resolveActivitySets(List activitySets, List activities,
-        boolean recursive) {
+    if (recursive) {
+      // Resolve ActivitySet references from each of the ActivitySets.
+      for (Iterator i = activitySets.iterator(); i.hasNext(); ) {
+        ActivitySet activitySet = (ActivitySet) i.next();
+        resolveActivitySets(activitySets, activitySet.getActivities(),
+                false);
+      }
+    }
+  }
 
-        // Resolve ActivitySet references from the activities collection.
-        for (Iterator i = activities.iterator(); i.hasNext();) {
-            Activity activity = (Activity)i.next();
-            BlockActivity ba = activity.getBlockActivity();
-            if (ba != null) {
-                for (Iterator j = activitySets.iterator(); j.hasNext();) {
-                    ActivitySet activitySet = (ActivitySet)j.next();
-                    if (activitySet.getId().equals(ba.getBlockId())) {
-                        ba.setActivitySet(activitySet);
-                        break;
-                    }
-                }
-                if (ba.getActivitySet() == null) {
-                    throw new IllegalStateException("ActivitySet not found: " +
-                        ba.getBlockId());
-                }
-            }
-        }
+  // 'Connects up' each activity to its transitions.
+  private void resolveTransitions(List<ActivitySet> activitySets, List<Activity> activities,
+                                  List<Transition> transitions) {
 
-        if (recursive) {
-            // Resolve ActivitySet references from each of the ActivitySets.
-            for (Iterator i = activitySets.iterator(); i.hasNext();) {
-                ActivitySet activitySet = (ActivitySet)i.next();
-                resolveActivitySets(activitySets, activitySet.getActivities(),
-                    false);
-            }
+    for (Iterator i = activities.iterator(); i.hasNext(); ) {
+      Activity activity = (Activity) i.next();
+      String activityId = activity.getId();
+      Map afferentTransitions = activity.getAfferentTransitions();
+      Map efferentTransitions = activity.getEfferentTransitions();
+      afferentTransitions.clear();
+      efferentTransitions.clear();
+      for (Iterator j = transitions.iterator(); j.hasNext(); ) {
+        Transition transition = (Transition) j.next();
+        if (transition.getFrom().equals(activityId)) {
+          transition.setFromActivity(activity);
+          efferentTransitions.put(transition.getId(), transition);
         }
+        if (transition.getTo().equals(activityId)) {
+          transition.setToActivity(activity);
+          afferentTransitions.put(transition.getId(), transition);
+        }
+      }
     }
 
-    // 'Connects up' each activity to its transitions.
-    private void resolveTransitions(List activitySets, List activities,
-        List transitions) {
-
-        for (Iterator i = activities.iterator(); i.hasNext();) {
-            Activity activity = (Activity)i.next();
-            String activityId = activity.getId();
-            Map afferentTransitions = activity.getAfferentTransitions();
-            Map efferentTransitions = activity.getEfferentTransitions();
-            afferentTransitions.clear();
-            efferentTransitions.clear();
-            for (Iterator j = transitions.iterator(); j.hasNext();) {
-                Transition transition = (Transition)j.next();
-                if (transition.getFrom().equals(activityId)) {
-                    transition.setFromActivity(activity);
-                    efferentTransitions.put(transition.getId(), transition);
-                }
-                if (transition.getTo().equals(activityId)) {
-                    transition.setToActivity(activity);
-                    afferentTransitions.put(transition.getId(), transition);
-                }
-            }
-        }
-
-        if (activitySets != null) {
-            for (Iterator i = activitySets.iterator(); i.hasNext();) {
-                ActivitySet activitySet = (ActivitySet)i.next();
-                resolveTransitions(null, activitySet.getActivities(),
-                    activitySet.getTransitions());
-            }
-        }
+    if (activitySets != null) {
+      for (Iterator i = activitySets.iterator(); i.hasNext(); ) {
+        ActivitySet activitySet = (ActivitySet) i.next();
+        resolveTransitions(null, activitySet.getActivities(),
+                activitySet.getTransitions());
+      }
     }
+  }
 }

@@ -57,13 +57,13 @@ public abstract class AbstractCondition implements Condition, Serializable {
     static final long serialVersionUID = -6563693584809960943L;
 
     private String value = "";
-    private List xpressions;
+    private List<Xpression> xpressions;
     private ConditionType type = ConditionType.CONDITION;
 
     /** Construct a new AbstractCondition. */
 
     public AbstractCondition() {
-        xpressions = new ArrayList();
+        xpressions = new ArrayList<Xpression>();
     }
 
     /** Get the condition type.
@@ -108,7 +108,7 @@ public abstract class AbstractCondition implements Condition, Serializable {
      @return A List of Xpressions
      */
 
-    public List getXpressions() {
+    public List<Xpression> getXpressions() {
         return xpressions;
     }
 

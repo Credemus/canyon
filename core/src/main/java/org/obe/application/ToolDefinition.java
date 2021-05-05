@@ -48,6 +48,7 @@ import java.util.List;
 
 import org.obe.WFElement;
 import org.obe.data.ExternalReference;
+import org.obe.data.FormalParameter;
 
 /**
  * Defines a tool that is accessible to a workflow process.  Tools are mapped to
@@ -63,7 +64,7 @@ public interface ToolDefinition extends WFElement {
      *
      * @return A List of FormalParameter objects
      */
-    List getFormalParameters();
+    List<FormalParameter> getFormalParameters();
 
     /**
      * Returns an ExternalReference for the tool.  This may be used

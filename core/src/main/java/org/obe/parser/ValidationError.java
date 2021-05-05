@@ -61,11 +61,11 @@ public class ValidationError implements Serializable {
     public static final int TYPE_ERROR = 1;
     private static final String BUNDLE_NAME = PackageValidatorMessages.class.getName();
     private static final ResourceBundle _bundle;
-    private int _type;
-    private int _msgCode;
-    private Object[] _args;
-    private String _msg;
-    private transient Object _src;
+    private final int _type;
+    private final int _msgCode;
+    private final Object[] _args;
+    private final String _msg;
+    private final transient Object _src;
 
     static {
         _bundle = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault());

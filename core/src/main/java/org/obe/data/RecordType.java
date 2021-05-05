@@ -51,9 +51,9 @@ import java.util.List;
 public class RecordType implements Type, Serializable {
     static final long serialVersionUID = 755387418290594056L;
 
-    private List members = new ArrayList();
+    private List<Type> members = new ArrayList<Type>();
 
-    public List getMembers(){
+    public List<Type> getMembers(){
         return members;
     }
 

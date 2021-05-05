@@ -7,9 +7,8 @@ import java.io.ObjectOutput;
 /**
  * @author junglas
  */
-public interface IStateHolder
-{
-  public void dehydrate ( HydrationContext context, ObjectOutput out ) throws IOException;
-  
-  public void hydrate (  HydrationContext context, ObjectInput in ) throws IOException;
+public interface IStateHolder {
+  void dehydrate(HydrationContext context, ObjectOutput out) throws IOException;
+
+  void hydrate(HydrationContext context, ObjectInput in) throws IOException;
 }

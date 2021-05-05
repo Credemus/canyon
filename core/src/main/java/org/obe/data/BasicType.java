@@ -89,7 +89,7 @@ public final class BasicType implements Type, Serializable {
         BOOLEAN,
         PERFORMER
     };
-    private static HashMap tagMap = new HashMap();
+    private static HashMap<String, BasicType> tagMap = new HashMap<String, BasicType>();
 
     static {
         for (int i = 0; i < TAGS.length; i++) {
@@ -102,7 +102,7 @@ public final class BasicType implements Type, Serializable {
     }
 
     public static BasicType fromString(String tag) {
-        BasicType basicType = (BasicType)tagMap.get(tag);
+        BasicType basicType = tagMap.get(tag);
         if (basicType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return basicType;

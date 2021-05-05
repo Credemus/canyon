@@ -52,7 +52,7 @@ package org.obe.parser;
 
 public class ElementRequiredException extends XPDLParserException{
     
-    private String elementName;
+    private final String elementName;
     
     /** Construct a new ElementRequiredException.
     

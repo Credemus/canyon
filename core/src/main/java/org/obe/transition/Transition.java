@@ -50,55 +50,55 @@ import org.obe.activity.ExecutionType;
 import org.obe.condition.Condition;
 
 public interface Transition extends WFElement {
-    Condition getCondition();
+  Condition getCondition();
 
-    void setCondition(Condition condition);
+  void setCondition(Condition condition);
 
-    String getFrom();
+  String getFrom();
 
-    void setFrom(String from);
+  void setFrom(String from);
 
-    Activity getFromActivity();
+  Activity getFromActivity();
 
-    void setFromActivity(Activity fromActivity);
+  void setFromActivity(Activity fromActivity);
 
-    String getTo();
+  String getTo();
 
-    void setTo(String to);
+  void setTo(String to);
 
-    Activity getToActivity();
+  Activity getToActivity();
 
-    void setToActivity(Activity toActivity);
+  void setToActivity(Activity toActivity);
 
-    /**
-     * Returns the event that triggers the transition.  This is an OBE XPDL-1.0
-     * extension.
-     *
-     * @return The transition event.
-     */
-    Event getEvent();
+  /**
+   * Returns the event that triggers the transition.  This is an OBE XPDL-1.0
+   * extension.
+   *
+   * @return The transition event.
+   */
+  Event getEvent();
 
-    /**
-     * Sets the event that triggers the transition.  This is an OBE XPDL-1.0
-     * extension.
-     *
-     * @param event The transition event.
-     */
-    void setEvent(Event event);
+  /**
+   * Sets the event that triggers the transition.  This is an OBE XPDL-1.0
+   * extension.
+   *
+   * @param event The transition event.
+   */
+  void setEvent(Event event);
 
-    /**
-     * Returns the transition execution mode.  This is an OBE XPDL-1.0
-     * extension.  Asynchronous transitions are executed on a separate thread in
-     * a separate transaction.
-     *
-     * @return The execution mode.
-     */
-    ExecutionType getExecution();
+  /**
+   * Returns the transition execution mode.  This is an OBE XPDL-1.0
+   * extension.  Asynchronous transitions are executed on a separate thread in
+   * a separate transaction.
+   *
+   * @return The execution mode.
+   */
+  ExecutionType getExecution();
 
-    /**
-     * Sets the transition execution mode.  This is an OBE XPDL-1.0 extension.
-     *
-     * @param type The transition execution type.
-     */
-    void setExecutionType(ExecutionType type);
+  /**
+   * Sets the transition execution mode.  This is an OBE XPDL-1.0 extension.
+   *
+   * @param type The transition execution type.
+   */
+  void setExecutionType(ExecutionType type);
 }

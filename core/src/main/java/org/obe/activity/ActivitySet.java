@@ -44,72 +44,80 @@
 
 package org.obe.activity;
 
+import org.obe.transition.Transition;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** A set of activities and related transitions.
-
-    @author Anthony Eden
-*/
+/**
+ * A set of activities and related transitions.
+ *
+ * @author Anthony Eden
+ */
 
 public class ActivitySet implements Serializable {
-    static final long serialVersionUID = 7301415215949413883L;
+  static final long serialVersionUID = 7301415215949413883L;
 
-    private String id;
-    private List activities;
-    private List transitions;
+  private String id;
+  private final List<Activity> activities;
+  private final List<Transition> transitions;
 
-    /** Construct a new ActivitySet.
+  /**
+   * Construct a new ActivitySet.
+   *
+   * @param id The unique ID
+   */
 
-        @param id The unique ID
-    */
+  public ActivitySet(String id) {
+    setId(id);
 
-    public ActivitySet(String id){
-        setId(id);
+    this.activities = new ArrayList<Activity>();
+    this.transitions = new ArrayList<Transition>();
+  }
 
-        this.activities = new ArrayList();
-        this.transitions = new ArrayList();
+  /**
+   * Get the ID for the activity set.
+   *
+   * @return The activity set ID
+   */
+
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Set the activity set ID.  The id must be unique for all activity
+   * sets in the process instance and can not be null.
+   *
+   * @param id The activity set ID
+   */
+
+  public void setId(String id) {
+    if (id == null) {
+      throw new IllegalArgumentException("ID can not be null");
     }
+    this.id = id;
+  }
 
-    /** Get the ID for the activity set.
+  /**
+   * Get a list of activities in the set.
+   *
+   * @return List of activities in the set
+   */
 
-        @return The activity set ID
-    */
+  public List<Activity> getActivities() {
+    return activities;
+  }
 
-    public String getId(){
-        return id;
-    }
+  /**
+   * Get a list of transitions in the set.
+   *
+   * @return List of transitions in the set
+   */
 
-    /** Set the activity set ID.  The id must be unique for all activity
-        sets in the process instance and can not be null.
-
-        @param id The activity set ID
-    */
-
-    public void setId(String id){
-        if(id == null){
-            throw new IllegalArgumentException("ID can not be null");
-        }
-        this.id = id;
-    }
-
-    /** Get a list of activities in the set.
-
-        @return List of activities in the set
-    */
-
-    public List getActivities(){
-        return activities;
-    }
-
-    /** Get a list of transitions in the set.
-
-        @return List of transitions in the set
-    */
-
-    public List getTransitions(){
-        return transitions;
-    }
+  public List<Transition> getTransitions() {
+    return transitions;
+  }
 
 }

@@ -78,9 +78,9 @@ public final class AutomationMode implements Serializable {
         AUTOMATIC,
         MANUAL
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, AutomationMode> tagMap = new HashMap<String, AutomationMode>();
 
-    private int _value;
+    private final int _value;
 
     static {
         for (int i = 0; i < TAGS.length; i++) {
@@ -97,7 +97,7 @@ public final class AutomationMode implements Serializable {
      * @return The AutomationMode object
      */
     public static AutomationMode fromString(String tag) {
-        AutomationMode automationMode = (AutomationMode)tagMap.get(tag);
+        AutomationMode automationMode = tagMap.get(tag);
         if (automationMode == null && tag != null)
             throw new IllegalArgumentException(tag);
         return automationMode;

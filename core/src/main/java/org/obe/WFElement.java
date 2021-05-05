@@ -46,60 +46,67 @@ package org.obe;
 
 import java.util.Map;
 
-/** Standard interface that all major workflow elements implement.
+/**
+ * Standard interface that all major workflow elements implement.
+ *
+ * @author Anthony Eden
+ */
 
-    @author Anthony Eden
-*/
+public interface WFElement {
 
-public interface WFElement{
-    
-    /** Get the element's unique ID.
-    
-        @return The unique ID
-    */
-    
-    public String getId();
-    
-    /** Set the element's unique ID.
-    
-        @param id The new unique ID
-    */
-    
-    public void setId(String id);
-    
-    /** Get an identifying name for the element.
-    
-        @return The name
-    */
-    
-    public String getName();
-    
-    /** Set the identifying name for the element.
-    
-        @param name The new name
-    */
-    
-    public void setName(String name);
-    
-    /** Get a short description for the element.
-    
-        @return A short description
-    */
-    
-    public String getDescription();
-    
-    /** Set a short description for the element.
-    
-        @param description The description
-    */
-    
-    public void setDescription(String description);
-    
-    /** Get a map of extended attributes.
-    
-        @return A map of extended attributes
-    */
-    
-    public Map getExtendedAttributes();
-    
+  /**
+   * Get the element's unique ID.
+   *
+   * @return The unique ID
+   */
+
+  String getId();
+
+  /**
+   * Set the element's unique ID.
+   *
+   * @param id The new unique ID
+   */
+
+  void setId(String id);
+
+  /**
+   * Get an identifying name for the element.
+   *
+   * @return The name
+   */
+
+  String getName();
+
+  /**
+   * Set the identifying name for the element.
+   *
+   * @param name The new name
+   */
+
+  void setName(String name);
+
+  /**
+   * Get a short description for the element.
+   *
+   * @return A short description
+   */
+
+  String getDescription();
+
+  /**
+   * Set a short description for the element.
+   *
+   * @param description The description
+   */
+
+  void setDescription(String description);
+
+  /**
+   * Get a map of extended attributes.
+   *
+   * @return A map of extended attributes
+   */
+
+  Map<String, Object> getExtendedAttributes();
 }

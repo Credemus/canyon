@@ -79,7 +79,7 @@ public final class ToolType implements Serializable {
         APPLICATION,
         PROCEDURE
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, ToolType> tagMap = new HashMap<String, ToolType>();
 
     private final int _value;
 
@@ -98,7 +98,7 @@ public final class ToolType implements Serializable {
      * @return The ToolType object
      */
     public static ToolType fromString(String tag) {
-        ToolType toolType = (ToolType)tagMap.get(tag);
+        ToolType toolType = tagMap.get(tag);
         if (toolType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return toolType;

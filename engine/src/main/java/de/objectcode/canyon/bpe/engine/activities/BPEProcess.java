@@ -32,89 +32,82 @@ import de.objectcode.canyon.bpe.util.HydrationContext;
 import de.objectcode.canyon.model.process.DurationUnit;
 
 /**
- * @author    junglas
- * @created   15. Juni 2004
+ * @author junglas
+ * @created 15. Juni 2004
  */
-public class BPEProcess extends Scope
-{
-  final static         long               serialVersionUID            = 6866122520435746113L;
-  
-  private final static  Log                         log                            = LogFactory.getLog( BPEProcess.class );
+public class BPEProcess extends Scope {
+  final static long serialVersionUID = 6866122520435746113L;
 
-  protected            String			  m_version;
-  protected            int                m_activityCount;
-  protected            Map                m_activities;
-  protected transient  String             m_startedBy;
-  protected transient  Date               m_startedDate;
-  protected transient  String             m_clientId;
-  protected transient  String			  m_parentProcessInstanceIdPath;
-  protected            MultiMap           m_messageReceivers;
-  protected            List               m_alarmReceivers;
-  protected            Map                m_complexTypes;
-  protected            List               m_createInstanceOperations;
-  protected						 DurationUnit			  m_defaultDurationUnit;
-  
-  protected transient  String             m_processInstanceId;
-  protected transient  long               m_processEntityOid;
-  protected transient  BPEEngine          m_bpeEngine;
+  private final static Log log = LogFactory.getLog(BPEProcess.class);
 
+  protected String m_version;
+  protected int m_activityCount;
+  protected Map<String, Activity> m_activities;
+  protected transient String m_startedBy;
+  protected transient Date m_startedDate;
+  protected transient String m_clientId;
+  protected transient String m_parentProcessInstanceIdPath;
+  protected MultiMap m_messageReceivers;
+  protected List<IAlarmReceiver> m_alarmReceivers;
+  protected Map<String, ComplexType> m_complexTypes;
+  protected List<MessageType> m_createInstanceOperations;
+  protected DurationUnit m_defaultDurationUnit;
+
+  protected transient String m_processInstanceId;
+  protected transient long m_processEntityOid;
+  protected transient BPEEngine m_bpeEngine;
 
 
   /**
-   *Constructor for the BPEProcess object
+   * Constructor for the BPEProcess object
    *
-   * @param name  Description of the Parameter
-   * @param id    Description of the Parameter
+   * @param name Description of the Parameter
+   * @param id   Description of the Parameter
    */
-  public BPEProcess( String id, String version, String name, DurationUnit  durationUnit)
-  {
-    super( name, null );
+  public BPEProcess(String id, String version, String name, DurationUnit durationUnit) {
+    super(name, null);
 
     m_id = id;
     m_version = version;
     m_process = this;
     m_activityCount = 0;
-    m_activities = new LinkedHashMap();
+    m_activities = new LinkedHashMap<String, Activity>();
     m_messageReceivers = new MultiHashMap();
-    m_alarmReceivers = new ArrayList();
-    m_complexTypes = new LinkedHashMap();
-    m_createInstanceOperations = new ArrayList();
+    m_alarmReceivers = new ArrayList<IAlarmReceiver>();
+    m_complexTypes = new LinkedHashMap<String, ComplexType>();
+    m_createInstanceOperations = new ArrayList<MessageType>();
     m_defaultDurationUnit = durationUnit;
   }
 
 
   /**
-   * @param processEntityOid  The processEntityOid to set.
+   * @param processEntityOid The processEntityOid to set.
    */
-  public void setProcessEntityOid( long processEntityOid )
-  {
+  public void setProcessEntityOid(long processEntityOid) {
     m_processEntityOid = processEntityOid;
   }
 
 
   /**
-   * @param processInstanceId  The processInstanceId to set.
+   * @param processInstanceId The processInstanceId to set.
    */
-  public void setProcessInstanceId( String processInstanceId )
-  {
+  public void setProcessInstanceId(String processInstanceId) {
     m_processInstanceId = processInstanceId;
   }
 
 
   /**
-   * @param startedBy  The startedBy to set.
+   * @param startedBy The startedBy to set.
    */
-  public void setStartedBy( String startedBy )
-  {
+  public void setStartedBy(String startedBy) {
     m_startedBy = startedBy;
   }
 
 
   /**
-   * @param clientId  The clientId to set.
+   * @param clientId The clientId to set.
    */
-  public void setClientId( String clientId )
-  {
+  public void setClientId(String clientId) {
     m_clientId = clientId;
 //    IVariable clientVar = new BasicVariable("_canyon_clientId",BasicType.STRING);
 //    clientVar.setValue(m_clientId);
@@ -125,46 +118,41 @@ public class BPEProcess extends Scope
   /**
    * Sets the id attribute of the BPEProcess object
    *
-   * @param id  The new id value
+   * @param id The new id value
    */
-  public void setId( String id )
-  {
+  public void setId(String id) {
     m_id = id;
   }
 
 
   /**
-   * @param bpeEngine  The bpeEngine to set.
+   * @param bpeEngine The bpeEngine to set.
    */
-  public void setBPEEngine( BPEEngine bpeEngine )
-  {
+  public void setBPEEngine(BPEEngine bpeEngine) {
     m_bpeEngine = bpeEngine;
   }
 
 
   /**
-   * @return   Returns the bpeEngine.
+   * @return Returns the bpeEngine.
    */
-  public BPEEngine getBPEEngine()
-  {
+  public BPEEngine getBPEEngine() {
     return m_bpeEngine;
   }
 
 
   /**
-   * @return   Returns the clientId.
+   * @return Returns the clientId.
    */
-  public String getClientId()
-  {
+  public String getClientId() {
     return m_clientId;
   }
 
 
   /**
-   * @return   Returns the processEntityOid.
+   * @return Returns the processEntityOid.
    */
-  public long getProcessEntityOid()
-  {
+  public long getProcessEntityOid() {
     return m_processEntityOid;
   }
 
@@ -173,10 +161,9 @@ public class BPEProcess extends Scope
   }
 
   /**
-   * @return   Returns the processInstanceId.
+   * @return Returns the processInstanceId.
    */
-  public String getProcessInstanceId()
-  {
+  public String getProcessInstanceId() {
     return m_processInstanceId;
   }
 
@@ -184,20 +171,18 @@ public class BPEProcess extends Scope
   /**
    * Gets the type attribute of the BPEProcess object
    *
-   * @param name  Description of the Parameter
-   * @return      The type value
+   * @param name Description of the Parameter
+   * @return The type value
    */
-  public ComplexType getType( String name )
-  {
-    return ( ComplexType ) m_complexTypes.get( name );
+  public ComplexType getType(String name) {
+    return m_complexTypes.get(name);
   }
 
 
   /**
-   * @return   Returns the startedBy.
+   * @return Returns the startedBy.
    */
-  public String getStartedBy()
-  {
+  public String getStartedBy() {
     return m_startedBy;
   }
 
@@ -205,28 +190,25 @@ public class BPEProcess extends Scope
   /**
    * Gets the elementName attribute of the BPEProcess object
    *
-   * @return   The elementName value
+   * @return The elementName value
    */
-  public String getElementName()
-  {
+  public String getElementName() {
     return "process";
   }
 
 
   /**
-   * @return   Returns the bpeEngine.
+   * @return Returns the bpeEngine.
    */
-  public BPEEngine getEngine()
-  {
+  public BPEEngine getEngine() {
     return m_bpeEngine;
   }
 
 
   /**
-   * @return   Returns the createInstanceOperations.
+   * @return Returns the createInstanceOperations.
    */
-  public List getCreateInstanceOperations()
-  {
+  public List<MessageType> getCreateInstanceOperations() {
     return m_createInstanceOperations;
   }
 
@@ -234,10 +216,9 @@ public class BPEProcess extends Scope
   /**
    * Gets the alarmReceivers attribute of the BPEProcess object
    *
-   * @return   The alarmReceivers value
+   * @return The alarmReceivers value
    */
-  public List getAlarmReceivers()
-  {
+  public List<IAlarmReceiver> getAlarmReceivers() {
     return m_alarmReceivers;
   }
 
@@ -245,73 +226,68 @@ public class BPEProcess extends Scope
   /**
    * Gets the activity attribute of the BPEProcess object
    *
-   * @param activityId  Description of the Parameter
-   * @return            The activity value
+   * @param activityId Description of the Parameter
+   * @return The activity value
    */
-  public Activity getActivity( String activityId )
-  {
-    return ( Activity ) m_activities.get( activityId );
+  public Activity getActivity(String activityId) {
+    return m_activities.get(activityId);
   }
 
-  public Collection getActitivities() {
-  	return m_activities.values();
+  public Collection<Activity> getActitivities() {
+    return m_activities.values();
   }
 
   /**
-   * @param out              Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#dehydrate(java.io.ObjectOutput)
+   * @param out Description of the Parameter
+   * @throws IOException Description of the Exception
    */
-  public void dehydrate( HydrationContext context, ObjectOutput out )
-    throws IOException
-  {
-    if ( m_parentProcessInstanceIdPath != null ) {
-      out.writeBoolean( true );
-      out.writeUTF( m_parentProcessInstanceIdPath );
+  public void dehydrate(HydrationContext context, ObjectOutput out)
+          throws IOException {
+    if (m_parentProcessInstanceIdPath != null) {
+      out.writeBoolean(true);
+      out.writeUTF(m_parentProcessInstanceIdPath);
     } else {
-      out.writeBoolean( false );
+      out.writeBoolean(false);
     }
-    if ( m_clientId != null ) {
-      out.writeBoolean( true );
-      out.writeUTF( m_clientId );
+    if (m_clientId != null) {
+      out.writeBoolean(true);
+      out.writeUTF(m_clientId);
     } else {
-      out.writeBoolean( false );
+      out.writeBoolean(false);
     }
-    if ( m_startedBy != null ) {
-      out.writeBoolean( true );
-      out.writeUTF( m_startedBy );
+    if (m_startedBy != null) {
+      out.writeBoolean(true);
+      out.writeUTF(m_startedBy);
     } else {
-      out.writeBoolean( false );
+      out.writeBoolean(false);
     }
     if (m_startedDate != null) {
-      out.writeBoolean( true );
+      out.writeBoolean(true);
       out.writeLong(m_startedDate.getTime());
     } else {
-      out.writeBoolean( false );      
+      out.writeBoolean(false);
     }
-    super.dehydrate( context, out );
+    super.dehydrate(context, out);
   }
 
 
   /**
-   * @param in               Description of the Parameter
-   * @exception IOException  Description of the Exception
-   * @see                    de.objectcode.canyon.bpe.util.IStateHolder#hydrate(java.io.ObjectInput)
+   * @param in Description of the Parameter
+   * @throws IOException Description of the Exception
    */
-  public void hydrate( HydrationContext context, ObjectInput in )
-    throws IOException
-  {
-    if ( in.readBoolean() ) {
+  public void hydrate(HydrationContext context, ObjectInput in)
+          throws IOException {
+    if (in.readBoolean()) {
       m_parentProcessInstanceIdPath = in.readUTF();
     } else {
       m_parentProcessInstanceIdPath = null;
     }
-    if ( in.readBoolean() ) {
+    if (in.readBoolean()) {
       m_clientId = in.readUTF();
     } else {
       m_clientId = null;
     }
-    if ( in.readBoolean() ) {
+    if (in.readBoolean()) {
       m_startedBy = in.readUTF();
     } else {
       m_startedBy = null;
@@ -321,20 +297,19 @@ public class BPEProcess extends Scope
     } else {
       m_startedDate = null;
     }
-    super.hydrate( context, in );
+    super.hydrate(context, in);
   }
 
 
   /**
    * Adds a feature to the MessageReceiver attribute of the BPEProcess object
    *
-   * @param messageReceiver  The feature to be added to the MessageReceiver attribute
+   * @param messageReceiver The feature to be added to the MessageReceiver attribute
    */
-  void addMessageReceiver( IMessageReceiver messageReceiver )
-  {
-    m_messageReceivers.put( messageReceiver.getMessageOperation(), messageReceiver );
-    if ( messageReceiver.isCreateInstance() ) {
-      m_createInstanceOperations.add( new MessageType( messageReceiver.getMessageOperation(), messageReceiver.getMessageContentType() ) );
+  void addMessageReceiver(IMessageReceiver messageReceiver) {
+    m_messageReceivers.put(messageReceiver.getMessageOperation(), messageReceiver);
+    if (messageReceiver.isCreateInstance()) {
+      m_createInstanceOperations.add(new MessageType(messageReceiver.getMessageOperation(), messageReceiver.getMessageContentType()));
     }
   }
 
@@ -342,123 +317,114 @@ public class BPEProcess extends Scope
   /**
    * Adds a feature to the AlarmReceiver attribute of the BPEProcess object
    *
-   * @param alarmReceiver  The feature to be added to the AlarmReceiver attribute
+   * @param alarmReceiver The feature to be added to the AlarmReceiver attribute
    */
-  void addAlarmReceiver( IAlarmReceiver alarmReceiver )
-  {
-    m_alarmReceivers.add( alarmReceiver );
+  void addAlarmReceiver(IAlarmReceiver alarmReceiver) {
+    m_alarmReceivers.add(alarmReceiver);
   }
 
 
   /**
    * Description of the Method
    *
-   * @param messageReceiver  Description of the Parameter
+   * @param messageReceiver Description of the Parameter
    */
-  void removeMessageReceiver( IMessageReceiver messageReceiver )
-  {
-    m_messageReceivers.remove( messageReceiver.getMessageOperation(), messageReceiver );
+  void removeMessageReceiver(IMessageReceiver messageReceiver) {
+    m_messageReceivers.remove(messageReceiver.getMessageOperation(), messageReceiver);
   }
 
 
   /**
    * Description of the Method
    *
-   * @param activity  Description of the Parameter
+   * @param activity Description of the Parameter
    */
-  protected void register( Activity activity )
-  {
-    String  id  = activity.getId();
+  protected void register(Activity activity) {
+    String id = activity.getId();
 
-    if ( id == null ) {
+    if (id == null) {
       m_activityCount++;
 
-      id = String.valueOf( m_activityCount );
+      id = String.valueOf(m_activityCount);
 
-      activity.setId( id );
+      activity.setId(id);
     }
 
-    if ( m_activities.containsKey( id ) ) {
-      throw new InternalError( "Process '" + m_id + "' already contains an activity '" + id + "'" );
+    if (m_activities.containsKey(id)) {
+      throw new InternalError("Process '" + m_id + "' already contains an activity '" + id + "'");
     }
 
-    m_activities.put( id, activity );
+    m_activities.put(id, activity);
   }
 
 
   /**
    * Description of the Method
    *
-   * @exception EngineException  Description of the Exception
+   * @throws EngineException Description of the Exception
    */
   public void terminateProcess()
-    throws EngineException
-  {
-  	
-    Iterator       it     = m_activities.values().iterator();
-    ActivityState  state  = ActivityState.COMPLETED;
+          throws EngineException {
 
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
+    Iterator<Activity> it = m_activities.values().iterator();
+    ActivityState state = ActivityState.COMPLETED;
 
-      if ( activity.getState() == ActivityState.RUNNING ) {
+    while (it.hasNext()) {
+      Activity activity = it.next();
+
+      if (activity.getState() == ActivityState.RUNNING) {
         state = ActivityState.ABORT;
         activity.terminate();
       }
     }
 
     m_state = state;
-    if ( log.isInfoEnabled() ) {
-      log.info( "Terminated process id='" + getId() + "', piidPath='"+ getProcessInstanceIdPath()+"'");
+    if (log.isInfoEnabled()) {
+      log.info("Terminated process id='" + getId() + "', piidPath='" + getProcessInstanceIdPath() + "'");
     }
-		getEngine().getEventHub().fireActivityStateEvent(this, m_state);
-    
+    getEngine().getEventHub().fireActivityStateEvent(this, m_state);
+
   }
 
 
   /**
    * Description of the Method
    *
-   * @param message              Description of the Parameter
-   * @exception EngineException  Description of the Exception
+   * @param message Description of the Parameter
+   * @throws EngineException Description of the Exception
    */
-  public void handleMessage( Message message )
-    throws EngineException
-  {
-    m_bpeEngine.getEventHub().fireProcessMessageEvent( this, message );
+  public void handleMessage(Message message)
+          throws EngineException {
+    m_bpeEngine.getEventHub().fireProcessMessageEvent(this, message);
 
-    Collection  receivers  = ( Collection ) m_messageReceivers.get( message.getOperation() );
+    Collection<IMessageReceiver> receivers = (Collection<IMessageReceiver>) m_messageReceivers.get(message.getOperation());
 
-    if ( receivers != null ) {
-      Iterator  it  = receivers.iterator();
-
-      while ( it.hasNext() ) {
-        IMessageReceiver  receiver         = ( IMessageReceiver ) it.next();
-
-        if ( !receiver.isActive() ) {
+    if (receivers != null) {
+      for (IMessageReceiver receiver : receivers) {
+        if (!receiver.isActive()) {
           continue;
         }
 
-        CorrelationSet[]  correlationSets  = receiver.getCorrelationSets();
+        CorrelationSet[] correlationSets = receiver.getCorrelationSets();
 
-        if ( correlationSets != null && correlationSets.length > 0 ) {
-          int  i;
+        if (correlationSets != null && correlationSets.length > 0) {
+          int i;
 
-          for ( i = 0; i < correlationSets.length; i++ ) {
-            Correlation  correlation  = getCorrelation( correlationSets[i].getName(), receiver );
+          for (i = 0; i < correlationSets.length; i++) {
+            Correlation correlation = getCorrelation(correlationSets[i].getName(), receiver);
 
-            if ( correlation == null || !correlation.match( message ) ) {
+            if (correlation == null || !correlation.match(message)) {
               break;
             }
           }
 
-          if ( i == correlationSets.length ) {
-            if ( receiver.onMessage( message ) ) {
+          if (i == correlationSets.length) {
+            if (receiver.onMessage(message)) {
               break;
             }
           }
         } else {
-          if ( receiver.onMessage( message ) ) {
+          if (receiver.onMessage(message)) {
             break;
           }
         }
@@ -469,29 +435,25 @@ public class BPEProcess extends Scope
   }
 
   private Correlation getCorrelation(String name, IMessageReceiver receiver) {
-  	Correlation c =  ( Correlation ) m_correlations.get( name );
-  	if (c==null && receiver instanceof Activity) {
-  		Scope scope = ((Activity) receiver).getScope();
-  		c = scope.getCorrelation(name);
-  	}
-  	return c;
+    Correlation c = (Correlation) m_correlations.get(name);
+    if (c == null && receiver instanceof Activity) {
+      Scope scope = ((Activity) receiver).getScope();
+      c = scope.getCorrelation(name);
+    }
+    return c;
   }
 
   /**
    * Description of the Method
    *
-   * @exception EngineException  Description of the Exception
+   * @throws EngineException Description of the Exception
    */
   public void handleAlarm()
-    throws EngineException
-  {
-    long      now  = System.currentTimeMillis();
-    Iterator  it   = m_alarmReceivers.iterator();
+          throws EngineException {
+    long now = System.currentTimeMillis();
 
-    while ( it.hasNext() ) {
-      IAlarmReceiver  alarmReceiver  = ( IAlarmReceiver ) it.next();
-
-      if ( alarmReceiver.isActive() && alarmReceiver.getAlarmTime() < now ) {
+    for (IAlarmReceiver alarmReceiver : m_alarmReceivers) {
+      if (alarmReceiver.isActive() && alarmReceiver.getAlarmTime() < now) {
         alarmReceiver.onAlarm();
       }
     }
@@ -499,19 +461,15 @@ public class BPEProcess extends Scope
     startActivatedActivities();
   }
 
-  /**
-   * @see de.objectcode.canyon.bpe.engine.activities.Scope#throwFault(java.lang.String)
-   */
-  public void throwFault( Fault fault)
-      throws EngineException
-  {
-  	String faultName = fault.getName(); 
-    FaultHandler faultHandler = (FaultHandler) m_faultHandlers.get( faultName );
+  public void throwFault(Fault fault)
+          throws EngineException {
+    String faultName = fault.getName();
+    FaultHandler faultHandler = (FaultHandler) m_faultHandlers.get(faultName);
 
-    if ( faultHandler == null )
-      faultHandler = (FaultHandler) m_faultHandlers.get( null );
+    if (faultHandler == null)
+      faultHandler = (FaultHandler) m_faultHandlers.get(null);
 
-    if ( faultHandler != null )
+    if (faultHandler != null)
       faultHandler.fire(fault);
     else
       handlerFired();
@@ -520,32 +478,31 @@ public class BPEProcess extends Scope
   /**
    * Description of the Method
    *
-   * @exception EngineException  Description of the Exception
+   * @throws EngineException Description of the Exception
    */
   public void startActivatedActivities()
-    throws EngineException
-  {
-    if ( m_state == ActivityState.ACTIVATED ) {
+          throws EngineException {
+    if (m_state == ActivityState.ACTIVATED) {
       start();
     }
 
-    while ( true ) {
-      Iterator  it     = m_activities.values().iterator();
-      boolean   found  = false;
+    while (true) {
+      Iterator<Activity> it = m_activities.values().iterator();
+      boolean found = false;
 
-      while ( it.hasNext() ) {
-        Activity  activity  = ( Activity ) it.next();
+      while (it.hasNext()) {
+        Activity activity = it.next();
 
-        if ( activity.getState() == ActivityState.ACTIVATED ) {
+        if (activity.getState() == ActivityState.ACTIVATED) {
           found = true;
           activity.start();
-        } else if ( activity.getState() == ActivityState.DEACTIVATED ) {
+        } else if (activity.getState() == ActivityState.DEACTIVATED) {
           found = true;
           activity.skip();
         }
       }
 
-      if ( !found ) {
+      if (!found) {
         return;
       }
     }
@@ -555,104 +512,95 @@ public class BPEProcess extends Scope
   /**
    * Description of the Method
    *
-   * @param type  Description of the Parameter
+   * @param type Description of the Parameter
    */
-  public void registerType( ComplexType type )
-  {
-    m_complexTypes.put( type.getName(), type );
+  public void registerType(ComplexType type) {
+    m_complexTypes.put(type.getName(), type);
   }
 
 
   /**
    * Description of the Method
    *
-   * @param element  Description of the Parameter
+   * @param element Description of the Parameter
    */
-  public void toDom( Element element )
-  {
-    if ( m_processInstanceId != null ) {
-      element.addAttribute( "processInstanceId", m_processInstanceId );
+  public void toDom(Element element) {
+    if (m_processInstanceId != null) {
+      element.addAttribute("processInstanceId", m_processInstanceId);
     }
-    if ( m_startedBy != null ) {
-      element.addAttribute( "started-by", m_startedBy );
+    if (m_startedBy != null) {
+      element.addAttribute("started-by", m_startedBy);
     }
-    if ( m_clientId != null ) {
-      element.addAttribute( "client-id", m_clientId );
+    if (m_clientId != null) {
+      element.addAttribute("client-id", m_clientId);
     }
-    if ( m_id != null ) {
-      element.addAttribute( "process-id", m_id );
+    if (m_id != null) {
+      element.addAttribute("process-id", m_id);
     }
-    if ( m_version != null ) {
-      element.addAttribute( "process-version", m_version );
+    if (m_version != null) {
+      element.addAttribute("process-version", m_version);
     }
 
-    if ( !m_complexTypes.isEmpty() ) {
-      Element   definitions  = element.addElement( "definitions" );
-      Iterator  it           = m_complexTypes.values().iterator();
+    if (!m_complexTypes.isEmpty()) {
+      Element definitions = element.addElement("definitions");
 
-      while ( it.hasNext() ) {
-        ComplexType  type  = ( ComplexType ) it.next();
-
-        type.toDom( definitions.addElement( type.getElementName() ) );
+      for (ComplexType type : m_complexTypes.values()) {
+        type.toDom(definitions.addElement(type.getElementName()));
       }
     }
-    if ( m_parentProcessInstanceIdPath != null ) {
-      element.addAttribute( "processInstanceIdPath", m_parentProcessInstanceIdPath );
+    if (m_parentProcessInstanceIdPath != null) {
+      element.addAttribute("processInstanceIdPath", m_parentProcessInstanceIdPath);
     }
-  
-    super.toDom( element );
+
+    super.toDom(element);
   }
 
 
   public Date getStartedDate() {
     return m_startedDate;
   }
-  
-  /**
-   * @param date
-   */
+
   public void setStartedDate(Date date) {
     m_startedDate = date;
   }
-  
-  
+
+
   public String getParentProcessInstanceIdPath() {
     return m_parentProcessInstanceIdPath;
   }
-  
+
   public String getProcessInstanceIdPath() {
-  	if (getParentProcessInstanceIdPath()!=null)
-  		return getParentProcessInstanceIdPath() + "_" + getProcessInstanceId();
-  	else
-  		return getProcessInstanceId();
+    if (getParentProcessInstanceIdPath() != null)
+      return getParentProcessInstanceIdPath() + "_" + getProcessInstanceId();
+    else
+      return getProcessInstanceId();
   }
-  
+
   public void setParentProcessInstanceIdPath(String processInstanceIdPath) {
     m_parentProcessInstanceIdPath = processInstanceIdPath;
   }
-  
-  public void addFaultHandler( FaultHandler faultHandler )
-  {
-  	super.addFaultHandler(faultHandler);
-  	faultHandler.registerVariables(this);
+
+  public void addFaultHandler(FaultHandler faultHandler) {
+    super.addFaultHandler(faultHandler);
+    faultHandler.registerVariables(this);
   }
 
 
-	public DurationUnit getDefaultDurationUnit() {
-		return m_defaultDurationUnit;
-	}
+  public DurationUnit getDefaultDurationUnit() {
+    return m_defaultDurationUnit;
+  }
 
 
-	public String getParentProcessInstanceId() {
-		if (m_parentProcessInstanceIdPath==null)
-			return null;
-		else {
-			int index = m_parentProcessInstanceIdPath.lastIndexOf("_");
-			if (index==-1)
-				return m_parentProcessInstanceIdPath;
-			else
-				return m_parentProcessInstanceIdPath.substring(index+1);
-		}
-	}
-  
+  public String getParentProcessInstanceId() {
+    if (m_parentProcessInstanceIdPath == null)
+      return null;
+    else {
+      int index = m_parentProcessInstanceIdPath.lastIndexOf("_");
+      if (index == -1)
+        return m_parentProcessInstanceIdPath;
+      else
+        return m_parentProcessInstanceIdPath.substring(index + 1);
+    }
+  }
+
 }

@@ -67,7 +67,7 @@ public class InlineBlock implements Serializable {
     private String description;
     private URL documentation;
     private URL icon;
-    private Map extendedAttributes;
+    private Map<String, Object> extendedAttributes;
 
     /** Construct a new InlineBlock.
 
@@ -79,7 +79,7 @@ public class InlineBlock implements Serializable {
         setBegin(begin);
         setEnd(end);
 
-        extendedAttributes = new HashMap();
+        extendedAttributes = new HashMap<String, Object>();
     }
 
     /** Get the block's name.

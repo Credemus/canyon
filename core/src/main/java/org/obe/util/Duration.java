@@ -54,8 +54,8 @@ public class Duration implements Serializable {
 
     private static final Log log = LogFactory.getLog(Duration.class);
 
-    private int value;
-    private DurationUnit unit;
+    private final int value;
+    private final DurationUnit unit;
 
     /** Construct a new Duration.  A value of 0 signals an unlimited duration.
      The duration unit may be null to specify that the default should be used.

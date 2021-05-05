@@ -44,6 +44,8 @@
 
 package org.obe.activity;
 
+import org.obe.data.ActualParameter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +64,8 @@ public class Tool implements Serializable {
 
     private String id;
     private String description;
-    private List actualParameters;
-    private Map extendedAttributes;
+    private List<ActualParameter> actualParameters;
+    private Map<String, Object> extendedAttributes;
     private ToolType toolType;
 
     /** Construct a new Tool object with the given id.
@@ -75,7 +77,7 @@ public class Tool implements Serializable {
         this.id = id;
 
         this.extendedAttributes = new HashMap();
-        this.actualParameters = new ArrayList();
+        this.actualParameters = new ArrayList<ActualParameter>();
     }
 
     /** Get the tool ID.
@@ -93,7 +95,7 @@ public class Tool implements Serializable {
         @return A List of actual parameters
     */
 
-    public List getActualParameters(){
+    public List<ActualParameter> getActualParameters(){
         return actualParameters;
     }
 
@@ -120,7 +122,7 @@ public class Tool implements Serializable {
         @return A Map of extended attributes
     */
 
-    public Map getExtendedAttributes(){
+    public Map<String, Object> getExtendedAttributes(){
         return extendedAttributes;
     }
 

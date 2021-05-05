@@ -17,7 +17,7 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @return   The name value
    */
-  public String getName();
+  String getName();
 
 
   /**
@@ -25,7 +25,7 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @return   The value value
    */
-  public Object getValue();
+  Object getValue();
 
 
   /**
@@ -33,7 +33,7 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @return   The valueClass value
    */
-  public Class getValueClass();
+  Class getValueClass();
 
 
   /**
@@ -41,7 +41,7 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @param value  The new value value
    */
-  public void setValue( Object value );
+  void setValue(Object value);
 
 
   /**
@@ -49,7 +49,7 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @return   The elementName value
    */
-  public String getElementName();
+  String getElementName();
 
 
   /**
@@ -57,5 +57,5 @@ public interface IVariable extends Serializable, IStateHolder
    *
    * @param element  Description of the Parameter
    */
-  public void toDom( Element element );
+  void toDom(Element element);
 }

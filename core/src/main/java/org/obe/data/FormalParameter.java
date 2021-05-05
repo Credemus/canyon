@@ -55,7 +55,7 @@ import java.io.Serializable;
 public class FormalParameter implements Serializable {
     static final long serialVersionUID = 3019502908080770457L;
 
-    private String id;
+    private final String id;
     private String name;
     private String description;
     private int index;

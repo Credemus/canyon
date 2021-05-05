@@ -76,9 +76,9 @@ public final class CompletionStrategy implements Serializable {
         ALL,
         ANY
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, CompletionStrategy> tagMap = new HashMap<String, CompletionStrategy>();
 
-    private int _value;
+    private final int _value;
 
     static {
         for (int i = 0; i < TAGS.length; i++) {
@@ -95,7 +95,7 @@ public final class CompletionStrategy implements Serializable {
      * @return The CompletionStrategy object
      */
     public static CompletionStrategy fromString(String tag) {
-        CompletionStrategy completionStrategy = (CompletionStrategy)tagMap.get(tag);
+        CompletionStrategy completionStrategy = tagMap.get(tag);
         if (completionStrategy == null && tag != null)
             throw new IllegalArgumentException(tag);
         return completionStrategy;

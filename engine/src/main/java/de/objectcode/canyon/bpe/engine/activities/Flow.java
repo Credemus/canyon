@@ -74,12 +74,9 @@ public class Flow extends CompositeActivity
     if ( m_childActivities.isEmpty() ) {
       complete();
     } else {
-      Iterator  it  = m_childActivities.iterator();
 
-      while ( it.hasNext() ) {
-        Activity  activity  = ( Activity ) it.next();
-
-        if ( activity.getState() == ActivityState.OPEN && !activity.hasIncomingLinks() ) {
+      for (Activity activity : m_childActivities) {
+        if (activity.getState() == ActivityState.OPEN && !activity.hasIncomingLinks()) {
           activity.activate();
         }
       }
@@ -97,13 +94,9 @@ public class Flow extends CompositeActivity
     super.toDom( element );
 
     element.addAttribute("non-blocked", String.valueOf(m_nonBlocked));
-    
-    Iterator  it  = m_childActivities.iterator();
 
-    while ( it.hasNext() ) {
-      Activity  activity  = ( Activity ) it.next();
-
-      activity.toDom( element.addElement( activity.getElementName() ) );
+    for (Activity activity : m_childActivities) {
+      activity.toDom(element.addElement(activity.getElementName()));
     }
   }
 }

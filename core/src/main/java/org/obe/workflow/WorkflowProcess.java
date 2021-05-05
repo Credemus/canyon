@@ -44,12 +44,20 @@
 
 package org.obe.workflow;
 
-import java.util.List;
-
 import org.obe.AccessLevel;
 import org.obe.Package;
 import org.obe.RedefinableHeader;
 import org.obe.WFElement;
+import org.obe.activity.Activity;
+import org.obe.activity.ActivitySet;
+import org.obe.application.Application;
+import org.obe.data.DataField;
+import org.obe.data.FormalParameter;
+import org.obe.participant.Participant;
+import org.obe.transition.EventType;
+import org.obe.transition.Transition;
+
+import java.util.List;
 
 public interface WorkflowProcess extends WFElement {
     String getPackageId();
@@ -69,19 +77,19 @@ public interface WorkflowProcess extends WFElement {
     RedefinableHeader getRedefinableHeader();
     void setRedefinableHeader(RedefinableHeader redefinableHeader);
 
-    List getFormalParameters();
+    List<FormalParameter> getFormalParameters();
 
-    List getDataFields();
+    List<DataField> getDataFields();
 
-    List getParticipants();
+    List<Participant> getParticipants();
 
-    List getApplications();
+    List<Application> getApplications();
 
-    List getEventTypes();
+    List<EventType> getEventTypes();
 
-    List getActivities();
+    List<Activity> getActivities();
 
-    List getActivitySets();
+    List<ActivitySet> getActivitySets();
 
     /**
      * Returns a list of transitions in the workflow.  <b>N.B. If adding a
@@ -92,5 +100,5 @@ public interface WorkflowProcess extends WFElement {
      * @see org.obe.activity.Activity#getAfferentTransitions()
      * @see org.obe.activity.Activity#getEfferentTransitions()
      */
-    List getTransitions();
+    List<Transition> getTransitions();
 }

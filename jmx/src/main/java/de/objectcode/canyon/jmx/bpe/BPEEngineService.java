@@ -81,7 +81,6 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
    *
    * @param jndiName       The new jndiName value
    * @exception Exception  Description of the Exception
-   * @see                  de.neutrasoft.saints.core.obe.mbean.OBEServiceManagerMBean#setJndiName(java.lang.String)
    */
   public void setJndiName(String jndiName) throws Exception {
     String oldName = m_jndiName;
@@ -127,7 +126,6 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
    * @jmx.managed-attribute access="read-write" description="JNDI name of the async request queue"
    *
    * @return   The jndiName value
-   * @see      de.neutrasoft.saints.core.obe.mbean.OBEServiceManagerMBean#getJndiName()
    */
   public String getJndiName() {
     return m_jndiName;
@@ -185,7 +183,6 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
    * @jmx.managed-operation
    *
    * @exception Exception  Description of the Exception
-   * @see                  de.neutrasoft.saints.core.obe.mbean.OBEServiceManagerMBean#start()
    */
   public void start() throws Exception {
     m_started = true;
@@ -200,22 +197,22 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
 
     if (System.getProperty("de.objectcode.canyon.jmx.bpe.BPEEngineService.migrationMode") == null) {
       m_timerNotification =
-        ((Integer) m_server.invoke(m_timerService, "addNotification",
-            new Object[] {
-              "BPEEngineService", "BPEEngineService Notification", null,
+              (Integer) m_server.invoke(m_timerService, "addNotification",
+                      new Object[]{
+                              "BPEEngineService", "BPEEngineService Notification", null,
 
-              // User Object
-              new Date(new Date().getTime() + 60000L),
-              new Long(m_notificationInterval * 1000L),
-          },
-            new String[] {
-              String.class.getName(), String.class.getName(),
-              Object.class.getName(), Date.class.getName(),
-              Long.TYPE.getName()
-          })).intValue();
+                              // User Object
+                              new Date(new Date().getTime() + 60000L),
+                              new Long(m_notificationInterval * 1000L),
+                      },
+                      new String[]{
+                              String.class.getName(), String.class.getName(),
+                              Object.class.getName(), Date.class.getName(),
+                              Long.TYPE.getName()
+                      });
       m_notificationListener = new TimedNotificationListener();
       m_server.addNotificationListener(m_timerService, m_notificationListener,
-        new Filter(new Integer(m_timerNotification)), null);
+        new Filter(m_timerNotification), null);
     }
     rebind();
   }
@@ -226,11 +223,10 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
    *
    * @exception Exception
    *              Description of the Exception
-   * @see de.neutrasoft.saints.core.obe.mbean.OBEServiceManagerMBean#start()
    */
   public void stop() throws Exception {
     m_server.removeNotificationListener(m_timerService, m_notificationListener);
-    m_server.invoke(m_timerService, "removeNotification", new Object[] { new Integer(m_timerNotification) },
+    m_server.invoke(m_timerService, "removeNotification", new Object[] {m_timerNotification},
       new String[] { Integer.class.getName() });
 
     m_started = false;
@@ -238,12 +234,6 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
   }
 
 
-  /**
-   * Description of the Method
-   *
-   * @param name                 Description of the Parameter
-   * @exception NamingException  Description of the Exception
-   */
   private void unbind() throws NamingException {
     InitialContext ctx = new InitialContext();
 
@@ -348,17 +338,17 @@ public class BPEEngineService implements BPEEngineServiceMBean, MBeanRegistratio
           if (trx != null) {
             try {
               trx.rollback();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
           }
           try {
             boolean flush = true;
             m_svcMgr.beforeEndTransaction(flush);
-          } catch (Exception e) {
+          } catch (Exception ignored) {
           }
           try {
             m_svcMgr.afterEndTransaction(trx == null);
-          } catch (Exception e) {
+          } catch (Exception ignored) {
           }
         }
       }

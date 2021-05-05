@@ -5,23 +5,22 @@ import de.objectcode.canyon.spi.RepositoryException;
 /**
  * @author junglas
  */
-public interface IProcessInstanceRepository
-{
-  public ProcessInstance getProcessInstance ( String processInstanceId ) throws RepositoryException;
-  
-  public String saveProcessInstance ( ProcessInstance processInstance ) throws RepositoryException;
-  
-  public void updateProcessInstance ( ProcessInstance processInstance ) throws RepositoryException;
+public interface IProcessInstanceRepository {
+  ProcessInstance getProcessInstance(String processInstanceId) throws RepositoryException;
 
-  public void updateProcessInstances( IProcessInstanceVisitor visitor )
-  throws RepositoryException;
-  
-  public void migrateProcessInstances( IProcessInstanceVisitor visitor )
-  throws RepositoryException;
+  String saveProcessInstance(ProcessInstance processInstance) throws RepositoryException;
 
-  public void iterateProcessInstances ( boolean onlyOpenRunning, IProcessInstanceVisitor visitor ) throws RepositoryException;
+  void updateProcessInstance(ProcessInstance processInstance) throws RepositoryException;
 
-  public void iterateSubProcessInstances ( String parentProcessInstanceId, IProcessInstanceVisitor visitor ) throws RepositoryException;
+  void updateProcessInstances(IProcessInstanceVisitor visitor)
+          throws RepositoryException;
 
-  public void iterateProcessInstances ( String processId, boolean onlyOpenRunning, IProcessInstanceVisitor visitor ) throws RepositoryException;
+  void migrateProcessInstances(IProcessInstanceVisitor visitor)
+          throws RepositoryException;
+
+  void iterateProcessInstances(boolean onlyOpenRunning, IProcessInstanceVisitor visitor) throws RepositoryException;
+
+  void iterateSubProcessInstances(String parentProcessInstanceId, IProcessInstanceVisitor visitor) throws RepositoryException;
+
+  void iterateProcessInstances(String processId, boolean onlyOpenRunning, IProcessInstanceVisitor visitor) throws RepositoryException;
 }

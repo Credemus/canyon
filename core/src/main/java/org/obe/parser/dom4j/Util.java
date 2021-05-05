@@ -85,7 +85,7 @@ public class Util {
      @return The child elements
      */
 
-    public static List children(Element element, String name) {
+    public static List<Element> children(Element element, String name) {
         return element.elements(new QName(name, element.getNamespace()));
     }
 

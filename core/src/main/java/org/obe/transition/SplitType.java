@@ -63,7 +63,7 @@ public final class SplitType implements Serializable {
         AND,
         XOR
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, SplitType> tagMap = new HashMap<String, SplitType>();
 
     private final int _value;
 
@@ -74,7 +74,7 @@ public final class SplitType implements Serializable {
     }
 
     public static SplitType fromString(String tag) {
-        SplitType splitType = (SplitType)tagMap.get(tag);
+        SplitType splitType = tagMap.get(tag);
         if (splitType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return splitType;

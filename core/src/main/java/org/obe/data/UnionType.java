@@ -49,12 +49,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UnionType implements Type, Serializable {
-    static final long serialVersionUID = -7210236508696534902L;
+  static final long serialVersionUID = -7210236508696534902L;
 
-    private List members = new ArrayList();
+  private List<Type> members = new ArrayList<Type>();
 
-    public List getMembers(){
-        return members;
-    }
+  public List<Type> getMembers() {
+    return members;
+  }
 
 }

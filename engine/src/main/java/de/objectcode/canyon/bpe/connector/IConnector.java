@@ -9,7 +9,6 @@ import de.objectcode.canyon.bpe.util.IDomSerializable;
 /**
  * @author junglas
  */
-public interface IConnector extends IDomSerializable, Serializable
-{
-  public Message invoke ( BPEProcess bpeProcess, Message message ) throws InvokationException;
+public interface IConnector extends IDomSerializable, Serializable {
+  Message invoke(BPEProcess bpeProcess, Message message) throws InvokationException;
 }

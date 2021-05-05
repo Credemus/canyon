@@ -6,7 +6,6 @@ import de.objectcode.canyon.bpe.engine.activities.BPEProcess;
 /**
  * @author junglas
  */
-public interface IProcessFactory
-{
-  public BPEProcess createProcess() throws EngineException;
+public interface IProcessFactory {
+  BPEProcess createProcess() throws EngineException;
 }

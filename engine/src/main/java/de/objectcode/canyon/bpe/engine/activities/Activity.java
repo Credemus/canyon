@@ -56,9 +56,9 @@ public abstract class Activity extends ExtensibleElement implements
 
 	protected String m_id;
 
-	protected Map m_incomingLinks;
+	protected Map<String, Link> m_incomingLinks;
 
-	protected Map m_outgoingLinks;
+	protected Map<String, Link> m_outgoingLinks;
 
 	/**
 	 * Constructor for the Activity object
@@ -79,8 +79,8 @@ public abstract class Activity extends ExtensibleElement implements
 
 		m_state = ActivityState.OPEN;
 
-		m_incomingLinks = new LinkedHashMap();
-		m_outgoingLinks = new LinkedHashMap();
+		m_incomingLinks = new LinkedHashMap<String, Link>();
+		m_outgoingLinks = new LinkedHashMap<String, Link>();
 
 		if (m_scope != null) {
 			m_scope.register(this);
@@ -212,7 +212,7 @@ public abstract class Activity extends ExtensibleElement implements
 	 * @return
 	 */
 	public Link getIncomingLink(String name) {
-		return (Link) m_incomingLinks.get(name);
+		return m_incomingLinks.get(name);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public abstract class Activity extends ExtensibleElement implements
 	}
 
 	private Link[] getIncomingLinksCascading() {
-		List incomingLinks = new ArrayList(m_incomingLinks.values());
+		List<Link> incomingLinks = new ArrayList<Link>(m_incomingLinks.values());
 		IActivityContainer parent = getParentActivity();
 		while (parent != null) {
 			if (parent instanceof Activity) {
@@ -262,7 +262,7 @@ public abstract class Activity extends ExtensibleElement implements
 	 * @return The outgoingLink value
 	 */
 	public Link getOutgoingLink(String name) {
-		return (Link) m_outgoingLinks.get(name);
+		return m_outgoingLinks.get(name);
 	}
 
 	/**
@@ -315,11 +315,8 @@ public abstract class Activity extends ExtensibleElement implements
 
 			// Set all incoming links to false to ensure that the activity is not
 			// activated by an old link
-			Iterator it = m_incomingLinks.values().iterator();
 
-			while (it.hasNext()) {
-				Link l = (Link) it.next();
-
+			for (Link l : m_incomingLinks.values()) {
 				l.setState(LinkState.FALSE);
 			}
 
@@ -353,11 +350,8 @@ public abstract class Activity extends ExtensibleElement implements
 
 			// Set all incoming links to false to ensure that the activity is not
 			// activated by an old link
-			Iterator it = m_incomingLinks.values().iterator();
 
-			while (it.hasNext()) {
-				Link l = (Link) it.next();
-
+			for (Link l : m_incomingLinks.values()) {
 				l.setState(LinkState.FALSE);
 			}
 
@@ -425,11 +419,7 @@ public abstract class Activity extends ExtensibleElement implements
 
 			getEngine().getEventHub().fireActivityStateEvent(this, m_state);
 
-			Iterator it = m_outgoingLinks.values().iterator();
-
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_outgoingLinks.values()) {
 				link.fire();
 			}
 
@@ -464,11 +454,8 @@ public abstract class Activity extends ExtensibleElement implements
 			m_state = ActivityState.ABORT;
 
 			getEngine().getEventHub().fireActivityStateEvent(this, m_state);
-			Iterator it = m_outgoingLinks.values().iterator();
 
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_outgoingLinks.values()) {
 				link.fail();
 			}
 
@@ -523,11 +510,7 @@ public abstract class Activity extends ExtensibleElement implements
 
 			getEngine().getEventHub().fireActivityStateEvent(this, m_state);
 
-			Iterator it = m_outgoingLinks.values().iterator();
-
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_outgoingLinks.values()) {
 				link.fail();
 			}
 
@@ -564,11 +547,7 @@ public abstract class Activity extends ExtensibleElement implements
 
 			getEngine().getEventHub().fireActivityStateEvent(this, m_state);
 
-			Iterator it = m_outgoingLinks.values().iterator();
-
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_outgoingLinks.values()) {
 				link.reset();
 			}
 		} catch (Exception e) {
@@ -690,7 +669,7 @@ public abstract class Activity extends ExtensibleElement implements
 	 *          Description of the Parameter
 	 * @return Description of the Return Value
 	 */
-	protected boolean checkLoop(Link l, Set activities) {
+	protected boolean checkLoop(Link l, Set<Activity> activities) {
 		Activity activity = l.getSource();
 
 		if (hasLooped(activity)) {
@@ -728,11 +707,7 @@ public abstract class Activity extends ExtensibleElement implements
 		if (!m_incomingLinks.isEmpty()) {
 			Element incomingLinks = element.addElement("incoming-links");
 
-			Iterator it = m_incomingLinks.values().iterator();
-
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_incomingLinks.values()) {
 				link.toDom(incomingLinks.addElement(link.getElementName()));
 			}
 		}
@@ -740,11 +715,7 @@ public abstract class Activity extends ExtensibleElement implements
 		if (!m_outgoingLinks.isEmpty()) {
 			Element outgoingLinks = element.addElement("outgoing-links");
 
-			Iterator it = m_outgoingLinks.values().iterator();
-
-			while (it.hasNext()) {
-				Link link = (Link) it.next();
-
+			for (Link link : m_outgoingLinks.values()) {
 				link.toDom(outgoingLinks.addElement(link.getElementName()));
 			}
 		}
@@ -767,11 +738,7 @@ public abstract class Activity extends ExtensibleElement implements
 			out.writeByte(m_state.getValue());
 		}
 
-		Iterator it = m_outgoingLinks.values().iterator();
-
-		while (it.hasNext()) {
-			Link link = (Link) it.next();
-
+		for (Link link : m_outgoingLinks.values()) {
 			link.dehydrate(context, out);
 		}
 	}
@@ -798,11 +765,7 @@ public abstract class Activity extends ExtensibleElement implements
 			m_state = ActivityState.fromInt(in.readByte());
 		}
 
-		Iterator it = m_outgoingLinks.values().iterator();
-
-		while (it.hasNext()) {
-			Link link = (Link) it.next();
-
+		for (Link link : m_outgoingLinks.values()) {
 			link.hydrate(context, in);
 		}
 	}

@@ -49,6 +49,7 @@ import java.util.List;
 
 import org.obe.AbstractWFElement;
 import org.obe.data.ExternalReference;
+import org.obe.data.FormalParameter;
 
 /**
  * Abstract base implementation of the tool metadata interface.
@@ -59,7 +60,7 @@ import org.obe.data.ExternalReference;
 public abstract class AbstractTool extends AbstractWFElement {
     static final long serialVersionUID = -273095181530777278L;
 
-    private List formalParameters;
+    private final List<FormalParameter> formalParameters;
     private ExternalReference externalReference;
 
     /** Construct a new AbstractTool.
@@ -68,10 +69,10 @@ public abstract class AbstractTool extends AbstractWFElement {
         @param name The application name
     */
 
-    public AbstractTool(String id, String name){
+    public AbstractTool(String id, String name) {
         super(id, name);
 
-        this.formalParameters = new ArrayList();
+        this.formalParameters = new ArrayList<FormalParameter>();
     }
 
     /** Return a List of all FormalParameters for the application.
@@ -79,7 +80,7 @@ public abstract class AbstractTool extends AbstractWFElement {
         @return A List of FormalParameter objects
     */
 
-    public List getFormalParameters(){
+    public List<FormalParameter> getFormalParameters(){
         return formalParameters;
     }
 

@@ -63,7 +63,7 @@ public final class JoinType implements Serializable {
         AND,
         XOR
     };
-    private static final HashMap tagMap = new HashMap();
+    private static final HashMap<String, JoinType> tagMap = new HashMap<String, JoinType>();
 
     private final int _value;
 
@@ -74,7 +74,7 @@ public final class JoinType implements Serializable {
     }
 
     public static JoinType fromString(String tag) {
-        JoinType joinType = (JoinType)tagMap.get(tag);
+        JoinType joinType = tagMap.get(tag);
         if (joinType == null && tag != null)
             throw new IllegalArgumentException(tag);
         return joinType;

@@ -58,7 +58,7 @@ public abstract class AbstractWFElement implements WFElement, Serializable {
     private String _id;
     private String _name;
     private String _description;
-    private Map _extendedAttributes;
+    private Map<String, Object> _extendedAttributes;
 
     /**
      * Constructs a new AbstractWFElement.
@@ -132,7 +132,7 @@ public abstract class AbstractWFElement implements WFElement, Serializable {
      *
      * @return   A Map of extended attributes
      */
-    public Map getExtendedAttributes() {
+    public Map<String, Object> getExtendedAttributes() {
         if (_extendedAttributes == null)
             _extendedAttributes = new HashMap();
         return _extendedAttributes;

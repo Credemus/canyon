@@ -9,56 +9,46 @@ import de.objectcode.canyon.bpe.engine.activities.BPEProcess;
 import de.objectcode.canyon.bpe.engine.correlation.Message;
 
 /**
- * @author    junglas
- * @created   22. Juni 2004
+ * @author junglas
+ * @created 22. Juni 2004
  */
-public class SubProcessInitConnector implements IConnector
-{
-	static final long serialVersionUID = 2368920307354959774L;
-	
-	private final static  Log  log  = LogFactory.getLog( SubProcessInitConnector.class );
+public class SubProcessInitConnector implements IConnector {
+  static final long serialVersionUID = 2368920307354959774L;
+
+  private final static Log log = LogFactory.getLog(SubProcessInitConnector.class);
 
 
   /**
-   * @return   The elementName value
-   * @see      de.objectcode.canyon.bpe.util.IDomSerializable#getElementName()
+   * @return The elementName value
+   * @see de.objectcode.canyon.bpe.util.IDomSerializable#getElementName()
    */
-  public String getElementName()
-  {
+  public String getElementName() {
     return "sub-process-init-connector";
   }
 
 
-  /**
-   * @param bpeEngine                Description of the Parameter
-   * @param message                  Description of the Parameter
-   * @return                         Description of the Return Value
-   * @exception InvokationException  Description of the Exception
-   * @see                            de.objectcode.canyon.bpe.connector.IConnector#invoke(de.objectcode.canyon.bpe.connector.Parameters)
-   */
-  public Message invoke( BPEProcess bpeProcess, Message message )
-    throws InvokationException
-  {
-    if ( log.isDebugEnabled() ) {
+  public Message invoke(BPEProcess bpeProcess, Message message)
+          throws InvokationException {
+    if (log.isDebugEnabled()) {
       log.debug("invoke: " + bpeProcess.getId() + " " + bpeProcess.getProcessInstanceId() + " " + message);
     }
-    
+
     try {
       BPERuntimeContext context = new BPERuntimeContext(bpeProcess.getStartedBy(), bpeProcess.getClientId());
-      bpeProcess.getBPEEngine().handleMessage( context, message );
+      bpeProcess.getBPEEngine().handleMessage(context, message);
 
       return null;
-    }
-    catch ( Exception e ) {
-      log.error( "Exception", e );
-      throw new InvokationException( e );
+    } catch (Exception e) {
+      log.error("Exception", e);
+      throw new InvokationException(e);
     }
   }
 
 
   /**
-   * @param element  Description of the Parameter
-   * @see            de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
+   * @param element Description of the Parameter
+   * @see de.objectcode.canyon.bpe.util.IDomSerializable#toDom(org.dom4j.Element)
    */
-  public void toDom( Element element ) { }
+  public void toDom(Element element) {
+  }
 }

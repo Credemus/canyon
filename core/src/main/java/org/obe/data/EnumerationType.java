@@ -51,9 +51,9 @@ import java.util.List;
 public class EnumerationType implements Type, Serializable {
     static final long serialVersionUID = -3051895740565450802L;
 
-    private List values = new ArrayList();
+    private final List<EnumerationValue> values = new ArrayList<EnumerationValue>();
 
-    public List getValues(){
+    public List<EnumerationValue> getValues(){
         return values;
     }
 

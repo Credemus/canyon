@@ -13,15 +13,15 @@ public interface IMessageReceiver
    * 
    * @return
    */
-  public String getMessageOperation ();
+  String getMessageOperation();
   
-  public ComplexType getMessageContentType ();
+  ComplexType getMessageContentType();
 
-  public boolean isActive ( );
+  boolean isActive();
   
-  public boolean isCreateInstance ( );
+  boolean isCreateInstance();
   
-  public CorrelationSet[] getCorrelationSets();
+  CorrelationSet[] getCorrelationSets();
   
   /**
    * Called by the message broker upon matching message.
@@ -29,5 +29,5 @@ public interface IMessageReceiver
    * @param message
    * @return <tt>true</tt> if the message receiver consumes the message, <tt>false</tt> if the message should stay pertinent
    */
-  public boolean onMessage ( Message message ) throws EngineException;
+  boolean onMessage(Message message) throws EngineException;
 }

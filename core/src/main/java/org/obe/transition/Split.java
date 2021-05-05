@@ -63,7 +63,7 @@ public class Split implements Serializable {
     static final long serialVersionUID = 7654247142688505300L;
 
     private SplitType type;
-    private List transitionReferences;
+    private List<String> transitionReferences;
 
     /** Construct a new Split. */
 
@@ -96,7 +96,7 @@ public class Split implements Serializable {
         @return The transition references
     */
 
-    public List getTransitionReferences(){
+    public List<String> getTransitionReferences(){
         return transitionReferences;
     }
 
