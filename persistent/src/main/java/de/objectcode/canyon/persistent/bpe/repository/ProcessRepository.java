@@ -5,10 +5,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Query;
-import net.sf.hibernate.Session;
-import net.sf.hibernate.SessionFactory;
+import de.objectcode.canyon.bpe.repository.IProcessNoSourceVisitor;
+import de.objectcode.canyon.persistent.instance.PImmutableObjectValue;
+import net.sf.hibernate.*;
 
 import org.apache.commons.collections.LRUMap;
 import org.apache.commons.logging.Log;
@@ -554,8 +553,65 @@ public class ProcessRepository implements IProcessRepository {
 			}
 		}
 	}
-    
-    /**
+
+	/**
+	 * @param visitor
+	 *          Description of the Parameter
+	 * @exception RepositoryException
+	 *              Description of the Exception
+	 * @see de.objectcode.canyon.bpe.repository.IProcessRepository#iterateProcesses(de.objectcode.canyon.bpe.engine.activities.ActivityState,
+	 *      de.objectcode.canyon.bpe.repository.IProcessVisitor)
+	 */
+	public void iterateProcessesNoSource(IProcessNoSourceVisitor visitor)
+					throws RepositoryException {
+		log.info("iterateProcessesNoSource: start");
+		Session session = null;
+		try {
+			session = m_sessionFactory.openSession();
+
+			Query query = null;
+			log.info("Ignore processes (process definitions) with state >=4 (terminated, completed)  [MHE, 27.01.2010]");
+			// MHE, 27.01.2010: ignore processes with state >=4 (terminated, completed)
+			// Normally, processes have NO state at all! (all processes have state=0 in DB). But we use this
+			// column now to manually exclude old processes from being loaded. Used in flow (01/2010)!
+			// HINT: Anyway, the process will be loaded, if an active process instance will be loaded later!!!
+			query = session.createQuery("select o.entityOid, o.processBlob from o in class " + PBPEProcess.class + " where o.state <=3");
+			// query = session.createQuery("from o in class " + PBPEProcess.class + " order by o.entityOid asc");
+
+			ScrollableResults results = query.scroll(ScrollMode.FORWARD_ONLY);
+
+			while (results.next()) {
+				long start = System.currentTimeMillis();
+				Long entityOid = (Long) results.get(0);
+				PImmutableObjectValue processBlob = (PImmutableObjectValue) results.get(1);
+				BPEProcess process = (BPEProcess) processBlob.getValue();
+				process.setProcessEntityOid(entityOid);
+				if (log.isDebugEnabled()) {
+					log.debug("iterateProcess: " + process.getProcessEntityOid());
+				}
+
+				visitor.visit(process);
+
+				session.evict(processBlob);
+
+				if (log.isDebugEnabled()) {
+					log.debug("iterateProcess: " + process.getProcessEntityOid() + "="
+									+ (System.currentTimeMillis() - start) + " ms");
+				}
+			}
+		} catch (HibernateException e) {
+			log.error("Exception", e);
+			throw new RepositoryException(e);
+		} finally {
+			try {
+				session.close();
+			} catch (Exception e) {
+			}
+			log.info("iterateProcessesNoSource: done");
+		}
+	}
+
+	/**
      * @param visitor
      *          Description of the Parameter
      * @exception RepositoryException

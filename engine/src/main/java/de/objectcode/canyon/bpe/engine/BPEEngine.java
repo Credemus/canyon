@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import de.objectcode.canyon.bpe.repository.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -30,11 +31,6 @@ import de.objectcode.canyon.bpe.engine.correlation.MessageType;
 import de.objectcode.canyon.bpe.engine.event.EventHub;
 import de.objectcode.canyon.bpe.engine.handler.IAlarmReceiver;
 import de.objectcode.canyon.bpe.engine.variable.IVariable;
-import de.objectcode.canyon.bpe.repository.IProcessInstanceRepository;
-import de.objectcode.canyon.bpe.repository.IProcessInstanceVisitor;
-import de.objectcode.canyon.bpe.repository.IProcessRepository;
-import de.objectcode.canyon.bpe.repository.IProcessVisitor;
-import de.objectcode.canyon.bpe.repository.ProcessInstance;
 import de.objectcode.canyon.bpe.util.HydrationContext;
 import de.objectcode.canyon.model.WorkflowPackage;
 import de.objectcode.canyon.model.process.WorkflowProcess;
@@ -637,8 +633,10 @@ public class BPEEngine
   public void initialize()
     throws RepositoryException, EngineException
   {
-    m_processRepository.iterateProcesses( new ProcessVisitor(), false );
-    m_processInstanceRepository.iterateProcessInstances( true, new ProcessInstanceVisitor() );
+    Map processCache = new HashMap();
+
+    m_processRepository.iterateProcessesNoSource( new ProcessVisitor(processCache) );
+    m_processInstanceRepository.iterateProcessInstances( true, new ProcessInstanceVisitor(processCache) );
   }
 
 
@@ -1017,8 +1015,14 @@ public class BPEEngine
 	 * @author junglas
 	 * @created 24. Juni 2004
 	 */
-  private class ProcessVisitor implements IProcessVisitor
+  private class ProcessVisitor implements IProcessNoSourceVisitor
   {
+    private  Map  m_processCache;
+
+    ProcessVisitor(Map processCache) {
+      m_processCache = processCache;
+    }
+
     /**
 		 * @param process
 		 *          Description of the Parameter
@@ -1026,8 +1030,10 @@ public class BPEEngine
 		 *          Description of the Parameter
 		 * @see de.objectcode.canyon.bpe.repository.IProcessVisitor#visit(de.objectcode.canyon.bpe.engine.activities.BPEProcess)
 		 */
-    public void visit( BPEProcess process, Serializable processSource )
+    public void visit( BPEProcess process )
     {
+      m_processCache.put(process.getProcessEntityOid(), process);
+
       Iterator  it  = process.getCreateInstanceOperations().iterator();
 
       while ( it.hasNext() ) {
@@ -1047,8 +1053,11 @@ public class BPEEngine
    */
   private class ProcessInstanceVisitor implements IProcessInstanceVisitor
   {
-    private  Map  m_processCache  = new HashMap();
+    private  Map  m_processCache;
 
+    ProcessInstanceVisitor(Map processCache) {
+      m_processCache = processCache;
+    }
 
     /**
      * @param processInstance          Description of the Parameter

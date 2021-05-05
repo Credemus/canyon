@@ -2,10 +2,9 @@ package de.objectcode.canyon.persistent.bpe.repository;
 
 import java.util.Iterator;
 
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Query;
-import net.sf.hibernate.Session;
-import net.sf.hibernate.SessionFactory;
+import de.objectcode.canyon.persistent.instance.PImmutableObjectValue;
+import de.objectcode.canyon.persistent.instance.PObjectValue;
+import net.sf.hibernate.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -162,9 +161,7 @@ public class ProcessInstanceRepository implements IProcessInstanceRepository
   public void iterateProcessInstances( boolean onlyOpenRunning, IProcessInstanceVisitor visitor )
     throws RepositoryException
   {
-    if ( log.isDebugEnabled() ) {
-      log.debug( "iterateProcessInstances: " + onlyOpenRunning );
-    }
+    log.info( "iterateProcessInstances: start " + onlyOpenRunning );
     Session session = null;
     try {
       session = m_sessionFactory.openSession();
@@ -172,19 +169,20 @@ public class ProcessInstanceRepository implements IProcessInstanceRepository
       Query     query;
       
       if ( onlyOpenRunning ) {
-        query = session.createQuery( "from o in class " + PBPEProcessInstance.class + " where o.state <= 3");
+        query = session.createQuery( "select o.processInstanceData from o in class " + PBPEProcessInstance.class + " where o.state <= 3");
       } else {
-        query = session.createQuery( "from o in class " + PBPEProcessInstance.class );
+        query = session.createQuery( "select o.processInstanceData from o in class " + PBPEProcessInstance.class );
       }
-      
-      Iterator  it       = query.iterate();
 
-      while ( it.hasNext() ) {
-        PBPEProcessInstance  processInstance  = ( PBPEProcessInstance ) it.next();
+      ScrollableResults results = query.scroll(ScrollMode.FORWARD_ONLY);
 
-        visitor.visit( processInstance.getProcessInstance() );
+      while ( results.next() ) {
+        PObjectValue processInstanceData  = ( PObjectValue ) results.get(0);
+        ProcessInstance processInstance = (ProcessInstance)processInstanceData.getValue();
 
-        session.evict( processInstance );
+        visitor.visit( processInstance );
+
+        session.evict( processInstanceData );
       }
     }
     catch ( HibernateException e ) {
@@ -197,6 +195,7 @@ public class ProcessInstanceRepository implements IProcessInstanceRepository
       }
       catch ( Exception e ) {
       }
+      log.info( "iterateProcessInstances: done" );
     }
   }
   

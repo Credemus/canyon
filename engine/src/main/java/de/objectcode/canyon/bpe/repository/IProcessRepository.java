@@ -37,6 +37,8 @@ public interface IProcessRepository
   public int countProcesses ( ) throws RepositoryException;
   
   public void iterateProcesses ( IProcessVisitor visitor, boolean onlyActive ) throws RepositoryException;
-  
+
+  public void iterateProcessesNoSource ( IProcessNoSourceVisitor visitor ) throws RepositoryException;
+
   public void iterateCompactProcesses ( IProcessVisitor visitor, boolean onlyActive ) throws RepositoryException; 
 }
