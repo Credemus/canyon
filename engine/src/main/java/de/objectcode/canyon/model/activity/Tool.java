@@ -10,33 +10,30 @@ import de.objectcode.canyon.model.application.Application;
 import de.objectcode.canyon.model.data.ActualParameter;
 
 /**
- * @author    junglas
- * @created   25. November 2003
+ * @author junglas
+ * @created 25. November 2003
  */
-public class Tool extends BaseElement implements IValidatable
-{
-	static final long serialVersionUID = -644895738457555289L;
-	
-	private  Activity     m_activity;
-  private  ToolType     m_type;
-  private  List         m_actualParameters;
-  private  Application  m_application;
+public class Tool extends BaseElement implements IValidatable {
+  static final long serialVersionUID = -644895738457555289L;
+
+  private Activity m_activity;
+  private ToolType m_type;
+  private List<ActualParameter> m_actualParameters;
+  private Application m_application;
 
 
   /**
-   *Constructor for the Tool object
+   * Constructor for the Tool object
    */
-  public Tool()
-  {
-    m_actualParameters = new ArrayList();
+  public Tool() {
+    m_actualParameters = new ArrayList<ActualParameter>();
   }
 
 
   /**
    * @param type
    */
-  public void setType( ToolType type )
-  {
+  public void setType(ToolType type) {
     m_type = type;
   }
 
@@ -44,8 +41,7 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * @param activity
    */
-  public void setActivity( Activity activity )
-  {
+  public void setActivity(Activity activity) {
     m_activity = activity;
   }
 
@@ -53,8 +49,7 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * @param application
    */
-  public void setApplication( Application application )
-  {
+  public void setApplication(Application application) {
     m_application = application;
   }
 
@@ -62,13 +57,12 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * Gets the actualParameters attribute of the Tool object
    *
-   * @return   The actualParameters value
+   * @return The actualParameters value
    */
-  public ActualParameter[] getActualParameters()
-  {
-    ActualParameter  ret[]  = new ActualParameter[m_actualParameters.size()];
+  public ActualParameter[] getActualParameters() {
+    ActualParameter ret[] = new ActualParameter[m_actualParameters.size()];
 
-    m_actualParameters.toArray( ret );
+    m_actualParameters.toArray(ret);
 
     return ret;
   }
@@ -77,8 +71,7 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * @return
    */
-  public ToolType getType()
-  {
+  public ToolType getType() {
     return m_type;
   }
 
@@ -86,8 +79,7 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * @return
    */
-  public Activity getActivity()
-  {
+  public Activity getActivity() {
     return m_activity;
   }
 
@@ -95,8 +87,7 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * @return
    */
-  public Application getApplication()
-  {
+  public Application getApplication() {
     return m_application;
   }
 
@@ -104,30 +95,28 @@ public class Tool extends BaseElement implements IValidatable
   /**
    * Adds a feature to the ActualParameter attribute of the Tool object
    *
-   * @param actualParameter  The feature to be added to the ActualParameter attribute
+   * @param actualParameter The feature to be added to the ActualParameter attribute
    */
-  public void addActualParameter( ActualParameter actualParameter )
-  {
-    m_actualParameters.add( actualParameter );
+  public void addActualParameter(ActualParameter actualParameter) {
+    m_actualParameters.add(actualParameter);
   }
 
 
   /**
-   * @return   Description of the Return Value
-   * @see      de.objectcode.canyon.model.IValidatable#validate()
+   * @return Description of the Return Value
+   * @see de.objectcode.canyon.model.IValidatable#validate()
    */
-  public ValidationErrors validate()
-  {
-    ValidationErrors  errors  = new ValidationErrors();
+  public ValidationErrors validate() {
+    ValidationErrors errors = new ValidationErrors();
 
     m_application = m_activity.getContainer().getWorkflowProcess().getApplication(m_id);
-    
-    if ( m_application == null ) {
+
+    if (m_application == null) {
       m_application = m_activity.getContainer().getWorkflowProcess().getPackage().getApplication(m_id);
     }
-    
-    if ( m_application == null )
-      errors.addMessage("tool.undefined.application", new Object[] {m_activity.getId(), m_id});
+
+    if (m_application == null)
+      errors.addMessage("tool.undefined.application", new Object[]{m_activity.getId(), m_id});
 
     return errors;
   }

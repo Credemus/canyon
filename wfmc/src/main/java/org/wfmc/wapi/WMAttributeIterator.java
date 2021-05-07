@@ -10,7 +10,7 @@ package org.wfmc.wapi;
  *
  * @author Adrian Price
  */
-public interface WMAttributeIterator extends WMIterator {
+public interface WMAttributeIterator extends WMIterator<WMAttribute> {
     /**
      * Retrieves the next attribute.
      *

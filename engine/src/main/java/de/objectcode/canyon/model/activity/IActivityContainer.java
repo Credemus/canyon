@@ -4,27 +4,26 @@ import de.objectcode.canyon.model.process.WorkflowProcess;
 import de.objectcode.canyon.model.transition.Transition;
 
 /**
- * @author    junglas
- * @created   21. November 2003
+ * @author junglas
+ * @created 21. November 2003
  */
-public interface IActivityContainer
-{
-  public WorkflowProcess getWorkflowProcess();
-  
+public interface IActivityContainer {
+  WorkflowProcess getWorkflowProcess();
+
   /**
    * Gets the activity attribute of the IActivityContainer object
    *
-   * @param id  Description of the Parameter
-   * @return    The activity value
+   * @param id Description of the Parameter
+   * @return The activity value
    */
-  public Activity getActivity( String id );
+  Activity getActivity(String id);
 
 
   /**
    * Gets the transition attribute of the IActivityContainer object
    *
-   * @param id  Description of the Parameter
-   * @return    The transition value
+   * @param id Description of the Parameter
+   * @return The transition value
    */
-  public Transition getTransition( String id );
+  Transition getTransition(String id);
 }

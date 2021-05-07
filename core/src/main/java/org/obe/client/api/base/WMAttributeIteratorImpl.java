@@ -55,10 +55,10 @@ import org.wfmc.wapi.WMNoMoreDataException;
  *
  * @author Adrian Price
  */
-public class WMAttributeIteratorImpl extends AbstractWMIterator
+public class WMAttributeIteratorImpl extends AbstractWMIterator<WMAttribute>
     implements WMAttributeIterator {
 
-    public WMAttributeIteratorImpl(Object[] array) {
+    public WMAttributeIteratorImpl(WMAttribute[] array) {
         super(array);
     }
 
@@ -68,7 +68,7 @@ public class WMAttributeIteratorImpl extends AbstractWMIterator
 
     public WMAttribute tsNext() throws WMNoMoreDataException {
         try {
-            return (WMAttribute)next();
+            return next();
         } catch (NoSuchElementException e) {
             throw new WMNoMoreDataException();
         }

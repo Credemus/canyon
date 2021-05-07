@@ -15,7 +15,7 @@ import java.util.Comparator;
  * @author    junglas
  * @created   16. Februar 2004
  */
-public class FormalParameterIndexComparator implements Comparator, Serializable
+public class FormalParameterIndexComparator implements Comparator<FormalParameter>, Serializable
 {
 	static final long serialVersionUID = 120236613714344637L;
 	
@@ -27,16 +27,13 @@ public class FormalParameterIndexComparator implements Comparator, Serializable
    * @return      Description of the Return Value
    * @see         java.util.Comparator#compare(java.lang.Object, java.lang.Object)
    */
-  public int compare( Object arg0, Object arg1 )
+  public int compare( FormalParameter arg0, FormalParameter arg1 )
   {
     if ( arg0 == arg1 ) {
       return 0;
     }
-    if ( arg0 instanceof FormalParameter && arg1 instanceof FormalParameter ) {
-      FormalParameter  param1  = ( FormalParameter ) arg0;
-      FormalParameter  param2  = ( FormalParameter ) arg1;
-
-      return param1.getIndex() < param2.getIndex() ? -1 : 1;
+    if ( arg0 != null && arg1 != null) {
+      return arg0.getIndex() < arg1.getIndex() ? -1 : 1;
     }
     return -1;
   }

@@ -5,31 +5,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author    junglas
- * @created   20. November 2003
+ * @author junglas
+ * @created 20. November 2003
  */
-public class BaseElement implements Serializable
-{
-	static final long serialVersionUID = -3201931691642223185L;
-	
-	protected  String  m_id;
-  protected  String  m_name;
-  protected  String  m_description;
-  protected  Map     m_extendedAttributes;
+public class BaseElement implements Serializable {
+  static final long serialVersionUID = -3201931691642223185L;
+
+  protected String m_id;
+  protected String m_name;
+  protected String m_description;
+  protected Map<String, ExtendedAttribute> m_extendedAttributes;
 
 
   /**
-   *Constructor for the BaseElement object
+   * Constructor for the BaseElement object
    */
-  protected BaseElement()
-  {
+  protected BaseElement() {
     m_extendedAttributes = new HashMap();
   }
-  
-  protected BaseElement(String id, String name)
-  {
+
+  protected BaseElement(String id, String name) {
     this();
-    
+
     m_id = id;
     m_name = name;
   }
@@ -38,8 +35,7 @@ public class BaseElement implements Serializable
   /**
    * @param string
    */
-  public void setDescription( String string )
-  {
+  public void setDescription(String string) {
     m_description = string;
   }
 
@@ -47,8 +43,7 @@ public class BaseElement implements Serializable
   /**
    * @param string
    */
-  public void setId( String string )
-  {
+  public void setId(String string) {
     m_id = string;
   }
 
@@ -56,8 +51,7 @@ public class BaseElement implements Serializable
   /**
    * @param string
    */
-  public void setName( String string )
-  {
+  public void setName(String string) {
     m_name = string;
   }
 
@@ -65,8 +59,7 @@ public class BaseElement implements Serializable
   /**
    * @return
    */
-  public String getDescription()
-  {
+  public String getDescription() {
     return m_description;
   }
 
@@ -74,8 +67,7 @@ public class BaseElement implements Serializable
   /**
    * @return
    */
-  public String getId()
-  {
+  public String getId() {
     return m_id;
   }
 
@@ -83,8 +75,7 @@ public class BaseElement implements Serializable
   /**
    * @return
    */
-  public String getName()
-  {
+  public String getName() {
     return m_name;
   }
 
@@ -92,31 +83,28 @@ public class BaseElement implements Serializable
   /**
    * Gets the extendedAttribute attribute of the BaseElement object
    *
-   * @param name  Description of the Parameter
-   * @return      The extendedAttribute value
+   * @param name Description of the Parameter
+   * @return The extendedAttribute value
    */
-  public ExtendedAttribute getExtendedAttribute( String name )
-  {
-    return ( ExtendedAttribute ) m_extendedAttributes.get( name );
+  public ExtendedAttribute getExtendedAttribute(String name) {
+    return m_extendedAttributes.get(name);
   }
 
-  public String getExtendedAttributeValue ( String name )
-  {
-    ExtendedAttribute attribute = ( ExtendedAttribute ) m_extendedAttributes.get( name );
-    
+  public String getExtendedAttributeValue(String name) {
+    ExtendedAttribute attribute = m_extendedAttributes.get(name);
+
     return attribute != null ? attribute.getValue() : null;
   }
 
   /**
    * Gets the extendedAttributes attribute of the BaseElement object
    *
-   * @return   The extendedAttributes value
+   * @return The extendedAttributes value
    */
-  public ExtendedAttribute[] getExtendedAttributes()
-  {
-    ExtendedAttribute  ret[]  = new ExtendedAttribute[m_extendedAttributes.size()];
+  public ExtendedAttribute[] getExtendedAttributes() {
+    ExtendedAttribute ret[] = new ExtendedAttribute[m_extendedAttributes.size()];
 
-    m_extendedAttributes.values().toArray( ret );
+    m_extendedAttributes.values().toArray(ret);
 
     return ret;
   }
@@ -125,15 +113,13 @@ public class BaseElement implements Serializable
   /**
    * Adds a feature to the ExtendedAttribute attribute of the BaseElement object
    *
-   * @param extendedAttribute  The feature to be added to the ExtendedAttribute attribute
+   * @param extendedAttribute The feature to be added to the ExtendedAttribute attribute
    */
-  public void addExtendedAttribute( ExtendedAttribute extendedAttribute )
-  {
-    m_extendedAttributes.put( extendedAttribute.getName(), extendedAttribute );
+  public void addExtendedAttribute(ExtendedAttribute extendedAttribute) {
+    m_extendedAttributes.put(extendedAttribute.getName(), extendedAttribute);
   }
-  
-  public String toString()
-  {
+
+  public String toString() {
     return getClass().getName() + "[id='" + m_id + "' name='" + m_name + "' description='" + m_description + "']";
   }
 }

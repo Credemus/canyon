@@ -15,5 +15,5 @@ public interface IResolveStrategy
    * @return
    * @throws RepositoryException
    */
-  public String resolveParticipant( String[] participantIds ) throws RepositoryException;
+  String resolveParticipant(String[] participantIds) throws RepositoryException;
 }

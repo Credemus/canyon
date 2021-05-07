@@ -55,10 +55,10 @@ import org.wfmc.wapi.WMWorkItemStateIterator;
  *
  * @author Adrian Price
  */
-public class WMWorkItemStateIteratorImpl extends AbstractWMIterator
+public class WMWorkItemStateIteratorImpl extends AbstractWMIterator<WMWorkItemState>
     implements WMWorkItemStateIterator {
 
-    public WMWorkItemStateIteratorImpl(Object[] array) {
+    public WMWorkItemStateIteratorImpl(WMWorkItemState[] array) {
         super(array);
     }
 

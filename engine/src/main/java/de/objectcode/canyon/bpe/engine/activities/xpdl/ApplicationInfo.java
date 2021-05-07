@@ -34,14 +34,14 @@ import de.objectcode.canyon.spiImpl.tool.event.InternalEventConnector;
 public class ApplicationInfo implements Serializable {
   final static long serialVersionUID = -3882893221791467287L;
 
-  private String m_id;
-  private String m_name;
-  private String m_description;
-  private ExtendedAttribute[] m_extendedAttributes;
-  private FormalParameter[] m_formalParameters;
-  private String m_processId;
-  private String m_processVersion;
-  private String m_packageId;
+  private final String m_id;
+  private final String m_name;
+  private final String m_description;
+  private final ExtendedAttribute[] m_extendedAttributes;
+  private final FormalParameter[] m_formalParameters;
+  private final String m_processId;
+  private final String m_processVersion;
+  private final String m_packageId;
 
 
   ApplicationInfo(Tool tool) {

@@ -10,7 +10,7 @@ package org.wfmc.wapi;
  *
  * @author Adrian Price
  */
-public interface WMWorkItemIterator extends WMIterator {
+public interface WMWorkItemIterator extends WMIterator<WMWorkItem> {
     /**
      * Retrieves the next work item.
      *

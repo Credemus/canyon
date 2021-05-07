@@ -13,7 +13,7 @@ import org.wfmc.wapi.WMNoMoreDataException;
  *
  * @author Adrian Price
  */
-public interface WMEntityIterator extends WMIterator {
+public interface WMEntityIterator extends WMIterator<WMEntity> {
     /**
      * Retrieves the next entity.
      *

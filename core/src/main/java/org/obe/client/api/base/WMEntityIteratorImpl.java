@@ -53,10 +53,10 @@ import org.wfmc.wapi2.WMEntityIterator;
  *
  * @author Adrian Price
  */
-public class WMEntityIteratorImpl extends AbstractWMIterator
+public class WMEntityIteratorImpl extends AbstractWMIterator<WMEntity>
     implements WMEntityIterator {
 
-    public WMEntityIteratorImpl(Object[] array) {
+    public WMEntityIteratorImpl(WMEntity[] array) {
         super(array);
     }
 
@@ -66,7 +66,7 @@ public class WMEntityIteratorImpl extends AbstractWMIterator
 
     public WMEntity tsNext() throws WMNoMoreDataException {
         try {
-            return (WMEntity)next();
+            return next();
         } catch (Exception e) {
             throw new WMNoMoreDataException();
         }

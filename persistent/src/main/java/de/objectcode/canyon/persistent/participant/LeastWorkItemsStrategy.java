@@ -43,7 +43,7 @@ public class LeastWorkItemsStrategy implements IResolveStrategy
     throws RepositoryException
   {
     if ( log.isDebugEnabled() ) {
-      StringBuffer  buffer  = new StringBuffer( "resolveParticipant: [" );
+      StringBuilder buffer  = new StringBuilder( "resolveParticipant: [" );
       int           i;
 
       for ( i = 0; i < userIds.length; i++ ) {
@@ -70,7 +70,7 @@ public class LeastWorkItemsStrategy implements IResolveStrategy
 
         query.setString( 0, userIds[i] );
 
-        int    result  = ( ( Integer ) query.iterate().next() ).intValue();
+        int    result  = (Integer) query.iterate().next();
 
         if ( result < workItemCount ) {
           userId = userIds[i];
@@ -88,7 +88,7 @@ public class LeastWorkItemsStrategy implements IResolveStrategy
           session.close();
         }
       }
-      catch ( Exception e ) {
+      catch ( Exception ignored) {
       }
     }
 

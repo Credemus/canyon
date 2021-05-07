@@ -52,11 +52,11 @@ import java.util.NoSuchElementException;
  *
  * @author Adrian Price
  */
-public class ArrayIterator implements Iterator {
-    protected Object[] _array;
+public class ArrayIterator<T> implements Iterator<T> {
+    protected T[] _array;
     protected int _index;
 
-    public ArrayIterator(Object[] array) {
+    public ArrayIterator(T[] array) {
         _array = array;
     }
 
@@ -64,7 +64,7 @@ public class ArrayIterator implements Iterator {
         return _array != null && _index < _array.length;
     }
 
-    public Object next() {
+    public T next() {
         if (_array == null || _index == _array.length)
             throw new NoSuchElementException();
         return _array[_index++];

@@ -10,7 +10,7 @@ package org.wfmc.wapi;
  *
  * @author Adrian Price
  */
-public interface WMActivityInstanceStateIterator extends WMIterator {
+public interface WMActivityInstanceStateIterator extends WMIterator<WMActivityInstanceState> {
     /**
      * Retrieves the next activity instance state.
      *

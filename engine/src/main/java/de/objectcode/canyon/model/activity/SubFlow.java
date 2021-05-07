@@ -8,33 +8,30 @@ import de.objectcode.canyon.model.data.ActualParameter;
 import de.objectcode.canyon.model.process.WorkflowProcess;
 
 /**
- * @author    junglas
- * @created   26. November 2003
+ * @author junglas
+ * @created 26. November 2003
  */
-public class SubFlow extends Implementation
-{
-	static final long serialVersionUID = 7662719333112398877L;
-	
-	private  WorkflowProcess  m_workflowProcess;
-  private  String           m_id;
-  private  ExecutionType    m_execution;
-  private  List             m_actualParameters;
+public class SubFlow extends Implementation {
+  static final long serialVersionUID = 7662719333112398877L;
+
+  private WorkflowProcess m_workflowProcess;
+  private String m_id;
+  private ExecutionType m_execution;
+  private final List<ActualParameter> m_actualParameters;
 
 
   /**
-   *Constructor for the SubFlow object
+   * Constructor for the SubFlow object
    */
-  public SubFlow()
-  {
-    m_actualParameters = new ArrayList();
+  public SubFlow() {
+    m_actualParameters = new ArrayList<ActualParameter>();
   }
 
 
   /**
    * @param type
    */
-  public void setExecution( ExecutionType type )
-  {
+  public void setExecution(ExecutionType type) {
     m_execution = type;
   }
 
@@ -42,8 +39,7 @@ public class SubFlow extends Implementation
   /**
    * @param string
    */
-  public void setId( String string )
-  {
+  public void setId(String string) {
     m_id = string;
   }
 
@@ -51,8 +47,7 @@ public class SubFlow extends Implementation
   /**
    * @param process
    */
-  public void setWorkflowProcess( WorkflowProcess process )
-  {
+  public void setWorkflowProcess(WorkflowProcess process) {
     m_workflowProcess = process;
   }
 
@@ -60,13 +55,12 @@ public class SubFlow extends Implementation
   /**
    * Gets the actualParameters attribute of the Tool object
    *
-   * @return   The actualParameters value
+   * @return The actualParameters value
    */
-  public ActualParameter[] getActualParameters()
-  {
-    ActualParameter  ret[]  = new ActualParameter[m_actualParameters.size()];
+  public ActualParameter[] getActualParameters() {
+    ActualParameter ret[] = new ActualParameter[m_actualParameters.size()];
 
-    m_actualParameters.toArray( ret );
+    m_actualParameters.toArray(ret);
 
     return ret;
   }
@@ -75,8 +69,7 @@ public class SubFlow extends Implementation
   /**
    * @return
    */
-  public ExecutionType getExecution()
-  {
+  public ExecutionType getExecution() {
     return m_execution;
   }
 
@@ -84,8 +77,7 @@ public class SubFlow extends Implementation
   /**
    * @return
    */
-  public String getId()
-  {
+  public String getId() {
     return m_id;
   }
 
@@ -93,8 +85,7 @@ public class SubFlow extends Implementation
   /**
    * @return
    */
-  public WorkflowProcess getWorkflowProcess()
-  {
+  public WorkflowProcess getWorkflowProcess() {
     return m_workflowProcess;
   }
 
@@ -102,26 +93,24 @@ public class SubFlow extends Implementation
   /**
    * Adds a feature to the ActualParameter attribute of the SubFlow object
    *
-   * @param actualParameter  The feature to be added to the ActualParameter attribute
+   * @param actualParameter The feature to be added to the ActualParameter attribute
    */
-  public void addActualParameter( ActualParameter actualParameter )
-  {
-    m_actualParameters.add( actualParameter );
+  public void addActualParameter(ActualParameter actualParameter) {
+    m_actualParameters.add(actualParameter);
   }
 
 
   /**
-   * @return   Description of the Return Value
-   * @see      de.objectcode.canyon.model.IValidatable#validate()
+   * @return Description of the Return Value
+   * @see de.objectcode.canyon.model.IValidatable#validate()
    */
-  public ValidationErrors validate()
-  {
-    ValidationErrors  errors  = new ValidationErrors();
+  public ValidationErrors validate() {
+    ValidationErrors errors = new ValidationErrors();
 
     m_workflowProcess = m_activity.getContainer().getWorkflowProcess().getPackage().getWorklowProcess(m_id);
 
-    if ( m_workflowProcess == null ) {
-      errors.addMessage( "subFlow.undefined.process", new Object[]{m_activity.getId(), m_id} );
+    if (m_workflowProcess == null) {
+      errors.addMessage("subFlow.undefined.process", new Object[]{m_activity.getId(), m_id});
     }
 
     return errors;

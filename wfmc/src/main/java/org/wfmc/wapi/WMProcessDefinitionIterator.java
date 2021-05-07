@@ -10,7 +10,7 @@ package org.wfmc.wapi;
  *
  * @author Adrian Price
  */
-public interface WMProcessDefinitionIterator extends WMIterator {
+public interface WMProcessDefinitionIterator extends WMIterator<WMProcessDefinition> {
     /**
      * Retrieves the next process definition.
      *

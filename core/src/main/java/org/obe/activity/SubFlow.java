@@ -77,7 +77,7 @@ public class SubFlow implements Implementation, Serializable {
     public SubFlow(String id) {
         setId(id);
 
-        this.actualParameters = new ArrayList();
+        this.actualParameters = new ArrayList<ActualParameter>();
     }
 
     /** Get the workflow process id.

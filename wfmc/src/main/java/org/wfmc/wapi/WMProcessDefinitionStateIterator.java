@@ -10,7 +10,7 @@ package org.wfmc.wapi;
  *
  * @author Adrian Price
  */
-public interface WMProcessDefinitionStateIterator extends WMIterator {
+public interface WMProcessDefinitionStateIterator extends WMIterator<WMProcessDefinitionState> {
     /**
      * Retrieves the next process definition state.
      *

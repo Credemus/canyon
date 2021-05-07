@@ -55,10 +55,10 @@ import org.wfmc.wapi.WMNoMoreDataException;
  *
  * @author Adrian Price
  */
-public class WMActivityInstanceStateIteratorImpl extends AbstractWMIterator
+public class WMActivityInstanceStateIteratorImpl extends AbstractWMIterator<WMActivityInstanceState>
     implements WMActivityInstanceStateIterator {
 
-    public WMActivityInstanceStateIteratorImpl(Object[] array) {
+    public WMActivityInstanceStateIteratorImpl(WMActivityInstanceState[] array) {
         super(array);
     }
 
@@ -68,7 +68,7 @@ public class WMActivityInstanceStateIteratorImpl extends AbstractWMIterator
 
     public WMActivityInstanceState tsNext() throws WMNoMoreDataException {
         try {
-            return (WMActivityInstanceState)next();
+            return next();
         } catch (NoSuchElementException e) {
             throw new WMNoMoreDataException();
         }

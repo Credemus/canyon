@@ -55,10 +55,10 @@ import org.wfmc.wapi.WMWorkItemStateIterator;
  *
  * @author Adrian Price
  */
-public class WMWorkItemStateIteratorImpl extends AbstractWMIterator
+public class WMWorkItemStateIteratorImpl extends AbstractWMIterator<WMWorkItemState>
     implements WMWorkItemStateIterator {
 
-    public WMWorkItemStateIteratorImpl(Object[] array) {
+    public WMWorkItemStateIteratorImpl(WMWorkItemState[] array) {
         super(array);
     }
 
@@ -68,7 +68,7 @@ public class WMWorkItemStateIteratorImpl extends AbstractWMIterator
 
     public WMWorkItemState tsNext() throws WMNoMoreDataException {
         try {
-            return (WMWorkItemState)next();
+            return next();
         } catch (NoSuchElementException e) {
             throw new WMNoMoreDataException();
         }

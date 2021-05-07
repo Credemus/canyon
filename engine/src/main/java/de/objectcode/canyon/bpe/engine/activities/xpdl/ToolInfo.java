@@ -13,10 +13,10 @@ public class ToolInfo implements Serializable
 {
   final static  long               serialVersionUID      = -3882893221791467286L;
 
-  private       String             m_id;
-  private       String             m_name;
-  private       String             m_description;
-  private       ActualParameter[]  m_actualParameters;
+  private final String             m_id;
+  private final String             m_name;
+  private final String             m_description;
+  private final ActualParameter[]  m_actualParameters;
 
 
   /**

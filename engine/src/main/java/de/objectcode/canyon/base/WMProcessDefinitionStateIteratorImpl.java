@@ -55,10 +55,10 @@ import org.wfmc.wapi.WMProcessDefinitionStateIterator;
  *
  * @author Adrian Price
  */
-public class WMProcessDefinitionStateIteratorImpl extends AbstractWMIterator
+public class WMProcessDefinitionStateIteratorImpl extends AbstractWMIterator<WMProcessDefinitionState>
     implements WMProcessDefinitionStateIterator {
 
-    public WMProcessDefinitionStateIteratorImpl(Object[] array) {
+    public WMProcessDefinitionStateIteratorImpl(WMProcessDefinitionState[] array) {
         super(array);
     }
 
@@ -68,7 +68,7 @@ public class WMProcessDefinitionStateIteratorImpl extends AbstractWMIterator
 
     public WMProcessDefinitionState tsNext() throws WMNoMoreDataException {
         try {
-            return (WMProcessDefinitionState)next();
+            return next();
         } catch (NoSuchElementException e) {
             throw new WMNoMoreDataException();
         }

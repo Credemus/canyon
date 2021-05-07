@@ -13,7 +13,7 @@ import java.util.Iterator;
  * iteration.
  * @author Adrian Price
  */
-public interface WMIterator extends Iterator {
+public interface WMIterator<T> extends Iterator<T> {
     /**
      * Returns the number of items that matched the query criteria.  N.B. This
      * iterator class is used to return either the objects themselves or a count

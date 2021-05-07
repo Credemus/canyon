@@ -54,8 +54,8 @@ import org.wfmc.wapi.WMIterator;
  *
  * @author Adrian Price
  */
-public abstract class AbstractWMIterator extends ArrayIterator
-    implements WMIterator {
+public abstract class AbstractWMIterator<T> extends ArrayIterator<T>
+    implements WMIterator<T> {
 
     int _count;
 
@@ -67,7 +67,7 @@ public abstract class AbstractWMIterator extends ArrayIterator
      * constructor.
      * @param array The objects over which to iterate.
      */
-    protected AbstractWMIterator(Object[] array) {
+    protected AbstractWMIterator(T[] array) {
         super(array);
         _count = array == null ? 0 : array.length;
     }

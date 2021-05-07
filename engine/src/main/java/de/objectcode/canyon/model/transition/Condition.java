@@ -5,32 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author    junglas
- * @created   26. November 2003
+ * @author junglas
+ * @created 26. November 2003
  */
-public class Condition implements Serializable
-{
-	static final long serialVersionUID = 8669423982500467378L;
-	
-  private  ConditionType  m_type        = ConditionType.CONDITION;
-  private  List           m_xpressions;
-  private  String         m_value;
+public class Condition implements Serializable {
+  static final long serialVersionUID = 8669423982500467378L;
+
+  private ConditionType m_type = ConditionType.CONDITION;
+  private List<Xpression> m_xpressions;
+  private String m_value;
 
 
   /**
-   *Constructor for the Condition object
+   * Constructor for the Condition object
    */
-  public Condition()
-  {
-    m_xpressions = new ArrayList();
+  public Condition() {
+    m_xpressions = new ArrayList<Xpression>();
   }
 
 
   /**
    * @param type
    */
-  public void setType( ConditionType type )
-  {
+  public void setType(ConditionType type) {
     m_type = type;
   }
 
@@ -38,8 +35,7 @@ public class Condition implements Serializable
   /**
    * @param string
    */
-  public void setValue( String string )
-  {
+  public void setValue(String string) {
     m_value = string;
   }
 
@@ -47,13 +43,12 @@ public class Condition implements Serializable
   /**
    * Gets the xpressions attribute of the Condition object
    *
-   * @return   The xpressions value
+   * @return The xpressions value
    */
-  public Xpression[] getXpressions()
-  {
-    Xpression  ret[]  = new Xpression[m_xpressions.size()];
+  public Xpression[] getXpressions() {
+    Xpression ret[] = new Xpression[m_xpressions.size()];
 
-    m_xpressions.toArray( ret );
+    m_xpressions.toArray(ret);
 
     return ret;
   }
@@ -62,8 +57,7 @@ public class Condition implements Serializable
   /**
    * @return
    */
-  public ConditionType getType()
-  {
+  public ConditionType getType() {
     return m_type;
   }
 
@@ -71,8 +65,7 @@ public class Condition implements Serializable
   /**
    * @return
    */
-  public String getValue()
-  {
+  public String getValue() {
     return m_value;
   }
 
@@ -80,11 +73,10 @@ public class Condition implements Serializable
   /**
    * Adds a feature to the Xpression attribute of the Condition object
    *
-   * @param xpression  The feature to be added to the Xpression attribute
+   * @param xpression The feature to be added to the Xpression attribute
    */
-  public void addXpression( Xpression xpression )
-  {
-    m_xpressions.add( xpression );
+  public void addXpression(Xpression xpression) {
+    m_xpressions.add(xpression);
   }
 
 }

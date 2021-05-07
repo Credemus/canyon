@@ -76,7 +76,7 @@ public class Tool implements Serializable {
     public Tool(String id){
         this.id = id;
 
-        this.extendedAttributes = new HashMap();
+        this.extendedAttributes = new HashMap<String, Object>();
         this.actualParameters = new ArrayList<ActualParameter>();
     }
 

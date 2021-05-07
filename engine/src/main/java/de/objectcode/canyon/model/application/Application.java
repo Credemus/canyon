@@ -16,7 +16,7 @@ public class Application extends BaseElement
 {
 	static final long serialVersionUID = 6864493848930499853L;
 	
-	private  SortedSet          m_formalParameters;
+	private  SortedSet<FormalParameter>          m_formalParameters;
   private  ExternalReference  m_externalReference;
 
 
@@ -25,7 +25,7 @@ public class Application extends BaseElement
    */
   public Application()
   {
-  	m_formalParameters = new TreeSet( new FormalParameterIndexComparator() );
+  	m_formalParameters = new TreeSet<FormalParameter>( new FormalParameterIndexComparator() );
   }
 
 

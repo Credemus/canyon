@@ -16,22 +16,22 @@ import de.objectcode.canyon.worklist.IActivityInfo;
  * @created 20. Juli 2004
  */
 public class ActivityInfo implements IActivityInfo {
-  private String m_name;
-  private String m_activityDefinitionId;
-  private String m_activityInstanceId;
-  private String m_processDefinitionId;
-  private String m_processDefinitionVersion;
-  private String m_processInstanceId;
-  private String m_processInstanceIdPath;
-  private Date m_dueDate;
-  private int m_priority;
-  private int m_completionStrategy;
-  private int m_assignStrategy;
-  private Participant[] m_performers;
-  private String m_processStarter;
-  private Map<String, Object> m_variableMap;
-  private ExtendedAttributeHelper m_extendedAttributeHelper;
-  private String m_processName;
+  private final String m_name;
+  private final String m_activityDefinitionId;
+  private final String m_activityInstanceId;
+  private final String m_processDefinitionId;
+  private final String m_processDefinitionVersion;
+  private final String m_processInstanceId;
+  private final String m_processInstanceIdPath;
+  private final Date m_dueDate;
+  private final int m_priority;
+  private final int m_completionStrategy;
+  private final int m_assignStrategy;
+  private final Participant[] m_performers;
+  private final String m_processStarter;
+  private final Map<String, Object> m_variableMap;
+  private final ExtendedAttributeHelper m_extendedAttributeHelper;
+  private final String m_processName;
   private boolean m_escalationRetry = false;
 
 
@@ -67,8 +67,7 @@ public class ActivityInfo implements IActivityInfo {
     m_variableMap = new HashMap<String, Object>();
     m_processName = processName;
     m_escalationRetry = escalationRetry;
-    for (int i = 0; i < variables.length; i++) {
-      IVariable var = variables[i];
+    for (IVariable var : variables) {
       Object value = var.getValue();
       if (value != null)
         m_variableMap.put(var.getName(), value);
