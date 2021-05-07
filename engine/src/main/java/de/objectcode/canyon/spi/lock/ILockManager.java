@@ -7,12 +7,12 @@ import de.objectcode.canyon.spi.RepositoryException;
  */
 public interface ILockManager
 {
-	public void lock ( String id ) throws RepositoryException;
+	void lock(String id) throws RepositoryException;
 	
-	public void unlock ( String id ) throws RepositoryException;
+	void unlock(String id) throws RepositoryException;
 	
-	public void releaseAllLocks ( ) throws RepositoryException;
+	void releaseAllLocks() throws RepositoryException;
 
-	public String dumpAllLocks ( ) throws RepositoryException;
+	String dumpAllLocks() throws RepositoryException;
 
 }

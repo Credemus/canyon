@@ -43,37 +43,35 @@ import de.objectcode.canyon.model.data.ParameterMode;
 /**
  * Description of the Class
  *
- * @author    junglas
- * @created   22. Oktober 2003
+ * @author junglas
+ * @created 22. Oktober 2003
  */
-public final class Parameter implements Serializable
-{
-	static final long serialVersionUID = 2454945467359500162L;
-	
-	public final  String         formalName;
-  public final  String         actualName;
-  public final  DataType       dataType;
-  public final  ParameterMode  mode;
-  public final  Object         value;
-  public final  String		   description;
+public final class Parameter implements Serializable {
+  static final long serialVersionUID = 2454945467359500162L;
+
+  public final String formalName;
+  public final String actualName;
+  public final DataType dataType;
+  public final ParameterMode mode;
+  public final Object value;
+  public final String description;
 
 
   /**
-   *Constructor for the Parameter object
+   * Constructor for the Parameter object
    *
-   * @param formalName  Description of the Parameter
-   * @param actualName  Description of the Parameter
-   * @param dataType    Description of the Parameter
-   * @param mode        Description of the Parameter
-   * @param value       Description of the Parameter
+   * @param formalName Description of the Parameter
+   * @param actualName Description of the Parameter
+   * @param dataType   Description of the Parameter
+   * @param mode       Description of the Parameter
+   * @param value      Description of the Parameter
    */
-  public Parameter( String formalName, String actualName, DataType dataType,
-      ParameterMode mode, String description, Object value )
-  {
+  public Parameter(String formalName, String actualName, DataType dataType,
+                   ParameterMode mode, String description, Object value) {
 
-    if ( formalName == null ) {
+    if (formalName == null) {
       throw new IllegalArgumentException(
-          "Formal parameter name cannot be null" );
+              "Formal parameter name cannot be null");
     }
     this.formalName = formalName;
     this.actualName = actualName;
@@ -82,26 +80,25 @@ public final class Parameter implements Serializable
     this.value = value;
     this.description = description;
   }
-  
-  
+
+
   public String getName() {
     return formalName;
   }
-  
+
   public Object getValue() {
     return value;
   }
-  
-  public String toString() 
-  {
-    StringBuffer buffer = new StringBuffer("Parameter[");
+
+  public String toString() {
+    StringBuilder buffer = new StringBuilder("Parameter[");
     buffer.append("formalName=").append(formalName);
     buffer.append(", actualName=").append(actualName);
     buffer.append(", dataType=").append(dataType);
-	buffer.append(", mode=").append(mode);
-	buffer.append(", description=").append(description);
+    buffer.append(", mode=").append(mode);
+    buffer.append(", description=").append(description);
     buffer.append(", value=").append(value);
-    
+
     return buffer.toString();
   }
 }

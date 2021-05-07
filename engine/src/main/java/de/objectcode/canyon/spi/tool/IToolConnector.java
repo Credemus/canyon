@@ -54,8 +54,8 @@ public interface IToolConnector
    * @exception Exception         Description of the Exception
    * @throws java.lang.Exception  Any Exception
    */
-  public ReturnValue[] invoke( BPEContext context, Parameter[] parameters )
+  ReturnValue[] invoke(BPEContext context, Parameter[] parameters)
     throws Exception;
   
-  public void init(Application application) throws Exception;
+  void init(Application application) throws Exception;
 }

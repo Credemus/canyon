@@ -6,10 +6,6 @@
  */
 package de.objectcode.canyon.spi.tool;
 
-import java.util.Map;
-
-import de.objectcode.canyon.worklist.spi.worklist.IApplicationData;
-
 /**
  * @author xylander
  *
@@ -18,6 +14,6 @@ import de.objectcode.canyon.worklist.spi.worklist.IApplicationData;
  */
 public interface IMessageHandler {
 
-  public void handle(MessageEvent event);
+  void handle(MessageEvent event);
   
 }

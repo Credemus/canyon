@@ -12,52 +12,48 @@ import de.objectcode.canyon.spi.instance.IProcessInstance;
 import de.objectcode.canyon.spi.process.IProcessDefinitionID;
 
 /**
+ * @author junglas
  * @hibernate.joined-subclass table="PPROCESSINSTANCES"
  * @hibernate.joined-subclass-key column="PROCESSINSTANCEID"
- *
- * @author    junglas
- * @created   20. Oktober 2003
+ * @created 20. Oktober 2003
  */
-public class PProcessInstance extends PAttributedEntity implements IProcessInstance
-{
-  private  int                m_state;
-  private  String             m_name;
-  private  int                m_priority;
-  private  Date               m_createdDate;
-  private  Date               m_startedDate;
-  private  Date               m_completedDate;
-  private  Date               m_dueDate;
-  private  Set                m_activitySet;
-  private  IActivityInstance  m_parentActivityInstance;
-  private  String[]           m_participants;
+public class PProcessInstance extends PAttributedEntity implements IProcessInstance {
+  private int m_state;
+  private String m_name;
+  private int m_priority;
+  private Date m_createdDate;
+  private Date m_startedDate;
+  private Date m_completedDate;
+  private Date m_dueDate;
+  private Set<PActivityInstance> m_activitySet;
+  private IActivityInstance m_parentActivityInstance;
+  private String[] m_participants;
 
 
   /**
-   *Constructor for the PProcessInstance object
+   * Constructor for the PProcessInstance object
    */
-  public PProcessInstance()
-  {
-    super( IProcessInstance.PROPERTYDESCRIPTORS );
+  public PProcessInstance() {
+    super(IProcessInstance.PROPERTYDESCRIPTORS);
   }
 
 
   /**
-   *Constructor for the PProcessInstance object
+   * Constructor for the PProcessInstance object
    *
-   * @param processDefinitionId       Description of the Parameter
-   * @param processDefinitionVersion  Description of the Parameter
-   * @param instanceName              Description of the Parameter
-   * @param priority                  Description of the Parameter
-   * @param state                     Description of the Parameter
-   * @param createdDate               Description of the Parameter
-   * @param startedDate               Description of the Parameter
-   * @param participants              Description of the Parameter
+   * @param processDefinitionId      Description of the Parameter
+   * @param processDefinitionVersion Description of the Parameter
+   * @param instanceName             Description of the Parameter
+   * @param priority                 Description of the Parameter
+   * @param state                    Description of the Parameter
+   * @param createdDate              Description of the Parameter
+   * @param startedDate              Description of the Parameter
+   * @param participants             Description of the Parameter
    */
-  public PProcessInstance( IProcessDefinitionID processDefinitionId, String instanceName,
-      int priority, int state, Date createdDate, Date startedDate,
-      String[] participants )
-  {
-    super( IProcessInstance.PROPERTYDESCRIPTORS, processDefinitionId );
+  public PProcessInstance(IProcessDefinitionID processDefinitionId, String instanceName,
+                          int priority, int state, Date createdDate, Date startedDate,
+                          String[] participants) {
+    super(IProcessInstance.PROPERTYDESCRIPTORS, processDefinitionId);
 
     m_name = instanceName;
     m_priority = priority;
@@ -65,15 +61,14 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
     m_createdDate = createdDate;
     m_startedDate = startedDate;
     m_participants = participants;
-    m_activitySet = new HashSet();
+    m_activitySet = new HashSet<PActivityInstance>();
   }
 
 
   /**
    * @param date
    */
-  public void setCompletedDate( Date date )
-  {
+  public void setCompletedDate(Date date) {
     m_completedDate = date;
   }
 
@@ -81,8 +76,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param date
    */
-  public void setDueDate( Date date )
-  {
+  public void setDueDate(Date date) {
     m_dueDate = date;
   }
 
@@ -90,8 +84,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param string
    */
-  public void setName( String string )
-  {
+  public void setName(String string) {
     m_name = string;
   }
 
@@ -99,8 +92,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param date
    */
-  public void setStartedDate( Date date )
-  {
+  public void setStartedDate(Date date) {
     m_startedDate = date;
   }
 
@@ -108,8 +100,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param date
    */
-  public void setCreatedDate( Date date )
-  {
+  public void setCreatedDate(Date date) {
     m_createdDate = date;
   }
 
@@ -117,8 +108,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param i
    */
-  public void setState( int i )
-  {
+  public void setState(int i) {
     m_state = i;
   }
 
@@ -126,8 +116,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param set
    */
-  public void setActivitySet( Set set )
-  {
+  public void setActivitySet(Set set) {
     m_activitySet = set;
   }
 
@@ -135,8 +124,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param i
    */
-  public void setPriority( int i )
-  {
+  public void setPriority(int i) {
     m_priority = i;
   }
 
@@ -144,8 +132,7 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param instance
    */
-  public void setParentActivityInstance( IActivityInstance instance )
-  {
+  public void setParentActivityInstance(IActivityInstance instance) {
     m_parentActivityInstance = instance;
   }
 
@@ -153,97 +140,80 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * @param strings
    */
-  public void setParticipants( String[] strings )
-  {
+  public void setParticipants(String[] strings) {
     m_participants = strings;
   }
 
 
   /**
-   * @return   The processInstanceId value
-   * @see      org.obe.spi.model.AttributedEntity#getProcessInstanceId()
+   * @return The processInstanceId value
    */
-  public String getProcessInstanceId()
-  {
+  public String getProcessInstanceId() {
     return getEntityId();
   }
 
 
   /**
-   * @hibernate.property column="COMPLETEDDATE" type="timestamp" not-null="false"
-   *
    * @return
+   * @hibernate.property column="COMPLETEDDATE" type="timestamp" not-null="false"
    */
-  public Date getCompletedDate()
-  {
+  public Date getCompletedDate() {
     return m_completedDate;
   }
 
 
   /**
-   * @hibernate.property column="DUEDATE" type="timestamp" not-null="false"
-   *
    * @return
+   * @hibernate.property column="DUEDATE" type="timestamp" not-null="false"
    */
-  public Date getDueDate()
-  {
+  public Date getDueDate() {
     return m_dueDate;
   }
 
 
   /**
-   * @hibernate.property column="NAME" type="string" length="64" not-null="false"
-   *
    * @return
+   * @hibernate.property column="NAME" type="string" length="64" not-null="false"
    */
-  public String getName()
-  {
+  public String getName() {
     return m_name;
   }
 
 
   /**
-   * @hibernate.property column="STARTEDDATE" type="timestamp" not-null="false"
-   *
    * @return
+   * @hibernate.property column="STARTEDDATE" type="timestamp" not-null="false"
    */
-  public Date getStartedDate()
-  {
+  public Date getStartedDate() {
     return m_startedDate;
   }
 
 
   /**
-   * @hibernate.property column="CREATEDDATE" type="timestamp" not-null="true"
-   *
    * @return
+   * @hibernate.property column="CREATEDDATE" type="timestamp" not-null="true"
    */
-  public Date getCreatedDate()
-  {
+  public Date getCreatedDate() {
     return m_createdDate;
   }
 
 
   /**
-   * @hibernate.property column="STATE" type="integer" length="2" not-null="true"
-   *
    * @return
+   * @hibernate.property column="STATE" type="integer" length="2" not-null="true"
    */
-  public int getState()
-  {
+  public int getState() {
     return m_state;
   }
 
 
   /**
+   * @return
    * @hibernate.set cascade="all" lazy="true" inverse="true"
    * @hibernate.collection-key column="PROCESSINSTANCEID"
    * @hibernate.collection-one-to-many class="de.objectcode.canyon.persistent.instance.PActivityInstance"
-   *
-   * @return
    */
-  public Set getActivitySet()
-  {
+  public Set<PActivityInstance> getActivitySet() {
     return m_activitySet;
   }
 
@@ -251,17 +221,13 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
   /**
    * Gets the activities attribute of the HibProcessInstance object
    *
-   * @return   The activities value
+   * @return The activities value
    */
-  public Map getActivityInstances()
-  {
-    Map       ret  = new HashMap();
-    Iterator  it   = m_activitySet.iterator();
+  public Map<String, PActivityInstance> getActivityInstances() {
+    Map<String, PActivityInstance> ret = new HashMap<String, PActivityInstance>();
 
-    while ( it.hasNext() ) {
-      PActivityInstance  activityInstance  = ( PActivityInstance ) it.next();
-
-      ret.put( activityInstance.getActivityInstanceId(), activityInstance );
+    for (PActivityInstance activityInstance : m_activitySet) {
+      ret.put(activityInstance.getActivityInstanceId(), activityInstance);
     }
 
     return ret;
@@ -269,50 +235,43 @@ public class PProcessInstance extends PAttributedEntity implements IProcessInsta
 
 
   /**
-   * @hibernate.property column="PRIORITY" type="integer" length="2" not-null="true"
-   *
    * @return
+   * @hibernate.property column="PRIORITY" type="integer" length="2" not-null="true"
    */
-  public int getPriority()
-  {
+  public int getPriority() {
     return m_priority;
   }
 
 
   /**
-   * @hibernate.many-to-one column="PARENTACTIVITYINSTANCEID" class="de.objectcode.canyon.persistent.instance.PActivityInstance"
-   *
    * @return
+   * @hibernate.many-to-one column="PARENTACTIVITYINSTANCEID" class="de.objectcode.canyon.persistent.instance.PActivityInstance"
    */
-  public IActivityInstance getParentActivityInstance()
-  {
+  public IActivityInstance getParentActivityInstance() {
     return m_parentActivityInstance;
   }
 
 
   /**
+   * @return
    * @hibernate.array table="PPROCESSINSTANCE_PARTS" cascade="all"
    * @hibernate.collection-key column="PROCESSINSTANCEID"
    * @hibernate.collection-index column="IDX"
    * @hibernate.collection-element column="PARTICIPANT" type="string" length="64"
-   *
-   * @return
    */
-  public String[] getParticipants()
-  {
+  public String[] getParticipants() {
     return m_participants;
   }
-  
-  public String toString()
-	{
-  	StringBuffer buffer = new StringBuffer("PProcessInstance[");
-  	
-  	buffer.append("super=").append(super.toString());
-  	buffer.append(", name=").append(m_name);
-  	buffer.append(", priority=").append(m_priority);
-  	buffer.append(", state=").append(m_state);
-  	buffer.append("]");
-  	
-  	return buffer.toString();
+
+  public String toString() {
+    StringBuffer buffer = new StringBuffer("PProcessInstance[");
+
+    buffer.append("super=").append(super.toString());
+    buffer.append(", name=").append(m_name);
+    buffer.append(", priority=").append(m_priority);
+    buffer.append(", state=").append(m_state);
+    buffer.append("]");
+
+    return buffer.toString();
   }
 }

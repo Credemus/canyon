@@ -31,7 +31,7 @@ public class BPEContext {
 
   protected ExtendedAttribute[] m_extendedAttributes;
 
-  protected Map m_extendedAttributeMap = new HashMap();
+  protected Map<String, ExtendedAttribute> m_extendedAttributeMap = new HashMap<String, ExtendedAttribute>();
 
   public BPEContext(String clientId, ExtendedAttribute[] extendedAttributes,
       String processInstanceId, String parentProcessInstanceIdPath, String processId, String activityId) {
@@ -58,7 +58,7 @@ public class BPEContext {
   }
 
   public String toString() {
-    StringBuffer buffy = new StringBuffer("[");
+    StringBuilder buffy = new StringBuilder("[");
     buffy.append("clientId='").append(m_clientId).append("'");
     buffy.append(", processId='").append(m_processId).append("'");
     buffy.append(", activityId='").append(m_activityId).append("'");

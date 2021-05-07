@@ -20,7 +20,7 @@ public interface IParser
    * @exception IOException          Description of the Exception
    * @exception XPDLParserException  Description of the Exception
    */
-  public WorkflowPackage parse( InputStream in )
+  WorkflowPackage parse(InputStream in)
     throws IOException, XPDLParserException;
 
 
@@ -32,6 +32,6 @@ public interface IParser
    * @exception IOException          Description of the Exception
    * @exception XPDLParserException  Description of the Exception
    */
-  public WorkflowPackage parse( Reader in )
+  WorkflowPackage parse(Reader in)
     throws IOException, XPDLParserException;
 }

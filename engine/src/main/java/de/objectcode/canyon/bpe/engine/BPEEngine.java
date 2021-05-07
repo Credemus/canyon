@@ -45,14 +45,14 @@ public class BPEEngine {
   private IWorklistEngine m_worklistEngine;
   private IAsyncManager m_asyncManager;
   private IToolRepository m_toolRepository;
-  private EventHub m_eventHub;
+  private final EventHub m_eventHub;
   private IBPEEventBroker m_bpeEventBroker;
 
   private IBusinessCalendar m_businessCalendar;
 
-  private Map m_processIdByMessageOperation;
+  private final Map<String, String> m_processIdByMessageOperation;
 
-  private SortedMap m_alarms;
+  private final SortedMap<Long, List<String>> m_alarms;
 
 
   /**
@@ -60,8 +60,8 @@ public class BPEEngine {
    */
   public BPEEngine() {
     m_eventHub = new EventHub(this);
-    m_processIdByMessageOperation = new HashMap();
-    m_alarms = new TreeMap();
+    m_processIdByMessageOperation = new HashMap<String, String>();
+    m_alarms = new TreeMap<Long, List<String>>();
   }
 
 
@@ -284,7 +284,7 @@ public class BPEEngine {
       process.terminateProcess();
 
       updateProcessInstance(process);
-      terminateSubProcessInstances(new HashMap(), processInstanceId);
+      terminateSubProcessInstances(new HashMap<Long, BPEProcess>(), processInstanceId);
     }
   }
 
@@ -301,11 +301,7 @@ public class BPEEngine {
       log.debug("updateProcessInstance: " + process.getProcessInstanceId());
     }
 
-    Iterator it = process.getAlarmReceivers().iterator();
-
-    while (it.hasNext()) {
-      IAlarmReceiver alarmReceiver = (IAlarmReceiver) it.next();
-
+    for (IAlarmReceiver alarmReceiver : process.getAlarmReceivers()) {
       if (alarmReceiver.isActive()) {
         addAlarm(alarmReceiver.getAlarmTime(), process.getProcessInstanceId());
       }
@@ -350,11 +346,7 @@ public class BPEEngine {
     process.setBPEEngine(this);
     m_processRepository.createProcess(packageRevisionOid, process, processSource);
 
-    Iterator it = process.getCreateInstanceOperations().iterator();
-
-    while (it.hasNext()) {
-      MessageType messageType = (MessageType) it.next();
-
+    for (MessageType messageType : process.getCreateInstanceOperations()) {
       m_processIdByMessageOperation.put(messageType.getMessageOperation(), process.getId());
     }
   }
@@ -399,9 +391,7 @@ public class BPEEngine {
     TerminateProcessInstanceVisitor visitor = new TerminateProcessInstanceVisitor(m_processRepository, event, false);
     m_processInstanceRepository.iterateProcessInstances(event.getProcessId(), true, visitor);
     int result = visitor.getNumberOfTerminatableProcessInstances();
-    Iterator terminatedProcessInstanceIds = visitor.getTerminatedProcessInstanceIds().iterator();
-    while (terminatedProcessInstanceIds.hasNext()) {
-      String terminatedProcessInstanceId = (String) terminatedProcessInstanceIds.next();
+    for (String terminatedProcessInstanceId : visitor.getTerminatedProcessInstanceIds()) {
       terminateSubProcessInstances(visitor.getProcessCache(), terminatedProcessInstanceId);
     }
     return result;
@@ -410,24 +400,20 @@ public class BPEEngine {
   public List<String> reanimateProcessInstances(boolean readOnly) throws RepositoryException {
     ReanimateProcessInstanceVisitor visitor = new ReanimateProcessInstanceVisitor(m_processRepository, readOnly);
     m_processInstanceRepository.iterateProcessInstances(true, visitor);
-    List result = visitor.getMessages();
-    return result;
+    return visitor.getMessages();
   }
 
 
   public int countTerminateProcessInstances(MessageEvent event) throws RepositoryException {
     TerminateProcessInstanceVisitor visitor = new TerminateProcessInstanceVisitor(m_processRepository, event, true);
     m_processInstanceRepository.iterateProcessInstances(event.getProcessId(), true, visitor);
-    int result = visitor.getNumberOfTerminatableProcessInstances();
-    return result;
+    return visitor.getNumberOfTerminatableProcessInstances();
   }
 
-  public void terminateSubProcessInstances(Map processCache, String parentProcessInstanceId) throws RepositoryException {
+  public void terminateSubProcessInstances(Map<Long, BPEProcess> processCache, String parentProcessInstanceId) throws RepositoryException {
     TerminateSubProcessInstanceVisitor subVisitor = new TerminateSubProcessInstanceVisitor(m_processRepository, processCache);
     m_processInstanceRepository.iterateSubProcessInstances(parentProcessInstanceId, subVisitor);
-    Iterator subProcessInstanceIds = subVisitor.getSubProcessInstanceIds().iterator();
-    while (subProcessInstanceIds.hasNext()) {
-      String subProcessInstanceId = (String) subProcessInstanceIds.next();
+    for (String subProcessInstanceId : subVisitor.getSubProcessInstanceIds()) {
       terminateSubProcessInstances(processCache, subProcessInstanceId);
     }
   }
@@ -587,7 +573,7 @@ public class BPEEngine {
    */
   public void initialize()
           throws RepositoryException, EngineException {
-    Map processCache = new HashMap();
+    Map<Long, BPEProcess> processCache = new HashMap<Long, BPEProcess>();
 
     m_processRepository.iterateProcessesNoSource(new ProcessVisitor(processCache));
     m_processInstanceRepository.iterateProcessInstances(true, new ProcessInstanceVisitor(processCache));
@@ -640,12 +626,12 @@ public class BPEEngine {
    * @param processInstanceId The feature to be added to the Alarm attribute
    */
   synchronized void addAlarm(long alarmTime, String processInstanceId) {
-    List alarms = (List) m_alarms.get(new Long(alarmTime));
+    List<String> alarms = m_alarms.get(new Long(alarmTime));
 
     if (alarms == null) {
-      alarms = new ArrayList();
+      alarms = new ArrayList<String>();
 
-      m_alarms.put(new Long(alarmTime), alarms);
+      m_alarms.put(alarmTime, alarms);
     }
 
     alarms.add(processInstanceId);
@@ -670,8 +656,8 @@ public class BPEEngine {
       if (first == null || first.longValue() >= now)
         return false;
 
-      List alarms = (List) m_alarms.get(first);
-      processInstanceId = (String) alarms.get(0);
+      List<String> alarms = m_alarms.get(first);
+      processInstanceId = alarms.get(0);
 
       alarms.remove(0);
 
@@ -740,9 +726,7 @@ public class BPEEngine {
         process.setProcessInstanceId(processInstance.getProcessInstanceId());
         process.hydrate(new HydrationContext(), new ObjectInputStream(new ByteArrayInputStream(processInstance.getProcessState())));
 
-        Iterator activities = process.getActitivities().iterator();
-        while (activities.hasNext()) {
-          Activity activity = (Activity) activities.next();
+        for (Activity activity : process.getActitivities()) {
           if (activity instanceof XPDLToolActivity) {
             XPDLToolActivity xpdlToolActivity = (XPDLToolActivity) activity;
             StringBuilder buffy = new StringBuilder();
@@ -781,12 +765,12 @@ public class BPEEngine {
 
 
   private class TerminateProcessInstanceVisitor implements IProcessInstanceVisitor {
-    private MessageEvent m_messageEvent;
-    private IProcessRepository m_processRepository;
-    private Map m_processCache = new HashMap();
-    private boolean m_countOnly;
+    private final MessageEvent m_messageEvent;
+    private final IProcessRepository m_processRepository;
+    private final Map<Long, BPEProcess> m_processCache = new HashMap<Long, BPEProcess>();
+    private final boolean m_countOnly;
 
-    private List m_terminatedProcessInstanceIds = new ArrayList();
+    private final List<String> m_terminatedProcessInstanceIds = new ArrayList<String>();
     private int m_numberOfTerminatableProcessInstances = 0;
 
     /**
@@ -809,12 +793,12 @@ public class BPEEngine {
      */
     public void visit(ProcessInstance processInstance)
             throws RepositoryException {
-      BPEProcess process = (BPEProcess) m_processCache.get(new Long(processInstance.getProcessEntityOid()));
+      BPEProcess process = m_processCache.get(processInstance.getProcessEntityOid());
 
       if (process == null) {
         process = m_processRepository.getProcess(processInstance.getProcessEntityOid());
 
-        m_processCache.put(new Long(processInstance.getProcessEntityOid()), process);
+        m_processCache.put(processInstance.getProcessEntityOid(), process);
       }
 
 
@@ -829,8 +813,8 @@ public class BPEEngine {
         if ((clientId == null ||
                 clientId.equals(process.getClientId())
                         && (process.getState() == ActivityState.RUNNING || process.getState() == ActivityState.COMPLETED))) {
-          Map params = m_messageEvent.getEventParams();
-          Iterator parameterNames = params.keySet().iterator();
+          Map<String, Object> params = m_messageEvent.getEventParams();
+          Iterator<String> parameterNames = params.keySet().iterator();
           if (matchesParameters(process, params, parameterNames)) {
             m_numberOfTerminatableProcessInstances++;
             if (!m_countOnly && process.getState() == ActivityState.RUNNING) {
@@ -851,10 +835,10 @@ public class BPEEngine {
     }
 
 
-    private boolean matchesParameters(BPEProcess process, Map params, Iterator parameterNames) {
+    private boolean matchesParameters(BPEProcess process, Map<String, Object> params, Iterator<String> parameterNames) {
       boolean matches = true;
       while (parameterNames.hasNext()) {
-        String parameterName = (String) parameterNames.next();
+        String parameterName = parameterNames.next();
         Object value = params.get(parameterName);
         IVariable variable = process.getVariable(parameterName);
         if (variable == null) {
@@ -871,11 +855,11 @@ public class BPEEngine {
       return matches;
     }
 
-    public List getTerminatedProcessInstanceIds() {
+    public List<String> getTerminatedProcessInstanceIds() {
       return m_terminatedProcessInstanceIds;
     }
 
-    public Map getProcessCache() {
+    public Map<Long, BPEProcess> getProcessCache() {
       return m_processCache;
     }
 
@@ -889,23 +873,23 @@ public class BPEEngine {
   private class TerminateSubProcessInstanceVisitor implements
           IProcessInstanceVisitor {
     private String m_parentProcessInstanceId;
-    private Map m_processCache = new HashMap();
-    private List m_subProcessInstanceIds = new ArrayList();
+    private final Map<Long, BPEProcess> m_processCache;
+    private final List<String> m_subProcessInstanceIds = new ArrayList<String>();
 
-    private IProcessRepository m_processRepository;
+    private final IProcessRepository m_processRepository;
 
     /**
      * Constructor for the ProcessInstanceClientIdVisitor object
      *
      * @param processRepository Description of the Parameter
      */
-    TerminateSubProcessInstanceVisitor(IProcessRepository processRepository, Map processCache) {
+    TerminateSubProcessInstanceVisitor(IProcessRepository processRepository, Map<Long, BPEProcess> processCache) {
       m_processRepository = processRepository;
       m_processCache = processCache;
     }
 
 
-    public List getSubProcessInstanceIds() {
+    public List<String> getSubProcessInstanceIds() {
       return m_subProcessInstanceIds;
     }
 
@@ -917,12 +901,12 @@ public class BPEEngine {
      */
     public void visit(ProcessInstance processInstance)
             throws RepositoryException {
-      BPEProcess process = (BPEProcess) m_processCache.get(new Long(processInstance.getProcessEntityOid()));
+      BPEProcess process = m_processCache.get(processInstance.getProcessEntityOid());
 
       if (process == null) {
         process = m_processRepository.getProcess(processInstance.getProcessEntityOid());
 
-        m_processCache.put(new Long(processInstance.getProcessEntityOid()), process);
+        m_processCache.put(processInstance.getProcessEntityOid(), process);
       }
 
       try {
@@ -954,23 +938,19 @@ public class BPEEngine {
    * @created 24. Juni 2004
    */
   private class ProcessVisitor implements IProcessNoSourceVisitor {
-    private Map<Long, BPEProcess> m_processCache;
+    private final Map<Long, BPEProcess> m_processCache;
 
     ProcessVisitor(Map<Long, BPEProcess> processCache) {
       m_processCache = processCache;
     }
 
     /**
-     * @param process       Description of the Parameter
+     * @param process Description of the Parameter
      */
     public void visit(BPEProcess process) {
       m_processCache.put(process.getProcessEntityOid(), process);
 
-      Iterator it = process.getCreateInstanceOperations().iterator();
-
-      while (it.hasNext()) {
-        MessageType messageType = (MessageType) it.next();
-
+      for (MessageType messageType : process.getCreateInstanceOperations()) {
         m_processIdByMessageOperation.put(messageType.getMessageOperation(), process.getId());
       }
     }
@@ -984,7 +964,7 @@ public class BPEEngine {
    * @created 24. Juni 2004
    */
   private class ProcessInstanceVisitor implements IProcessInstanceVisitor {
-    private Map<Long, BPEProcess> m_processCache;
+    private final Map<Long, BPEProcess> m_processCache;
 
     ProcessInstanceVisitor(Map<Long, BPEProcess> processCache) {
       m_processCache = processCache;

@@ -58,6 +58,6 @@ public interface IToolRepository
    * @throws ObjectNotFoundException  if the tool ID is not registered.
    * @throws RepositoryException      if some other error occurred.
    */
-  public IToolConnector findTool( Application toolDefinition, String id )
+  IToolConnector findTool(Application toolDefinition, String id)
     throws RepositoryException;
 }

@@ -16,10 +16,10 @@ public interface IAttributedEntity
    *
    * @return   The entityId value
    */
-  public String getEntityId();
+  String getEntityId();
 
 
-  public IProcessDefinitionID getProcessDefinitionId();
+  IProcessDefinitionID getProcessDefinitionId();
 
 
   /**
@@ -28,7 +28,7 @@ public interface IAttributedEntity
    * @return                         The attributeInstances value
    * @exception RepositoryException  Description of the Exception
    */
-  public Map getAttributeInstances()
+  Map getAttributeInstances()
     throws RepositoryException;
 
 

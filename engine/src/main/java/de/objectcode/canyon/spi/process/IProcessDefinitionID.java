@@ -8,10 +8,10 @@ public interface IProcessDefinitionID
   /**
    * Get the identifier of the workflow process.
    */
-  public String getId ( );
+  String getId();
   
   /**
    * Get the version of the workflow process.
    */
-  public String getVersion ( );
+  String getVersion();
 }

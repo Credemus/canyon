@@ -127,7 +127,7 @@ public abstract class BaseEventConnector implements IToolConnector {
 
 		public String fJndiConnectionFactoryName = CONNECTION_FACTORY_JNDI_NAME;
 
-		public HashMap fEventParams;
+		public HashMap<String, Object> fEventParams;
 
 		public void setEngineLocator(String engineLocator) {
 			fEngineLocator = engineLocator;

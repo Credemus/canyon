@@ -14,6 +14,6 @@ package de.objectcode.canyon.spi.tool;
  */
 public interface IBPEContextAware {
   
-  public void setBPEContext(BPEContext context);
+  void setBPEContext(BPEContext context);
 
 }

@@ -31,7 +31,7 @@ import de.objectcode.canyon.worklist.spi.worklist.IWorkItem;
 public class InstanceRepository implements IInstanceRepository {
   private final static Log log = LogFactory.getLog(InstanceRepository.class);
 
-  private SessionFactory m_factory;
+  private final SessionFactory m_factory;
 
 
   /**

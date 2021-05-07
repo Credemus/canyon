@@ -68,7 +68,7 @@ public class InternalEventConnector extends BaseEventConnector implements IToolC
   protected MessageDescriptor extractMessageDescriptor(BPEContext context, Parameter[] parameters) {
     MessageDescriptor md = new MessageDescriptor();
     int              i;
-    md.fEventParams  = new HashMap();
+    md.fEventParams  = new HashMap<String, Object>();
     md.fClientId = context.getClientId();
     
     for ( i = 0; i < parameters.length; i++ ) {

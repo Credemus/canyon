@@ -24,7 +24,7 @@ public class ProcessInstanceRepository implements IProcessInstanceRepository
 {
   private final static  Log  log  = LogFactory.getLog( ProcessInstanceRepository.class );
 
-  private SessionFactory m_sessionFactory;
+  private final SessionFactory m_sessionFactory;
   
   public ProcessInstanceRepository  ( SessionFactory sessionFactory )
   {

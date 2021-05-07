@@ -35,7 +35,7 @@ public class InvalidPackageException extends Exception
    */
   public String toString()
   {
-    StringBuffer  sb        = new StringBuffer( super.toString() );
+    StringBuilder sb        = new StringBuilder( super.toString() );
     String[]      messages  = m_errors.getMessages();
     int           i;
 

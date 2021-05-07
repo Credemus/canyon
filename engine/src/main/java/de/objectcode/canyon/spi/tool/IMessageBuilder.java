@@ -15,5 +15,5 @@ import javax.jms.Message;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public interface IMessageBuilder {
-  public void build(BPEContext context, Parameter[] parameters,  Message msg);
+  void build(BPEContext context, Parameter[] parameters, Message msg);
 }

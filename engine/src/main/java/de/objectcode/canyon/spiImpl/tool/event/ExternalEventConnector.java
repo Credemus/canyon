@@ -71,7 +71,7 @@ public class ExternalEventConnector extends BaseEventConnector implements IToolC
   protected MessageDescriptor extractMessageDescriptor(BPEContext context, Parameter[] parameters) {
     MessageDescriptor md = new MessageDescriptor();
     int              i;
-    md.fEventParams  = new HashMap();
+    md.fEventParams  = new HashMap<String, Object>();
 
     for ( i = 0; i < parameters.length; i++ ) {
       if (parameters[i].formalName.equals("_canyon_externalEngineIdentifier")) {

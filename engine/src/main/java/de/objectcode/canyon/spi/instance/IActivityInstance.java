@@ -15,12 +15,12 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
   /**
    * Property descriptors for WorkItem.
    */
-  public final static  PropertyDescriptor[]  PROPERTYDESCRIPTORS  = ServiceUtils.introspect( IActivityInstance.class, IAttributedEntity.class );
+  PropertyDescriptor[]  PROPERTYDESCRIPTORS  = ServiceUtils.introspect( IActivityInstance.class, IAttributedEntity.class );
 
   /**
    * Attributes for WorkItem.
    */
-  public final static  String[]              ATTRIBUTES           = ServiceUtils.getPropertyNames( PROPERTYDESCRIPTORS );
+  String[]              ATTRIBUTES           = ServiceUtils.getPropertyNames( PROPERTYDESCRIPTORS );
 
 
   /**
@@ -28,7 +28,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The activityInstanceId value
    */
-  public String getActivityInstanceId();
+  String getActivityInstanceId();
 
 
   /**
@@ -36,7 +36,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The processInstance value
    */
-  public IProcessInstance getProcessInstance();
+  IProcessInstance getProcessInstance();
 
 
   /**
@@ -44,7 +44,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The join value
    */
-  public IJoinedTransition[] getJoinedTransitions();
+  IJoinedTransition[] getJoinedTransitions();
 
 
   /**
@@ -52,7 +52,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The joinType value
    */
-  public int getJoinType();
+  int getJoinType();
 
 
   /**
@@ -60,7 +60,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The blockActivityIterator value
    */
-  public IPersistentIterator getBlockActivityIterator();
+  IPersistentIterator getBlockActivityIterator();
 
 
   /**
@@ -68,7 +68,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The blockActivityInstanceId value
    */
-  public String getBlockActivityInstanceId();
+  String getBlockActivityInstanceId();
 
 
   /**
@@ -76,7 +76,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The activityDefinitionId value
    */
-  public String getActivityDefinitionId();
+  String getActivityDefinitionId();
 
 
   /**
@@ -84,7 +84,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The state value
    */
-  public int getState();
+  int getState();
 
 
   /**
@@ -92,7 +92,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @param state  The new state value
    */
-  public void setState( int state );
+  void setState(int state);
 
 
   /**
@@ -100,7 +100,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The priority value
    */
-  public int getPriority();
+  int getPriority();
 
 
   /**
@@ -108,7 +108,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @param priority  The new priority value
    */
-  public void setPriority( int priority );
+  void setPriority(int priority);
 
 
   /**
@@ -116,7 +116,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The startedDate value
    */
-  public Date getStartedDate();
+  Date getStartedDate();
 
 
   /**
@@ -124,7 +124,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @param startedDate  The new startedDate value
    */
-  public void setStartedDate( Date startedDate );
+  void setStartedDate(Date startedDate);
 
 
   /**
@@ -132,7 +132,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The completedDate value
    */
-  public Date getCompletedDate();
+  Date getCompletedDate();
 
 
   /**
@@ -140,7 +140,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @param completedDate  The new completedDate value
    */
-  public void setCompletedDate( Date completedDate );
+  void setCompletedDate(Date completedDate);
 
 
   /**
@@ -148,7 +148,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The dueDate value
    */
-  public Date getDueDate();
+  Date getDueDate();
 
 
   /**
@@ -156,7 +156,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @param dueDate  The new dueDate value
    */
-  public void setDueDate( Date dueDate );
+  void setDueDate(Date dueDate);
 
 
   /**
@@ -164,7 +164,7 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The name value
    */
-  public String getName();
+  String getName();
 
 
   /**
@@ -172,14 +172,14 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return  
    */
-  public void setName(String name);
+  void setName(String name);
 
   /**
    * Sets the participants attribute of the IActivityInstance object
    *
    * @param participants  The new participants value
    */
-  public void setParticipants( String[] participants );
+  void setParticipants(String[] participants);
 
 
   /**
@@ -187,5 +187,5 @@ public interface IActivityInstance extends IAttributedEntity, ActivityInstanceAt
    *
    * @return   The participants value
    */
-  public String[] getParticipants();
+  String[] getParticipants();
 }

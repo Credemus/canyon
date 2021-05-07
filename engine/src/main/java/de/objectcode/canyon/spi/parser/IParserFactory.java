@@ -31,7 +31,7 @@ public interface IParserFactory
    * @param contentType  Description of the Parameter
    * @return             Description of the Return Value
    */
-  public IParser createParser( String contentType ) throws ObjectNotFoundException;
+  IParser createParser(String contentType) throws ObjectNotFoundException;
 
 
   /**
@@ -40,7 +40,7 @@ public interface IParserFactory
    * @param contentType  Description of the Parameter
    * @return             Description of the Return Value
    */
-  public ISerializer createSerializer( String contentType ) throws ObjectNotFoundException;
+  ISerializer createSerializer(String contentType) throws ObjectNotFoundException;
 
 
   /**
@@ -51,8 +51,8 @@ public interface IParserFactory
    * @param serializerClass                   Description of the Parameter
    * @exception ObjectAlreadyExistsException  Description of the Exception
    */
-  public void registerParser( String contentType, String parserClass,
-      String serializerClass )
+  void registerParser(String contentType, String parserClass,
+                      String serializerClass)
     throws ObjectAlreadyExistsException;
 
 
@@ -62,6 +62,6 @@ public interface IParserFactory
    * @param contentType                  Description of the Parameter
    * @exception ObjectNotFoundException  Description of the Exception
    */
-  public void unregisterParser( String contentType )
+  void unregisterParser(String contentType)
     throws ObjectNotFoundException;
 }

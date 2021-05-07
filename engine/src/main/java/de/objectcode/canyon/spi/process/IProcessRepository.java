@@ -11,9 +11,9 @@ import de.objectcode.canyon.spi.filter.IFilter;
  */
 public interface IProcessRepository
 {
-	public void beginTransaction() throws RepositoryException;
+	void beginTransaction() throws RepositoryException;
 	
-	public void endTransaction(boolean flush) throws RepositoryException;
+	void endTransaction(boolean flush) throws RepositoryException;
 	
   /**
    * Creates a package using the supplied content.
@@ -23,7 +23,7 @@ public interface IProcessRepository
    * @exception RepositoryException                             Description of the Exception
    * @throws org.obe.client.api.repository.RepositoryException
    */
-  public void createPackage( WorkflowPackage pkg, int state )
+  void createPackage(WorkflowPackage pkg, int state)
     throws RepositoryException;
 
 
@@ -34,7 +34,7 @@ public interface IProcessRepository
    * @exception RepositoryException                             Description of the Exception
    * @throws org.obe.client.api.repository.RepositoryException
    */
-  public void deletePackage( String packageId )
+  void deletePackage(String packageId)
     throws RepositoryException;
 
 
@@ -45,7 +45,7 @@ public interface IProcessRepository
    * @exception RepositoryException                             Description of the Exception
    * @throws org.obe.client.api.repository.RepositoryException
    */
-  public void updatePackage( WorkflowPackage pkg )
+  void updatePackage(WorkflowPackage pkg)
     throws RepositoryException;
 
 
@@ -57,7 +57,7 @@ public interface IProcessRepository
    * @return
    * @throws RepositoryException
    */
-  public int countPackages( IFilter filter )
+  int countPackages(IFilter filter)
     throws RepositoryException;
 
 
@@ -68,7 +68,7 @@ public interface IProcessRepository
    * @return                         An array of matching packages.
    * @exception RepositoryException  Description of the Exception
    */
-  public WorkflowPackage[] findPackages( IFilter filter )
+  WorkflowPackage[] findPackages(IFilter filter)
     throws RepositoryException;
 
 
@@ -79,7 +79,7 @@ public interface IProcessRepository
    * @return                         The requested package.
    * @exception RepositoryException  Description of the Exception
    */
-  public WorkflowPackage findPackage( String packageId )
+  WorkflowPackage findPackage(String packageId)
     throws RepositoryException;
 
 
@@ -92,7 +92,7 @@ public interface IProcessRepository
    * @return
    * @throws RepositoryException
    */
-  public WorkflowPackage findPackage( String packageId, String version )
+  WorkflowPackage findPackage(String packageId, String version)
     throws RepositoryException;
 
 
@@ -103,7 +103,7 @@ public interface IProcessRepository
    * @return                         The requested process definitions.
    * @exception RepositoryException  Description of the Exception
    */
-  public WorkflowProcess findWorkflowProcess( IProcessDefinitionID processDefinitionId )
+  WorkflowProcess findWorkflowProcess(IProcessDefinitionID processDefinitionId)
     throws RepositoryException;
 
 
@@ -114,7 +114,7 @@ public interface IProcessRepository
    * @return                         Description of the Return Value
    * @exception RepositoryException  Description of the Exception
    */
-  public WorkflowProcess findWorkflowProcess( String processDefinitionId )
+  WorkflowProcess findWorkflowProcess(String processDefinitionId)
     throws RepositoryException;
 
 
@@ -126,7 +126,7 @@ public interface IProcessRepository
    * @return
    * @throws RepositoryException
    */
-  public int countWorkflowProcesses( IFilter filter )
+  int countWorkflowProcesses(IFilter filter)
     throws RepositoryException;
 
 
@@ -137,7 +137,7 @@ public interface IProcessRepository
    * @return                         An array of matching process definitions.
    * @exception RepositoryException  Description of the Exception
    */
-  public WorkflowProcess[] findWorkflowProcesses( IFilter filter )
+  WorkflowProcess[] findWorkflowProcesses(IFilter filter)
     throws RepositoryException;
 
 
@@ -150,7 +150,7 @@ public interface IProcessRepository
    * @exception RepositoryException                             Description of the Exception
    * @throws org.obe.client.api.repository.RepositoryException
    */
-  public int findProcessDefinitionState( String processDefinitionId )
+  int findProcessDefinitionState(String processDefinitionId)
     throws RepositoryException;
 
 
@@ -162,7 +162,7 @@ public interface IProcessRepository
    * @exception RepositoryException                             Description of the Exception
    * @throws org.obe.client.api.repository.RepositoryException  Workflow client exception
    */
-  public void updateProcessDefinitionState( String processDefinitionId,
-      int newState )
+  void updateProcessDefinitionState(String processDefinitionId,
+                                    int newState)
     throws RepositoryException;
 }

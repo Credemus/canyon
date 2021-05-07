@@ -9,10 +9,10 @@ public interface IPackageID
    * Get the identifier of the package.
    * I.e. the package name.
    */
-  public String getId ();
+  String getId();
   
   /**
    * Get the version of the package.
    */
-  public String getVersion();
+  String getVersion();
 }

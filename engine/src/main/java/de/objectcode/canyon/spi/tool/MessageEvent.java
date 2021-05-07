@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class MessageEvent {
   
-  Map  m_eventParams;
+  Map<String, Object>  m_eventParams;
   String   m_engineId;
   String   m_eventType;
   String   m_processId;
@@ -47,7 +47,7 @@ public class MessageEvent {
    * @param clientId
    * @param parentProcessInstanceIdPath
    */
-  public MessageEvent(Map eventParams, String engineId, String eventType,
+  public MessageEvent(Map<String, Object> eventParams, String engineId, String eventType,
       String processId, String action, String userId, String clientId,
       String parentProcessInstanceIdPath) {
     super();
@@ -73,7 +73,7 @@ public class MessageEvent {
   public void setEngineId(String engineId) {
     m_engineId = engineId;
   }
-  public Map getEventParams() {
+  public Map<String, Object> getEventParams() {
     return m_eventParams;
   }
   public void setEventParams(Map eventParams) {

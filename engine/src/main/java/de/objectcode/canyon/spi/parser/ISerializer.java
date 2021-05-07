@@ -19,7 +19,7 @@ public interface ISerializer
    * @param out              Description of the Parameter
    * @exception IOException  Description of the Exception
    */
-  public void serialize( WorkflowPackage pkg, OutputStream out )
+  void serialize(WorkflowPackage pkg, OutputStream out)
     throws IOException;
 
 
@@ -30,6 +30,6 @@ public interface ISerializer
    * @param out              Description of the Parameter
    * @exception IOException  Description of the Exception
    */
-  public void serialize( WorkflowPackage pkg, Writer out )
+  void serialize(WorkflowPackage pkg, Writer out)
     throws IOException;
 }
